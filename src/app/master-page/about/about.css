@@ -1,0 +1,20 @@
+.titulo {
+    font-family: FoundryMonoline-Blod;
+    color: #009DCA;
+}
+
+.parrafo {
+    color: #7F7F7F;
+    font-family: FoundryMonoline-Light;
+}
+
+.link {
+    display: block;
+    color: #7F7F7F;
+    font-family: FoundryMonoline-Light;
+}
+
+.link:hover {
+    color: #009DCA;
+    text-decoration: none;
+}

@@ -1,0 +1,352 @@
+{
+  "GENERAL" : {
+    "Errores" : {
+      "Generico" : "Ocorreu um erro.",
+      "ContacteAdministrador" : "Entre em contato com o administrador."
+    }
+  },
+  "MASTERPAGE" : {
+    "MENU" : {
+      "LinkHome" : "Inicio",
+      "LinkAutnum" : "Pesquisar por Autnum",
+      "LinkIp" : "Pesquisar por IP",
+      "LinkEntity" : "Pesquisar por Entity",
+      "LinkEntitiesByName" : "Pesquisar por Nome",
+      "LinkAbout" : "Sobre RDAP"
+    }
+  },
+  "HOME" : {
+    "Errores" : {
+      "valorBuscadoVacio" : "Você deve especificar o valor a ser procurado."
+    },
+    "QueryBy" : "Consultar por:",
+    "InformacionAdicional" : {
+      "Titulo" : "INFORMAÇÃO ADICIONAL",
+      "Parrafo1" : "O \"Registration Data Access Protocol\" (RDAP) foi projetado para superar as deficiências existentes no WHOIS tradicional, problemas com a internacionalização, padronização das respostas, inclusão de caracteres especiais, difícil processamento automático, inclusão de novos tipos de consultas poderão ser resolvidos com o desenvolvimento deste padrão.",
+      "Parrafo2" : "Os documentos de WEIRDS nos quais foi baseado o RDAP implementado pela LACNIC bem como infomação adicional sobre o sistema."
+    },"ComoConsultar": {
+      "Titulo":"Como consultar",
+      "IDs": {
+        "Titulo" : "IDs",
+        "Texto" : "Digite o ID do usuário. IDs são compostos por três letras, seguidas ou não de alguns números."
+      },
+      "Orgs": {
+        "Titulo" : "Entidades",
+        "Texto" : "Digite o OrgID da entidade. Os OrgIDs possuem o formato:",
+        "Ejemplo":"código do país-ID da entidade-LACNIC."
+      },
+      "Asn": {
+        "Titulo" : "ASN",
+        "Texto" : "Digite o número do Sistema Autônomo."
+      },
+      "IP":
+      { "Titulo" : "IP ou bloco CIDR",
+        "Texto" : "Digite um número IP (200.200.200.200) ou um bloco CIDR (200.200.0.0/16)."
+      }
+    },
+    "Copyright":"Os dados abaixo são fornecidos para fins informativos e para ajudar as pessoas a obter informações sobre ou relacionadas aos registros de números de AS e IP. Ao enviar uma consulta, você concorda em usar esses dados apenas para fins legais.",
+    "Select" : {
+      "Opciones" : {
+        "1" : "Autnum",
+        "2" : "IP",
+        "3" : "Entidade",
+        "4" : "Nameserver",
+        "5" : "Domain",
+        "6" : "Entities"
+      }
+    },
+    "BotonBuscar" : "PROCURAR"
+  },
+  "CONSULTAPORIP" : {
+    "Errores" : {
+      "valorBuscadoVacio" : "Você deve especificar o valor a ser procurado."
+    },
+    "Titulo" : "Consulta por IP",
+    "InformacionAdicional" : {
+      "Titulo" : "INFORMAÇÃO ADICIONAL",
+      "Parrafo1" : "Parágrafo 1.",
+      "Parrafo2" : "Parágrafo 2."
+    },
+    "BotonBuscar" : "PROCURAR"
+  },
+  "CONSULTAPORAUTNUM" : {
+    "Errores" : {
+      "valorBuscadoVacio" : "Você deve especificar o valor a ser procurado."
+    },
+    "Titulo" : "Pesquisa por Autnum",
+    "InformacionAdicional" : {
+      "Titulo" : "INFORMAÇÃO ADICIONAL",
+      "Parrafo1" : "Parágrafo 1.",
+      "Parrafo2" : "Parágrafo 2."
+    },
+    "BotonBuscar" : "PROCURAR"
+  },
+  "CONSULTAPORENTITY" : {
+    "Errores" : {
+      "valorBuscadoVacio" : "Você deve especificar o valor a ser procurado."
+    },
+    "Titulo" : "Consulta por Entity",
+    "InformacionAdicional" : {
+      "Titulo" : "INFORMAÇÃO ADICIONAL",
+      "Parrafo1" : "Parágrafo 1.",
+      "Parrafo2" : "Parágrafo 2."
+    },
+    "BotonBuscar" : "PROCURAR"
+  },
+  "CONSULTAENTITIESBYNAME" : {
+    "Errores" : {
+      "valorBuscadoVacio" : "Você deve especificar o valor a ser procurado."
+    },
+    "Titulo" : "Consulta por Nome",
+    "InformacionAdicional" : {
+      "Titulo" : "INFORMAÇÃO ADICIONAL",
+      "Parrafo1" : "Parágrafo 1.",
+      "Parrafo2" : "Parágrafo 2."
+    },
+    "BotonBuscar" : "PROCURAR"
+  },
+  "ABOUT" : {
+    "Titulo" : "Sobre RDAP",
+    "Parrafo1" : "O \"Web Extensible Internet Registration Data Service Working Group\" (WEIRDS) é o grupo de trabalho dentro da Internet Engineering Task Force (IEFT) responsável pela definição da nova forma de consultar o banco de dados de registros da Internet e obter assim informações de IP, ASN, contatos e organizações.",
+    "Parrafo2" : "O \"Registration Data Access Protocol\" (RDAP) tem sido criado para corrigir as deficiências existentes no WHOIS tradicional. Problemas como a internacionalização, padronização das respostas, inclusão de caracteres especiais, análise de erros, inclusão de novos tipos de consultas, poderão ser resolvidos com o desenvolvimento desse padrão.",
+    "Parrafo3" : "Este serviço tem sido desenvolvido por técnicos de LACNIC para dar uma resposta unificada à comunidade da região na hora de procurar informações sobre os recursos de numeração (IPv4, IPv6 e ASN) designados tanto pelo LACNIC quanto por organizações membros do LACNIC em nosso WHOIS. Para desenvolver o serviço, os engenheiros de LACNIC contaram com o apoio do RIPE-NCC.",
+    "Parrafo4" : "O RDAP tem grandes vantagens sobre o WHOIS tradicional: apresenta uma resposta padronizada e unificada, é mais fácil de usar ou integrar com outros sistemas e permite utilizar na busca outros idiomas além do inglês."
+    },
+  "RESULTADOSIP" : {
+    "Errores" : {
+      "sinResultados" : "Nenhum resultado encontrado.",
+      "verifiqueYReintente" : "Por favor verifique e tente novamente."
+    },
+    "TablaIP" : {
+      "Titulo" : "IP",
+      "Filas" : {
+        "Handle" : {
+          "Titulo" : "Handle"
+        },
+        "Name" : {
+          "Titulo" : "Name"
+        },
+        "Status" : {
+          "Titulo" : "Status"
+        },
+        "Parent" : {
+          "Titulo" : "Parent"
+        },
+        "NetRange" : {
+          "Titulo" : "Net Range"
+        },
+        "NetVersion" : {
+          "Titulo" : "Net Version"
+        },
+        "Country" : {
+          "Titulo" : "Country"
+        },
+        "Registration" : {
+          "Titulo" : "Registration"
+        },
+        "LastChanged" : {
+          "Titulo" : "Last Changed"
+        }
+      }
+    },
+    "TablaContacts" : {
+      "Titulo" : "CONTACTS",
+      "Filas" : {
+        "Handle" : {
+          "Titulo" : "Handle"
+        },
+        "Name" : {
+          "Titulo" : "Name"
+        },
+        "Address" : {
+          "Titulo" : "Address"
+        },
+        "City" : {
+          "Titulo" : "City"
+        },
+        "Country" : {
+          "Titulo" : "Country"
+        },
+        "PostalCode" : {
+          "Titulo" : "Postal Code"
+        },
+        "Email" : {
+          "Titulo" : "E-mail"
+        },
+        "Telephone" : {
+          "Titulo" : "Telephone"
+        },
+        "Registration" : {
+          "Titulo" : "Registration"
+        },
+        "LastChanged" : {
+          "Titulo" : "Last Changed"
+        },
+        "MoreInfo" : {
+          "Titulo" : "More Info"
+        }
+      }
+    }
+  },
+  "RESULTADOSAUTNUM" : {
+    "Errores" : {
+      "sinResultados" : "No se han encontrado resultados.",
+      "verifiqueYReintente" : "Por favor, verifique e intente nuevamente."
+    },
+    "TablaAutnum" : {
+      "Titulo": "AS",
+      "Filas": {
+        "Handle": {
+          "Titulo": "Number"
+        },
+        "Type": {
+          "Titulo": "Type"
+        },
+        "Registration": {
+          "Titulo": "Registration Date"
+        },
+        "LastChanged": {
+          "Titulo": "Last Changed"
+        }
+      }
+    },
+    "TablaContacts": {
+      "Titulo": "CONTACTS",
+      "Filas": {
+        "Handle": {
+          "Titulo": "Handle"
+        },
+        "Name": {
+          "Titulo": "Name"
+        }
+      }
+    }
+  },
+  "RESULTADOSENTITY" : {
+    "Errores" : {
+      "sinResultados" : "Nenhum resultado encontrado.",
+      "verifiqueYReintente" : "Por favor verifique e tente novamente."
+    },
+    "TablaEntity" : {
+      "Titulo" : "ENTITY",
+      "Filas" : {
+        "Handle" : {
+          "Titulo" : "Handle"
+        },
+        "Name" : {
+          "Titulo" : "Name"
+        },
+        "Address" : {
+          "Titulo" : "Address"
+        },
+        "City" : {
+          "Titulo" : "City"
+        },
+        "Country" : {
+          "Titulo" : "Country"
+        },
+        "Roles" : {
+          "Titulo" : "Roles"
+        },
+        "PostalCode" : {
+          "Titulo" : "Postal Code"
+        },
+        "Email" : {
+          "Titulo" : "E-mail"
+        },
+        "Telephone" : {
+          "Titulo" : "Telephone"
+        },
+        "Registration" : {
+          "Titulo" : "Registration"
+        },
+        "LastChanged" : {
+          "Titulo" : "Last Changed"
+        },
+        "Operator" : {
+          "Titulo" : "Operator"
+        },
+        "Inetnums" : {
+          "Titulo" : "Inetnums",
+          "Kind" : {
+            "Titulo" : "Kind"
+          },
+          "Value" : {
+            "Titulo" : "Value"
+          }
+        },
+        "Autnums" : {
+          "Titulo" : "Autnums",
+          "Kind" : {
+            "Titulo" : "Kind"
+          },
+          "Value" : {
+            "Titulo" : "Value"
+          }
+        }
+      }
+    }
+  },
+  "RESULTADOSENTITIESBYNAME" : {
+    "Errores" : {
+      "sinResultados" : "Nenhum resultado encontrado.",
+      "verifiqueYReintente" : "Por favor verifique e tente novamente."
+    },
+    "TablaEntities" : {
+      "Titulo" : "ENTITIES",
+      "Columnas" : {
+        "Handle" : {
+          "Titulo" : "Handle"
+        },
+        "Name" : {
+          "Titulo" : "Name"
+        },
+        "Country" : {
+          "Titulo" : "Country"
+        }
+      }
+    }
+  },
+  "REPORTEASN" : {
+    "Errores" : {
+      "sinResultados" : "Nenhum resultado encontrado.",
+      "verifiqueYReintente" : "Por favor verifique e tente novamente.",
+      "seleccionePais" : "Por favor, selecione um país."
+    },
+    "FormularioPaises" : {
+      "Combo" : {
+        "Label" : "Country",
+        "Opciones" : {
+          "Seleccionar" : "Selecione um pais",
+          "Todos" : "Todos"
+        }
+      },
+      "BotonBuscar" : "Procurar"
+    },
+    "TablaASN" : {
+      "Titulo" : "Relatório ASN's",
+      "Columnas" : {
+        "ASN" : {
+          "Titulo" : "ASN"
+        },
+        "Tipo" : {
+          "Titulo" : "Type"
+        },
+        "Visibilidad" : {
+          "Titulo" : "Visibility"
+        },
+        "Pais" : {
+          "Titulo" : "Country"
+        }
+      }
+    },
+    "Graficas" : {
+      "RecuentoTipo" : {
+        "Titulo" : "Tipo Contagem"
+      },
+      "RecuentoVisibilidad" : {
+        "Titulo" : "Visibilidade Contagem"
+      }
+    }
+  }
+}

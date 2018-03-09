@@ -1,0 +1,112 @@
+/*Contendor de la página*/
+.container {
+    padding-top: 50px;
+    padding-bottom: 40px;
+}
+
+/*Comienza - Detalles del menu vertical*/
+.sidebar {
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    border-right: 1px solid #eee;
+    background-color: #414344;
+}
+.sidebar {
+    padding-left: 0;
+    padding-right: 0;
+}
+.sidebar .nav {
+    margin-bottom: 20px;
+}
+.sidebar .nav-item {
+    width: 100%;
+}
+.sidebar .nav-item + .nav-item {
+    margin-left: 0;
+}
+.sidebar .nav-link {
+    border-radius: 0;
+}
+/*Finaliza - Detalles del menu vertical*/
+
+.menuHorizontal {
+    background-color: #404041;
+}
+
+/*Título del menu horizontal*/
+.tituloMenu{
+    font-family: FoundryMonoline-Blod;
+    width: 280px;
+    font-size: 24px;
+    color: #ffffff;
+}
+
+/*Links del menu horizontal*/
+.linkMenuBar {
+    font-family: FoundryMonoline-Medium;
+    color: #ffffff !important;
+}
+
+.linkMenuBar:hover {
+    color: #FFF;
+    text-decoration: underline;
+}
+
+.linkIdioma {
+    font-family: FoundryMonoline-Light;
+    margin-left: 5px;
+    margin-right: 5px;
+    cursor: pointer;
+    color: #FFF;
+}
+
+.linkIdioma:hover {
+    /*color: #009DCA;*/
+    text-decoration: underline;
+}
+
+.linkIdiomaActivo{
+    /*color: #009DCA;*/
+    text-decoration: underline;
+}
+
+.separadorLinkIdioma {
+    font-family: FoundryMonoline-Light;
+    color: #FFF;
+}
+
+/*Menú vertical*/
+.sidebar {
+    background-color: #F0F0F0;
+}
+
+/*Links del menu vertical*/
+.linkMenu {
+    font-family: FoundryMonoline-Medium;
+    color: #7F7F7F;
+}
+
+.linkMenu:hover {
+    text-decoration: underline;
+}
+
+.linkMenu.active{
+    font-family: FoundryMonoline-Blod;
+    color: #FFF;
+    background-color: #FAA519;
+}
+
+/*Imagen del menu vertical*/
+.logoMenu {
+    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:50px;
+}

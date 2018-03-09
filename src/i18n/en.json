@@ -1,0 +1,353 @@
+{
+  "GENERAL" : {
+    "Errores" : {
+      "Generico" : "An error has occurred.",
+      "ContacteAdministrador" : "Contact the administrator."
+    }
+  },
+  "MASTERPAGE" : {
+    "MENU" : {
+      "LinkHome" : "Home",
+      "LinkAutnum" : "Query by Autnum",
+      "LinkIp" : "Query by IP",
+      "LinkEntity" : "Query by Entity",
+      "LinkEntitiesByName" : "Query by Name",
+      "LinkAbout" : "About RDAP"
+    }
+  },
+  "HOME" : {
+    "Errores" : {
+      "valorBuscadoVacio" : "You must specify the value to be searched for."
+    },
+    "QueryBy" : "Query by:",
+    "InformacionAdicional" : {
+      "Titulo" : "ADDITIONAL INFORMATION",
+      "Parrafo1" : "The Registration Data Access Protocol (RDAP) was designed to address the shortcomings of the traditional WHOIS system. This standard will allow solving issues such as internationalization, standardization, inclusion of special characters, parsing difficulties, and the inclusion of new types of queries.",
+      "Parrafo2" : "The WEIRDS documents on which LACNIC's RDAP is based as well as additional information about the system."
+    },
+    "ComoConsultar": {
+      "Titulo":"How to query",
+      "IDs": {
+        "Titulo" : "IDs",
+        "Texto" : "Type the user's ID. IDs are made of three letter followed or not by some numbers."
+      },
+      "Orgs": {
+        "Titulo" : "Entities",
+        "Texto" : "Type the OrgID of the organization. OrgIDs has its format as:",
+        "Ejemplo": "country initials-Organization ID-LACNIC."
+      },
+      "Asn": {
+        "Titulo" : "ASN",
+        "Texto" : "Type the Autonomous System number."},
+      "IP":
+      { "Titulo" : "IP or CIDR block",
+        "Texto" : "Type an IP number (200.200.200.200) or a CIDR block (200.200.0.0/16)."
+      }
+    },
+    "Copyright":"The data below is provided for information purposes and to assist persons in obtaining information about or related to AS and IP numbers registrations. By submitting a query, you agree to use this data only for lawful purposes.",
+    "Select" : {
+      "Opciones" : {
+        "1" : "Autnum",
+        "2" : "IP",
+        "3" : "Entity",
+        "4" : "Nameserver",
+        "5" : "Domain",
+        "6" : "Entities"
+
+      }
+    },
+    "BotonBuscar" : "SEARCH"
+  },
+  "CONSULTAPORIP" : {
+    "Errores" : {
+      "valorBuscadoVacio" : "You must specify the value to be searched for."
+    },
+    "Titulo" : "Query by IP",
+    "InformacionAdicional" : {
+      "Titulo" : "ADDITIONAL INFORMATION",
+      "Parrafo1" : "Paragraph 1.",
+      "Parrafo2" : "Paragraph 2."
+    },
+    "BotonBuscar" : "SEARCH"
+  },
+  "CONSULTAPORAUTNUM" : {
+    "Errores" : {
+      "valorBuscadoVacio" : "You must specify the value to be searched for."
+    },
+    "Titulo" : "Query by Autnum",
+    "InformacionAdicional" : {
+      "Titulo" : "ADDITIONAL INFORMATION",
+      "Parrafo1" : "Eg. 28000",
+      "Parrafo2" : "Paragraph 2."
+    },
+    "BotonBuscar" : "SEARCH"
+  },
+  "CONSULTAPORENTITY" : {
+    "Errores" : {
+      "valorBuscadoVacio" : "You must specify the value to be searched for."
+    },
+    "Titulo" : "Query by Entity",
+    "InformacionAdicional" : {
+      "Titulo" : "ADDITIONAL INFORMATION",
+      "Parrafo1" : "Paragraph 1.",
+      "Parrafo2" : "Paragraph 2."
+    },
+    "BotonBuscar" : "SEARCH"
+  },
+  "CONSULTAENTITIESBYNAME" : {
+    "Errores" : {
+      "valorBuscadoVacio" : "You must specify the value to be searched for."
+    },
+    "Titulo" : "Query by Name",
+    "InformacionAdicional" : {
+      "Titulo" : "ADDITIONAL INFORMATION",
+      "Parrafo1" : "Paragraph 1.",
+      "Parrafo2" : "Paragraph 2."
+    },
+    "BotonBuscar" : "SEARCH"
+  },
+  "ABOUT" : {
+    "Titulo" : "About RDAP",
+    "Parrafo1" : "The Web Extensible Internet Registration Data Service Working Group (WEIRDS) is the Internet Engineering Task Force (IETF) working group responsible for defining the new method for querying the Internet registry database and thus obtaining information on IP addresses, ASNs, points of contact and organizations.",
+    "Parrafo2" : "The Registration Data Access Protocol (RDAP) has been designed to address the shortcomings of the traditional WHOIS system. This standard will allow solving issues such as internationalization, standardization, inclusion of special characters, parsing difficulties, and the inclusion of new types of queries.",
+    "Parrafo3" : "This service has been developed by LACNIC technicians to provide a unified response to the region's community in seeking information on the numbering resources (IPv4, IPv6 and ASN) designated by both LACNIC and LACNIC member organizations in our WHOIS. To develop the service, LACNIC engineers had the support of RIPE-NCC.",
+    "Parrafo4" : "RDAP has major advantages over the traditional WHOIS: it provides a standard, unified response; it's easier to use and integrate with other systems; and it allows performing queries in languages other than English."
+  },
+  "RESULTADOSIP" : {
+    "Errores" : {
+      "sinResultados" : "No results found.",
+      "verifiqueYReintente" : "Please check and try again."
+    },
+    "TablaIP" : {
+      "Titulo" : "IP",
+      "Filas" : {
+        "Handle" : {
+          "Titulo" : "Handle"
+        },
+        "Name" : {
+          "Titulo" : "Name"
+        },
+        "Status" : {
+          "Titulo" : "Status"
+        },
+        "Parent" : {
+          "Titulo" : "Parent"
+        },
+        "NetRange" : {
+          "Titulo" : "Net Range"
+        },
+        "NetVersion" : {
+          "Titulo" : "Net Version"
+        },
+        "Country" : {
+          "Titulo" : "Country"
+        },
+        "Registration" : {
+          "Titulo" : "Registration"
+        },
+        "LastChanged" : {
+          "Titulo" : "Last Changed"
+        }
+      }
+    },
+    "TablaContacts" : {
+      "Titulo" : "CONTACTS",
+      "Filas" : {
+        "Handle" : {
+          "Titulo" : "Handle"
+        },
+        "Name" : {
+          "Titulo" : "Name"
+        },
+        "Address" : {
+          "Titulo" : "Address"
+        },
+        "City" : {
+          "Titulo" : "City"
+        },
+        "Country" : {
+          "Titulo" : "Country"
+        },
+        "PostalCode" : {
+          "Titulo" : "Postal Code"
+        },
+        "Email" : {
+          "Titulo" : "E-mail"
+        },
+        "Telephone" : {
+          "Titulo" : "Telephone"
+        },
+        "Registration" : {
+          "Titulo" : "Registration"
+        },
+        "LastChanged" : {
+          "Titulo" : "Last Changed"
+        },
+        "MoreInfo" : {
+          "Titulo" : "More Info"
+        }
+      }
+    }
+  },
+  "RESULTADOSAUTNUM" : {
+    "Errores" : {
+      "sinResultados" : "No se han encontrado resultados.",
+      "verifiqueYReintente" : "Por favor, verifique e intente nuevamente."
+    },
+    "TablaAutnum" : {
+      "Titulo": "AS",
+      "Filas": {
+        "Handle": {
+          "Titulo": "Number"
+        },
+        "Type": {
+          "Titulo": "Type"
+        },
+        "Registration": {
+          "Titulo": "Registration Date"
+        },
+        "LastChanged": {
+          "Titulo": "Last Changed"
+        }
+      }
+    },
+    "TablaContacts": {
+      "Titulo": "CONTACTS",
+      "Filas": {
+        "Handle": {
+          "Titulo": "Handle"
+        },
+        "Name": {
+          "Titulo": "Name"
+        }
+      }
+    }
+  },
+  "RESULTADOSENTITY" : {
+    "Errores" : {
+      "sinResultados" : "No results found.",
+      "verifiqueYReintente" : "Please check and try again."
+    },
+    "TablaEntity" : {
+      "Titulo" : "ENTITY",
+      "Filas" : {
+        "Handle" : {
+          "Titulo" : "Handle"
+        },
+        "Name" : {
+          "Titulo" : "Name"
+        },
+        "Address" : {
+          "Titulo" : "Address"
+        },
+        "City" : {
+          "Titulo" : "City"
+        },
+        "Country" : {
+          "Titulo" : "Country"
+        },
+        "Roles" : {
+          "Titulo" : "Roles"
+        },
+        "PostalCode" : {
+          "Titulo" : "Postal Code"
+        },
+        "Email" : {
+          "Titulo" : "E-mail"
+        },
+        "Telephone" : {
+          "Titulo" : "Telephone"
+        },
+        "Registration" : {
+          "Titulo" : "Registration"
+        },
+        "LastChanged" : {
+          "Titulo" : "Last Changed"
+        },
+        "Operator" : {
+          "Titulo" : "Operator"
+        },
+        "Inetnums" : {
+          "Titulo" : "Inetnums",
+          "Kind" : {
+            "Titulo" : "Kind"
+          },
+          "Value" : {
+            "Titulo" : "Value"
+          }
+        },
+        "Autnums" : {
+          "Titulo" : "Autnums",
+          "Kind" : {
+            "Titulo" : "Kind"
+          },
+          "Value" : {
+            "Titulo" : "Value"
+          }
+        }
+      }
+    }
+  },
+  "RESULTADOSENTITIESBYNAME" : {
+    "Errores" : {
+      "sinResultados" : "No results found.",
+      "verifiqueYReintente" : "Please check and try again."
+    },
+    "TablaEntities" : {
+      "Titulo" : "ENTITIES",
+      "Columnas" : {
+        "Handle" : {
+          "Titulo" : "Handle"
+        },
+        "Name" : {
+          "Titulo" : "Name"
+        },
+        "Country" : {
+          "Titulo" : "Country"
+        }
+      }
+    }
+  },
+  "REPORTEASN" : {
+    "Errores" : {
+      "sinResultados" : "No results found.",
+      "verifiqueYReintente" : "Please check and try again.",
+      "seleccionePais" : "Please select a country."
+    },
+    "FormularioPaises" : {
+      "Combo" : {
+        "Label" : "Country",
+        "Opciones" : {
+          "Seleccionar" : "Select a country",
+          "Todos" : "All"
+        }
+      },
+      "BotonBuscar" : "Search"
+    },
+    "TablaASN" : {
+      "Titulo" : "ASN's Report",
+      "Columnas" : {
+        "ASN" : {
+          "Titulo" : "ASN"
+        },
+        "Tipo" : {
+          "Titulo" : "Type"
+        },
+        "Visibilidad" : {
+          "Titulo" : "Visibility"
+        },
+        "Pais" : {
+          "Titulo" : "Country"
+        }
+      }
+    },
+    "Graficas" : {
+      "RecuentoTipo" : {
+        "Titulo" : "Count by Type"
+      },
+      "RecuentoVisibilidad" : {
+        "Titulo" : "Count by Visibility"
+      }
+    }
+  }
+}
