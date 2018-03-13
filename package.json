@@ -11,7 +11,7 @@
     "build": "webpack",
     "build-posta": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail",
     "start": "webpack-dev-server --inline --progress --port 8080",
-    "start2": "webpack-dev-server --hot --host 0.0.0.0"
+    "start2": "webpack-dev-server"
   },
   "dependencies": {
     "@angular/animations": "~4.2.0",

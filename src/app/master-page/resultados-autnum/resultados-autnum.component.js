@@ -19,16 +19,21 @@ var ng2_translate_1 = require("ng2-translate");
 var utilities_1 = require("../../shared/utilities");
 var mensaje_1 = require("../../shared/mensaje");
 var error_1 = require("../../shared/error");
+var constantes_1 = require("../../shared/constantes");
+var platform_browser_1 = require("@angular/platform-browser");
 var ResultadosAutnumComponent = (function () {
-    function ResultadosAutnumComponent(dataService, route, translate) {
+    function ResultadosAutnumComponent(dataService, route, translate, sanitizer) {
         this.dataService = dataService;
         this.route = route;
         this.translate = translate;
+        this.sanitizer = sanitizer;
         this.mensajes = new mensaje_1.Mensaje();
         this.loading = true;
         this.datosEvents = [];
         this.datosEntities = [];
         this.datosAutnum = [];
+        this.mostarDatosExta = true;
+        this.rederictUrl = constantes_1.Constantes.rederictUrl;
         this.cargarLenguaje();
     }
     ResultadosAutnumComponent.prototype.ngOnInit = function () {
@@ -83,6 +88,12 @@ var ResultadosAutnumComponent = (function () {
         this.obtenerDatosAutnum(respuesta);
         this.obtenerEntities(respuesta);
         utilities_1.Utilities.log("[resultados-autnum.component.ts] - parseGetBuscarAutumOk | respuesta: " + JSON.stringify(respuesta));
+    };
+    ResultadosAutnumComponent.prototype.parseGetBuscarEntitiesOk = function (response) {
+        utilities_1.Utilities.log("[resultados-entity.component.ts] - parseGetBuscarEntityOk | response: " + JSON.stringify(response));
+        var respuesta = response;
+        return this.obtenerDatosPorEntity(respuesta);
+        // Utilities.log("[resultados-entity.component.ts] - parseGetBuscarEntityOk | respuesta: " + JSON.stringify(respuesta));
     };
     ResultadosAutnumComponent.prototype.parseGetBuscarAutnumError = function (error) {
         utilities_1.Utilities.log("[resultados-autnum.component.ts] - parseGetBuscarAutnumError| error: " + JSON.stringify(error));
@@ -143,8 +154,102 @@ var ResultadosAutnumComponent = (function () {
                     "Link": link
                 });
             }
+            this.completarDatosEntities(this.datosEntities);
+        }
+    };
+    ResultadosAutnumComponent.prototype.completarDatosEntities = function (datos) {
+        var _this = this;
+        var _loop_1 = function (i) {
+            var handle = datos[i].Handle;
+            this_1.dataService.getBuscarEntity(handle)
+                .subscribe(function (res) {
+                var result = _this.parseGetBuscarEntitiesOk(res);
+                var e = _this.datosEntities[i];
+                //e["Address"]= result[0].Address;
+                e["Name"] = result[0].Name;
+                e["Telephone"] = result[0].Telephone;
+                e["Email"] = result[0].Email;
+                e["Info"] = _this.rederictUrl + "entity/" + handle;
+                _this.datosEntities[i] = e;
+            }, function (error) {
+                //this.parseGetBuscarEntityError(error)
+                _this.mostarDatosExta = false;
+            }, function () { return utilities_1.Utilities.log("[resultados-autnum.component.ts] - getBuscarIP: Completed"); });
+        };
+        var this_1 = this;
+        for (var i = 0; i < datos.length; i++) {
+            _loop_1(i);
         }
         this.loading = false;
+    };
+    ResultadosAutnumComponent.prototype.sanitize = function (url) {
+        return this.sanitizer.bypassSecurityTrustUrl(url);
+    };
+    ResultadosAutnumComponent.prototype.obtenerDatosPorEntity = function (respuesta) {
+        var handle = "No data";
+        var name = "No data";
+        var country = "No data";
+        var roles = "No data";
+        var address = "No data";
+        var city = "No data";
+        var email = "No data";
+        var postalCode = "No data";
+        var telephone = "No data";
+        var lastChangedDate = "No data";
+        var registrationDate = "No data";
+        if (respuesta.events.length > 0) {
+            if (respuesta.events.length == 1) {
+                lastChangedDate = respuesta.events[0].eventDate;
+            }
+            else {
+                registrationDate = respuesta.events[0].eventDate;
+                lastChangedDate = respuesta.events[1].eventDate;
+            }
+        }
+        handle = respuesta.handle;
+        if (respuesta.roles.length > 0) {
+            roles = "[";
+            for (var i = 0; i < respuesta.roles.length; i++) {
+                roles += respuesta.roles[i].toUpperCase();
+                if (i < respuesta.roles.length - 1) {
+                    roles += ", ";
+                }
+            }
+            roles += "]";
+        }
+        for (var _i = 0, _a = respuesta.vcardArray[1]; _i < _a.length; _i++) {
+            var v = _a[_i];
+            if (v[0] == "fn") {
+                name = v[3];
+            }
+            if (v[0] == "adr") {
+                address = v[3][2] + " " + v[3][1];
+                city = v[3][3];
+                country = v[3][6];
+                postalCode = v[3][5];
+            }
+            if (v[0] == "email") {
+                email = v[3];
+            }
+            if (v[0] == "tel") {
+                telephone = v[3];
+            }
+        }
+        var result = [];
+        result.push({
+            "Handle": handle,
+            "Name": name,
+            "Country": country,
+            "Roles": roles,
+            "Address": address,
+            "City": city,
+            "PostalCode": postalCode,
+            "Email": email,
+            "Telephone": telephone,
+            "Registration": registrationDate,
+            "LastChanged": lastChangedDate,
+        });
+        return result;
     };
     return ResultadosAutnumComponent;
 }());
@@ -153,7 +258,7 @@ ResultadosAutnumComponent = __decorate([
         templateUrl: 'resultados-autnum.component.html',
         styleUrls: ['resultados-autnum.css']
     }),
-    __metadata("design:paramtypes", [data_service_1.DataService, router_1.ActivatedRoute, ng2_translate_1.TranslateService])
+    __metadata("design:paramtypes", [data_service_1.DataService, router_1.ActivatedRoute, ng2_translate_1.TranslateService, platform_browser_1.DomSanitizer])
 ], ResultadosAutnumComponent);
 exports.ResultadosAutnumComponent = ResultadosAutnumComponent;
 //# sourceMappingURL=resultados-autnum.component.js.map

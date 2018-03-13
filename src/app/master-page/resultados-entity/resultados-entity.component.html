@@ -111,9 +111,15 @@
                         <span> {{net.substring(32,net.length)}}</span>
                     </td>
                     <td class="celdaTexto">
+
+                        <a target="_blank" href="{{rederictUrl + 'ip/'+ net.substring(32,net.length) }}">
+                            <small>More info</small>
+                        </a><br>
                         <a target="_blank" href="{{net}}">
-                            <small>Source...</small>
-                        </a></td>
+                            <small>Source</small>
+                        </a>
+                    </td>
+
 
                 </tr>
                 </tbody>
@@ -142,8 +148,13 @@
                     <td class="celdaTexto">
                         <span>{{autnum.substring(36,autnum.length)}}</span></td>
                     <td class="celdaTexto">
+                        <a target="_blank" href="{{rederictUrl + 'autnum/'+ autnum.substring(36,autnum.length) }}">
+                            <small>More info</small>
+                        </a><br>
 
-                        <a target="_blank" href="{{autnum}}"> <small>Source...</small></a></td>
+                        <a target="_blank" href="{{autnum}}">
+                            <small>Source</small>
+                        </a></td>
                 </tr>
                 </tbody>
             </table>

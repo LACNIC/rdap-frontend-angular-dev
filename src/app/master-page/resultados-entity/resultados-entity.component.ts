@@ -30,6 +30,7 @@ export class ResultadosEntityComponent implements OnInit {
     serverURL: any;
     private datosEntities: any[] = [];
     private mostarDatosExta: boolean=true;
+    rederictUrl:string= Constantes.rederictUrl;
 
 
 
@@ -334,7 +335,7 @@ export class ResultadosEntityComponent implements OnInit {
                         e["Name"] = result[0].Name;
                         e["Telephone"] = result[0].Telephone;
                         e["Email"] = result[0].Email;
-                        e["Info"]= Constantes.rederictUrl + handle;
+                        e["Info"]= this.rederictUrl + "entity/" + handle;
 
                         this.datosEntities[i] = e;
 

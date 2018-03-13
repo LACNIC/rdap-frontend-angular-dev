@@ -11,6 +11,9 @@ import { Exito }                from "../../shared/exito";
 import { Error }                from "../../shared/error";
 import {ResponseAutnum} from '../../shared/responseAutnum';
 import {Event} from '../../shared/event';
+import {ResponseEntity} from '../../shared/responseEntity';
+import {Constantes} from '../../shared/constantes';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
     templateUrl: 'resultados-autnum.component.html',
@@ -25,8 +28,10 @@ export class ResultadosAutnumComponent implements OnInit {
     datosEvents : string[] = [];
     datosEntities : any[] = [];
     datosAutnum : string[] = [];
+    private mostarDatosExta: boolean=true;
+    rederictUrl:string= Constantes.rederictUrl;
 
-    constructor(private dataService: DataService, private route: ActivatedRoute, private translate: TranslateService)  {
+    constructor(private dataService: DataService, private route: ActivatedRoute, private translate: TranslateService, private sanitizer:DomSanitizer)  {
         this.cargarLenguaje();
     }
 
@@ -105,6 +110,15 @@ export class ResultadosAutnumComponent implements OnInit {
 
     }
 
+    parseGetBuscarEntitiesOk(response: any) {
+        Utilities.log("[resultados-entity.component.ts] - parseGetBuscarEntityOk | response: " + JSON.stringify(response));
+
+        var respuesta: ResponseEntity = response;
+        return this.obtenerDatosPorEntity(respuesta);
+        // Utilities.log("[resultados-entity.component.ts] - parseGetBuscarEntityOk | respuesta: " + JSON.stringify(respuesta));
+
+    }
+
     parseGetBuscarAutnumError(error:any){
         Utilities.log("[resultados-autnum.component.ts] - parseGetBuscarAutnumError| error: " + JSON.stringify(error));
         this.traducirError("RESULTADOSAUTNUM.Errores.sinResultados");
@@ -169,7 +183,124 @@ export class ResultadosAutnumComponent implements OnInit {
                     "Link": link
                 });
             }
+            this.completarDatosEntities(this.datosEntities);
+        }
+
+    }
+
+    private completarDatosEntities(datos: any) {
+        for (let i: number = 0; i < datos.length; i++) {
+
+            let handle = datos[i].Handle;
+
+            this.dataService.getBuscarEntity(handle)
+                .subscribe(
+                    res => {
+
+                        var result: any[] = this.parseGetBuscarEntitiesOk(res);
+
+                        var e: any[] = this.datosEntities[i];
+                        //e["Address"]= result[0].Address;
+                        e["Name"] = result[0].Name;
+                        e["Telephone"] = result[0].Telephone;
+                        e["Email"] = result[0].Email;
+                        e["Info"]= this.rederictUrl + "entity/" + handle;
+
+                        this.datosEntities[i] = e;
+
+
+                    },
+                    error => {
+
+                        //this.parseGetBuscarEntityError(error)
+                        this.mostarDatosExta=false;
+                    },
+                    () => Utilities.log("[resultados-autnum.component.ts] - getBuscarIP: Completed")
+                );
+
+
         }
         this.loading = false;
+
+    }
+
+    sanitize(url:string){
+        return this.sanitizer.bypassSecurityTrustUrl(url);
+    }
+
+    obtenerDatosPorEntity(respuesta: ResponseEntity) {
+        var handle: string = "No data";
+        var name: string = "No data";
+        var country: string = "No data";
+        var roles: string = "No data";
+        var address: string = "No data";
+        var city: string = "No data";
+        var email: string = "No data";
+        var postalCode: string = "No data";
+        var telephone: string = "No data";
+        var lastChangedDate: string = "No data";
+        var registrationDate: string = "No data";
+        if (respuesta.events.length > 0) {
+
+            if (respuesta.events.length == 1) {
+
+                lastChangedDate = respuesta.events[0].eventDate;
+            } else {
+
+                registrationDate = respuesta.events[0].eventDate;
+                lastChangedDate = respuesta.events[1].eventDate;
+            }
+
+
+        }
+
+        handle = respuesta.handle;
+        if (respuesta.roles.length > 0) {
+            roles = "[";
+            for (let i: number = 0; i < respuesta.roles.length; i++) {
+                roles += respuesta.roles[i].toUpperCase();
+                if (i < respuesta.roles.length - 1) {
+                    roles += ", ";
+                }
+            }
+            roles += "]";
+        }
+
+
+        for (let v of respuesta.vcardArray[1]) {
+            if (v[0] == "fn") {
+                name = v[3];
+            }
+            if (v[0] == "adr") {
+                address = v[3][2] + " " + v[3][1];
+                city = v[3][3];
+                country = v[3][6];
+                postalCode = v[3][5];
+            }
+            if (v[0] == "email") {
+                email = v[3];
+            }
+            if (v[0] == "tel") {
+                telephone = v[3];
+            }
+        }
+
+        var result: any[] = [];
+        result.push({
+            "Handle": handle,
+            "Name": name,
+            "Country": country,
+            "Roles": roles,
+            "Address": address,
+            "City": city,
+            "PostalCode": postalCode,
+            "Email": email,
+            "Telephone": telephone,
+            "Registration": registrationDate,
+            "LastChanged": lastChangedDate,
+        });
+
+        return result;
+
     }
 }

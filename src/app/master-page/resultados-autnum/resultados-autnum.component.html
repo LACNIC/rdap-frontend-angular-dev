@@ -45,6 +45,20 @@
                 <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaContacts.Filas.Name.Titulo" | translate }}</td>
                 <td class="celdaTexto">{{ entity.Name }}</td>
             </tr>
+            <tr *ngIf="mostarDatosExta">
+                <td class="celdaTitulo">{{ "RESULTADOSIP.TablaContacts.Filas.Telephone.Titulo" | translate }}</td>
+                <td class="celdaTexto">{{ entity.Telephone }}</td>
+            </tr>
+            <tr *ngIf="mostarDatosExta">
+                <td class="celdaTitulo">{{ "RESULTADOSIP.TablaContacts.Filas.Email.Titulo" | translate }}</td>
+                <td class="celdaTexto">{{ entity.Email }}</td>
+            </tr>
+            <tr *ngIf="mostarDatosExta">
+                <td class="celdaTitulo">{{ "RESULTADOSIP.TablaContacts.Filas.MoreInfo.Titulo" | translate }}</td>
+                <td class="celdaTexto">
+                    <a class="link" target="_blank" [href]="sanitize(entity.Info)">Click here..</a>
+                </td>
+            </tr>
             <tr>
                 <td class="celdaTitulo">Source</td>
                 <td class="celdaTexto">

@@ -5,6 +5,6 @@ var Constantes = (function () {
     }
     return Constantes;
 }());
-Constantes.rederictUrl = "http://rdap-web.lacnic.net/entity/";
+Constantes.rederictUrl = "http://rdap-web.lacnic.net/";
 exports.Constantes = Constantes;
 //# sourceMappingURL=constantes.js.map

@@ -1,5 +1,5 @@
 export class Constantes {
-    static  rederictUrl: string= "http://rdap-web.lacnic.net/entity/";
+    static  rederictUrl: string= "http://rdap-web.lacnic.net/";
 }
 
 

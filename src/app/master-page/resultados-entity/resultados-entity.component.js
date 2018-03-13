@@ -33,6 +33,7 @@ var ResultadosEntityComponent = (function () {
         this.datosEntity = [];
         this.datosEntities = [];
         this.mostarDatosExta = true;
+        this.rederictUrl = constantes_1.Constantes.rederictUrl;
         this.cargarLenguaje();
         // this.buscarServerUrl();
     }
@@ -270,7 +271,7 @@ var ResultadosEntityComponent = (function () {
                 e["Name"] = result[0].Name;
                 e["Telephone"] = result[0].Telephone;
                 e["Email"] = result[0].Email;
-                e["Info"] = constantes_1.Constantes.rederictUrl + handle;
+                e["Info"] = _this.rederictUrl + "entity/" + handle;
                 _this.datosEntities[i] = e;
             }, function (error) {
                 //this.parseGetBuscarEntityError(error)
