@@ -149,41 +149,38 @@
         }
       }
     },
-    "TablaContacts": {
-      "Titulo": "CONTACTS",
-      "Filas": {
-        "Handle": {
-          "Titulo": "Handle"
+    "TablaContacts" : {
+      "Titulo" : "CONTACTS",
+      "Filas" : {
+        "Handle" : {
+          "Titulo" : "Handle"
         },
-        "Name": {
-          "Titulo": "Name"
+        "Name" : {
+          "Titulo" : "Name"
         },
-        "Address": {
-          "Titulo": "Address"
+        "Address" : {
+          "Titulo" : "Address"
         },
-        "City": {
-          "Titulo": "City"
+        "City" : {
+          "Titulo" : "City"
         },
-        "Country": {
-          "Titulo": "Country"
+        "Country" : {
+          "Titulo" : "Country"
         },
-        "PostalCode": {
-          "Titulo": "Postal Code"
+        "PostalCode" : {
+          "Titulo" : "Postal Code"
         },
-        "Email": {
-          "Titulo": "E-mail"
+        "Email" : {
+          "Titulo" : "E-mail"
         },
-        "Telephone": {
-          "Titulo": "Telephone"
-        },
-        "Registration": {
-          "Titulo": "Registration"
-        },
-        "LastChanged": {
-          "Titulo": "Last Changed"
+        "Telephone" : {
+          "Titulo" : "Telephone"
         },
         "MoreInfo" : {
           "Titulo" : "More Info"
+        },
+        "Source" : {
+          "Titulo" : "Source"
         }
       }
     }
@@ -210,14 +207,38 @@
         }
       }
     },
-    "TablaContacts": {
-      "Titulo": "CONTACTS",
-      "Filas": {
-        "Handle": {
-          "Titulo": "Handle"
+    "TablaContacts" : {
+      "Titulo" : "CONTACTS",
+      "Filas" : {
+        "Handle" : {
+          "Titulo" : "Handle"
         },
-        "Name": {
-          "Titulo": "Name"
+        "Name" : {
+          "Titulo" : "Name"
+        },
+        "Address" : {
+          "Titulo" : "Address"
+        },
+        "City" : {
+          "Titulo" : "City"
+        },
+        "Country" : {
+          "Titulo" : "Country"
+        },
+        "PostalCode" : {
+          "Titulo" : "Postal Code"
+        },
+        "Email" : {
+          "Titulo" : "E-mail"
+        },
+        "Telephone" : {
+          "Titulo" : "Telephone"
+        },
+        "MoreInfo" : {
+          "Titulo" : "More Info"
+        },
+        "Source" : {
+          "Titulo" : "Source"
         }
       }
     }
