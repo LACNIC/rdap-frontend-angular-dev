@@ -161,7 +161,7 @@ var ResultadosIPComponent = (function () {
                     "Link": link,
                 });
             }
-            utilities_1.Utilities.log(JSON.stringify(this.datosEntities[0]));
+            //Utilities.log(JSON.stringify(this.datosEntities[0]));
             this.completarDatosEntities(this.datosEntities);
         }
     };

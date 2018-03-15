@@ -201,7 +201,7 @@ export class ResultadosIPComponent implements OnInit {
 
 
             }
-            Utilities.log(JSON.stringify(this.datosEntities[0]));
+            //Utilities.log(JSON.stringify(this.datosEntities[0]));
             this.completarDatosEntities(this.datosEntities);
 
         }
