@@ -132,6 +132,7 @@ export class ResultadosIPComponent implements OnInit {
         // this.datosIP.push(respuesta.country);
         var lastChangedDate: string = "No data";
         var registrationDate: string = "No data";
+
         for (let i: number = 0; i < respuesta.events.length; i++) {
 
             if( respuesta.events[i].eventAction.includes("registration")){
@@ -253,18 +254,25 @@ export class ResultadosIPComponent implements OnInit {
         var telephone: string = "No data";
         var lastChangedDate: string = "No data";
         var registrationDate: string = "No data";
-        if (respuesta.events.length > 0) {
+        if (typeof respuesta.events != "undefined") {
+            if (respuesta.events.length > 0) {
 
-            if (respuesta.events.length == 1) {
+                for (let i: number = 0; i < respuesta.events.length; i++) {
 
-                lastChangedDate = respuesta.events[0].eventDate;
-            } else {
+                    if (respuesta.events[i].eventAction.includes("registration")) {
 
-                registrationDate = respuesta.events[0].eventDate;
-                lastChangedDate = respuesta.events[1].eventDate;
+                        registrationDate = respuesta.events[i].eventDate;
+                    }
+
+                    if (respuesta.events[i].eventAction.includes("last changed")) {
+
+                        lastChangedDate = respuesta.events[i].eventDate;
+                    }
+
+                }
+
+
             }
-
-
         }
 
         handle = respuesta.handle;

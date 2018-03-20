@@ -112,9 +112,17 @@ var ResultadosAutnumComponent = (function () {
         // this.datosAutnum.push(respuesta.country);
         var lastChangedDate = "No data";
         var registrationDate = "No data";
-        if (respuesta.events.length > 0) {
-            registrationDate = respuesta.events[0].eventDate;
-            lastChangedDate = respuesta.events[1].eventDate;
+        if (typeof respuesta.events != "undefined") {
+            if (respuesta.events.length > 0) {
+                for (var i = 0; i < respuesta.events.length; i++) {
+                    if (respuesta.events[i].eventAction.includes("registration")) {
+                        registrationDate = respuesta.events[i].eventDate;
+                    }
+                    if (respuesta.events[i].eventAction.includes("last changed")) {
+                        lastChangedDate = respuesta.events[i].eventDate;
+                    }
+                }
+            }
         }
         this.datosAutnum.push(registrationDate, lastChangedDate);
     };
@@ -197,13 +205,16 @@ var ResultadosAutnumComponent = (function () {
         var telephone = "No data";
         var lastChangedDate = "No data";
         var registrationDate = "No data";
-        if (respuesta.events.length > 0) {
-            if (respuesta.events.length == 1) {
-                lastChangedDate = respuesta.events[0].eventDate;
-            }
-            else {
-                registrationDate = respuesta.events[0].eventDate;
-                lastChangedDate = respuesta.events[1].eventDate;
+        if (typeof respuesta.events != "undefined") {
+            if (respuesta.events.length > 0) {
+                for (var i = 0; i < respuesta.events.length; i++) {
+                    if (respuesta.events[i].eventAction.includes("registration")) {
+                        registrationDate = respuesta.events[i].eventDate;
+                    }
+                    if (respuesta.events[i].eventAction.includes("last changed")) {
+                        lastChangedDate = respuesta.events[i].eventDate;
+                    }
+                }
             }
         }
         handle = respuesta.handle;

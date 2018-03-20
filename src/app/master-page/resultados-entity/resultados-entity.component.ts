@@ -29,12 +29,11 @@ export class ResultadosEntityComponent implements OnInit {
     datosEntity: any[] = [];
     serverURL: any;
     private datosEntities: any[] = [];
-    private mostarDatosExta: boolean=true;
-    rederictUrl:string= Constantes.rederictUrl;
+    private mostarDatosExta: boolean = true;
+    rederictUrl: string = Constantes.rederictUrl;
 
 
-
-    constructor(private dataService: DataService, private route: ActivatedRoute, private translate: TranslateService, private sanitizer:DomSanitizer) {
+    constructor(private dataService: DataService, private route: ActivatedRoute, private translate: TranslateService, private sanitizer: DomSanitizer) {
         this.cargarLenguaje();
         // this.buscarServerUrl();
     }
@@ -172,22 +171,25 @@ export class ResultadosEntityComponent implements OnInit {
         var autnums: any[] = [];
         var lastChangedDate: string = "No data";
         var registrationDate: string = "No data";
-        if (respuesta.events.length > 0) {
 
-            for (let i: number = 0; i < respuesta.events.length; i++) {
+        if (typeof respuesta.events != "undefined") {
+            if (respuesta.events.length > 0) {
 
-                if( respuesta.events[i].eventAction.includes("registration")){
+                for (let i: number = 0; i < respuesta.events.length; i++) {
 
-                    registrationDate = respuesta.events[i].eventDate;
-                }
+                    if (respuesta.events[i].eventAction.includes("registration")) {
 
-                if( respuesta.events[i].eventAction.includes("last changed")){
+                        registrationDate = respuesta.events[i].eventDate;
+                    }
 
-                    lastChangedDate = respuesta.events[i].eventDate;
+                    if (respuesta.events[i].eventAction.includes("last changed")) {
+
+                        lastChangedDate = respuesta.events[i].eventDate;
+                    }
+
                 }
 
             }
-
         }
 
 
@@ -335,7 +337,7 @@ export class ResultadosEntityComponent implements OnInit {
                         e["Name"] = result[0].Name;
                         e["Telephone"] = result[0].Telephone;
                         e["Email"] = result[0].Email;
-                        e["Info"]= this.rederictUrl + "entity/" + handle;
+                        e["Info"] = this.rederictUrl + "entity/" + handle;
 
                         this.datosEntities[i] = e;
 
@@ -344,7 +346,7 @@ export class ResultadosEntityComponent implements OnInit {
                     error => {
 
                         //this.parseGetBuscarEntityError(error)
-                        this.mostarDatosExta=false;
+                        this.mostarDatosExta = false;
                     },
                     () => Utilities.log("[resultados-autnum.component.ts] - getBuscarIP: Completed")
                 );
@@ -355,7 +357,7 @@ export class ResultadosEntityComponent implements OnInit {
 
     }
 
-    sanitize(url:string){
+    sanitize(url: string) {
         return this.sanitizer.bypassSecurityTrustUrl(url);
     }
 
@@ -371,18 +373,26 @@ export class ResultadosEntityComponent implements OnInit {
         var telephone: string = "No data";
         var lastChangedDate: string = "No data";
         var registrationDate: string = "No data";
-        if (respuesta.events.length > 0) {
 
-            if (respuesta.events.length == 1) {
+        if (typeof respuesta.events != "undefined") {
+            if (respuesta.events.length > 0) {
 
-                lastChangedDate = respuesta.events[0].eventDate;
-            } else {
+                for (let i: number = 0; i < respuesta.events.length; i++) {
 
-                registrationDate = respuesta.events[0].eventDate;
-                lastChangedDate = respuesta.events[1].eventDate;
+                    if (respuesta.events[i].eventAction.includes("registration")) {
+
+                        registrationDate = respuesta.events[i].eventDate;
+                    }
+
+                    if (respuesta.events[i].eventAction.includes("last changed")) {
+
+                        lastChangedDate = respuesta.events[i].eventDate;
+                    }
+
+                }
+
+
             }
-
-
         }
 
         handle = respuesta.handle;

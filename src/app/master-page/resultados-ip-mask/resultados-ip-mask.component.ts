@@ -25,9 +25,9 @@ export class ResultadosIPMaskComponent implements OnInit {
     MASK: string;
     datosIP: string[] = [];
     datosEntities: any[] = [];
-    private mostarDatosExta: boolean= true;
+    private mostarDatosExta: boolean = true;
 
-    constructor(private dataService: DataService, private route: ActivatedRoute, private translate: TranslateService, private sanitizer:DomSanitizer) {
+    constructor(private dataService: DataService, private route: ActivatedRoute, private translate: TranslateService, private sanitizer: DomSanitizer) {
         this.cargarLenguaje();
     }
 
@@ -47,9 +47,6 @@ export class ResultadosIPMaskComponent implements OnInit {
             this.buscarDatosIP
 
         }
-
-
-
 
 
         Utilities.log("[resultados-ip-mask.component.ts] - ngOnInit: Finish");
@@ -95,7 +92,7 @@ export class ResultadosIPMaskComponent implements OnInit {
         Utilities.log("[resultados-ip-mask.component.ts] - translateError | error: " + JSON.stringify(error));
     }
 
-    buscarDatosIP(){
+    buscarDatosIP() {
         Utilities.log("[resultados-ip-mask.component.ts] - buscarDatosIPMask: Start");
         Utilities.log("[resultados-ip-mask.component.ts] - buscarDatosIPMask | this.AUTNUM: " + this.IP);
 
@@ -108,7 +105,6 @@ export class ResultadosIPMaskComponent implements OnInit {
 
         Utilities.log("[resultados-ip-mask.component.ts] - buscarDatosIPMask: Finish");
     }
-
 
 
     buscarDatosIPConMask() {
@@ -154,24 +150,25 @@ export class ResultadosIPMaskComponent implements OnInit {
         // this.datosIP.push(respuesta.country);
         var lastChangedDate: string = "No data";
         var registrationDate: string = "No data";
-        if (respuesta.events.length > 0) {
+        if (typeof respuesta.events != "undefined") {
+            if (respuesta.events.length > 0) {
 
-            for (let i: number = 0; i < respuesta.events.length; i++) {
+                for (let i: number = 0; i < respuesta.events.length; i++) {
 
-                if( respuesta.events[i].eventAction.includes("registration")){
+                    if (respuesta.events[i].eventAction.includes("registration")) {
 
-                    registrationDate = respuesta.events[i].eventDate;
+                        registrationDate = respuesta.events[i].eventDate;
+                    }
+
+                    if (respuesta.events[i].eventAction.includes("last changed")) {
+
+                        lastChangedDate = respuesta.events[i].eventDate;
+                    }
+
                 }
 
-                if( respuesta.events[i].eventAction.includes("last changed")){
-
-                    lastChangedDate = respuesta.events[i].eventDate;
-                }
 
             }
-
-
-
         }
         this.datosIP.push(registrationDate, lastChangedDate,);
     }
@@ -280,19 +277,28 @@ export class ResultadosIPMaskComponent implements OnInit {
         var telephone: string = "No data";
         var lastChangedDate: string = "No data";
         var registrationDate: string = "No data";
-        if (respuesta.events.length > 0) {
 
-            if (respuesta.events.length == 1) {
+        if (typeof respuesta.events != "undefined") {
+            if (respuesta.events.length > 0) {
 
-                lastChangedDate = respuesta.events[0].eventDate;
-            } else {
+                for (let i: number = 0; i < respuesta.events.length; i++) {
 
-                registrationDate = respuesta.events[0].eventDate;
-                lastChangedDate = respuesta.events[1].eventDate;
+                    if (respuesta.events[i].eventAction.includes("registration")) {
+
+                        registrationDate = respuesta.events[i].eventDate;
+                    }
+
+                    if (respuesta.events[i].eventAction.includes("last changed")) {
+
+                        lastChangedDate = respuesta.events[i].eventDate;
+                    }
+
+                }
+
+
             }
-
-
         }
+
 
         handle = respuesta.handle;
         if (respuesta.roles.length > 0) {
@@ -361,7 +367,7 @@ export class ResultadosIPMaskComponent implements OnInit {
                         e["Name"] = result[0].Name;
                         e["Telephone"] = result[0].Telephone;
                         e["Email"] = result[0].Email;
-                        e["Info"]= "http://rdap-web.lacnic.net/entity/" + handle;
+                        e["Info"] = "http://rdap-web.lacnic.net/entity/" + handle;
 
                         this.datosEntities[i] = e;
 
@@ -370,7 +376,7 @@ export class ResultadosIPMaskComponent implements OnInit {
                     error => {
 
                         //this.parseGetBuscarEntityError(error)
-                        this.mostarDatosExta=false;
+                        this.mostarDatosExta = false;
                     },
                     () => Utilities.log("[resultados-autnum.component.ts] - getBuscarIP: Completed")
                 );
@@ -381,7 +387,7 @@ export class ResultadosIPMaskComponent implements OnInit {
 
     }
 
-    sanitize(url:string){
+    sanitize(url: string) {
         return this.sanitizer.bypassSecurityTrustUrl(url);
     }
 }
