@@ -2,7 +2,8 @@
   "GENERAL" : {
     "Errores" : {
       "Generico" : "An error has occurred.",
-      "ContacteAdministrador" : "Contact the administrator."
+      "ContacteAdministrador" : "Contact the administrator.",
+      "ArrayLimit":"You've exceeded the max. request limit"
     }
   },
   "MASTERPAGE" : {

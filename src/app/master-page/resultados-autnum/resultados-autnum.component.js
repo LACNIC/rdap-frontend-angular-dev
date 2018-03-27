@@ -97,8 +97,13 @@ var ResultadosAutnumComponent = (function () {
     };
     ResultadosAutnumComponent.prototype.parseGetBuscarAutnumError = function (error) {
         utilities_1.Utilities.log("[resultados-autnum.component.ts] - parseGetBuscarAutnumError| error: " + JSON.stringify(error));
-        this.traducirError("RESULTADOSAUTNUM.Errores.sinResultados");
-        this.traducirError("RESULTADOSAUTNUM.Errores.verifiqueYReintente");
+        if (error.json().errorCode == 429) {
+            this.traducirError("GENERAL.Errores.ArrayLimit");
+        }
+        else {
+            this.traducirError("RESULTADOSAUTNUM.Errores.sinResultados");
+            this.traducirError("RESULTADOSAUTNUM.Errores.verifiqueYReintente");
+        }
         this.loading = false;
     };
     ResultadosAutnumComponent.prototype.obtenerDatosAutnum = function (respuesta) {

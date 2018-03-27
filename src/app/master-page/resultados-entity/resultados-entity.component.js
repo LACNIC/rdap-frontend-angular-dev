@@ -34,6 +34,8 @@ var ResultadosEntityComponent = (function () {
         this.datosEntities = [];
         this.mostarDatosExta = true;
         this.rederictUrl = constantes_1.Constantes.rederictUrl;
+        this.existenNetworks = false;
+        this.existenAutnums = false;
         this.cargarLenguaje();
         // this.buscarServerUrl();
     }
@@ -103,9 +105,14 @@ var ResultadosEntityComponent = (function () {
         // Utilities.log("[resultados-entity.component.ts] - parseGetBuscarEntityOk | respuesta: " + JSON.stringify(respuesta));
     };
     ResultadosEntityComponent.prototype.parseGetBuscarEntityError = function (error) {
-        utilities_1.Utilities.log("[resultados-entity.component.ts] - parseGetBuscarEntityError | error: " + JSON.stringify(error));
-        this.traducirError("RESULTADOSENTITY.Errores.sinResultados");
-        this.traducirError("RESULTADOSENTITY.Errores.verifiqueYReintente");
+        utilities_1.Utilities.log("[resultados-entity.component.ts] - parseGetBuscarEntityError | error: " + JSON.stringify(error.json()));
+        if (error.json().errorCode == 429) {
+            this.traducirError("GENERAL.Errores.ArrayLimit");
+        }
+        else {
+            this.traducirError("RESULTADOSENTITY.Errores.sinResultados");
+            this.traducirError("RESULTADOSENTITY.Errores.verifiqueYReintente");
+        }
         this.loading = false;
     };
     ResultadosEntityComponent.prototype.parseServerUrlOK = function (response) {
@@ -157,6 +164,7 @@ var ResultadosEntityComponent = (function () {
             roles += "]";
         }
         if (typeof respuesta.autnums !== "undefined" && respuesta.autnums.length > 0) {
+            this.existenAutnums = true;
             for (var _i = 0, _a = respuesta.autnums; _i < _a.length; _i++) {
                 var autnum = _a[_i];
                 if (!util_1.equals(autnum, {})) {
@@ -167,6 +175,7 @@ var ResultadosEntityComponent = (function () {
             }
         }
         if (typeof respuesta.networks !== "undefined" && respuesta.networks.length > 0) {
+            this.existenNetworks = true;
             for (var _b = 0, _c = respuesta.networks; _b < _c.length; _b++) {
                 var network = _c[_b];
                 if (!util_1.equals(network, {})) {
@@ -213,52 +222,54 @@ var ResultadosEntityComponent = (function () {
     };
     ResultadosEntityComponent.prototype.obtenerEntities = function (respuesta) {
         //Datos de las tablas CONTACTS
-        if (respuesta.entities.length <= 0) {
+        if (typeof respuesta.entities == "undefined") {
         }
         else {
-            for (var _i = 0, _a = respuesta.entities; _i < _a.length; _i++) {
-                var e = _a[_i];
-                var roles = "No data";
-                var name = "No data";
-                // var address : string = "No data";
-                // var city : string = "No data";
-                // var country : string = "No data";
-                // var postalCode : string = "No data";
-                // var email : string = "No data";
-                // var telephone : string = "No data";
-                // var registration : string = "No data";
-                // var lastChanged : string = "No data";
-                var link = "No data";
-                if (e.roles.length > 0) {
-                    roles = "[";
-                    for (var i = 0; i < e.roles.length; i++) {
-                        roles += e.roles[i].toUpperCase();
-                        if (i < e.roles.length - 1) {
-                            roles += ", ";
+            if (respuesta.entities.length > 0) {
+                for (var _i = 0, _a = respuesta.entities; _i < _a.length; _i++) {
+                    var e = _a[_i];
+                    var roles = "No data";
+                    var name = "No data";
+                    // var address : string = "No data";
+                    // var city : string = "No data";
+                    // var country : string = "No data";
+                    // var postalCode : string = "No data";
+                    // var email : string = "No data";
+                    // var telephone : string = "No data";
+                    // var registration : string = "No data";
+                    // var lastChanged : string = "No data";
+                    var link = "No data";
+                    if (e.roles.length > 0) {
+                        roles = "[";
+                        for (var i = 0; i < e.roles.length; i++) {
+                            roles += e.roles[i].toUpperCase();
+                            if (i < e.roles.length - 1) {
+                                roles += ", ";
+                            }
+                        }
+                        roles += "]";
+                    }
+                    if (e.links.length > 0) {
+                        link = e.links[0].href;
+                    }
+                    if (typeof e.vcardArray != "undefined") {
+                        for (var _b = 0, _c = e.vcardArray[1]; _b < _c.length; _b++) {
+                            var v = _c[_b];
+                            if (v[0] == "fn") {
+                                name = v[3];
+                            }
                         }
                     }
-                    roles += "]";
+                    this.datosEntities.push({
+                        "Roles": roles,
+                        "Handle": e.handle,
+                        "Name": name,
+                        "Link": link,
+                    });
                 }
-                if (e.links.length > 0) {
-                    link = e.links[0].href;
-                }
-                if (typeof e.vcardArray != "undefined") {
-                    for (var _b = 0, _c = e.vcardArray[1]; _b < _c.length; _b++) {
-                        var v = _c[_b];
-                        if (v[0] == "fn") {
-                            name = v[3];
-                        }
-                    }
-                }
-                this.datosEntities.push({
-                    "Roles": roles,
-                    "Handle": e.handle,
-                    "Name": name,
-                    "Link": link,
-                });
+                utilities_1.Utilities.log(JSON.stringify(this.datosEntities[0]));
+                this.completarDatosEntities(this.datosEntities);
             }
-            utilities_1.Utilities.log(JSON.stringify(this.datosEntities[0]));
-            this.completarDatosEntities(this.datosEntities);
         }
     };
     ResultadosEntityComponent.prototype.completarDatosEntities = function (datos) {

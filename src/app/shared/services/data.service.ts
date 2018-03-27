@@ -120,7 +120,7 @@ export class DataService {
         if(error.json().errorCode==404){
             return Observable.throw("404");
         }else{
-            return Observable.throw(error.json().error || "Server Error");
+            return Observable.throw(error || "Server Error");
         }
 
     }

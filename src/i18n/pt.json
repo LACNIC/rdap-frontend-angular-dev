@@ -2,7 +2,8 @@
   "GENERAL" : {
     "Errores" : {
       "Generico" : "Ocorreu um erro.",
-      "ContacteAdministrador" : "Entre em contato com o administrador."
+      "ContacteAdministrador" : "Entre em contato com o administrador.",
+      "ArrayLimit":"Você excedeu o limite máximo de consultas"
     }
   },
   "MASTERPAGE" : {

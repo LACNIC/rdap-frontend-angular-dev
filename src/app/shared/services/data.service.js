@@ -97,7 +97,7 @@ var DataService = (function () {
             return Observable_1.Observable.throw("404");
         }
         else {
-            return Observable_1.Observable.throw(error.json().error || "Server Error");
+            return Observable_1.Observable.throw(error || "Server Error");
         }
     };
     return DataService;

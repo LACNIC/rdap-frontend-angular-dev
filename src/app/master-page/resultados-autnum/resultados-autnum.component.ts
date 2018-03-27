@@ -121,8 +121,12 @@ export class ResultadosAutnumComponent implements OnInit {
 
     parseGetBuscarAutnumError(error:any){
         Utilities.log("[resultados-autnum.component.ts] - parseGetBuscarAutnumError| error: " + JSON.stringify(error));
-        this.traducirError("RESULTADOSAUTNUM.Errores.sinResultados");
-        this.traducirError("RESULTADOSAUTNUM.Errores.verifiqueYReintente");
+        if (error.json().errorCode == 429) {
+            this.traducirError("GENERAL.Errores.ArrayLimit");
+        } else {
+            this.traducirError("RESULTADOSAUTNUM.Errores.sinResultados");
+            this.traducirError("RESULTADOSAUTNUM.Errores.verifiqueYReintente");
+        }
         this.loading = false;
     }
 

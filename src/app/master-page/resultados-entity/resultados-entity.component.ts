@@ -31,6 +31,8 @@ export class ResultadosEntityComponent implements OnInit {
     private datosEntities: any[] = [];
     private mostarDatosExta: boolean = true;
     rederictUrl: string = Constantes.rederictUrl;
+    existenNetworks: boolean = false;
+    existenAutnums: boolean = false;
 
 
     constructor(private dataService: DataService, private route: ActivatedRoute, private translate: TranslateService, private sanitizer: DomSanitizer) {
@@ -135,10 +137,16 @@ export class ResultadosEntityComponent implements OnInit {
     }
 
     parseGetBuscarEntityError(error: any) {
-        Utilities.log("[resultados-entity.component.ts] - parseGetBuscarEntityError | error: " + JSON.stringify(error));
-        this.traducirError("RESULTADOSENTITY.Errores.sinResultados");
-        this.traducirError("RESULTADOSENTITY.Errores.verifiqueYReintente");
+        Utilities.log("[resultados-entity.component.ts] - parseGetBuscarEntityError | error: " + JSON.stringify(error.json()));
+        if (error.json().errorCode == 429) {
+            this.traducirError("GENERAL.Errores.ArrayLimit");
+        } else {
+            this.traducirError("RESULTADOSENTITY.Errores.sinResultados");
+            this.traducirError("RESULTADOSENTITY.Errores.verifiqueYReintente");
+        }
+
         this.loading = false;
+
     }
 
 
@@ -206,6 +214,8 @@ export class ResultadosEntityComponent implements OnInit {
         }
         if (typeof respuesta.autnums !== "undefined" && respuesta.autnums.length > 0) {
 
+            this.existenAutnums = true;
+
             for (let autnum of respuesta.autnums) {
                 if (!equals(autnum, {})) {
                     var link: string = "No data";
@@ -217,6 +227,8 @@ export class ResultadosEntityComponent implements OnInit {
         }
 
         if (typeof respuesta.networks !== "undefined" && respuesta.networks.length > 0) {
+
+            this.existenNetworks = true;
 
             for (let network of respuesta.networks) {
                 if (!equals(network, {})) {
@@ -265,60 +277,66 @@ export class ResultadosEntityComponent implements OnInit {
 
     obtenerEntities(respuesta: ResponseEntity) {
         //Datos de las tablas CONTACTS
-        if (respuesta.entities.length <= 0) {
+        if (typeof respuesta.entities == "undefined") {
+
         } else {
-            for (let e of respuesta.entities) {
-                var roles: string = "No data";
-                var name: string = "No data";
-                // var address : string = "No data";
-                // var city : string = "No data";
-                // var country : string = "No data";
-                // var postalCode : string = "No data";
-                // var email : string = "No data";
-                // var telephone : string = "No data";
-                // var registration : string = "No data";
-                // var lastChanged : string = "No data";
-                var link: string = "No data"
 
-                if (e.roles.length > 0) {
-                    roles = "[";
-                    for (let i: number = 0; i < e.roles.length; i++) {
-                        roles += e.roles[i].toUpperCase();
-                        if (i < e.roles.length - 1) {
-                            roles += ", ";
+            if (respuesta.entities.length > 0) {
+
+                for (let e of respuesta.entities) {
+                    var roles: string = "No data";
+                    var name: string = "No data";
+                    // var address : string = "No data";
+                    // var city : string = "No data";
+                    // var country : string = "No data";
+                    // var postalCode : string = "No data";
+                    // var email : string = "No data";
+                    // var telephone : string = "No data";
+                    // var registration : string = "No data";
+                    // var lastChanged : string = "No data";
+                    var link: string = "No data"
+
+                    if (e.roles.length > 0) {
+                        roles = "[";
+                        for (let i: number = 0; i < e.roles.length; i++) {
+                            roles += e.roles[i].toUpperCase();
+                            if (i < e.roles.length - 1) {
+                                roles += ", ";
+                            }
                         }
+                        roles += "]";
                     }
-                    roles += "]";
-                }
-                if (e.links.length > 0) {
-                    link = e.links[0].href;
+                    if (e.links.length > 0) {
+                        link = e.links[0].href;
 
-
-                }
-                if (typeof e.vcardArray != "undefined") {
-                    for (let v of e.vcardArray[1]) {
-                        if (v[0] == "fn") {
-                            name = v[3];
-                        }
 
                     }
+                    if (typeof e.vcardArray != "undefined") {
+                        for (let v of e.vcardArray[1]) {
+                            if (v[0] == "fn") {
+                                name = v[3];
+                            }
+
+                        }
+                    }
+
+                    this.datosEntities.push({
+                        "Roles": roles,
+                        "Handle": e.handle,
+                        "Name": name,
+                        "Link": link,
+
+                    });
+
+
                 }
-
-                this.datosEntities.push({
-                    "Roles": roles,
-                    "Handle": e.handle,
-                    "Name": name,
-                    "Link": link,
-
-                });
+                Utilities.log(JSON.stringify(this.datosEntities[0]));
+                this.completarDatosEntities(this.datosEntities);
 
 
             }
-            Utilities.log(JSON.stringify(this.datosEntities[0]));
-            this.completarDatosEntities(this.datosEntities);
 
         }
-
     }
 
     private completarDatosEntities(datos: any) {

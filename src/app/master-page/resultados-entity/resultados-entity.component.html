@@ -89,7 +89,7 @@
     </div>
 
 
-    <div class="col-md-6" *ngIf="!loading && datosEntity[0].Networks.length > 0">
+    <div class="col-md-6" *ngIf="!loading && existenNetworks">
         <span class="tituloTabla mr-lg-2">{{ "RESULTADOSENTITY.TablaEntity.Filas.Inetnums.Titulo" | translate }}</span>
 
         <a data-toggle="collapse" href="#collapseInetnums" aria-expanded="false" aria-controls="collapseInetnums">
@@ -129,7 +129,7 @@
         </div>
     </div>
 
-    <div class="col-md-6" *ngIf="!loading && datosEntity[0].Autnums.length > 0">
+    <div class="col-md-6" *ngIf="!loading && existenAutnums">
         <span class="tituloTabla">{{ "RESULTADOSENTITY.TablaEntity.Filas.Autnums.Titulo" | translate }}</span>
 
         <a data-toggle="collapse" href="#collapseAutnums" aria-expanded="false" aria-controls="collapseAutnums">

@@ -89,9 +89,15 @@ var ResultadosIPComponent = (function () {
         //this.loading = false;
     };
     ResultadosIPComponent.prototype.parseGetBuscarIPError = function (error) {
-        utilities_1.Utilities.log("[resultados-autnum.component.ts] - parseGetBuscarAutnumError| error: " + JSON.stringify(error));
-        this.traducirError("RESULTADOSIP.Errores.sinResultados");
-        this.traducirError("RESULTADOSIP.Errores.verifiqueYReintente");
+        utilities_1.Utilities.log("[resultados-entity.component.ts] - parseGetBuscarEntityError | error: " + JSON.stringify(error));
+        utilities_1.Utilities.log("[resultados-entity.component.ts] - parseGetBuscarEntityError | errorCode: " + error.json().errorCode);
+        if (error.json().errorCode == 429) {
+            this.traducirError("GENERAL.Errores.ArrayLimit");
+        }
+        else {
+            this.traducirError("RESULTADOSIP.Errores.sinResultados");
+            this.traducirError("RESULTADOSIP.Errores.verifiqueYReintente");
+        }
         this.loading = false;
     };
     ResultadosIPComponent.prototype.obtenerDatosIP = function (respuesta) {
@@ -181,8 +187,13 @@ var ResultadosIPComponent = (function () {
     };
     ResultadosIPComponent.prototype.parseGetBuscarEntityError = function (error) {
         utilities_1.Utilities.log("[resultados-entity.component.ts] - parseGetBuscarEntityError | error: " + JSON.stringify(error));
-        this.traducirError("RESULTADOSENTITY.Errores.sinResultados");
-        this.traducirError("RESULTADOSENTITY.Errores.verifiqueYReintente");
+        if (error.json().errorCode == 429) {
+            this.traducirError("GENERAL.Errores.ArrayLimit");
+        }
+        else {
+            this.traducirError("RESULTADOSENTITY.Errores.sinResultados");
+            this.traducirError("RESULTADOSENTITY.Errores.verifiqueYReintente");
+        }
         this.loading = false;
     };
     ResultadosIPComponent.prototype.obtenerDatosEntity = function (respuesta) {

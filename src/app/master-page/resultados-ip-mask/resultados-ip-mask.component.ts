@@ -134,8 +134,12 @@ export class ResultadosIPMaskComponent implements OnInit {
 
     parseGetBuscarIPError(error: any) {
         Utilities.log("[resultados-ip-mask.component.ts] - parseGetBuscarAutnumError| error: " + JSON.stringify(error));
-        this.traducirError("RESULTADOSIP.Errores.sinResultados");
-        this.traducirError("RESULTADOSIP.Errores.verifiqueYReintente");
+        if (error.json().errorCode == 429) {
+            this.traducirError("GENERAL.Errores.ArrayLimit");
+        } else {
+            this.traducirError("RESULTADOSIP.Errores.sinResultados");
+            this.traducirError("RESULTADOSIP.Errores.verifiqueYReintente");
+        }
         this.loading = false;
     }
 
