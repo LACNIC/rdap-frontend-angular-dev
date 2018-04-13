@@ -42,7 +42,7 @@
       },
       "IP":
       { "Titulo" : "IP ou bloco CIDR",
-        "Texto" : "Digite um número IP (200.200.200.200) ou um bloco CIDR (200.200.0.0/16)."
+        "Texto" : "Digite um número IP (200.7.84.0) ou um bloco CIDR (200.7.84.0/23)."
       }
     },
     "Copyright":"Os dados abaixo são fornecidos para fins informativos e para ajudar as pessoas a obter informações sobre ou relacionadas aos registros de números de AS e IP. Ao enviar uma consulta, você concorda em usar esses dados apenas para fins legais.",

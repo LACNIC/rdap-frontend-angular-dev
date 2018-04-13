@@ -90,7 +90,6 @@ var ResultadosIPComponent = (function () {
     };
     ResultadosIPComponent.prototype.parseGetBuscarIPError = function (error) {
         utilities_1.Utilities.log("[resultados-entity.component.ts] - parseGetBuscarEntityError | error: " + JSON.stringify(error));
-        utilities_1.Utilities.log("[resultados-entity.component.ts] - parseGetBuscarEntityError | errorCode: " + error.json().errorCode);
         if (error.json().errorCode == 429) {
             this.traducirError("GENERAL.Errores.ArrayLimit");
         }
@@ -130,12 +129,12 @@ var ResultadosIPComponent = (function () {
                 var e = _a[_i];
                 var roles = "No data";
                 var name = "No data";
-                // var address : string = "No data";
-                // var city : string = "No data";
-                // var country : string = "No data";
-                // var postalCode : string = "No data";
-                // var email : string = "No data";
-                // var telephone : string = "No data";
+                //var address: string = "No data";
+                //var city: string = "No data";
+                //var country: string = "No data";
+                //var postalCode: string = "No data";
+                var email = "No data";
+                var telephone = "No data";
                 // var registration : string = "No data";
                 // var lastChanged : string = "No data";
                 var link = "No data";
@@ -158,6 +157,18 @@ var ResultadosIPComponent = (function () {
                         if (v[0] == "fn") {
                             name = v[3];
                         }
+                        // if (v[0] == "adr") {
+                        //     address = v[3][2] + " " + v[3][1];
+                        //     city = v[3][3];
+                        //     country = v[3][6];
+                        //     postalCode = v[3][5];
+                        // }
+                        if (v[0] == "email") {
+                            email = v[3];
+                        }
+                        if (v[0] == "tel") {
+                            telephone = v[3];
+                        }
                     }
                 }
                 this.datosEntities.push({
@@ -165,6 +176,11 @@ var ResultadosIPComponent = (function () {
                     "Handle": e.handle,
                     "Name": name,
                     "Link": link,
+                    //"Address": address,
+                    //"City": city,
+                    //"PostalCode": postalCode,
+                    "Email": email,
+                    "Telephone": telephone,
                 });
             }
             //Utilities.log(JSON.stringify(this.datosEntities[0]));
@@ -274,9 +290,15 @@ var ResultadosIPComponent = (function () {
                 var result = _this.parseGetBuscarEntityOk(res);
                 var e = _this.datosEntities[i];
                 //e["Address"]= result[0].Address;
-                e["Name"] = result[0].Name;
-                e["Telephone"] = result[0].Telephone;
-                e["Email"] = result[0].Email;
+                if (e["Name"] == "No data") {
+                    e["Name"] = result[0].Name;
+                }
+                if (e["Telephone"] == "No data") {
+                    e["Telephone"] = result[0].Telephone;
+                }
+                if (e["Email"] == "No data") {
+                    e["Email"] = result[0].Email;
+                }
                 e["Info"] = "http://rdap-web.lacnic.net/entity/" + handle;
                 _this.datosEntities[i] = e;
             }, function (error) {

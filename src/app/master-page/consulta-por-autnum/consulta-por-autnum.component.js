@@ -47,27 +47,6 @@ var ConsultaPorAutnumComponent = (function () {
         this.mensajes.Errores = [];
         this.mensajes.Exitos = [];
     };
-    // cargarIpActual(){
-    //     this.dataService.getBuscarMiIP()
-    //         .subscribe(
-    //             res => this.parseGetBuscarMiIPOk(res),
-    //             error => this.parseGetBuscarMiIPError(error),
-    //             () => Utilities.log("[consulta-por-autnum.component.ts] - getBuscarMiIP: Completed")
-    //         );
-    // }
-    // parseGetBuscarMiIPOk(response:any){
-    //     Utilities.log("[consulta-por-autnum.component.ts] - parseGetBuscarMiIPOk | response: " + JSON.stringify(response));
-    //
-    //     this.valorBuscado = response.clientIP;
-    //     Utilities.log("[consulta-por-autnum.component.ts] - parseGetBuscarMiIPOk | this.valorBuscado: " + this.valorBuscado);
-    //     this.loading = false;
-    // }
-    //
-    // parseGetBuscarMiIPError(error:any){
-    //     Utilities.log("[consulta-por-autnum.component.ts] - parseGetBuscarMiIPError| error: " + JSON.stringify(error));
-    //     this.valorBuscado = "";
-    //     this.loading = false;
-    // }
     ConsultaPorAutnumComponent.prototype.buscar = function () {
         utilities_1.Utilities.log("[consulta-por-autnum.component.ts] - buscar: Start");
         this.limpiarMensajes();
@@ -80,6 +59,10 @@ var ConsultaPorAutnumComponent = (function () {
             this.traducirError("CONSULTAPORAUTNUM.Errores.valorBuscadoVacio");
         }
         else {
+            this.valorBuscado = this.valorBuscado.toLocaleUpperCase();
+            if (this.valorBuscado.includes("AS")) {
+                this.valorBuscado = this.valorBuscado.substring(2);
+            }
             this.buscarAutnum();
         }
         utilities_1.Utilities.log("[consulta-por-autnum.component.ts] - validarDatoBuscado: Finish");

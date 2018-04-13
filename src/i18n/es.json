@@ -42,7 +42,7 @@
         "Texto" : "Ingrese el número del sistema autónomo. "},
       "IP":
       { "Titulo" : "IP o bloque CIDR",
-        "Texto" : "Ingrese una dirección IP (200.200.200.200) o uno bloque CIDR (200.200.0.0/16)."
+        "Texto" : "Ingrese una dirección IP (200.7.84.0) o uno bloque CIDR (200.7.84.0/23)."
       }
     },
     "Copyright":"Los datos a continuación se brindan con fines informativos y para ayudar a las personas a obtener información relacionada con el registro de números de AS y de IP. Al enviar una consulta, acepta utilizar esta información solo para fines legales.",

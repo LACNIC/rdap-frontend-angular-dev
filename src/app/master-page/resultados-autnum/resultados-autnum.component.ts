@@ -1,14 +1,14 @@
 /**
  * Created by Bruno on 13/06/2017.
  */
-import { Component, OnInit }    from '@angular/core';
-import { ActivatedRoute }       from '@angular/router';
-import { DataService }          from '../../shared/services/data.service';
-import { TranslateService }     from "ng2-translate";
-import { Utilities }            from "../../shared/utilities";
-import { Mensaje }              from "../../shared/mensaje";
-import { Exito }                from "../../shared/exito";
-import { Error }                from "../../shared/error";
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {DataService} from '../../shared/services/data.service';
+import {TranslateService} from "ng2-translate";
+import {Utilities} from "../../shared/utilities";
+import {Mensaje} from "../../shared/mensaje";
+import {Exito} from "../../shared/exito";
+import {Error} from "../../shared/error";
 import {ResponseAutnum} from '../../shared/responseAutnum';
 import {Event} from '../../shared/event';
 import {ResponseEntity} from '../../shared/responseEntity';
@@ -17,21 +17,21 @@ import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
     templateUrl: 'resultados-autnum.component.html',
-    styleUrls:  ['resultados-autnum.css']
+    styleUrls: ['resultados-autnum.css']
 })
 
 export class ResultadosAutnumComponent implements OnInit {
 
-    mensajes : Mensaje = new Mensaje();
-    loading : boolean = true;
-    AUTNUM : string;
-    datosEvents : string[] = [];
-    datosEntities : any[] = [];
-    datosAutnum : string[] = [];
-    private mostarDatosExta: boolean=true;
-    rederictUrl:string= Constantes.rederictUrl;
+    mensajes: Mensaje = new Mensaje();
+    loading: boolean = true;
+    AUTNUM: string;
+    datosEvents: string[] = [];
+    datosEntities: any[] = [];
+    datosAutnum: string[] = [];
+    private mostarDatosExta: boolean = true;
+    rederictUrl: string = Constantes.rederictUrl;
 
-    constructor(private dataService: DataService, private route: ActivatedRoute, private translate: TranslateService, private sanitizer:DomSanitizer)  {
+    constructor(private dataService: DataService, private route: ActivatedRoute, private translate: TranslateService, private sanitizer: DomSanitizer) {
         this.cargarLenguaje();
     }
 
@@ -39,35 +39,35 @@ export class ResultadosAutnumComponent implements OnInit {
         Utilities.log("[resultados-autnum.component.ts] - ngOnInit: Start");
 
         this.AUTNUM = this.route.snapshot.params['autnum'];
-        if(this.AUTNUM != undefined && this.AUTNUM != null && this.AUTNUM != ""){
+        if (this.AUTNUM != undefined && this.AUTNUM != null && this.AUTNUM != "") {
             this.buscarDatosAutnum();
         }
 
         Utilities.log("[resultados-autnum.component.ts] - ngOnInit: Finish");
     }
 
-    cargarLenguaje(){
+    cargarLenguaje() {
         Utilities.log("[resultados-autnum.component.ts] - cargarLenguaje: Start");
 
         this.translate.addLangs(['es', 'en', 'pt']);
         this.translate.setDefaultLang('es');
         this.translate.use('es');
-        if(localStorage.getItem('lenguaje') != null) {
+        if (localStorage.getItem('lenguaje') != null) {
             this.translate.use(localStorage.getItem('lenguaje'));
         }
-        else{
+        else {
             this.translate.use(this.translate.getDefaultLang());
         }
 
         Utilities.log("[resultados-autnum.component.ts] - cargarLenguaje: Finish");
     }
 
-    limpiarMensajes(){
+    limpiarMensajes() {
         this.mensajes.Errores = [];
         this.mensajes.Exitos = [];
     }
 
-    traducirError(paraTraducir : string){
+    traducirError(paraTraducir: string) {
         this.translate.get(paraTraducir)
             .subscribe(
                 value => this.mostrarError(value),
@@ -76,17 +76,17 @@ export class ResultadosAutnumComponent implements OnInit {
             );
     }
 
-    mostrarError(errorDescription : string){
-        var error : Error = new Error();
+    mostrarError(errorDescription: string) {
+        var error: Error = new Error();
         error.Description = errorDescription;
         this.mensajes.Errores.push(error);
     }
 
-    translateError(error:any){
+    translateError(error: any) {
         Utilities.log("[resultados-autnum.component.ts] - translateError | error: " + JSON.stringify(error));
     }
 
-    buscarDatosAutnum(){
+    buscarDatosAutnum() {
         Utilities.log("[resultados-autnum.component.ts] - buscarDatosAutnum: Start");
         Utilities.log("[resultados-autnum.component.ts] - buscarDatosAutnum | this.AUTNUM: " + this.AUTNUM);
 
@@ -99,11 +99,11 @@ export class ResultadosAutnumComponent implements OnInit {
 
         Utilities.log("[resultados-autnum.component.ts] - buscarDatosAutnum: Finish");
     }
-    
-    parseGetBuscarAutumOk(response:any){
+
+    parseGetBuscarAutumOk(response: any) {
         Utilities.log("[resultados-autnum.component.ts] - parseGetBuscarAutumOk | response: " + JSON.stringify(response));
 
-        var respuesta : ResponseAutnum = response;
+        var respuesta: ResponseAutnum = response;
         this.obtenerDatosAutnum(respuesta);
         this.obtenerEntities(respuesta);
         Utilities.log("[resultados-autnum.component.ts] - parseGetBuscarAutumOk | respuesta: " + JSON.stringify(respuesta));
@@ -119,7 +119,7 @@ export class ResultadosAutnumComponent implements OnInit {
 
     }
 
-    parseGetBuscarAutnumError(error:any){
+    parseGetBuscarAutnumError(error: any) {
         Utilities.log("[resultados-autnum.component.ts] - parseGetBuscarAutnumError| error: " + JSON.stringify(error));
         if (error.json().errorCode == 429) {
             this.traducirError("GENERAL.Errores.ArrayLimit");
@@ -130,17 +130,18 @@ export class ResultadosAutnumComponent implements OnInit {
         this.loading = false;
     }
 
-    obtenerDatosAutnum(respuesta : ResponseAutnum){
+    obtenerDatosAutnum(respuesta: ResponseAutnum) {
         //Datos de la tabla AUTNUM
         this.datosAutnum.push(respuesta.handle);
         // this.datosAutnum.push(respuesta.name);
-        this.datosAutnum.push(respuesta.type);
+
+        var type: string = "No data";
         // this.datosAutnum.push("No data");
         // this.datosAutnum.push(respuesta.startAddress + " - " + respuesta.endAddress);
         // this.datosAutnum.push(respuesta.ipVersion);
         // this.datosAutnum.push(respuesta.country);
-        var lastChangedDate : string = "No data";
-        var registrationDate : string = "No data";
+        var lastChangedDate: string = "No data";
+        var registrationDate: string = "No data";
         if (typeof respuesta.events != "undefined") {
             if (respuesta.events.length > 0) {
 
@@ -161,43 +162,65 @@ export class ResultadosAutnumComponent implements OnInit {
 
             }
         }
-        this.datosAutnum.push( registrationDate, lastChangedDate,);
+
+        if (typeof respuesta.type != "undefined" && respuesta.type != "") {
+            type = respuesta.type;
+        }
+        this.datosAutnum.push(type);
+        this.datosAutnum.push(registrationDate, lastChangedDate);
     }
 
-    obtenerEntities(respuesta : ResponseAutnum){
+    obtenerEntities(respuesta: ResponseAutnum) {
         //Datos de las tablas CONTACTS
-        if(respuesta.entities.length > 0){
-            for(let e of respuesta.entities){
-                var roles : string = "No data";
-                var name : string = "No data";
-                var link : string = "No data"
+        if (respuesta.entities.length > 0) {
+            for (let e of respuesta.entities) {
+                var roles: string = "No data";
+                var name: string = "No data";
+                var link: string = "No data"
+                var email: string = "No data";
+                var telephone: string = "No data";
 
-                if(e.roles.length > 0){
+                if (e.roles.length > 0) {
                     roles = "[";
-                    for(let i : number = 0; i < e.roles.length; i++){
+                    for (let i: number = 0; i < e.roles.length; i++) {
                         roles += e.roles[i].toUpperCase();
-                        if(i < e.roles.length-1){
+                        if (i < e.roles.length - 1) {
                             roles += ", ";
                         }
                     }
                     roles += "]";
                 }
-                if(typeof e.vcardArray != "undefined") {
+                if (typeof e.vcardArray != "undefined") {
                     for (let v of e.vcardArray[1]) {
                         if (v[0] == "fn") {
                             name = v[3];
                         }
 
+                        // if (v[0] == "adr") {
+                        //     address = v[3][2] + " " + v[3][1];
+                        //     city = v[3][3];
+                        //     country = v[3][6];
+                        //     postalCode = v[3][5];
+                        // }
+                        if (v[0] == "email") {
+                            email = v[3];
+                        }
+                        if (v[0] == "tel") {
+                            telephone = v[3];
+                        }
+
                     }
                 }
-                if(e.links.length>0){
-                    link= e.links[0].href;
+                if (e.links.length > 0) {
+                    link = e.links[0].href;
                 }
                 this.datosEntities.push({
-                    "Roles" : roles,
-                    "Handle" : e.handle,
-                    "Name" : name,
-                    "Link": link
+                    "Roles": roles,
+                    "Handle": e.handle,
+                    "Name": name,
+                    "Link": link,
+                    "Email": email,
+                    "Telephone": telephone
                 });
             }
             this.completarDatosEntities(this.datosEntities);
@@ -218,10 +241,18 @@ export class ResultadosAutnumComponent implements OnInit {
 
                         var e: any[] = this.datosEntities[i];
                         //e["Address"]= result[0].Address;
-                        e["Name"] = result[0].Name;
-                        e["Telephone"] = result[0].Telephone;
-                        e["Email"] = result[0].Email;
-                        e["Info"]= this.rederictUrl + "entity/" + handle;
+                        if (e["Name"] == "No data") {
+                            e["Name"] = result[0].Name;
+                        }
+
+                        if (e["Telephone"] == "No data") {
+                            e["Telephone"] = result[0].Telephone;
+                        }
+
+                        if (e["Email"] == "No data") {
+                            e["Email"] = result[0].Email;
+                        }
+                        e["Info"] = this.rederictUrl + "entity/" + handle;
 
                         this.datosEntities[i] = e;
 
@@ -230,7 +261,7 @@ export class ResultadosAutnumComponent implements OnInit {
                     error => {
 
                         //this.parseGetBuscarEntityError(error)
-                        this.mostarDatosExta=false;
+                        this.mostarDatosExta = false;
                     },
                     () => Utilities.log("[resultados-autnum.component.ts] - getBuscarIP: Completed")
                 );
@@ -241,7 +272,7 @@ export class ResultadosAutnumComponent implements OnInit {
 
     }
 
-    sanitize(url:string){
+    sanitize(url: string) {
         return this.sanitizer.bypassSecurityTrustUrl(url);
     }
 

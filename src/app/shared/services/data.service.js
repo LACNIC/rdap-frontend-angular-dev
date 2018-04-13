@@ -93,12 +93,7 @@ var DataService = (function () {
             .catch(this.handleError);
     };
     DataService.prototype.handleError = function (error) {
-        if (error.json().errorCode == 404) {
-            return Observable_1.Observable.throw("404");
-        }
-        else {
-            return Observable_1.Observable.throw(error || "Server Error");
-        }
+        return Observable_1.Observable.throw(error || "Server Error");
     };
     return DataService;
 }());

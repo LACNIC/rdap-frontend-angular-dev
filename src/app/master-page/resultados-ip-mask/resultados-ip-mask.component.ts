@@ -187,8 +187,8 @@ export class ResultadosIPMaskComponent implements OnInit {
                 // var city : string = "No data";
                 // var country : string = "No data";
                 // var postalCode : string = "No data";
-                // var email : string = "No data";
-                // var telephone : string = "No data";
+                var email: string = "No data";
+                var telephone: string = "No data";
                 // var registration : string = "No data";
                 // var lastChanged : string = "No data";
                 var link: string = "No data"
@@ -211,25 +211,29 @@ export class ResultadosIPMaskComponent implements OnInit {
                         if (v[0] == "fn") {
                             name = v[3];
                         }
+
                         // if (v[0] == "adr") {
                         //     address = v[3][2] + " " + v[3][1];
                         //     city = v[3][3];
                         //     country = v[3][6];
                         //     postalCode = v[3][5];
                         // }
-                        // if (v[0] == "email") {
-                        //     email = v[3];
-                        // }
-                        // if (v[0] == "tel") {
-                        //     telephone = v[3];
-                        // }
+                        if (v[0] == "email") {
+                            email = v[3];
+                        }
+                        if (v[0] == "tel") {
+                            telephone = v[3];
+                        }
+
                     }
                 }
                 this.datosEntities.push({
                     "Roles": roles,
                     "Handle": e.handle,
                     "Name": name,
-                    "Link": link
+                    "Link": link,
+                    "Email": email,
+                    "Telephone": telephone
                 });
             }
             this.completarDatosEntities(this.datosEntities);

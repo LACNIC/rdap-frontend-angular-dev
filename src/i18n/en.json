@@ -42,7 +42,7 @@
         "Texto" : "Type the Autonomous System number."},
       "IP":
       { "Titulo" : "IP or CIDR block",
-        "Texto" : "Type an IP number (200.200.200.200) or a CIDR block (200.200.0.0/16)."
+        "Texto" : "Type an IP number (200.7.84.0) or a CIDR block (200.7.84.0/23)."
       }
     },
     "Copyright":"The data below is provided for information purposes and to assist persons in obtaining information about or related to AS and IP numbers registrations. By submitting a query, you agree to use this data only for lawful purposes.",

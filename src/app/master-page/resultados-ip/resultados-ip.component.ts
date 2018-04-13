@@ -31,10 +31,10 @@ export class ResultadosIPComponent implements OnInit {
     datosIP: string[] = [];
     datosEntities: any[] = [];
     datosEntity: string[] = [];
-    private mostarDatosExta: boolean= true;
+    private mostarDatosExta: boolean = true;
 
 
-    constructor(private dataService: DataService, private route: ActivatedRoute, private translate: TranslateService, private sanitizer:DomSanitizer) {
+    constructor(private dataService: DataService, private route: ActivatedRoute, private translate: TranslateService, private sanitizer: DomSanitizer) {
         this.cargarLenguaje();
     }
 
@@ -116,10 +116,9 @@ export class ResultadosIPComponent implements OnInit {
 
     parseGetBuscarIPError(error: any) {
         Utilities.log("[resultados-entity.component.ts] - parseGetBuscarEntityError | error: " + JSON.stringify(error));
-        Utilities.log("[resultados-entity.component.ts] - parseGetBuscarEntityError | errorCode: " + error.json().errorCode);
-        if(error.json().errorCode==429){
+        if (error.json().errorCode == 429) {
             this.traducirError("GENERAL.Errores.ArrayLimit");
-        }else{
+        } else  {
             this.traducirError("RESULTADOSIP.Errores.sinResultados");
             this.traducirError("RESULTADOSIP.Errores.verifiqueYReintente");
         }
@@ -141,12 +140,12 @@ export class ResultadosIPComponent implements OnInit {
 
         for (let i: number = 0; i < respuesta.events.length; i++) {
 
-            if( respuesta.events[i].eventAction.includes("registration")){
+            if (respuesta.events[i].eventAction.includes("registration")) {
 
                 registrationDate = respuesta.events[i].eventDate;
             }
 
-            if( respuesta.events[i].eventAction.includes("last changed")){
+            if (respuesta.events[i].eventAction.includes("last changed")) {
 
                 lastChangedDate = respuesta.events[i].eventDate;
             }
@@ -162,12 +161,12 @@ export class ResultadosIPComponent implements OnInit {
             for (let e of respuesta.entities) {
                 var roles: string = "No data";
                 var name: string = "No data";
-                // var address : string = "No data";
-                // var city : string = "No data";
-                // var country : string = "No data";
-                // var postalCode : string = "No data";
-                // var email : string = "No data";
-                // var telephone : string = "No data";
+                //var address: string = "No data";
+                //var city: string = "No data";
+                //var country: string = "No data";
+                //var postalCode: string = "No data";
+                var email: string = "No data";
+                var telephone: string = "No data";
                 // var registration : string = "No data";
                 // var lastChanged : string = "No data";
                 var link: string = "No data"
@@ -187,10 +186,25 @@ export class ResultadosIPComponent implements OnInit {
 
 
                 }
+
+
                 if (typeof e.vcardArray != "undefined") {
                     for (let v of e.vcardArray[1]) {
                         if (v[0] == "fn") {
                             name = v[3];
+                        }
+
+                        // if (v[0] == "adr") {
+                        //     address = v[3][2] + " " + v[3][1];
+                        //     city = v[3][3];
+                        //     country = v[3][6];
+                        //     postalCode = v[3][5];
+                        // }
+                        if (v[0] == "email") {
+                            email = v[3];
+                        }
+                        if (v[0] == "tel") {
+                            telephone = v[3];
                         }
 
                     }
@@ -201,10 +215,13 @@ export class ResultadosIPComponent implements OnInit {
                     "Handle": e.handle,
                     "Name": name,
                     "Link": link,
+                    //"Address": address,
+                    //"City": city,
+                    //"PostalCode": postalCode,
+                    "Email": email,
+                    "Telephone": telephone,
 
                 });
-
-
 
 
             }
@@ -243,9 +260,9 @@ export class ResultadosIPComponent implements OnInit {
 
     parseGetBuscarEntityError(error: any) {
         Utilities.log("[resultados-entity.component.ts] - parseGetBuscarEntityError | error: " + JSON.stringify(error));
-        if(error.json().errorCode==429){
+        if (error.json().errorCode == 429) {
             this.traducirError("GENERAL.Errores.ArrayLimit");
-        }else{
+        } else {
             this.traducirError("RESULTADOSENTITY.Errores.sinResultados");
             this.traducirError("RESULTADOSENTITY.Errores.verifiqueYReintente");
         }
@@ -350,10 +367,19 @@ export class ResultadosIPComponent implements OnInit {
 
                         var e: any[] = this.datosEntities[i];
                         //e["Address"]= result[0].Address;
-                        e["Name"] = result[0].Name;
-                        e["Telephone"] = result[0].Telephone;
-                        e["Email"] = result[0].Email;
-                        e["Info"]= "http://rdap-web.lacnic.net/entity/" + handle;
+                        if (e["Name"] == "No data") {
+                            e["Name"] = result[0].Name;
+                        }
+
+                        if (e["Telephone"] == "No data") {
+                            e["Telephone"] = result[0].Telephone;
+                        }
+
+                        if (e["Email"] == "No data") {
+                            e["Email"] = result[0].Email;
+                        }
+
+                        e["Info"] = "http://rdap-web.lacnic.net/entity/" + handle;
 
                         this.datosEntities[i] = e;
 
@@ -362,7 +388,7 @@ export class ResultadosIPComponent implements OnInit {
                     error => {
 
                         //this.parseGetBuscarEntityError(error)
-                        this.mostarDatosExta=false;
+                        this.mostarDatosExta = false;
                     },
                     () => Utilities.log("[resultados-autnum.component.ts] - getBuscarIP: Completed")
                 );
@@ -373,7 +399,7 @@ export class ResultadosIPComponent implements OnInit {
 
     }
 
-    sanitize(url:string){
+    sanitize(url: string) {
         return this.sanitizer.bypassSecurityTrustUrl(url);
     }
 

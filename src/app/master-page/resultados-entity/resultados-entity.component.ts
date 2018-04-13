@@ -137,7 +137,7 @@ export class ResultadosEntityComponent implements OnInit {
     }
 
     parseGetBuscarEntityError(error: any) {
-        Utilities.log("[resultados-entity.component.ts] - parseGetBuscarEntityError | error: " + JSON.stringify(error.json()));
+        Utilities.log("[resultados-entity.component.ts] - parseGetBuscarEntityError | error: " + JSON.stringify(error));
         if (error.json().errorCode == 429) {
             this.traducirError("GENERAL.Errores.ArrayLimit");
         } else {

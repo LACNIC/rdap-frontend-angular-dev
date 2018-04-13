@@ -110,7 +110,7 @@ var ResultadosAutnumComponent = (function () {
         //Datos de la tabla AUTNUM
         this.datosAutnum.push(respuesta.handle);
         // this.datosAutnum.push(respuesta.name);
-        this.datosAutnum.push(respuesta.type);
+        var type = "No data";
         // this.datosAutnum.push("No data");
         // this.datosAutnum.push(respuesta.startAddress + " - " + respuesta.endAddress);
         // this.datosAutnum.push(respuesta.ipVersion);
@@ -129,6 +129,10 @@ var ResultadosAutnumComponent = (function () {
                 }
             }
         }
+        if (typeof respuesta.type != "undefined" && respuesta.type != "") {
+            type = respuesta.type;
+        }
+        this.datosAutnum.push(type);
         this.datosAutnum.push(registrationDate, lastChangedDate);
     };
     ResultadosAutnumComponent.prototype.obtenerEntities = function (respuesta) {
@@ -139,6 +143,8 @@ var ResultadosAutnumComponent = (function () {
                 var roles = "No data";
                 var name = "No data";
                 var link = "No data";
+                var email = "No data";
+                var telephone = "No data";
                 if (e.roles.length > 0) {
                     roles = "[";
                     for (var i = 0; i < e.roles.length; i++) {
@@ -155,6 +161,18 @@ var ResultadosAutnumComponent = (function () {
                         if (v[0] == "fn") {
                             name = v[3];
                         }
+                        // if (v[0] == "adr") {
+                        //     address = v[3][2] + " " + v[3][1];
+                        //     city = v[3][3];
+                        //     country = v[3][6];
+                        //     postalCode = v[3][5];
+                        // }
+                        if (v[0] == "email") {
+                            email = v[3];
+                        }
+                        if (v[0] == "tel") {
+                            telephone = v[3];
+                        }
                     }
                 }
                 if (e.links.length > 0) {
@@ -164,7 +182,9 @@ var ResultadosAutnumComponent = (function () {
                     "Roles": roles,
                     "Handle": e.handle,
                     "Name": name,
-                    "Link": link
+                    "Link": link,
+                    "Email": email,
+                    "Telephone": telephone
                 });
             }
             this.completarDatosEntities(this.datosEntities);
@@ -179,9 +199,15 @@ var ResultadosAutnumComponent = (function () {
                 var result = _this.parseGetBuscarEntitiesOk(res);
                 var e = _this.datosEntities[i];
                 //e["Address"]= result[0].Address;
-                e["Name"] = result[0].Name;
-                e["Telephone"] = result[0].Telephone;
-                e["Email"] = result[0].Email;
+                if (e["Name"] == "No data") {
+                    e["Name"] = result[0].Name;
+                }
+                if (e["Telephone"] == "No data") {
+                    e["Telephone"] = result[0].Telephone;
+                }
+                if (e["Email"] == "No data") {
+                    e["Email"] = result[0].Email;
+                }
                 e["Info"] = _this.rederictUrl + "entity/" + handle;
                 _this.datosEntities[i] = e;
             }, function (error) {

@@ -12,7 +12,7 @@
             <tbody>
             <tr>
                 <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaAutnum.Filas.Handle.Titulo" | translate }}</td>
-                <td class="celdaTexto">{{ datosAutnum[0] }}</td>
+                <td class="celdaTexto">{{ datosAutnum[0]}}</td>
             </tr>
             <tr>
                 <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaAutnum.Filas.Type.Titulo" | translate }}</td>
@@ -45,11 +45,11 @@
                 <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaContacts.Filas.Name.Titulo" | translate }}</td>
                 <td class="celdaTexto">{{ entity.Name }}</td>
             </tr>
-            <tr *ngIf="mostarDatosExta">
+            <tr >
                 <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaContacts.Filas.Telephone.Titulo" | translate }}</td>
                 <td class="celdaTexto">{{ entity.Telephone }}</td>
             </tr>
-            <tr *ngIf="mostarDatosExta">
+            <tr >
                 <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaContacts.Filas.Email.Titulo" | translate }}</td>
                 <td class="celdaTexto">{{ entity.Email }}</td>
             </tr>

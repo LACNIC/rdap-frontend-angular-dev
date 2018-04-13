@@ -145,8 +145,8 @@ var ResultadosIPMaskComponent = (function () {
                 // var city : string = "No data";
                 // var country : string = "No data";
                 // var postalCode : string = "No data";
-                // var email : string = "No data";
-                // var telephone : string = "No data";
+                var email = "No data";
+                var telephone = "No data";
                 // var registration : string = "No data";
                 // var lastChanged : string = "No data";
                 var link = "No data";
@@ -175,19 +175,21 @@ var ResultadosIPMaskComponent = (function () {
                         //     country = v[3][6];
                         //     postalCode = v[3][5];
                         // }
-                        // if (v[0] == "email") {
-                        //     email = v[3];
-                        // }
-                        // if (v[0] == "tel") {
-                        //     telephone = v[3];
-                        // }
+                        if (v[0] == "email") {
+                            email = v[3];
+                        }
+                        if (v[0] == "tel") {
+                            telephone = v[3];
+                        }
                     }
                 }
                 this.datosEntities.push({
                     "Roles": roles,
                     "Handle": e.handle,
                     "Name": name,
-                    "Link": link
+                    "Link": link,
+                    "Email": email,
+                    "Telephone": telephone
                 });
             }
             this.completarDatosEntities(this.datosEntities);

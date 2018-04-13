@@ -105,7 +105,7 @@ var ResultadosEntityComponent = (function () {
         // Utilities.log("[resultados-entity.component.ts] - parseGetBuscarEntityOk | respuesta: " + JSON.stringify(respuesta));
     };
     ResultadosEntityComponent.prototype.parseGetBuscarEntityError = function (error) {
-        utilities_1.Utilities.log("[resultados-entity.component.ts] - parseGetBuscarEntityError | error: " + JSON.stringify(error.json()));
+        utilities_1.Utilities.log("[resultados-entity.component.ts] - parseGetBuscarEntityError | error: " + JSON.stringify(error));
         if (error.json().errorCode == 429) {
             this.traducirError("GENERAL.Errores.ArrayLimit");
         }
