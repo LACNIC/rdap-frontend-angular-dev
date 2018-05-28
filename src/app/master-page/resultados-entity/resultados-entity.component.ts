@@ -51,18 +51,18 @@ export class ResultadosEntityComponent implements OnInit {
         Utilities.log("[resultados-entity.component.ts] - ngOnInit: Finish");
     }
 
-    buscarServerUrl() {
-        //this.serverURL= AppSettings.SERVER_URL;
-        this.dataService.getServerURL()
-            .subscribe(
-                res => this.parseServerUrlOK(res),
-                error => this.parseServerUrlError(error),
-                () => Utilities.log("[resultados-entity.component.ts] - buscarServerUrl: Completed")
-            );
-
-
-        Utilities.log("[resultados-entity.component.ts] - getServerUrl: Finish");
-    }
+    // buscarServerUrl() {
+    //     //this.serverURL= AppSettings.SERVER_URL;
+    //     this.dataService.getServerURL()
+    //         .subscribe(
+    //             res => this.parseServerUrlOK(res),
+    //             error => this.parseServerUrlError(error),
+    //             () => Utilities.log("[resultados-entity.component.ts] - buscarServerUrl: Completed")
+    //         );
+    //
+    //
+    //     Utilities.log("[resultados-entity.component.ts] - getServerUrl: Finish");
+    // }
 
     cargarLenguaje() {
         Utilities.log("[resultados-entity.component.ts] - cargarLenguaje: Start");

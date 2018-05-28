@@ -32,14 +32,17 @@ var ResultadosAutnumComponent = (function () {
         this.datosEvents = [];
         this.datosEntities = [];
         this.datosAutnum = [];
-        this.mostarDatosExta = true;
         this.rederictUrl = constantes_1.Constantes.rederictUrl;
+        this.mostarDatosExta = true;
         this.cargarLenguaje();
     }
     ResultadosAutnumComponent.prototype.ngOnInit = function () {
         utilities_1.Utilities.log("[resultados-autnum.component.ts] - ngOnInit: Start");
         this.AUTNUM = this.route.snapshot.params['autnum'];
         if (this.AUTNUM != undefined && this.AUTNUM != null && this.AUTNUM != "") {
+            if (this.AUTNUM.toLocaleUpperCase().includes("AS")) {
+                this.AUTNUM = this.AUTNUM.substring(2);
+            }
             this.buscarDatosAutnum();
         }
         utilities_1.Utilities.log("[resultados-autnum.component.ts] - ngOnInit: Finish");
@@ -190,37 +193,6 @@ var ResultadosAutnumComponent = (function () {
             this.completarDatosEntities(this.datosEntities);
         }
     };
-    ResultadosAutnumComponent.prototype.completarDatosEntities = function (datos) {
-        var _this = this;
-        var _loop_1 = function (i) {
-            var handle = datos[i].Handle;
-            this_1.dataService.getBuscarEntity(handle)
-                .subscribe(function (res) {
-                var result = _this.parseGetBuscarEntitiesOk(res);
-                var e = _this.datosEntities[i];
-                //e["Address"]= result[0].Address;
-                if (e["Name"] == "No data") {
-                    e["Name"] = result[0].Name;
-                }
-                if (e["Telephone"] == "No data") {
-                    e["Telephone"] = result[0].Telephone;
-                }
-                if (e["Email"] == "No data") {
-                    e["Email"] = result[0].Email;
-                }
-                e["Info"] = _this.rederictUrl + "entity/" + handle;
-                _this.datosEntities[i] = e;
-            }, function (error) {
-                //this.parseGetBuscarEntityError(error)
-                _this.mostarDatosExta = false;
-            }, function () { return utilities_1.Utilities.log("[resultados-autnum.component.ts] - getBuscarIP: Completed"); });
-        };
-        var this_1 = this;
-        for (var i = 0; i < datos.length; i++) {
-            _loop_1(i);
-        }
-        this.loading = false;
-    };
     ResultadosAutnumComponent.prototype.sanitize = function (url) {
         return this.sanitizer.bypassSecurityTrustUrl(url);
     };
@@ -292,6 +264,37 @@ var ResultadosAutnumComponent = (function () {
             "LastChanged": lastChangedDate,
         });
         return result;
+    };
+    ResultadosAutnumComponent.prototype.completarDatosEntities = function (datos) {
+        var _this = this;
+        var _loop_1 = function (i) {
+            var handle = datos[i].Handle;
+            this_1.dataService.getBuscarEntity(handle)
+                .subscribe(function (res) {
+                var result = _this.parseGetBuscarEntitiesOk(res);
+                var e = _this.datosEntities[i];
+                //e["Address"]= result[0].Address;
+                if (e["Name"] == "No data") {
+                    e["Name"] = result[0].Name;
+                }
+                if (e["Telephone"] == "No data") {
+                    e["Telephone"] = result[0].Telephone;
+                }
+                if (e["Email"] == "No data") {
+                    e["Email"] = result[0].Email;
+                }
+                e["Info"] = _this.rederictUrl + "entity/" + handle;
+                _this.datosEntities[i] = e;
+            }, function (error) {
+                //this.parseGetBuscarEntityError(error)
+                _this.mostarDatosExta = false;
+            }, function () { return utilities_1.Utilities.log("[resultados-autnum.component.ts] - getBuscarIP: Completed"); });
+        };
+        var this_1 = this;
+        for (var i = 0; i < datos.length; i++) {
+            _loop_1(i);
+        }
+        this.loading = false;
     };
     return ResultadosAutnumComponent;
 }());

@@ -43,14 +43,6 @@ var HomeComponent = (function () {
         this.mensajes.Errores = [];
         this.mensajes.Exitos = [];
     };
-    /**cargarIpActual(){
-        this.dataService.getBuscarMiIP()
-            .subscribe(
-                res => this.parseGetBuscarMiIPOk(res),
-                error => this.parseGetBuscarMiIPError(error),
-                () => Utilities.log("[home.component.ts] - getBuscarMiIP: Completed")
-            );
-    }*/
     HomeComponent.prototype.parseGetBuscarMiIPOk = function (response) {
         utilities_1.Utilities.log("[home.component.ts] - parseGetBuscarMiIPOk | response: " + JSON.stringify(response));
         this.valorBuscado = response.clientIP;
@@ -109,6 +101,9 @@ var HomeComponent = (function () {
         this.router.navigate(['/entity', this.valorBuscado]);
     };
     HomeComponent.prototype.buscarAutnum = function () {
+        if (this.valorBuscado.toLocaleUpperCase().includes("AS")) {
+            this.valorBuscado = this.valorBuscado.substring(2);
+        }
         this.router.navigate(['/autnum', this.valorBuscado]);
     };
     HomeComponent.prototype.buscarEntitiesByName = function () {

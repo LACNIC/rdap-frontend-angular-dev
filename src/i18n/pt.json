@@ -56,7 +56,9 @@
         "6" : "Entities"
       }
     },
-    "BotonBuscar" : "PROCURAR"
+    "BotonBuscar" : "PROCURAR",
+    "LinkPoliticaPrivacidad":"https://www.lacnic.net/politica-de-privacidade",
+    "TextoPoliticaPrivacidad": "Política de privacidade"
   },
   "CONSULTAPORIP" : {
     "Errores" : {

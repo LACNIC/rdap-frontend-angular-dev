@@ -68,14 +68,9 @@ export class ConsultaPorAutnumComponent {
             this.traducirError("CONSULTAPORAUTNUM.Errores.valorBuscadoVacio");
         }
         else{
-            this.valorBuscado= this.valorBuscado.toLocaleUpperCase();
-            if(this.valorBuscado.includes("AS")){
-
+            if(this.valorBuscado.toLocaleUpperCase().includes("AS")){
                 this.valorBuscado = this.valorBuscado.substring(2);
-
             }
-
-
             this.buscarAutnum();
         }
 

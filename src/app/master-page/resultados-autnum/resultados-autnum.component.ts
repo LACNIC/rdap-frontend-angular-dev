@@ -28,8 +28,8 @@ export class ResultadosAutnumComponent implements OnInit {
     datosEvents: string[] = [];
     datosEntities: any[] = [];
     datosAutnum: string[] = [];
-    private mostarDatosExta: boolean = true;
     rederictUrl: string = Constantes.rederictUrl;
+    private mostarDatosExta: boolean = true;
 
     constructor(private dataService: DataService, private route: ActivatedRoute, private translate: TranslateService, private sanitizer: DomSanitizer) {
         this.cargarLenguaje();
@@ -40,6 +40,12 @@ export class ResultadosAutnumComponent implements OnInit {
 
         this.AUTNUM = this.route.snapshot.params['autnum'];
         if (this.AUTNUM != undefined && this.AUTNUM != null && this.AUTNUM != "") {
+
+            if (this.AUTNUM.toLocaleUpperCase().includes("AS")) {
+
+                this.AUTNUM = this.AUTNUM.substring(2);
+
+            }
             this.buscarDatosAutnum();
         }
 
@@ -228,50 +234,6 @@ export class ResultadosAutnumComponent implements OnInit {
 
     }
 
-    private completarDatosEntities(datos: any) {
-        for (let i: number = 0; i < datos.length; i++) {
-
-            let handle = datos[i].Handle;
-
-            this.dataService.getBuscarEntity(handle)
-                .subscribe(
-                    res => {
-
-                        var result: any[] = this.parseGetBuscarEntitiesOk(res);
-
-                        var e: any[] = this.datosEntities[i];
-                        //e["Address"]= result[0].Address;
-                        if (e["Name"] == "No data") {
-                            e["Name"] = result[0].Name;
-                        }
-
-                        if (e["Telephone"] == "No data") {
-                            e["Telephone"] = result[0].Telephone;
-                        }
-
-                        if (e["Email"] == "No data") {
-                            e["Email"] = result[0].Email;
-                        }
-                        e["Info"] = this.rederictUrl + "entity/" + handle;
-
-                        this.datosEntities[i] = e;
-
-
-                    },
-                    error => {
-
-                        //this.parseGetBuscarEntityError(error)
-                        this.mostarDatosExta = false;
-                    },
-                    () => Utilities.log("[resultados-autnum.component.ts] - getBuscarIP: Completed")
-                );
-
-
-        }
-        this.loading = false;
-
-    }
-
     sanitize(url: string) {
         return this.sanitizer.bypassSecurityTrustUrl(url);
     }
@@ -356,6 +318,50 @@ export class ResultadosAutnumComponent implements OnInit {
         });
 
         return result;
+
+    }
+
+    private completarDatosEntities(datos: any) {
+        for (let i: number = 0; i < datos.length; i++) {
+
+            let handle = datos[i].Handle;
+
+            this.dataService.getBuscarEntity(handle)
+                .subscribe(
+                    res => {
+
+                        var result: any[] = this.parseGetBuscarEntitiesOk(res);
+
+                        var e: any[] = this.datosEntities[i];
+                        //e["Address"]= result[0].Address;
+                        if (e["Name"] == "No data") {
+                            e["Name"] = result[0].Name;
+                        }
+
+                        if (e["Telephone"] == "No data") {
+                            e["Telephone"] = result[0].Telephone;
+                        }
+
+                        if (e["Email"] == "No data") {
+                            e["Email"] = result[0].Email;
+                        }
+                        e["Info"] = this.rederictUrl + "entity/" + handle;
+
+                        this.datosEntities[i] = e;
+
+
+                    },
+                    error => {
+
+                        //this.parseGetBuscarEntityError(error)
+                        this.mostarDatosExta = false;
+                    },
+                    () => Utilities.log("[resultados-autnum.component.ts] - getBuscarIP: Completed")
+                );
+
+
+        }
+        this.loading = false;
 
     }
 }

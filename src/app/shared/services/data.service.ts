@@ -11,8 +11,7 @@ import {Data} from '@angular/router';
 export class DataService {
     contentHeadersUrlEncoded: Headers;
     private headers = new Headers({'Accept': 'text/html,application/xhtml+xml,application/xml, application/json'});
-    private options = new RequestOptions({responseType: ResponseContentType.Json, headers:this.headers});
-
+    private options = new RequestOptions({responseType: ResponseContentType.Json, headers: this.headers});
 
 
     constructor(private http: Http) {
@@ -30,28 +29,25 @@ export class DataService {
             .catch(this.handleError);
     }
 
-    public getServerURL() {
-        Utilities.log("[data.service.ts] - getBuscarIP: Start");
-
-       /** this.http.get('src/urls.json').subscribe(data => {
-            // Read the result field from the JSON response.
-            return data['results'];
-
-
-        });*/
-
-
-        return this.http.get('/src/urls.json', this.options)
-           // The Observable returned by get() is of type Observable<string>
-           // because a text response was specified. There's no need to pass
-           // a <string> type parameter to get().
-           .map((data :Data) => data.json());
-
-
-
-    }
-
-
+    // public getServerURL() {
+    //     Utilities.log("[data.service.ts] - getBuscarIP: Start");
+    //
+    //     /** this.http.get('src/urls.json').subscribe(data => {
+    //         // Read the result field from the JSON response.
+    //         return data['results'];
+    //
+    //
+    //     });*/
+    //
+    //
+    //     return this.http.get('/src/urls.json', this.options)
+    //     // The Observable returned by get() is of type Observable<string>
+    //     // because a text response was specified. There's no need to pass
+    //     // a <string> type parameter to get().
+    //         .map((data: Data) => data.json());
+    //
+    //
+    // }
 
 
     public getBuscarIP(ipBuscada: string) {
@@ -66,8 +62,7 @@ export class DataService {
 
     public getBuscarAutnum(autnumBuscado: string) {
         Utilities.log("[data.service.ts] - getBuscarAutnum: Start");
-
-        var url: string = "https://rdap.lacnic.net/rdapt/autnum/" + autnumBuscado;
+        var url: string = "https://rdap.lacnic.net/rdap/autnum/" + autnumBuscado;
         Utilities.log("[data.service.ts] - getBuscarAutnum | url: " + url);
         return this.http.get(url)
             .map((res: Response) => res.json())
@@ -106,19 +101,19 @@ export class DataService {
             .catch(this.handleError);
     }*/
 
-    public getCargarPaisesASNs() {
-        Utilities.log("[data.service.ts] - getCargarPaisesASNs: Start");
-        var url = "http://rdap-backend-test.us-east-1.elasticbeanstalk.com/api/paises";
-        Utilities.log("[data.service.ts] - getCargarPaisesASNs | url: " + url);
-        return this.http.get(url)
-            .map((res: Response) => res.json())
-            .catch(this.handleError);
-    }
+    // public getCargarPaisesASNs() {
+    //     Utilities.log("[data.service.ts] - getCargarPaisesASNs: Start");
+    //     var url = "http://rdap-backend-test.us-east-1.elasticbeanstalk.com/api/paises";
+    //     Utilities.log("[data.service.ts] - getCargarPaisesASNs | url: " + url);
+    //     return this.http.get(url)
+    //         .map((res: Response) => res.json())
+    //         .catch(this.handleError);
+    // }
 
     private handleError(error: any) {
 
 
-            return Observable.throw(error || "Server Error");
+        return Observable.throw(error || "Server Error");
 
     }
 }

@@ -30,17 +30,25 @@ var DataService = (function () {
             .map(function (res) { return res.json(); })
             .catch(this.handleError);
     };
-    DataService.prototype.getServerURL = function () {
-        utilities_1.Utilities.log("[data.service.ts] - getBuscarIP: Start");
-        /** this.http.get('src/urls.json').subscribe(data => {
-             // Read the result field from the JSON response.
-             return data['results'];
- 
- 
-         });*/
-        return this.http.get('/src/urls.json', this.options)
-            .map(function (data) { return data.json(); });
-    };
+    // public getServerURL() {
+    //     Utilities.log("[data.service.ts] - getBuscarIP: Start");
+    //
+    //     /** this.http.get('src/urls.json').subscribe(data => {
+    //         // Read the result field from the JSON response.
+    //         return data['results'];
+    //
+    //
+    //     });*/
+    //
+    //
+    //     return this.http.get('/src/urls.json', this.options)
+    //     // The Observable returned by get() is of type Observable<string>
+    //     // because a text response was specified. There's no need to pass
+    //     // a <string> type parameter to get().
+    //         .map((data: Data) => data.json());
+    //
+    //
+    // }
     DataService.prototype.getBuscarIP = function (ipBuscada) {
         utilities_1.Utilities.log("[data.service.ts] - getBuscarIP: Start");
         var url = "https://rdap.lacnic.net/rdap/ip/" + ipBuscada;
@@ -51,7 +59,7 @@ var DataService = (function () {
     };
     DataService.prototype.getBuscarAutnum = function (autnumBuscado) {
         utilities_1.Utilities.log("[data.service.ts] - getBuscarAutnum: Start");
-        var url = "https://rdap.lacnic.net/rdapt/autnum/" + autnumBuscado;
+        var url = "https://rdap.lacnic.net/rdap/autnum/" + autnumBuscado;
         utilities_1.Utilities.log("[data.service.ts] - getBuscarAutnum | url: " + url);
         return this.http.get(url)
             .map(function (res) { return res.json(); })
@@ -84,14 +92,14 @@ var DataService = (function () {
             .map((res: Response) => res.json())
             .catch(this.handleError);
     }*/
-    DataService.prototype.getCargarPaisesASNs = function () {
-        utilities_1.Utilities.log("[data.service.ts] - getCargarPaisesASNs: Start");
-        var url = "http://rdap-backend-test.us-east-1.elasticbeanstalk.com/api/paises";
-        utilities_1.Utilities.log("[data.service.ts] - getCargarPaisesASNs | url: " + url);
-        return this.http.get(url)
-            .map(function (res) { return res.json(); })
-            .catch(this.handleError);
-    };
+    // public getCargarPaisesASNs() {
+    //     Utilities.log("[data.service.ts] - getCargarPaisesASNs: Start");
+    //     var url = "http://rdap-backend-test.us-east-1.elasticbeanstalk.com/api/paises";
+    //     Utilities.log("[data.service.ts] - getCargarPaisesASNs | url: " + url);
+    //     return this.http.get(url)
+    //         .map((res: Response) => res.json())
+    //         .catch(this.handleError);
+    // }
     DataService.prototype.handleError = function (error) {
         return Observable_1.Observable.throw(error || "Server Error");
     };

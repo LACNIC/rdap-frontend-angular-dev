@@ -47,13 +47,18 @@ var ResultadosEntityComponent = (function () {
         }
         utilities_1.Utilities.log("[resultados-entity.component.ts] - ngOnInit: Finish");
     };
-    ResultadosEntityComponent.prototype.buscarServerUrl = function () {
-        var _this = this;
-        //this.serverURL= AppSettings.SERVER_URL;
-        this.dataService.getServerURL()
-            .subscribe(function (res) { return _this.parseServerUrlOK(res); }, function (error) { return _this.parseServerUrlError(error); }, function () { return utilities_1.Utilities.log("[resultados-entity.component.ts] - buscarServerUrl: Completed"); });
-        utilities_1.Utilities.log("[resultados-entity.component.ts] - getServerUrl: Finish");
-    };
+    // buscarServerUrl() {
+    //     //this.serverURL= AppSettings.SERVER_URL;
+    //     this.dataService.getServerURL()
+    //         .subscribe(
+    //             res => this.parseServerUrlOK(res),
+    //             error => this.parseServerUrlError(error),
+    //             () => Utilities.log("[resultados-entity.component.ts] - buscarServerUrl: Completed")
+    //         );
+    //
+    //
+    //     Utilities.log("[resultados-entity.component.ts] - getServerUrl: Finish");
+    // }
     ResultadosEntityComponent.prototype.cargarLenguaje = function () {
         utilities_1.Utilities.log("[resultados-entity.component.ts] - cargarLenguaje: Start");
         this.translate.addLangs(['es', 'en', 'pt']);
