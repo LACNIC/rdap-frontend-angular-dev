@@ -7,7 +7,6 @@ import { TranslateService } from "ng2-translate";
 import { DataService }      from '../../shared/services/data.service';
 import { Utilities }        from "../../shared/utilities";
 import { Mensaje }          from "../../shared/mensaje";
-import { Exito }            from "../../shared/exito";
 import { Error }            from "../../shared/error";
 
 @Component({
