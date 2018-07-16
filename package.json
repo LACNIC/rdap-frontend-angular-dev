@@ -9,9 +9,8 @@
   "scripts": {
     "i18n": "ng-xi18n",
     "build": "webpack",
-    "build-posta": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail",
-    "start": "webpack-dev-server --inline --progress --port 8080",
-    "start2": "webpack-dev-server"
+    "build-prod": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail",
+    "start": "webpack-dev-server --inline --progress --port 8080"
   },
   "dependencies": {
     "@angular/animations": "~4.2.0",
