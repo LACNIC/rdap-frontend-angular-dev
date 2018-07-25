@@ -25,6 +25,7 @@
     - De la carpeta "dist" subir solamente: app.js, polyfills.js, vendor.js, /assets.
     - De la carpeta "src" subir solamente:  /css, /fonts, /i18n, /img, /js
 
-:warning:
-> No subir index.html generado en carpeta "dist"!
-> No borrar 404.html del reposoitorio
+
+**NOTA!**
+- No subir index.html generado en carpeta "dist"!
+- No borrar 404.html del reposoitorio
