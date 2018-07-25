@@ -1,16 +1,16 @@
 # Proyecto cliente web Angular para RDAP
 
-- Bajar codigo y ejecutar:
+#### Bajar codigo y ejecutar:
 >npm install
 
 *Instala las dependencias necesarias para correr la app*
 
-- Agregar dentro del archivo *.git/info/exclude* las siguientes lineas:
+#### Agregar dentro del archivo *.git/info/exclude* las siguientes lineas:
   - node_modules/
   - dist/
 
 
-- Para probar el código localmente ejecutar:
+#### Para probar el código localmente ejecutar:
 >npm run start
 
 *Arma la app y la sirve localmente para pruebas*
@@ -25,7 +25,6 @@
     - De la carpeta "dist" subir solamente: app.js, polyfills.js, vendor.js, /assets.
     - De la carpeta "src" subir solamente:  /css, /fonts, /i18n, /img, /js
 
-
-    Nota!
-    - No subir index.html generado en carpeta "dist"!
-    - No borrar 404.html del reposoitorio
+:warning:
+> No subir index.html generado en carpeta "dist"!
+> No borrar 404.html del reposoitorio
