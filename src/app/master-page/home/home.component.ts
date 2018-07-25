@@ -16,6 +16,7 @@ import {Error} from "../../shared/error";
 export class HomeComponent {
 
     mensajes: Mensaje = new Mensaje();
+    
     loading: boolean = false;
     tipoBuscado: number;
     valorBuscado: string;
