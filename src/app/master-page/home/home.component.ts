@@ -13,10 +13,12 @@ import {Error} from "../../shared/error";
     styleUrls: ['home.css']
 })
 
+
+
 export class HomeComponent {
 
     mensajes: Mensaje = new Mensaje();
-    
+
     loading: boolean = false;
     tipoBuscado: number;
     valorBuscado: string;
