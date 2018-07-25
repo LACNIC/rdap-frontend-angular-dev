@@ -8,7 +8,6 @@
   "description": "Angular4 web client for RDAP.",
   "scripts": {
     "i18n": "ng-xi18n",
-    "build": "webpack",
     "build-prod": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail",
     "start": "webpack-dev-server --inline --progress --port 8080"
   },
