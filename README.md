@@ -27,5 +27,5 @@
 
 
 **NOTA!**
-- No subir index.html generado en carpeta "dist"!
-- No borrar 404.html del reposoitorio
+- No subir index.html generado en carpeta "dist"
+- No borrar 404.html del repositorio
