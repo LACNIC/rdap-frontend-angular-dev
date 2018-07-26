@@ -29,25 +29,6 @@ export class DataService {
             .catch(this.handleError);
     }
 
-    // public getServerURL() {
-    //     Utilities.log("[data.service.ts] - getBuscarIP: Start");
-    //
-    //     /** this.http.get('src/urls.json').subscribe(data => {
-    //         // Read the result field from the JSON response.
-    //         return data['results'];
-    //
-    //
-    //     });*/
-    //
-    //
-    //     return this.http.get('/src/urls.json', this.options)
-    //     // The Observable returned by get() is of type Observable<string>
-    //     // because a text response was specified. There's no need to pass
-    //     // a <string> type parameter to get().
-    //         .map((data: Data) => data.json());
-    //
-    //
-    // }
 
 
     public getBuscarIP(ipBuscada: string) {

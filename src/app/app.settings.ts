@@ -9,8 +9,4 @@ export class AppSettings {
 
   // public static SERVICE_API_URL: string = AppSettings.SERVICE_HOSTNAME + AppSettings.SERVICE_BASE_PATH;
     public static SERVICE_IP_API_URL: string = "//freegeoip.net/json/";
-   // public static  SERVER_URL: string= json.serverURL;
-
 }
-
-

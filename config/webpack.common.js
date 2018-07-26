@@ -27,7 +27,7 @@ module.exports = {
             },
             {
                 test: /\.html$/,
-                loader: 'html-loader'
+                loader: 'html-loader?interpolate=require'
             },
             {
                 test: /\.json$/,
@@ -36,7 +36,7 @@ module.exports = {
 
             {
                 test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-                loader: 'file-loader?name=assets/[name].[hash].[ext]'
+                loader: 'file-loader?name=assets/[name].[ext]'
             },
             {
                 test: /\.css$/,
@@ -65,7 +65,8 @@ module.exports = {
 
         new HtmlWebpackPlugin({
             template: 'src/index.html',
-            inject: 'body'
+            inject: 'body',
+            // favicon: 'src/img/favicon.png'
         })
     ]
 };
