@@ -181,11 +181,13 @@ export class ResultadosIPComponent implements OnInit {
                     }
                     roles += "]";
                 }
-                if (e.links.length > 0) {
-                    link = e.links[0].href;
-
-
-                }
+                if (e.links!=null && e.links.length > 0) {
+					link = e.links[0].href;
+				}	
+				else if(respuesta.links!= null)
+				{
+					link = respuesta.links[0].href;
+				}
 
 
                 if (typeof e.vcardArray != "undefined") {

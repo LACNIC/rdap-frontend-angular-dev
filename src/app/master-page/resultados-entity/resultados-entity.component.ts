@@ -293,11 +293,13 @@ export class ResultadosEntityComponent implements OnInit {
                         }
                         roles += "]";
                     }
-                    if (e.links.length > 0) {
-                        link = e.links[0].href;
-
-
-                    }
+                    if (e.links!=null && e.links.length > 0) {
+						link = e.links[0].href;
+					}	
+					else if(respuesta.links!= null)
+					{
+						link = respuesta.links[0].href;
+					}
                     if (typeof e.vcardArray != "undefined") {
                         for (let v of e.vcardArray[1]) {
                             if (v[0] == "fn") {
