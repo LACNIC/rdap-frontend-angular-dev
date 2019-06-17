@@ -24,6 +24,7 @@
 2. Subir al Repo de producción:
     - De la carpeta "dist" subir solamente: app.js, polyfills.js, vendor.js, /assets.
     - De la carpeta "src" subir solamente:  /css, /fonts, /i18n, /js
+    - No subir otros archivos como componentes o master-pages ya que la generación ya los deja empaquetados todos directamente       en app.js
 
 
 **NOTA!**
