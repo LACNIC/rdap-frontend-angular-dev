@@ -1,4 +1,4 @@
 export class Event {
-    eventAction : string;
-    eventDate : string
+  eventAction : string;
+  eventDate : string
 }

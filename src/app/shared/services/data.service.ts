@@ -1,100 +1,87 @@
-import {Injectable} from '@angular/core';
-import {Http, Response, Headers, RequestOptions, ResponseContentType,} from '@angular/http';
-import {Observable} from 'rxjs/Observable';
-import {Utilities} from '../utilities';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpRequest, HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { catchError, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
 import {AppSettings} from "../../app.settings";
-import {Data} from '@angular/router';
+import {Utilities} from '../utilities';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class DataService {
-    contentHeadersUrlEncoded: Headers;
-    private headers = new Headers({'Accept': 'text/html,application/xhtml+xml,application/xml, application/json'});
-    private options = new RequestOptions({responseType: ResponseContentType.Json, headers: this.headers});
+  contentHeadersUrlEncoded: HttpHeaders;
+  private headers = new HttpHeaders({
+    'Accept': 'text/html,application/xhtml+xml,application/xml, application/json',
+    'Content-Type': 'application/json',
+  });
+  private options = {responseType: 'blob'};
 
 
-    constructor(private http: Http) {
+  constructor(private http: HttpClient) { 
+    this.contentHeadersUrlEncoded = new HttpHeaders();
+  }
 
-    }
+  public getBuscarMiIP() {
+    Utilities.log("[data.service.ts] - getBuscarIP: Start");
 
+    var url: string = AppSettings.SERVICE_IP_API_URL;
+    Utilities.log("[data.service.ts] - getBuscarMiIP | url: " + url);
 
-    public getBuscarMiIP() {
-        Utilities.log("[data.service.ts] - getBuscarIP: Start");
+    return this.http.get(url).pipe(      
+      catchError(this.handleError)
+    );
+  }
 
-        var url: string = AppSettings.SERVICE_IP_API_URL;
-        Utilities.log("[data.service.ts] - getBuscarMiIP | url: " + url);
-        return this.http.get(url)
-            .map((res: Response) => res.json())
-            .catch(this.handleError);
-    }
+  public getBuscarIP(ipBuscada: string) {
+    Utilities.log("[data.service.ts] - getBuscarIP: Start");
 
+    var url: string = AppSettings.SERVICE_IP_EXT_API_URL + ipBuscada;
+    Utilities.log("[data.service.ts] - getBuscarIP | url: " + url);
+    return this.http.get(url).pipe(        
+      catchError(this.handleError)
+    );
+  }
 
+  public getBuscarAutnum(autnumBuscado: string) {
+    Utilities.log("[data.service.ts] - getBuscarAutnum: Start");
 
-    public getBuscarIP(ipBuscada: string) {
-        Utilities.log("[data.service.ts] - getBuscarIP: Start");
+    var url: string = AppSettings.SERVICE_AUTNUM_API_URL + autnumBuscado;
+    Utilities.log("[data.service.ts] - getBuscarAutnum | url: " + url);
 
-        var url: string = "https://rdap.lacnic.net/rdap/ip/" + ipBuscada;
-        Utilities.log("[data.service.ts] - getBuscarIP | url: " + url);
-        return this.http.get(url)
-            .map((res: Response) => res.json())
-            .catch(this.handleError);
-    }
+    return this.http.get(url).pipe(      
+      catchError(this.handleError)
+    );
+  }
 
-    public getBuscarAutnum(autnumBuscado: string) {
-        Utilities.log("[data.service.ts] - getBuscarAutnum: Start");
-        var url: string = "https://rdap.lacnic.net/rdap/autnum/" + autnumBuscado;
-        Utilities.log("[data.service.ts] - getBuscarAutnum | url: " + url);
-        return this.http.get(url)
-            .map((res: Response) => res.json())
-            .catch(this.handleError);
-    }
+  public getBuscarEntity(entityBuscada: string) {
+    Utilities.log("[data.service.ts] - getBuscarEntity: Start");
 
-    public getBuscarEntity(entityBuscada: string) {
-        Utilities.log("[data.service.ts] - getBuscarEntity: Start");
+    var url: string = AppSettings.SERVICE_ENTITY_API_URL + entityBuscada;
+    Utilities.log("[data.service.ts] - getBuscarEntity | url: " + url);
 
-        var url: string = "https://rdap.lacnic.net/rdap/entity/" + entityBuscada;
-        Utilities.log("[data.service.ts] - getBuscarEntity | url: " + url);
-        return this.http.get(url)
-            .map((res: Response) => res.json())
-            .catch(this.handleError);
-    }
+    return this.http.get(url).pipe(      
+      catchError(this.handleError)
+    );
+  }
 
-    public getBuscarEntities(nombreBuscado: string) {
-        Utilities.log("[data.service.ts] - getBuscarEntities: Start");
+  public getBuscarEntities(nombreBuscado: string) {
+    Utilities.log("[data.service.ts] - getBuscarEntities: Start");
 
-        var url: string = "https://rdap.lacnic.net/rdap/entities?fn=" + nombreBuscado + "*";
-        Utilities.log("[data.service.ts] - getBuscarEntities | url: " + url);
-        return this.http.get(url)
-            .map((res: Response) => res.json())
-            .catch(this.handleError);
-    }
+    var url: string = AppSettings.SERVICE_ENTITIES_API_URL + nombreBuscado + "*";
+    Utilities.log("[data.service.ts] - getBuscarEntities | url: " + url);
 
-    /**public getBuscarASNs(pais:string){
-        Utilities.log("[data.service.ts] - getBuscarASN: Start");
-        var url :string = AppSettings.SERVICE_API_URL + "/asns";
-        if(pais != ""){
-            url += "/" + pais;
-        }
-        Utilities.log("[data.service.ts] - getBuscarASN | url: " + url);
-        return this.http.get(url)
-            .map((res: Response) => res.json())
-            .catch(this.handleError);
-    }*/
-
-    // public getCargarPaisesASNs() {
-    //     Utilities.log("[data.service.ts] - getCargarPaisesASNs: Start");
-    //     var url = "http://rdap-backend-test.us-east-1.elasticbeanstalk.com/api/paises";
-    //     Utilities.log("[data.service.ts] - getCargarPaisesASNs | url: " + url);
-    //     return this.http.get(url)
-    //         .map((res: Response) => res.json())
-    //         .catch(this.handleError);
-    // }
-
-    private handleError(error: any) {
+    return this.http.get(url).pipe(     
+      catchError(this.handleError)
+    );
+  }
 
 
-        return Observable.throw(error || "Server Error");
+  private handleError(error: any) {
+    Utilities.log("[data.service.ts] - handleErrror: "+ error);
+    return Observable.throw(error || "Server Error");
+  }
 
-    }
+
+
 }

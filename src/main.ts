@@ -1,12 +1,12 @@
+import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import 'zone.js';
-import 'reflect-metadata';
 
 import { AppModule } from './app/app.module';
-import {enableProdMode} from '@angular/core';
+import { environment } from './environments/environment';
 
-if (process.env.ENV === 'production') {
-    enableProdMode();
+if (environment.production) {
+  enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.error(err));

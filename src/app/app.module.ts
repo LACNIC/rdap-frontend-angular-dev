@@ -1,42 +1,59 @@
-import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import {BrowserModule} from '@angular/platform-browser';
-import {Http, HttpModule, JsonpModule} from '@angular/http';
-import {AppComponent} from './app.component';
-import {RoutingModule} from './app.routing';
-import {TranslateLoader, TranslateModule, TranslateStaticLoader} from "ng2-translate";
-import {DataService} from "./shared/services/data.service";
-import {MasterPageComponent} from './master-page/master-page.component';
-import {HomeComponent} from './master-page/home/home.component';
-import {ConsultaPorIPComponent} from './master-page/consulta-por-ip/consulta-por-ip.component';
-import {ConsultaPorEntityComponent} from './master-page/consulta-por-entity/consulta-por-entity.component';
-import {AboutComponent} from './master-page/about/about.component';
-import {ResultadosIPComponent} from './master-page/resultados-ip/resultados-ip.component';
-import {ResultadosEntityComponent} from './master-page/resultados-entity/resultados-entity.component';
-import {ConsultaPorAutnumComponent} from './master-page/consulta-por-autnum/consulta-por-autnum.component';
-import {ResultadosAutnumComponent} from './master-page/resultados-autnum/resultados-autnum.component';
-import {ResultadosIPMaskComponent} from './master-page/resultados-ip-mask/resultados-ip-mask.component';
-import {PageNotFoundComponent} from './not-found.component';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-
-export function createTranslateLoader(http: Http) {
-    return new TranslateStaticLoader(http, './src/i18n', '.json');
-}
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { NotFoundComponent } from './not-found.component';
+import { MasterPageComponent } from './master-page/master-page.component';
+import { HomeComponent } from './master-page/home/home.component';
+import { AboutComponent } from './master-page/about/about.component';
+import { ConsultaPorAutnumComponent } from './master-page/consulta-por-autnum/consulta-por-autnum.component';
+import { ConsultaPorEntityComponent } from './master-page/consulta-por-entity/consulta-por-entity.component';
+import { ConsultaPorIPComponent } from './master-page/consulta-por-ip/consulta-por-ip.component';
+import { ResultadosAutnumComponent } from './master-page/resultados-autnum/resultados-autnum.component';
+import { ResultadosEntityComponent } from './master-page/resultados-entity/resultados-entity.component';
+import { ResultadosIPComponent } from './master-page/resultados-ip/resultados-ip.component';
+import { ResultadosIPMaskComponent } from './master-page/resultados-ip-mask/resultados-ip-mask.component';
 
 @NgModule({
-    imports: [BrowserModule, FormsModule, HttpModule, TranslateModule.forRoot({
+  declarations: [
+    AppComponent,
+    NotFoundComponent,
+    MasterPageComponent,
+    HomeComponent,
+    AboutComponent,
+    ConsultaPorAutnumComponent,
+    ConsultaPorEntityComponent,
+    ConsultaPorIPComponent,
+    ResultadosAutnumComponent,
+    ResultadosEntityComponent,
+    ResultadosIPComponent,
+    ResultadosIPMaskComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    TranslateModule.forRoot({
+      loader: {
         provide: TranslateLoader,
-        useFactory: (createTranslateLoader),
-        deps: [Http],
-    }), RoutingModule],
-    declarations: [
-        AppComponent, MasterPageComponent, HomeComponent, ConsultaPorIPComponent, ConsultaPorEntityComponent, ResultadosIPMaskComponent,
-        AboutComponent, ResultadosIPComponent, ResultadosEntityComponent, PageNotFoundComponent, ConsultaPorAutnumComponent, ResultadosAutnumComponent
-    ],
-    providers: [DataService],
-    bootstrap: [AppComponent]
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
+export class AppModule { }
 
-export class AppModule {
 
+// AOT compilation support
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
 }

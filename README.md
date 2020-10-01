@@ -1,32 +1,27 @@
-# Proyecto cliente web Angular para RDAP
+# RdapWebNg10
 
-#### Bajar codigo y ejecutar:
->npm install
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.6.
 
-*Instala las dependencias necesarias para correr la app*
+## Development server
 
-#### Agregar dentro del archivo *.git/info/exclude* las siguientes lineas:
-  - node_modules/
-  - dist/
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+## Code scaffolding
 
-#### Para probar el código localmente ejecutar:
->npm run start
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-*Arma la app y la sirve localmente para pruebas*
+## Build
 
-## Subir a producción:
-1. Ejecutar
->npm run build-prod
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-*Empaqueta la app para subir a producción. Crea una carpeta "dist" con los archivos resultantes.*
+## Running unit tests
 
-2. Subir al Repo de producción:
-    - De la carpeta "dist" subir solamente: app.js, polyfills.js, vendor.js, /assets.
-    - De la carpeta "src" subir solamente:  /css, /fonts, /i18n, /js
-    - No subir otros archivos como componentes o master-pages ya que la generación ya los deja empaquetados todos directamente       en app.js
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
+## Running end-to-end tests
 
-**NOTA!**
-- No subir index.html generado en carpeta "dist"
-- No borrar 404.html del repositorio
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

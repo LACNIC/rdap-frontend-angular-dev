@@ -1,3 +1,3 @@
 export class Error {
-    Description:string;
+  Description:string;
 }

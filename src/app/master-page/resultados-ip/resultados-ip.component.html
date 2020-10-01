@@ -1,94 +1,94 @@
 <div class="row">
-    <div class="col-md-12">
-        <p class="titulo text-center">IP: {{IP}}</p>
-    </div>
-    <div class="col-md-6 offset-md-3" *ngIf="loading">
-        <img class="imgLoading" src="../../../img/loading.gif" alt="loading...">
-    </div>
+  <div class="col-md-12">
+      <p class="titulo text-center">IP: {{IP}}</p>
+  </div>
+  <div class="col-md-6 offset-md-3" *ngIf="loading">
+      <img class="imgLoading" src="assets/img/loading.gif" alt="loading...">
+  </div>
 
-    <div class="col-md-6" *ngIf="!loading && datosIP.length > 0">
-        <p class="tituloTabla">{{ "RESULTADOSIP.TablaIP.Titulo" | translate }}</p>
-        <table class="table">
-            <tbody>
-            <tr>
-                <td class="celdaTitulo">{{ "RESULTADOSIP.TablaIP.Filas.Handle.Titulo" | translate }}</td>
-                <td class="celdaTexto">{{ datosIP[0] }}</td>
-            </tr>
-            <tr>
-                <td class="celdaTitulo">{{ "RESULTADOSIP.TablaIP.Filas.Status.Titulo" | translate }}</td>
-                <td class="celdaTexto">{{ datosIP[1] }}</td>
-            </tr>
-            <tr>
-                <td class="celdaTitulo">{{ "RESULTADOSIP.TablaIP.Filas.NetRange.Titulo" | translate }}</td>
-                <td class="celdaTexto">{{ datosIP[2] }}</td>
-            </tr>
-            <tr>
-                <td class="celdaTitulo">{{ "RESULTADOSIP.TablaIP.Filas.NetVersion.Titulo" | translate }}</td>
-                <td class="celdaTexto">{{ datosIP[3] }}</td>
-            </tr>
-            <tr>
-                <td class="celdaTitulo">{{ "RESULTADOSIP.TablaIP.Filas.Registration.Titulo" | translate }}</td>
-                <td class="celdaTexto">{{ datosIP[4] }}</td>
-            </tr>
-            <tr>
-                <td class="celdaTitulo">{{ "RESULTADOSIP.TablaIP.Filas.LastChanged.Titulo" | translate }}</td>
-                <td class="celdaTexto">{{ datosIP[5] }}</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+  <div class="col-md-6" *ngIf="!loading && datosIP.length > 0">
+      <p class="tituloTabla">{{ "RESULTADOSIP.TablaIP.Titulo" | translate }}</p>
+      <table class="table">
+          <tbody>
+          <tr>
+              <td class="celdaTitulo">{{ "RESULTADOSIP.TablaIP.Filas.Handle.Titulo" | translate }}</td>
+              <td class="celdaTexto">{{ datosIP[0] }}</td>
+          </tr>
+          <tr>
+              <td class="celdaTitulo">{{ "RESULTADOSIP.TablaIP.Filas.Status.Titulo" | translate }}</td>
+              <td class="celdaTexto">{{ datosIP[1] }}</td>
+          </tr>
+          <tr>
+              <td class="celdaTitulo">{{ "RESULTADOSIP.TablaIP.Filas.NetRange.Titulo" | translate }}</td>
+              <td class="celdaTexto">{{ datosIP[2] }}</td>
+          </tr>
+          <tr>
+              <td class="celdaTitulo">{{ "RESULTADOSIP.TablaIP.Filas.NetVersion.Titulo" | translate }}</td>
+              <td class="celdaTexto">{{ datosIP[3] }}</td>
+          </tr>
+          <tr>
+              <td class="celdaTitulo">{{ "RESULTADOSIP.TablaIP.Filas.Registration.Titulo" | translate }}</td>
+              <td class="celdaTexto">{{ datosIP[4] }}</td>
+          </tr>
+          <tr>
+              <td class="celdaTitulo">{{ "RESULTADOSIP.TablaIP.Filas.LastChanged.Titulo" | translate }}</td>
+              <td class="celdaTexto">{{ datosIP[5] }}</td>
+          </tr>
+          </tbody>
+      </table>
+  </div>
 
-    <div class="col-md-6" *ngIf="!loading && datosEntities.length > 0">
-        <p class="tituloTabla">{{ "RESULTADOSIP.TablaContacts.Titulo" | translate }}</p>
-        <table class="table" *ngFor="let entity of datosEntities">
-            <tbody>
-            <tr>
-                <td colspan="2" class="subtituloTabla">{{ entity.Roles }}</td>
-            </tr>
-            <tr>
-                <td class="celdaTitulo">{{ "RESULTADOSIP.TablaContacts.Filas.Handle.Titulo" | translate }}</td>
-                <td class="celdaTexto">{{ entity.Handle }}</td>
-            </tr>
-            <tr>
-                <td class="celdaTitulo">{{ "RESULTADOSIP.TablaContacts.Filas.Name.Titulo" | translate }}</td>
-                <td class="celdaTexto">{{ entity.Name }}</td>
-            </tr>
-            <!--<tr>-->
-                <!--<td class="celdaTitulo">{{ "RESULTADOSIP.TablaContacts.Filas.Address.Titulo" | translate }}</td>-->
-                <!--<td class="celdaTexto">{{ entity.Address }}</td>-->
-            <!--</tr>-->
-            <tr>
-                <td class="celdaTitulo">{{ "RESULTADOSIP.TablaContacts.Filas.Telephone.Titulo" | translate }}</td>
-                <td class="celdaTexto">{{ entity.Telephone }}</td>
-            </tr>
-            <tr>
-                <td class="celdaTitulo">{{ "RESULTADOSIP.TablaContacts.Filas.Email.Titulo" | translate }}</td>
-                <td class="celdaTexto">{{ entity.Email }}</td>
-            </tr>
-            <tr *ngIf="mostarDatosExta">
-                <td class="celdaTitulo">{{ "RESULTADOSIP.TablaContacts.Filas.MoreInfo.Titulo" | translate }}</td>
-                <td class="celdaTexto">
-                    <a class="link" target="_blank" [href]="sanitize(entity.Info)">Click here..</a>
-                </td>
-            </tr>
-            <tr>
-                <td class="celdaTitulo">Source</td>
-                <td class="celdaTexto">
-                    <a class="link" target="_blank" href="{{entity.Link}}">Click here..</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+  <div class="col-md-6" *ngIf="!loading && datosEntities.length > 0">
+      <p class="tituloTabla">{{ "RESULTADOSIP.TablaContacts.Titulo" | translate }}</p>
+      <table class="table" *ngFor="let entity of datosEntities">
+          <tbody>
+          <tr>
+              <td colspan="2" class="subtituloTabla">{{ entity.Roles }}</td>
+          </tr>
+          <tr>
+              <td class="celdaTitulo">{{ "RESULTADOSIP.TablaContacts.Filas.Handle.Titulo" | translate }}</td>
+              <td class="celdaTexto">{{ entity.Handle }}</td>
+          </tr>
+          <tr>
+              <td class="celdaTitulo">{{ "RESULTADOSIP.TablaContacts.Filas.Name.Titulo" | translate }}</td>
+              <td class="celdaTexto">{{ entity.Name }}</td>
+          </tr>
+          <!--<tr>-->
+              <!--<td class="celdaTitulo">{{ "RESULTADOSIP.TablaContacts.Filas.Address.Titulo" | translate }}</td>-->
+              <!--<td class="celdaTexto">{{ entity.Address }}</td>-->
+          <!--</tr>-->
+          <tr>
+              <td class="celdaTitulo">{{ "RESULTADOSIP.TablaContacts.Filas.Telephone.Titulo" | translate }}</td>
+              <td class="celdaTexto">{{ entity.Telephone }}</td>
+          </tr>
+          <tr>
+              <td class="celdaTitulo">{{ "RESULTADOSIP.TablaContacts.Filas.Email.Titulo" | translate }}</td>
+              <td class="celdaTexto">{{ entity.Email }}</td>
+          </tr>
+          <tr *ngIf="mostarDatosExta">
+              <td class="celdaTitulo">{{ "RESULTADOSIP.TablaContacts.Filas.MoreInfo.Titulo" | translate }}</td>
+              <td class="celdaTexto">
+                  <a class="link" target="_blank" [href]="sanitize(entity.Info)">Click here..</a>
+              </td>
+          </tr>
+          <tr>
+              <td class="celdaTitulo">Source</td>
+              <td class="celdaTexto">
+                  <a class="link" target="_blank" href="{{entity.Link}}">Click here..</a>
+              </td>
+          </tr>
+          </tbody>
+      </table>
+  </div>
 
-    <div *ngIf="mensajes.Errores.length > 0" class="alert alert-danger col-md-8 offset-md-2 errores">
-        <div *ngFor="let error of mensajes.Errores;">
-            {{error.Description}}
-        </div>
-    </div>
-    <div *ngIf="mensajes.Exitos.length > 0" class="alert alert-success  col-md-8 offset-md-2 exitos">
-        <div *ngFor="let exito of mensajes.Exitos;">
-            {{exito.Description}}
-        </div>
-    </div>
+  <div *ngIf="mensajes.Errores.length > 0" class="alert alert-danger col-md-8 offset-md-2 errores">
+      <div *ngFor="let error of mensajes.Errores;">
+          {{error.Description}}
+      </div>
+  </div>
+  <div *ngIf="mensajes.Exitos.length > 0" class="alert alert-success  col-md-8 offset-md-2 exitos">
+      <div *ngFor="let exito of mensajes.Exitos;">
+          {{exito.Description}}
+      </div>
+  </div>
 </div>
