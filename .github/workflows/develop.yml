@@ -32,7 +32,7 @@ jobs:
       - name: Get artifact
         uses: actions/download-artifact@v1
         with:
-          name: rdap-web-build
+          name: rdap-web-ng10-build
       
       # Set the credentials from repository settings/secrets
       # personal_token must be a token with push permissions on the gh-pages repo
