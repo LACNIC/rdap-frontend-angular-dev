@@ -26,6 +26,7 @@ export class ResultadosEntityComponent implements OnInit {
   serverURL: any;
   //private datosEntities: any[] = [];
   datosEntities: any[] = [];
+  datosNotices: any[] = [];
   private mostarDatosExta: boolean = true;
   rederictUrl: string = Constantes.rederictUrl;
   existenNetworks: boolean = false;
@@ -161,7 +162,16 @@ export class ResultadosEntityComponent implements OnInit {
     var lastChangedDate: string = "No data";
     var registrationDate: string = "No data";
 
-    if (typeof respuesta.events != "undefined") {
+    var telType: string = "";
+    var version: string = "No data";
+    var legalRep: string = "No data";  
+    var noticeTitle : string = "No data";
+    var noticeDesc : string = "No data"; 
+    var noticeLink : string = "";
+    var nbri : number = 0;
+    var blnTermine : boolean = false;
+
+    if (typeof respuesta.events != "undefined" && respuesta.events != null) {
       if (respuesta.events.length > 0) {
         for (let i: number = 0; i < respuesta.events.length; i++) {
           if (respuesta.events[i].eventAction.includes("registration")) {
@@ -185,6 +195,39 @@ export class ResultadosEntityComponent implements OnInit {
         }
       }
       roles += "]";
+    }
+
+    if (typeof respuesta.lacnic_legalRepresentative != "undefined" && respuesta.lacnic_legalRepresentative != "") {
+      legalRep = respuesta.lacnic_legalRepresentative;
+    }
+
+    //AAE Obetngo notices
+    if (typeof respuesta.notices != "undefined" && respuesta.notices.length > 0) {
+      nbri = 0;
+      blnTermine = false;
+      while (nbri < respuesta.notices.length && !blnTermine) {
+        noticeTitle = "No Data";
+        noticeDesc = "No Data";
+        noticeLink = "#";
+        //if ((respuesta.notices[nbri].title == "Terms and Conditions") || (respuesta.notices[nbri].title == "Terms of Service")) {
+        noticeTitle = respuesta.notices[nbri].title;
+        if (respuesta.notices[nbri].description.length > 0 && respuesta.notices[nbri].description[0] != "") {
+          noticeDesc = respuesta.notices[nbri].description[0];
+        }
+        if ((typeof respuesta.notices[nbri].links != "undefined") && respuesta.notices[nbri].links.length > 0) {
+          if (respuesta.notices[nbri].links[0].href != "") {
+            noticeLink = respuesta.notices[nbri].links[0].href;
+          }
+        }
+          //blnTermine = true;          
+        //}
+        this.datosNotices.push({
+          "Title": noticeTitle,
+          "Desc": noticeDesc,
+          "Link": noticeLink
+        })
+        nbri++;
+      }      
     }
 
     if (typeof respuesta.autnums !== "undefined" && respuesta.autnums.length > 0) {
@@ -224,6 +267,10 @@ export class ResultadosEntityComponent implements OnInit {
       }
       if (v[0] == "tel") {
         telephone = v[3];
+        telType = v[1].type;
+      }
+      if (v[0] == "version") {
+        version = v[3];
       }
     }
     this.datosEntity.push({
@@ -238,6 +285,12 @@ export class ResultadosEntityComponent implements OnInit {
       "Telephone": telephone,
       "Registration": registrationDate,
       "LastChanged": lastChangedDate,
+      "TelType": telType,
+      "Version": version,
+      "LegalRep": legalRep,
+      "NoticeTitle": noticeTitle,
+      "NoticeDesc": noticeDesc,
+      "NoticeLink": noticeLink,
       "Autnums": autnums,
       "Networks": networks
     });
@@ -259,9 +312,11 @@ export class ResultadosEntityComponent implements OnInit {
           // var postalCode : string = "No data";
           // var email : string = "No data";
           // var telephone : string = "No data";
-          // var registration : string = "No data";
-          // var lastChanged : string = "No data";
-          var link: string = "No data"
+          var registration : string = "No data";
+          var lastChanged : string = "No data";
+          var telType: string = "";
+          var version: string = "No data";
+          var link: string = "No data";
 
           if (e.roles.length > 0) {
             roles = "[";
@@ -291,6 +346,10 @@ export class ResultadosEntityComponent implements OnInit {
             "Handle": e.handle,
             "Name": name,
             "Link": link,
+            "RegistrationDate": registration,
+            "LastChangedDate": lastChanged,
+            "TelType": telType,
+            "Version": version
           });
         }
         Utilities.log(JSON.stringify(this.datosEntities[0]));
@@ -312,6 +371,10 @@ export class ResultadosEntityComponent implements OnInit {
             e["Telephone"] = result[0].Telephone;
             e["Email"] = result[0].Email;
             e["Info"] = this.rederictUrl + "entity/" + handle;
+            e["RegistrationDate"] = result[0].Registration;
+            e["LastChangedDate"] = result[0].LastChanged;
+            e["Version"] = result[0].Version;
+            e["TelType"] = result[0].TelType;
             this.datosEntities[i] = e;
           },
           error => {
@@ -341,6 +404,11 @@ export class ResultadosEntityComponent implements OnInit {
     var lastChangedDate: string = "No data";
     var registrationDate: string = "No data";
 
+    var version: string = "No data";
+    var telType: string = "";
+
+      
+
     if (typeof respuesta.events != "undefined") {
       if (respuesta.events.length > 0) {
         for (let i: number = 0; i < respuesta.events.length; i++) {
@@ -353,6 +421,8 @@ export class ResultadosEntityComponent implements OnInit {
         }
       }
     }
+
+    
 
     handle = respuesta.handle;
     if (respuesta.roles.length > 0) {
@@ -382,7 +452,12 @@ export class ResultadosEntityComponent implements OnInit {
       }
       if (v[0] == "tel") {
         telephone = v[3];
+        telType = v[1].type;        
       }
+      if (v[0] == "version") {
+        version = v[3];
+      }
+      
     }
 
     var result: any[] = [];
@@ -398,6 +473,8 @@ export class ResultadosEntityComponent implements OnInit {
       "Telephone": telephone,
       "Registration": registrationDate,
       "LastChanged": lastChangedDate,
+      "Version": version,
+      "TelType": telType
     });
 
     return result;

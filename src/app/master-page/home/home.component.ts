@@ -20,9 +20,16 @@ export class HomeComponent implements OnInit {
   tipoBuscado: number;
   valorBuscado: string;
 
+  blnShowDropEntities: boolean = false;
+  blnShowDropDomain: boolean = false;
+  paramEntities: number;
+  paramDomain: number;
+
   constructor(private dataService: DataService, private router: Router, private translate: TranslateService) {
     this.cargarLenguaje();
     this.tipoBuscado = 2;
+    this.paramEntities = 1;
+    this.paramDomain = 1;
   }
 
   ngOnInit(): void {
@@ -88,6 +95,22 @@ export class HomeComponent implements OnInit {
       if (this.tipoBuscado == 3) { //Si está buscando por Entity
         this.buscarEntity();
       }
+      if (this.tipoBuscado == 4) { //Si está buscando por Nameserver
+        this.buscarNameserver();
+      }
+      if (this.tipoBuscado == 5) { //Si está buscando por Domain
+        this.buscarDomain();
+      }
+      if (this.tipoBuscado == 6) { //Si está buscando por Entities
+        this.buscarEntities();
+      }
+      if (this.tipoBuscado == 7) { //Si está buscando por Nameserver
+        this.buscarNameservers();
+      }
+      if (this.tipoBuscado == 8) { //Si está buscando por Domains
+        this.buscarDomains();
+      }
+      
       //if(this.tipoBuscado == 6){ //Si está buscando por Entities by Name
       //  this.buscarEntitiesByName();
       //}
@@ -133,6 +156,57 @@ export class HomeComponent implements OnInit {
 
   buscarEntitiesByName() {
     this.router.navigate(['/entities', this.valorBuscado]);
+  }
+
+  buscarNameserver() {
+    this.router.navigate(['/nameserver', this.valorBuscado]);
+  }
+
+  buscarDomain() {
+    this.router.navigate(['/domain', this.valorBuscado]);
+  }
+
+  buscarDomains() {
+    var valorBusqueda: string = "";
+    if (this.paramDomain == 1) {
+      valorBusqueda =  "name=" + this.valorBuscado.trim();
+    } else {
+      valorBusqueda = "nsLdhName=" + this.valorBuscado.trim();
+    }
+
+    this.router.navigate(['/domains',valorBusqueda]);
+  }
+
+  buscarEntities() {
+    var valorBusqueda: string = "";
+    if (this.paramEntities == 1) {
+      valorBusqueda =  "fn=" + this.valorBuscado.trim();
+    } else {
+      valorBusqueda = "handle=" + this.valorBuscado.trim();
+    }
+
+    this.router.navigate(['/entities',valorBusqueda]);
+  }
+
+  buscarNameservers() {
+    var valorBusqueda: string = "";    
+    valorBusqueda = "name=" + this.valorBuscado.trim();    
+
+    this.router.navigate(['/nameservers',valorBusqueda]);
+  }
+
+  onChange() {
+    this.blnShowDropEntities = false;
+    this.blnShowDropDomain = false;
+    //busqueda entities
+    if (this.tipoBuscado == 6) {
+      this.blnShowDropEntities = true;
+    }
+    //busqueda domains
+    if (this.tipoBuscado == 8) {
+      this.blnShowDropDomain = true;
+    }
+
   }
 
 

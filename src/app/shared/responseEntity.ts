@@ -22,4 +22,5 @@ export class ResponseEntity {
     rdapConformance : string[];
     notices : Notice[];
     port43 : string;
+    lacnic_legalRepresentative : string;
 }

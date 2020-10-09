@@ -8,13 +8,25 @@
           <div class="col-lg-12 content-box-centered">
               <form>
                   <p class="parrafoBuscarPor">{{ 'HOME.QueryBy' | translate }}</p>
-                  <select id="selectTipo" class="form-control select" [(ngModel)]="tipoBuscado" name="tipoBuscado">
+                  <select id="selectTipo" class="form-control select" [(ngModel)]="tipoBuscado" name="tipoBuscado" (change)="onChange()">
                       <option value="1">{{ "HOME.Select.Opciones.1" | translate }}</option>
                       <option value="2">{{ "HOME.Select.Opciones.2" | translate }}</option>
                       <option value="3">{{ "HOME.Select.Opciones.3" | translate }}</option>
-                      <!--<option value="4">{{ "HOME.Select.Opciones.4" | translate }}</option>
+                      <option value="4">{{ "HOME.Select.Opciones.4" | translate }}</option>
                       <option value="5">{{ "HOME.Select.Opciones.5" | translate }}</option>
-                      <option value="5">{{ "HOME.Select.Opciones.6" | translate }}</option>!-->
+                      <option value="6">{{ "HOME.Select.Opciones.6" | translate }}</option>
+                      <option value="7">{{ "HOME.Select.Opciones.7" | translate }}</option>
+                      <option value="8">{{ "HOME.Select.Opciones.8" | translate }}</option>
+                  </select>
+                  
+                  <select id="selectParamEntities" class="form-control select" [(ngModel)]="paramEntities" name="paramEntities" *ngIf="blnShowDropEntities" >
+                    <option value="1">{{ "HOME.SelectParamEntities.Opciones.1" | translate }}</option>
+                    <option value="2">{{ "HOME.SelectParamEntities.Opciones.2" | translate }}</option>                   
+                  </select>
+
+                  <select id="selectParamDomain" class="form-control select" [(ngModel)]="paramDomain" name="paramDomain" *ngIf="blnShowDropDomain" >
+                    <option value="1">{{ "HOME.SelectParamDomain.Opciones.1" | translate }}</option>
+                    <option value="2">{{ "HOME.SelectParamDomain.Opciones.2" | translate }}</option>                   
                   </select>
 
                   <input type="text" id="inputBuscado" class="form-control inputBuscado" [(ngModel)]="valorBuscado"
@@ -58,6 +70,22 @@
                   <p class="infoAdicionalParrafo">- <u>{{ 'HOME.ComoConsultar.IP.Titulo' | translate }}:</u><span> {{ 'HOME.ComoConsultar.IP.Texto' | translate }}</span>
 
                   </p>
+                  <p class="infoAdicionalParrafo">- <u>{{ 'HOME.ComoConsultar.Nameservers.Titulo' | translate }}:</u><span> {{ 'HOME.ComoConsultar.Nameservers.Texto' | translate }}</span>
+
+                  </p>
+                  <p class="infoAdicionalParrafo">- <u>{{ 'HOME.ComoConsultar.Domains.Titulo' | translate }}:</u><span> {{ 'HOME.ComoConsultar.Domains.Texto' | translate }}</span>
+
+                  </p>
+                  <p class="infoAdicionalParrafo">- <u>{{ 'HOME.ComoConsultar.EntitiesSearch.Titulo' | translate }}:</u><span> {{ 'HOME.ComoConsultar.EntitiesSearch.Texto' | translate }}</span>
+
+                  </p>
+                  <p class="infoAdicionalParrafo">- <u>{{ 'HOME.ComoConsultar.NameserverSearch.Titulo' | translate }}:</u><span> {{ 'HOME.ComoConsultar.NameserverSearch.Texto' | translate }}</span>
+
+                  </p>
+                  <p class="infoAdicionalParrafo">- <u>{{ 'HOME.ComoConsultar.DomainSearch.Titulo' | translate }}:</u><span> {{ 'HOME.ComoConsultar.DomainSearch.Texto' | translate }}</span>
+
+                  </p>
+
               </ul>
 
 

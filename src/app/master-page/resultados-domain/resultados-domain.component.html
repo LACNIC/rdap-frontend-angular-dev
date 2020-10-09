@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="col-md-12">
+      <p class="titulo text-center">DOMAIN: {{domain}}</p>
+  </div>
+  <div class="col-md-6 offset-md-3" *ngIf="loading">
+      <img class="imgLoading" src="assets/img/loading.gif" alt="loading...">
+  </div>
+
+  <div class="col-md-6" *ngIf="!loading && datosDomain.length > 0">
+    <p class="tituloTabla">{{ "RESULTADOSDOMAIN.TablaDomain.Titulo" | translate }}</p>
+    <table class="table">
+      <tbody>
+        <tr>
+          <td class="celdaTitulo">{{ "RESULTADOSDOMAIN.TablaDomain.Filas.Handle.Titulo" | translate }}</td>
+          <td class="celdaTexto">{{ datosDomain[0]}}</td>
+        </tr>
+        <tr>
+          <td class="celdaTitulo">{{ "RESULTADOSDOMAIN.TablaDomain.Filas.Name.Titulo" | translate }}</td>
+          <td class="celdaTexto">{{ datosDomain[1]}}</td>
+        </tr>
+        <tr>
+          <td class="celdaTitulo">{{ "RESULTADOSDOMAIN.TablaDomain.Filas.Source.Titulo" | translate }}</td>
+          <td class="celdaTexto">
+            <a class="link" target="_blank" href="{{datosDomain[2]}}">Click here..</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="tituloTabla" *ngIf="!loading && datosNotices.length > 0">{{ "RESULTADOSDOMAIN.TablaNotices.Titulo" | translate }}</p>
+      <table class="table" *ngIf="!loading && datosNotices.length > 0">
+        <tbody>
+          <tr *ngFor="let notice of datosNotices">
+            <td class="celdaTitulo">{{ notice.Title }}</td>
+            <td class="celdaTexto" *ngIf="notice.Link != '#'">
+                <a class="link" target="_blank" href="{{notice.Link}}">{{ notice.Desc }}</a>
+            </td>
+            <td class="celdaTexto" *ngIf="notice.Link == '#'">{{ notice.Desc }}</td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+
+  <div class="col-md-6" *ngIf="!loading && datosNameservers.length > 0">
+    <p class="tituloTabla">{{ "RESULTADOSDOMAIN.TablaNameservers.Titulo" | translate }}</p>
+    <table class="table" *ngFor="let nameserver of datosNameservers">
+      <tbody>
+        <tr>
+          <td colspan="2" class="subtituloTabla">{{ nameserver.Name }}</td>
+        </tr>
+        <tr>
+          <td class="celdaTitulo">{{ "RESULTADOSDOMAIN.TablaNameservers.Filas.MoreInfo.Titulo" | translate }}</td>
+          <td class="celdaTexto">
+            <a class="link" target="_blank" [href]="sanitize(nameserver.Info)">Click here..</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+
+  <div *ngIf="mensajes.Errores.length > 0" class="alert alert-danger col-md-8 offset-md-2 errores">
+    <div *ngFor="let error of mensajes.Errores;">
+        {{error.Description}}
+    </div>
+  </div>
+  <div *ngIf="mensajes.Exitos.length > 0" class="alert alert-success  col-md-8 offset-md-2 exitos">
+      <div *ngFor="let exito of mensajes.Exitos;">
+          {{exito.Description}}
+      </div>
+  </div>
+</div>

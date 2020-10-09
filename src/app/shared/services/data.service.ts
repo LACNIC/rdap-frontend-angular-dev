@@ -76,6 +76,61 @@ export class DataService {
     );
   }
 
+  public getBuscarNameserver(nameserverBuscado: string) {
+    Utilities.log("[data.service.ts] - getBuscarNameserver: Start");
+
+    var url: string = AppSettings.SERVICE_NAMESERVER_API_URL + nameserverBuscado;
+    Utilities.log("[data.service.ts] - getBuscarNameserver | url: " + url);
+
+    return this.http.get(url).pipe(      
+      catchError(this.handleError)
+    );
+  }
+
+  public getBuscarDomain(domainBuscado: string) {
+    Utilities.log("[data.service.ts] - getBuscarDomain: Start");
+
+    var url: string = AppSettings.SERVICE_DOMAIN_API_URL + domainBuscado;
+    Utilities.log("[data.service.ts] - getBuscarDomain | url: " + url);
+
+    return this.http.get(url).pipe(      
+      catchError(this.handleError)
+    );
+  }
+
+  public getSearchDomain(domainBuscado: string) {
+    Utilities.log("[data.service.ts] - getSearchDomain: Start");
+
+    var url: string = AppSettings.SERVICE_SEARCH_API_URL + "domains?" + domainBuscado;
+    Utilities.log("[data.service.ts] - getSearchDomain | url: " + url);
+
+    return this.http.get(url).pipe(      
+      catchError(this.handleError)
+    );
+  }
+
+  public getSearchNameserver(nameserverBuscado: string) {
+    Utilities.log("[data.service.ts] - getSearchNameserver: Start");
+
+    var url: string = AppSettings.SERVICE_SEARCH_API_URL + "nameservers?" + nameserverBuscado;
+    Utilities.log("[data.service.ts] - getSearchNameserver | url: " + url);
+
+    return this.http.get(url).pipe(      
+      catchError(this.handleError)
+    );
+  }
+
+  public getSearchEntities(entityBuscado: string) {
+    Utilities.log("[data.service.ts] - getSearchEntities: Start");
+
+    var url: string = AppSettings.SERVICE_SEARCH_API_URL + "entities?" + entityBuscado;
+    Utilities.log("[data.service.ts] - getSearchEntities | url: " + url);
+
+    return this.http.get(url).pipe(      
+      catchError(this.handleError)
+    );
+  }
+
 
   private handleError(error: any) {
     Utilities.log("[data.service.ts] - handleErrror: "+ error);

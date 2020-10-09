@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-md-12">
+      <p class="titulo text-center">{{ "RESULTSRCHENTITY.Titulo" | translate }} {{entity}}</p>
+  </div>
+  <div class="col-md-6 offset-md-3" *ngIf="loading">
+      <img class="imgLoading" src="assets/img/loading.gif" alt="loading...">
+  </div>
+
+  <div class="col-md-6" *ngIf="!loading">
+    <p class="tituloTabla">{{ "RESULTSRCHENTITY.TablaEntity.Titulo" | translate }}</p>
+    <table class="table">
+      <tbody>
+        <tr>
+          <td class="subtituloTabla">{{ "RESULTSRCHENTITY.TablaEntity.Filas.Fn.Titulo" | translate }}</td>
+          <td class="subtituloTabla">{{ "RESULTSRCHENTITY.TablaEntity.Filas.Handle.Titulo" | translate }}</td>
+          <td class="subtituloTabla">{{ "RESULTSRCHENTITY.TablaEntity.Filas.Version.Titulo" | translate }}</td>
+          <td class="subtituloTabla">{{ "RESULTSRCHENTITY.TablaEntity.Filas.Source.Titulo" | translate }}</td>
+          <td class="subtituloTabla">{{ "RESULTSRCHENTITY.TablaEntity.Filas.Detalles.Titulo" | translate }}</td>
+        </tr>
+        <tr *ngFor="let entity of datosEntity">
+          <td class="celdaTexto">{{ entity.Fn }}</td>
+          <td class="celdaTexto">{{ entity.Handle }}</td>
+          <td class="celdaTexto">{{ entity.Version }}</td>
+          <td class="celdaTexto">
+            <a class="link" target="_blank" [href]="sanitize(entity.Source)">Click here..</a>
+          </td>
+          <td class="celdaTexto">
+            <a class="link" target="_blank" [href]="sanitize(entity.Info)">{{ "RESULTSRCHENTITY.TablaEntity.Filas.MoreInfo.Titulo" | translate }}</a>
+          </td>          
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="mensajes.Errores.length > 0" class="alert alert-danger col-md-8 offset-md-2 errores">
+    <div *ngFor="let error of mensajes.Errores;">
+        {{error.Description}}
+    </div>
+  </div>
+  <div *ngIf="mensajes.Exitos.length > 0" class="alert alert-success  col-md-8 offset-md-2 exitos">
+      <div *ngFor="let exito of mensajes.Exitos;">
+          {{exito.Description}}
+      </div>
+  </div>
+</div>
+

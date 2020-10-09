@@ -12,6 +12,16 @@ import { ResultadosAutnumComponent } from './master-page/resultados-autnum/resul
 import { ResultadosEntityComponent } from "./master-page/resultados-entity/resultados-entity.component";
 import { ResultadosIPComponent } from "./master-page/resultados-ip/resultados-ip.component";
 import { ResultadosIPMaskComponent } from './master-page/resultados-ip-mask/resultados-ip-mask.component';
+import { ConsultaPorNameserverComponent} from './master-page/consulta-por-nameserver/consulta-por-nameserver.component';
+import { ConsultaPorDomainComponent} from './master-page/consulta-por-domain/consulta-por-domain.component';
+import { ResultadosNameserverComponent } from './master-page/resultados-nameserver/resultados-nameserver.component';
+import { ResultadosDomainComponent } from './master-page/resultados-domain/resultados-domain.component';
+import { BusquedaPorEntitiesComponent } from './master-page/busqueda-por-entities/busqueda-por-entities.component';
+import { BusquedaPorDomainsComponent } from './master-page/busqueda-por-domains/busqueda-por-domains.component';
+import { BusquedaPorNameserversComponent } from './master-page/busqueda-por-nameservers/busqueda-por-nameservers.component';
+import { ResultSrchDomainsComponent } from './master-page/result-srch-domains/result-srch-domains.component';
+import { ResultSrchNameserversComponent } from './master-page/result-srch-nameservers/result-srch-nameservers.component';
+import { ResultSrchEntitiesComponent } from './master-page/result-srch-entities/result-srch-entities.component';
 
 const routes: Routes = [
   {
@@ -29,6 +39,16 @@ const routes: Routes = [
         {path: 'consulta-por-autnum', component: ConsultaPorAutnumComponent},
         //{ path: 'reporte-asn/:country', component: ReporteASNComponent },
         {path: 'autnum/:autnum', component: ResultadosAutnumComponent},
+        {path: 'consulta-por-nameserver', component: ConsultaPorNameserverComponent},
+        {path: 'consulta-por-domain', component: ConsultaPorDomainComponent},
+        {path: 'nameserver/:nameserver', component: ResultadosNameserverComponent},
+        {path: 'domain/:domain', component: ResultadosDomainComponent},
+        {path: 'busqueda-por-entities', component: BusquedaPorEntitiesComponent},
+        {path: 'busqueda-por-domains', component: BusquedaPorDomainsComponent},
+        {path: 'busqueda-por-nameservers', component: BusquedaPorNameserversComponent},
+        {path: 'domains/:domain', component: ResultSrchDomainsComponent},
+        {path: 'nameservers/:nameserver', component: ResultSrchNameserversComponent},
+        {path: 'entities/:entity', component: ResultSrchEntitiesComponent}
     ]
 
   },

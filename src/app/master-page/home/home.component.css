@@ -9,6 +9,18 @@
   color: #7F7F7F;
 }
 
+#selectParamEntities {
+  font-family: FoundryMonoline-Medium;
+  margin-bottom: 20px;
+  color: #7F7F7F;
+}
+
+#selectParamDomain {
+  font-family: FoundryMonoline-Medium;
+  margin-bottom: 20px;
+  color: #7F7F7F;
+}
+
 #inputBuscado {
   font-family: FoundryMonoline-Medium;
   margin-bottom: 20px;

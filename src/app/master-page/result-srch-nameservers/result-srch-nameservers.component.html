@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-md-12">
+      <p class="titulo text-center">{{ "RESULTSRCHNAMESERVER.Titulo" | translate }} {{nameserver}}</p>
+  </div>
+  <div class="col-md-6 offset-md-3" *ngIf="loading">
+      <img class="imgLoading" src="assets/img/loading.gif" alt="loading...">
+  </div>
+
+  <div class="col-md-6" *ngIf="!loading">
+    <p class="tituloTabla">{{ "RESULTSRCHNAMESERVER.TablaNameserver.Titulo" | translate }}</p>
+    <table class="table">
+      <tbody>
+        <tr>
+          <td class="subtituloTabla">{{ "RESULTSRCHNAMESERVER.TablaNameserver.Filas.Name.Titulo" | translate }}</td>
+          <td class="subtituloTabla">{{ "RESULTSRCHNAMESERVER.TablaNameserver.Filas.Source.Titulo" | translate }}</td>
+          <td class="subtituloTabla">{{ "RESULTSRCHNAMESERVER.TablaNameserver.Filas.Detalles.Titulo" | translate }}</td>
+        </tr>
+        <tr *ngFor="let nameserver of datosNameserver">
+          <td class="celdaTexto">{{ nameserver.LdhName }}</td>          
+          <td class="celdaTexto">
+            <a class="link" target="_blank" [href]="sanitize(nameserver.Source)">Click here..</a>
+          </td>
+          <td class="celdaTexto">
+            <a class="link" target="_blank" [href]="sanitize(nameserver.Info)">{{ "RESULTSRCHNAMESERVER.TablaNameserver.Filas.MoreInfo.Titulo" | translate }}</a>
+          </td>          
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="mensajes.Errores.length > 0" class="alert alert-danger col-md-8 offset-md-2 errores">
+    <div *ngFor="let error of mensajes.Errores;">
+        {{error.Description}}
+    </div>
+  </div>
+  <div *ngIf="mensajes.Exitos.length > 0" class="alert alert-success  col-md-8 offset-md-2 exitos">
+      <div *ngFor="let exito of mensajes.Exitos;">
+          {{exito.Description}}
+      </div>
+  </div>
+</div>
+

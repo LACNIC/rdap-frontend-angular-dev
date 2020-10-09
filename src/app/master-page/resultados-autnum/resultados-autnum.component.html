@@ -26,7 +26,23 @@
               <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaAutnum.Filas.LastChanged.Titulo" | translate }}</td>
               <td class="celdaTexto">{{ datosAutnum[3] }}</td>
           </tr>
+          <tr>
+            <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaAutnum.Filas.LegalRepresentative.Titulo" | translate }}</td>
+            <td class="celdaTexto">{{ datosAutnum[4] }}</td>
+        </tr>
           </tbody>
+      </table>
+      <p class="tituloTabla" *ngIf="!loading && datosNotices.length > 0" >{{ "RESULTADOSAUTNUM.TablaNotices.Titulo" | translate }}</p>
+      <table class="table" *ngIf="!loading && datosNotices.length > 0">
+        <tbody>
+        <tr *ngFor="let notice of datosNotices">
+            <td class="celdaTitulo">{{ notice.Title }}</td>
+            <td class="celdaTexto" *ngIf="notice.Link != '#'">
+                <a class="link" target="_blank" href="{{notice.Link}}">{{ notice.Desc }}</a>
+            </td>
+            <td class="celdaTexto" *ngIf="notice.Link == '#'">{{ notice.Desc }}</td>
+        </tr>
+        </tbody>
       </table>
   </div>
 
@@ -45,14 +61,43 @@
               <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaContacts.Filas.Name.Titulo" | translate }}</td>
               <td class="celdaTexto">{{ entity.Name }}</td>
           </tr>
+          <tr *ngIf="!loading && entity.MuestroAddress == '1'">
+            <td class="celdaTitulo">{{ "RESULTADOSENTITY.TablaEntity.Filas.Country.Titulo" | translate }}</td>
+            <td class="celdaTexto">{{ entity.Country }}</td>
+          </tr>
+          <tr *ngIf="!loading && entity.MuestroAddress == '1'">
+            <td class="celdaTitulo">{{ "RESULTADOSENTITY.TablaEntity.Filas.City.Titulo" | translate }}</td>
+            <td class="celdaTexto">{{ entity.City }}</td>
+          </tr>
+          <tr *ngIf="!loading && entity.MuestroAddress == '1'">
+            <td class="celdaTitulo">{{ "RESULTADOSENTITY.TablaEntity.Filas.Address.Titulo" | translate }}</td>
+            <td class="celdaTexto">{{ entity.Address }}</td>
+          </tr>
+          <tr *ngIf="!loading && entity.MuestroAddress == '1'">
+            <td class="celdaTitulo">{{ "RESULTADOSENTITY.TablaEntity.Filas.PostalCode.Titulo" | translate }}</td>
+            <td class="celdaTexto">{{ entity.PostalCode }}</td>
+          </tr>
           <tr >
               <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaContacts.Filas.Telephone.Titulo" | translate }}</td>
-              <td class="celdaTexto">{{ entity.Telephone }}</td>
+              <td class="celdaTexto">{{ entity.TelType }} {{ entity.Telephone }}</td>
           </tr>
           <tr >
               <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaContacts.Filas.Email.Titulo" | translate }}</td>
               <td class="celdaTexto">{{ entity.Email }}</td>
           </tr>
+          <tr >
+            <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaContacts.Filas.Version.Titulo" | translate }}</td>
+            <td class="celdaTexto">{{ entity.Version }}</td>
+          </tr>
+          <tr >
+            <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaContacts.Filas.Registration.Titulo" | translate }}</td>
+            <td class="celdaTexto">{{ entity.RegistrationDate }}</td>
+          </tr>
+          <tr >
+            <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaContacts.Filas.LastChanged.Titulo" | translate }}</td>
+            <td class="celdaTexto">{{ entity.LastChangedDate }}</td>
+          </tr>
+
           <tr *ngIf="mostarDatosExta">
               <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaContacts.Filas.MoreInfo.Titulo" | translate }}</td>
               <td class="celdaTexto">

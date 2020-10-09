@@ -8,4 +8,8 @@ export class AppSettings {
     public static SERVICE_ENTITY_API_URL: string = "https://rdap.lacnic.net/rdap/entity/";
     public static SERVICE_ENTITIES_API_URL: string = "https://rdap.lacnic.net/rdap/entities?fn=";
     public static SERVICE_IP_EXT_API_URL: string = "https://rdap.lacnic.net/rdap/ip/";
+    public static SERVICE_NAMESERVER_API_URL: string = "https://rdap.lacnic.net/rdap/nameserver/";
+    public static SERVICE_DOMAIN_API_URL: string = "https://rdap.lacnic.net/rdap/domain/";
+
+    public static SERVICE_SEARCH_API_URL: string = "https://rdap.lacnic.net/rdap/";
 }

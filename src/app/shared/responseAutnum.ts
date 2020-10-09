@@ -17,4 +17,6 @@ export class ResponseAutnum {
     notices : Notice[];
     port43 : string;
     objectClassName : string;
+    lacnic_legalRepresentative : string;
+    
 }

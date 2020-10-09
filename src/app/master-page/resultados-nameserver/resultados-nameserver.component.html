@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-md-12">
+      <p class="titulo text-center">NAMESERVER: {{nameserver}}</p>
+  </div>
+  <div class="col-md-6 offset-md-3" *ngIf="loading">
+      <img class="imgLoading" src="assets/img/loading.gif" alt="loading...">
+  </div>
+
+  <div class="col-md-6" *ngIf="!loading && datosNameserver.length > 0">
+    <p class="tituloTabla">{{ "RESULTADOSNAMESERVER.TablaNamerserver.Titulo" | translate }}</p>
+    <table class="table">
+      <tbody>
+        <tr>
+            <td class="celdaTitulo">{{ "RESULTADOSNAMESERVER.TablaNamerserver.Filas.Name.Titulo" | translate }}</td>
+            <td class="celdaTexto">{{ datosNameserver[0]}}</td>
+        </tr>
+        <tr>
+          <td class="celdaTitulo">{{ "RESULTADOSNAMESERVER.TablaNamerserver.Filas.IPv4.Titulo" | translate }}</td>
+          <td class="celdaTexto">{{ datosNameserver[1]}}</td>
+        </tr>
+        <tr>
+          <td class="celdaTitulo">{{ "RESULTADOSNAMESERVER.TablaNamerserver.Filas.IPv6.Titulo" | translate }}</td>
+          <td class="celdaTexto">{{ datosNameserver[2]}}</td>
+        </tr>
+        <tr>
+          <td class="celdaTitulo">Source</td>
+          <td class="celdaTexto">
+              <a class="link" target="_blank" href="{{datosNameserver[3]}}">Click here..</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-md-6" *ngIf="!loading && datosNotices.length > 0">
+    <p class="tituloTabla">{{ "RESULTADOSNAMESERVER.TablaNotices.Titulo" | translate }}</p>
+    <table class="table" >
+      <tbody>
+        <tr *ngFor="let notice of datosNotices">
+          <td class="celdaTitulo">{{ notice.Title }}</td>
+          <td class="celdaTexto" *ngIf="notice.Link != '#'">
+              <a class="link" target="_blank" href="{{notice.Link}}">{{ notice.Desc }}</a>
+          </td>
+          <td class="celdaTexto" *ngIf="notice.Link == '#'">{{ notice.Desc }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="mensajes.Errores.length > 0" class="alert alert-danger col-md-8 offset-md-2 errores">
+    <div *ngFor="let error of mensajes.Errores;">
+        {{error.Description}}
+    </div>
+  </div>
+  <div *ngIf="mensajes.Exitos.length > 0" class="alert alert-success  col-md-8 offset-md-2 exitos">
+      <div *ngFor="let exito of mensajes.Exitos;">
+          {{exito.Description}}
+      </div>
+  </div>
+</div>

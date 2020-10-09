@@ -24,6 +24,7 @@ export class ResultadosIPComponent implements OnInit {
   datosIP: string[] = [];
   datosEntities: any[] = [];
   datosEntity: string[] = [];
+  datosNotices: any[] = [];
   private mostarDatosExta: boolean = true;
 
   constructor(private dataService: DataService, private route: ActivatedRoute, private translate: TranslateService, private sanitizer: DomSanitizer) {
@@ -131,15 +132,63 @@ export class ResultadosIPComponent implements OnInit {
     var lastChangedDate: string = "No data";
     var registrationDate: string = "No data";
 
-    for (let i: number = 0; i < respuesta.events.length; i++) {
-      if (respuesta.events[i].eventAction.includes("registration")) {
-        registrationDate = respuesta.events[i].eventDate;        }
+    var legalRep: string = "No data";
+    var noticeTitle : string = "No data";
+    var noticeDesc : string = "No data"; 
+    var noticeLink : string = "";
+    var nbri : number = 0;
+    var blnTermine : boolean = false;
 
-      if (respuesta.events[i].eventAction.includes("last changed")) {
-        lastChangedDate = respuesta.events[i].eventDate;
+    if (typeof respuesta.events != "undefined" && respuesta.events != null) {    
+      for (let i: number = 0; i < respuesta.events.length; i++) {
+        if (respuesta.events[i].eventAction.includes("registration")) {
+          registrationDate = respuesta.events[i].eventDate;        }
+
+        if (respuesta.events[i].eventAction.includes("last changed")) {
+          lastChangedDate = respuesta.events[i].eventDate;
+        }
       }
     }
     this.datosIP.push(registrationDate, lastChangedDate,);
+
+    //AAE Obtengo el lacnic_legalRepresnetative
+    if (typeof respuesta.lacnic_legalRepresentative != "undefined" && respuesta.lacnic_legalRepresentative != ""){
+      legalRep = respuesta.lacnic_legalRepresentative;
+    }
+    this.datosIP.push(legalRep);
+
+    //AAE Obetngo notices
+    if (typeof respuesta.notices != "undefined" && respuesta.notices.length > 0) {
+      nbri = 0;
+      blnTermine = false;
+      while (nbri < respuesta.notices.length && !blnTermine) {
+        noticeTitle = "No Data";
+        noticeDesc = "No Data";
+        noticeLink = "#";
+        //if ((respuesta.notices[nbri].title == "Terms and Conditions") || (respuesta.notices[nbri].title == "Terms of Service")|| (respuesta.notices[nbri].title == "Terms of Use")) {
+        noticeTitle = respuesta.notices[nbri].title;
+        if (respuesta.notices[nbri].description.length > 0 && respuesta.notices[nbri].description[0] != "") {
+          noticeDesc = respuesta.notices[nbri].description[0];
+        }
+        if ((typeof respuesta.notices[nbri].links != "undefined") && respuesta.notices[nbri].links.length > 0) {
+          if (respuesta.notices[nbri].links[0].href != "") {
+            noticeLink = respuesta.notices[nbri].links[0].href;
+          }
+        }
+          //blnTermine = true;          
+        //}
+        this.datosNotices.push({
+          "Title": noticeTitle,
+          "Desc": noticeDesc,
+          "Link": noticeLink
+        });
+        nbri++;
+      }      
+    }
+    //console.log(this.datosNotices);
+    //this.datosIP.push(noticeTitle);
+    //this.datosIP.push(noticeDesc);
+    //this.datosIP.push(noticeLink);
   }
 
   obtenerEntities(respuesta: ResponseIP) {
@@ -149,15 +198,19 @@ export class ResultadosIPComponent implements OnInit {
       for (let e of respuesta.entities) {
         var roles: string = "No data";
         var name: string = "No data";
-        //var address: string = "No data";
-        //var city: string = "No data";
-        //var country: string = "No data";
-        //var postalCode: string = "No data";
+        
+        var address: string = "No data";
+        var city: string = "No data";
+        var country: string = "No data";
+        var postalCode: string = "No data";
         var email: string = "No data";
         var telephone: string = "No data";
-        // var registration : string = "No data";
-        // var lastChanged : string = "No data";
+        var registration : string = "No data";
+        var lastChanged : string = "No data";
         var link: string = "No data"
+        var telType: string = "";
+        var version: string = "No data";
+        var muestroAddress: string = "0";
 
         if (e.roles.length > 0) {
           roles = "[";
@@ -165,6 +218,9 @@ export class ResultadosIPComponent implements OnInit {
             roles += e.roles[i].toUpperCase();
             if (i < e.roles.length - 1) {
               roles += ", ";
+            }
+            if ((e.roles[i].toUpperCase() == "ADMINISTRATIVE") || (e.roles[i].toUpperCase() == "TECHNICAL" )||( e.roles[i].toUpperCase() == "ABUSE" ) ) {
+              muestroAddress = "1";
             }
           }
           roles += "]";
@@ -186,11 +242,35 @@ export class ResultadosIPComponent implements OnInit {
             //     country = v[3][6];
             //     postalCode = v[3][5];
             // }
+            if (v[0] == "adr") {
+              address = v[3][2] + " " + v[3][1];
+              city = v[3][3];
+              country = v[3][6];
+              postalCode = v[3][5];
+            }
+            //AAE Obtengo versión
+            if (v[0] == "version") {
+              version = v[3];
+            }
             if (v[0] == "email") {
                 email = v[3];
             }
             if (v[0] == "tel") {
                 telephone = v[3];
+                telType = v[1].type;
+            }
+          }
+        }
+        //Obtengo fechas 
+        if (typeof e.events != "undefined") {
+          if (e.events.length > 0) {
+            for (let i: number = 0; i < e.events.length; i++) {
+              if (e.events[i].eventAction.includes("registration")) {
+                registration = e.events[i].eventDate;
+              }
+              if (e.events[i].eventAction.includes("last changed")) {
+                lastChanged = e.events[i].eventDate;
+              }
             }
           }
         }
@@ -200,11 +280,17 @@ export class ResultadosIPComponent implements OnInit {
           "Handle": e.handle,
           "Name": name,
           "Link": link,
-          //"Address": address,
-          //"City": city,
-          //"PostalCode": postalCode,
+          "Address": address,
+          "City": city,
+          "PostalCode": postalCode,
+          "Country": country,
           "Email": email,
           "Telephone": telephone,
+          "TelType": telType,
+          "Version" : version,
+          "RegistrationDate" : registration,
+          "LastChangedDate" : lastChanged,
+          "MuestroAddress" : muestroAddress
         });
       }
       //Utilities.log(JSON.stringify(this.datosEntities[0]));

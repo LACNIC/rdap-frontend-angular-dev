@@ -44,7 +44,7 @@
           </tr>
           <tr>
               <td class="celdaTitulo">{{ "RESULTADOSENTITY.TablaEntity.Filas.Telephone.Titulo" | translate }}</td>
-              <td class="celdaTexto">{{ datosEntity[0].Telephone }}</td>
+              <td class="celdaTexto">{{ datosEntity[0].TelType }} {{ datosEntity[0].Telephone }}</td>
           </tr>
           <tr>
               <td class="celdaTitulo">{{ "RESULTADOSENTITY.TablaEntity.Filas.Registration.Titulo" | translate }}</td>
@@ -54,6 +54,15 @@
               <td class="celdaTitulo">{{ "RESULTADOSENTITY.TablaEntity.Filas.LastChanged.Titulo" | translate }}</td>
               <td class="celdaTexto">{{ datosEntity[0].LastChanged }}</td>
           </tr>
+          <tr>
+            <td class="celdaTitulo">{{ "RESULTADOSENTITY.TablaEntity.Filas.Version.Titulo" | translate }}</td>
+            <td class="celdaTexto">{{ datosEntity[0].Version }}</td>
+          </tr>
+          <tr>
+            <td class="celdaTitulo">{{ "RESULTADOSENTITY.TablaEntity.Filas.LegalRepresentative.Titulo" | translate }}</td>
+            <td class="celdaTexto">{{ datosEntity[0].LegalRep }}</td>
+          </tr>
+
 
 
           </tbody>
@@ -61,7 +70,8 @@
   </div>
 
 
-  <div class="col-md-6" *ngIf="!loading && datosEntities.length > 0">
+  <div class="col-md-6" >
+      <div *ngIf="!loading && datosEntities.length > 0">
       <p class="tituloTabla">{{ "RESULTADOSIP.TablaContacts.Titulo" | translate }}</p>
       <table class="table" *ngFor="let entity of datosEntities">
           <tbody>
@@ -82,11 +92,23 @@
           <!--</tr>-->
           <tr *ngIf="mostarDatosExta">
               <td class="celdaTitulo">{{ "RESULTADOSIP.TablaContacts.Filas.Telephone.Titulo" | translate }}</td>
-              <td class="celdaTexto">{{ entity.Telephone }}</td>
+              <td class="celdaTexto">{{ entity.TelType }} {{ entity.Telephone }}</td>
           </tr>
           <tr *ngIf="mostarDatosExta">
               <td class="celdaTitulo">{{ "RESULTADOSIP.TablaContacts.Filas.Email.Titulo" | translate }}</td>
               <td class="celdaTexto">{{ entity.Email }}</td>
+          </tr>
+          <tr *ngIf="mostarDatosExta">
+            <td class="celdaTitulo">{{ "RESULTADOSIP.TablaContacts.Filas.Version.Titulo" | translate }}</td>
+            <td class="celdaTexto">{{ entity.Version }}</td>
+          </tr>
+          <tr *ngIf="mostarDatosExta">
+            <td class="celdaTitulo">{{ "RESULTADOSIP.TablaContacts.Filas.Registration.Titulo" | translate }}</td>
+            <td class="celdaTexto">{{ entity.RegistrationDate }}</td>
+          </tr>
+          <tr *ngIf="mostarDatosExta">
+            <td class="celdaTitulo">{{ "RESULTADOSIP.TablaContacts.Filas.LastChanged.Titulo" | translate }}</td>
+            <td class="celdaTexto">{{ entity.LastChangedDate }}</td>
           </tr>
           <tr *ngIf="mostarDatosExta">
               <td class="celdaTitulo">{{ "RESULTADOSIP.TablaContacts.Filas.MoreInfo.Titulo" | translate }}</td>
@@ -101,6 +123,19 @@
               </td>
           </tr>
           </tbody>
+      </table>
+      </div>
+      <p class="tituloTabla" *ngIf="!loading && datosNotices.length > 0">{{ "RESULTADOSAUTNUM.TablaNotices.Titulo" | translate }}</p>
+      <table class="table" *ngIf="!loading && datosNotices.length > 0" >
+        <tbody>
+        <tr *ngFor="let notice of datosNotices">
+            <td class="celdaTitulo">{{ notice.Title }}</td>
+            <td class="celdaTexto" *ngIf="notice.Link != '#'">
+                <a class="link" target="_blank" href="{{notice.Link}}">{{ notice.Desc }}</a>
+            </td>
+            <td class="celdaTexto" *ngIf="notice.Link == '#'">{{ notice.Desc }}</td>
+        </tr>
+        </tbody>
       </table>
   </div>
 

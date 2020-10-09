@@ -13,6 +13,11 @@
       "LinkIp" : "Pesquisar por IP",
       "LinkEntity" : "Pesquisar por Entity",
       "LinkEntitiesByName" : "Pesquisar por Nome",
+      "LinkNameserver": "Pesquisar por Nameserver",
+      "LinkDomain": "Pesquisar por Domain", 
+      "LinkBusquedaEntities" : "Procura por Entities", 
+      "LinkBusquedaDomains" : "Procura por Domínios", 
+      "LinkBusquedaNameservers" : "Procura por Nameservers",    
       "LinkAbout" : "Sobre RDAP"
     }
   },
@@ -43,6 +48,26 @@
       "IP":
       { "Titulo" : "IP ou bloco CIDR",
         "Texto" : "Digite um número IP (200.7.84.0) ou um bloco CIDR (200.7.84.0/23)."
+      },
+      "Nameservers":
+      { "Titulo" : "Nameservers",
+        "Texto" : "Digite um valor do nameserver para consultar"
+      },
+      "Domains":
+      { "Titulo" : "Domains",
+        "Texto" : "Digite um domínio."
+      },
+      "EntitiesSearch":
+      { "Titulo" : "Pesquisa Entities",
+        "Texto" : "Selecione se deseja pesquisar por fn ou handle e digite o valor da pesquisa incluindo wildcards."
+      },
+      "NameserverSearch":
+      { "Titulo" : "Pesquisa Nameserver",
+        "Texto" : "Digite o valor de pesquisa do Nameserver incluindo wildcards."
+      },
+      "DomainSearch":
+      { "Titulo" : "Pesquisa Domain",
+        "Texto" : "Selecione se deseja pesquisar por nsLdhName ou name e digite o valor da pesquisa incluindo wildcards."
       }
     },
     "Copyright":"Os dados abaixo são fornecidos para fins informativos e para ajudar as pessoas a obter informações sobre ou relacionadas aos registros de números de AS e IP. Ao enviar uma consulta, você concorda em usar esses dados apenas para fins legais.",
@@ -53,7 +78,21 @@
         "3" : "Entidade",
         "4" : "Nameserver",
         "5" : "Domain",
-        "6" : "Entities"
+        "6" : "Pesquisa Entities",
+        "7" : "Pesquisa Nameservers",
+        "8" : "Pesquisa Domains"
+      }
+    },
+    "SelectParamEntities": {
+      "Opciones": {
+        "1": "Procura por fn",
+        "2": "Procura por handle"        
+      }
+    },
+    "SelectParamDomain": {
+      "Opciones": {
+        "1": "Procura por nsLdhName",
+        "2": "Procura por name"        
       }
     },
     "BotonBuscar" : "PROCURAR",
@@ -84,17 +123,87 @@
     },
     "BotonBuscar" : "PROCURAR"
   },
+  "CONSULTAPORNAMESERVER": {
+    "Errores": {
+      "valorBuscadoVacio": "Você deve especificar o valor a ser procurado."
+    },
+    "Titulo": "Pesquisa por Nameserver",
+    "InformacionAdicional": {
+      "Titulo": "INFORMAÇÃO ADICIONAL",
+      "Parrafo1": "Parágrafo 1.",
+      "Parrafo2": "Parágrafo 2."
+    },
+    "BotonBuscar": "PROCURAR"
+  },
   "CONSULTAPORENTITY" : {
     "Errores" : {
       "valorBuscadoVacio" : "Você deve especificar o valor a ser procurado."
     },
-    "Titulo" : "Consulta por Entity",
+    "Titulo" : "Pesquisa por Entity",
     "InformacionAdicional" : {
       "Titulo" : "INFORMAÇÃO ADICIONAL",
       "Parrafo1" : "Parágrafo 1.",
       "Parrafo2" : "Parágrafo 2."
     },
     "BotonBuscar" : "PROCURAR"
+  },
+  "CONSULTAPORDOMAIN": {
+    "Errores": {
+      "valorBuscadoVacio": "Você deve especificar o valor a ser procurado."
+    },
+    "Titulo": "Pesquisa por Domínio",
+    "InformacionAdicional": {
+      "Titulo": "INFORMAÇÃO ADICIONAL",
+      "Parrafo1": "Parágrafo 1.",
+      "Parrafo2": "Parágrafo 2."
+    },
+    "BotonBuscar": "PROCURAR"
+  },
+  "BUSQUEDAPORENTITIES": {
+    "Errores": {
+      "valorBuscadoVacio": "Você deve especificar o valor a ser procurado."
+    },
+    "Titulo": "Procurar por Entities",
+    "InformacionAdicional" : {
+      "Titulo" : "INFORMAÇÃO ADICIONAL",
+      "Parrafo1" : "Parágrafo 1.",
+      "Parrafo2" : "Parágrafo 2."
+    },
+    "BotonBuscar" : "PROCURAR",
+    "RadioButton" : {
+      "Titulo": "Procurar por:",
+      "Opcion1": "fn",
+      "Opcion2": "handle" 
+    }
+  },
+  "BUSQUEDAPORNAMESERVERS": {
+    "Errores": {
+      "valorBuscadoVacio": "Você deve especificar o valor a ser procurado."
+    },
+    "Titulo": "Procurar por Nameservers",
+    "InformacionAdicional" : {
+      "Titulo" : "INFORMAÇÃO ADICIONAL",
+      "Parrafo1" : "Parágrafo 1.",
+      "Parrafo2" : "Parágrafo 2."
+    },
+    "BotonBuscar" : "PROCURAR"    
+  },
+  "BUSQUEDAPORDOMAINS": {
+    "Errores": {
+      "valorBuscadoVacio": "Você deve especificar o valor a ser procurado."
+    },
+    "Titulo": "Procurar por Domínios",
+    "InformacionAdicional" : {
+      "Titulo" : "INFORMAÇÃO ADICIONAL",
+      "Parrafo1" : "Parágrafo 1.",
+      "Parrafo2" : "Parágrafo 2."
+    },
+    "BotonBuscar" : "PROCURAR",
+    "RadioButton" : {
+      "Titulo": "Procurar por:",
+      "Opcion1": "name",
+      "Opcion2": "nsLdhName" 
+    }
   },
   "CONSULTAENTITIESBYNAME" : {
     "Errores" : {
@@ -149,6 +258,9 @@
         },
         "LastChanged" : {
           "Titulo" : "Last Changed"
+        },
+        "LegalRepresentative": {
+          "Titulo": "Representante Legal"
         }
       }
     },
@@ -184,6 +296,15 @@
         },
         "Source" : {
           "Titulo" : "Source"
+        },
+        "Version": {
+          "Titulo": "Versión"
+        },
+        "Registration": {
+          "Titulo": "Registration Date"
+        },
+        "LastChanged": {
+          "Titulo": "Last Changed"
         }
       }
     }
@@ -207,6 +328,9 @@
         },
         "LastChanged": {
           "Titulo": "Last Changed"
+        },
+        "LegalRepresentative": {
+          "Titulo": "Representante Legal"
         }
       }
     },
@@ -242,8 +366,20 @@
         },
         "Source" : {
           "Titulo" : "Source"
+        },
+        "Version" : {
+          "Titulo" : "Version"
+        },
+        "Registration": {
+          "Titulo": "Registration Date"
+        },
+        "LastChanged": {
+          "Titulo": "Last Changed"
         }
       }
+    },
+    "TablaNotices": {
+      "Titulo": "Notices"      
     }
   },
   "RESULTADOSENTITY" : {
@@ -290,6 +426,12 @@
         "Operator" : {
           "Titulo" : "Operator"
         },
+        "Version": {
+          "Titulo": "Versión"
+        },
+        "LegalRepresentative": {
+          "Titulo": "Representante Legal"
+        },
         "Inetnums" : {
           "Titulo" : "Inetnums",
           "Kind" : {
@@ -307,6 +449,147 @@
           "Value" : {
             "Titulo" : "Value"
           }
+        }
+      }
+    }
+  },
+  "RESULTADOSNAMESERVER": {
+    "Errores": {
+      "sinResultados" : "Nenhum resultado encontrado.",
+      "verifiqueYReintente" : "Por favor verifique e tente novamente."
+    },
+    "TablaNamerserver": {
+      "Titulo": "Nameserver",
+      "Filas": {
+        "Name": {
+          "Titulo": "LdhName"
+        },
+        "IPv4": {
+          "Titulo": "IP v4"
+        },
+        "IPv6": {
+          "Titulo": "IP v6"
+        },
+        "Source" : {
+          "Titulo" : "Source"
+        }
+      }
+    },    
+    "TablaNotices": {
+      "Titulo": "Notices"      
+    }
+  },
+  "RESULTADOSDOMAIN": {
+    "Errores": {
+      "sinResultados" : "Nenhum resultado encontrado.",
+      "verifiqueYReintente" : "Por favor verifique e tente novamente."
+    },
+    "TablaDomain": {
+      "Titulo": "Domínio",
+      "Filas": {
+        "Name": {
+          "Titulo": "LdhName"
+        },
+        "Handle": {
+          "Titulo": "Handle"
+        },        
+        "Source" : {
+          "Titulo" : "Source"
+        }
+      }
+    },    
+    "TablaNotices": {
+      "Titulo": "Notices"      
+    },
+    "TablaNameservers": {
+      "Titulo": "Namerservers",
+      "Filas": {
+        "Nameserver" : {
+          "Titulo" : "Nameserver"
+        },
+        "MoreInfo" : {
+          "Titulo" : "More Info"
+        }
+      }    
+    }
+  },
+  "RESULTSRCHDOMAIN": {
+    "Errores": {
+      "sinResultados" : "Nenhum resultado encontrado.",
+      "verifiqueYReintente" : "Por favor verifique e tente novamente."
+    },
+    "Titulo" : "Resultados da pesquisa por ",
+    "TablaDomain": {
+      "Titulo": "Domínios",
+      "Filas": {
+        "Name": {
+          "Titulo": "LdhName"
+        },
+        "Handle": {
+          "Titulo": "Handle"
+        },        
+        "Source" : {
+          "Titulo" : "Source"
+        },
+        "Detalles" : {
+          "Titulo" : "Detalhes"
+        },
+        "MoreInfo" : {
+          "Titulo" : "More Info"
+        }
+      }
+    }
+  },
+  "RESULTSRCHNAMESERVER": {
+    "Errores": {
+      "sinResultados" : "Nenhum resultado encontrado.",
+      "verifiqueYReintente" : "Por favor verifique e tente novamente."
+    },
+    "Titulo" : "Resultados da pesquisa por ",
+    "TablaNameserver": {
+      "Titulo": "Nameservers",
+      "Filas": {
+        "Name": {
+          "Titulo": "LdhName"
+        },                
+        "Source" : {
+          "Titulo" : "Source"
+        },
+        "Detalles" : {
+          "Titulo" : "Detalhes"
+        },
+        "MoreInfo" : {
+          "Titulo" : "More Info"
+        }
+      }
+    }
+  },
+  "RESULTSRCHENTITY": {
+    "Errores": {
+      "sinResultados" : "Nenhum resultado encontrado.",
+      "verifiqueYReintente" : "Por favor verifique e tente novamente."
+    },
+    "Titulo" : "Resultados da pesquisa por ",
+    "TablaEntity": {
+      "Titulo": "Entities",
+      "Filas": {
+        "Handle": {
+          "Titulo": "Handle"
+        }, 
+        "Fn": {
+          "Titulo": "Fn"
+        },         
+        "Version": {
+          "Titulo": "Versión"
+        },                   
+        "Source" : {
+          "Titulo" : "Source"
+        },
+        "Detalles" : {
+          "Titulo" : "Detalhes"
+        },
+        "MoreInfo" : {
+          "Titulo" : "More Info"
         }
       }
     }
