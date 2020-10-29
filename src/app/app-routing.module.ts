@@ -23,6 +23,12 @@ import { ResultSrchDomainsComponent } from './master-page/result-srch-domains/re
 import { ResultSrchNameserversComponent } from './master-page/result-srch-nameservers/result-srch-nameservers.component';
 import { ResultSrchEntitiesComponent } from './master-page/result-srch-entities/result-srch-entities.component';
 
+import { QueryIpComponent } from './widget/query-ip/query-ip.component';
+import { QueryEntityComponent } from './widget/query-entity/query-entity.component';
+import { QueryAutnumComponent } from './widget/query-autnum/query-autnum.component';
+import { QueryDomainComponent } from './widget/query-domain/query-domain.component';
+import { QueryNameserverComponent } from './widget/query-nameserver/query-nameserver.component';
+
 const routes: Routes = [
   {
     path: '', component: MasterPageComponent,
@@ -52,7 +58,13 @@ const routes: Routes = [
     ]
 
   },
-  {path: '**', component: NotFoundComponent}
+  {path: 'query-ip/:ip', component: QueryIpComponent},
+  {path: 'query-entity/:entity', component: QueryEntityComponent},
+  {path: 'query-autnum/:autnum', component: QueryAutnumComponent},
+  {path: 'query-domain/:domain', component: QueryDomainComponent},
+  {path: 'query-nameserver/:nameserver', component: QueryNameserverComponent},
+  {path: '**', component: NotFoundComponent},
+  
 ];
 
 @NgModule({  

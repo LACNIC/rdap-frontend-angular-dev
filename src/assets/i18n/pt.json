@@ -261,6 +261,12 @@
         },
         "LegalRepresentative": {
           "Titulo": "Representante Legal"
+        },
+        "ParentHandle": {
+          "Titulo": "Parent Handle"
+        },
+        "Estado": {
+          "Titulo": "Estado"
         }
       }
     },
@@ -305,6 +311,50 @@
         },
         "LastChanged": {
           "Titulo": "Last Changed"
+        }
+      }
+    },
+    "TablaExtra" : {
+      "Titulo" : "Informação Extra",
+      "SubTituloLinks" : "Links",
+      "SubTituloEventos" : "Eventos",
+      "SubTituloVCard" : "VCard",
+      "Filas" : {
+        "Name" : {
+          "Titulo" :  "Name"
+        },
+        "Country" : {
+          "Titulo" :  "Country"
+        },
+        "Port43" : {
+          "Titulo" :  "Port43"
+        },
+        "ObjectClassName" : {
+          "Titulo" :  "ObjectClassName"
+        },
+        "RdapConformance" : {
+          "Titulo" :  "rdapConformance"
+        },
+        "Lang" : {
+          "Titulo" :  "Lang"
+        },
+        "Cidr0_cidrs" : {
+          "Titulo" :  "Cidr0 cidrs"
+        },
+        "Originautnums" : {
+          "Titulo" :  "Arin originas0 originautnums"
+        },
+        "Nicbr_autnum" : {
+          "Titulo" :  "Nicbr_autnum"
+        },
+        "StartAutnum" : {
+          "Titulo" :  "Start Autnum"
+        },
+        "EndAutnum" : {
+          "Titulo" :  "End Autnum"
+        },
+        "Roles" : {
+          "Titulo" :  "Roles"
         }
       }
     }
@@ -380,6 +430,9 @@
     },
     "TablaNotices": {
       "Titulo": "Notices"      
+    },
+    "TablaRemarks": {
+      "Titulo": "Remarks"      
     }
   },
   "RESULTADOSENTITY" : {

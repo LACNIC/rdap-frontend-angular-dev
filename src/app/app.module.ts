@@ -28,6 +28,11 @@ import { BusquedaPorDomainsComponent } from './master-page/busqueda-por-domains/
 import { ResultSrchDomainsComponent } from './master-page/result-srch-domains/result-srch-domains.component';
 import { ResultSrchNameserversComponent } from './master-page/result-srch-nameservers/result-srch-nameservers.component';
 import { ResultSrchEntitiesComponent } from './master-page/result-srch-entities/result-srch-entities.component';
+import { QueryIpComponent } from './widget/query-ip/query-ip.component';
+import { QueryEntityComponent } from './widget/query-entity/query-entity.component';
+import { QueryAutnumComponent } from './widget/query-autnum/query-autnum.component';
+import { QueryDomainComponent } from './widget/query-domain/query-domain.component';
+import { QueryNameserverComponent } from './widget/query-nameserver/query-nameserver.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +57,12 @@ import { ResultSrchEntitiesComponent } from './master-page/result-srch-entities/
     BusquedaPorDomainsComponent,
     ResultSrchDomainsComponent,
     ResultSrchNameserversComponent,
-    ResultSrchEntitiesComponent
+    ResultSrchEntitiesComponent,
+    QueryIpComponent,
+    QueryEntityComponent,
+    QueryAutnumComponent,
+    QueryDomainComponent,
+    QueryNameserverComponent
   ],
   imports: [
     BrowserModule,

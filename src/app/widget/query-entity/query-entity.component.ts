@@ -6,67 +6,72 @@ import {Utilities} from "../../shared/utilities";
 import {Mensaje} from "../../shared/mensaje";
 import {Exito} from "../../shared/exito";
 import {Error} from "../../shared/error";
-import {ResponseAutnum} from '../../shared/responseAutnum';
-import {Event} from '../../shared/event';
-import {ResponseEntity} from '../../shared/responseEntity';
-import {Constantes} from '../../shared/constantes';
+import {ResponseEntity} from "../../shared/responseEntity";
+import {ResponseIP} from "../../shared/responseIP";
 import {DomSanitizer} from '@angular/platform-browser';
-
+import {Constantes} from '../../shared/constantes';
 
 @Component({
-  selector: 'resultados-autnum',
-  templateUrl: './resultados-autnum.component.html',
-  styleUrls: ['./resultados-autnum.component.css']
+  selector: 'app-query-entity',
+  templateUrl: './query-entity.component.html',
+  styleUrls: ['./query-entity.component.css']
 })
-export class ResultadosAutnumComponent implements OnInit {
+export class QueryEntityComponent implements OnInit {
 
   mensajes: Mensaje = new Mensaje();
   loading: boolean = true;
-  AUTNUM: string;
-  datosEvents: string[] = [];
+  entity: string;
+  datosEntity: any[] = [];
+  serverURL: any;
   datosEntities: any[] = [];
-  datosAutnum: string[] = [];
   datosNotices: any[] = [];
   datosRemarks: any[] = [];
   datosExtra: any[] = [];
   datosLinks: any[] = [];
-  datosEventos: any[] = [];
-  rederictUrl: string = Constantes.rederictUrl;
+  datosEvents: any[] = [];
+  datosVCard: any[] = [];
   private mostarDatosExta: boolean = true;
+  rederictUrl: string = Constantes.rederictUrl;
+  existenNetworks: boolean = false;
+  existenAutnums: boolean = false;
+  lang : string = "es";
 
   constructor(private dataService: DataService, private route: ActivatedRoute, private translate: TranslateService, private sanitizer: DomSanitizer) {
-    this.cargarLenguaje();
+    
   }
 
   ngOnInit(): void {
-    Utilities.log("[resultados-autnum.component.ts] - ngOnInit: Start");
+    Utilities.log("[resultados-entity.component.ts] - ngOnInit: Start");
+
+    var langParam = this.route.snapshot.queryParamMap.get("lang"); 
     
-    this.AUTNUM = this.route.snapshot.params['autnum'];
-    if (this.AUTNUM != undefined && this.AUTNUM != null && this.AUTNUM != "") {
-
-      if (this.AUTNUM.toLocaleUpperCase().includes("AS")) {
-
-        this.AUTNUM = this.AUTNUM.substring(2);
-
+    if (langParam != undefined && langParam != null) {
+      if (langParam == 'es' || langParam == 'pt' || langParam == 'en') {
+        this.lang = langParam;
+      } else {
+        this.lang = 'es';
       }
-      this.buscarDatosAutnum();
+    } else {
+      this.lang = 'es';
     }
 
-    Utilities.log("[resultados-autnum.component.ts] - ngOnInit: Finish");
+    this.cargarLenguaje();
+
+    this.entity = this.route.snapshot.params['entity'].toUpperCase();
+    if (this.entity != undefined && this.entity != null && this.entity != "") {
+      this.buscarDatosEntity();
+    }
+
+    Utilities.log("[resultados-entity.component.ts] - ngOnInit: Finish");
   }
 
   cargarLenguaje() {
     Utilities.log("[resultados-autnum.component.ts] - cargarLenguaje: Start");
 
     this.translate.addLangs(['es', 'en', 'pt']);
-    this.translate.setDefaultLang('es');
-    this.translate.use('es');
-    if (localStorage.getItem('lenguaje') != null) {
-        this.translate.use(localStorage.getItem('lenguaje'));
-    }
-    else {
-        this.translate.use(this.translate.getDefaultLang());
-    }
+    this.translate.setDefaultLang(this.lang);
+    this.translate.use(this.lang);
+    
 
     Utilities.log("[resultados-autnum.component.ts] - cargarLenguaje: Finish");
   }
@@ -81,7 +86,7 @@ export class ResultadosAutnumComponent implements OnInit {
       .subscribe(
         value => this.mostrarError(value),
         error => this.translateError(error),
-        () => Utilities.log("[resultados-autnum.component.ts] - translate.get: Completed")
+        () => Utilities.log("[resultados-entity.component.ts] - translate.get: Completed")
       );
   }
 
@@ -92,33 +97,31 @@ export class ResultadosAutnumComponent implements OnInit {
   }
 
   translateError(error: any) {
-    Utilities.log("[resultados-autnum.component.ts] - translateError | error: " + JSON.stringify(error));
+    Utilities.log("[resultados-entity.component.ts] - translateError | error: " + JSON.stringify(error));
   }
 
-  buscarDatosAutnum() {
-    Utilities.log("[resultados-autnum.component.ts] - buscarDatosAutnum: Start");
-    Utilities.log("[resultados-autnum.component.ts] - buscarDatosAutnum | this.AUTNUM: " + this.AUTNUM);
+  buscarDatosEntity() {
+    Utilities.log("[resultados-entity.component.ts] - buscarDatosEntity: Start");
 
-    this.dataService.getBuscarAutnum(this.AUTNUM)
+    this.dataService.getBuscarEntity(this.entity)
       .subscribe(
-        res => this.parseGetBuscarAutumOk(res),
-        error => this.parseGetBuscarAutnumError(error),
-        () => Utilities.log("[resultados-autnum.component.ts] - getBuscarIP: Completed")
+        res => this.parseGetBuscarEntityOk(res),
+        error => this.parseGetBuscarEntityError(error),
+        () => Utilities.log("[resultados-entity.component.ts] - getBuscarEntity: Completed")
       );
 
-    Utilities.log("[resultados-autnum.component.ts] - buscarDatosAutnum: Finish");
+    Utilities.log("[resultados-entity.component.ts] - buscarDatosEntity: Finish");
   }
 
+  parseGetBuscarEntityOk(response: any) {
+    Utilities.log("[resultados-entity.component.ts] - parseGetBuscarEntityOk | response: " + JSON.stringify(response));
 
-  parseGetBuscarAutumOk(response: any) {
-    Utilities.log("[resultados-autnum.component.ts] - parseGetBuscarAutumOk | response: " + JSON.stringify(response));
-
-    var respuesta: ResponseAutnum = response;
-    this.obtenerDatosAutnum(respuesta);
+    var respuesta: ResponseEntity = response;
+    this.obtenerDatosEntity(respuesta);
     this.obtenerEntities(respuesta);
     this.obtenerDatosExtra(respuesta);
     this.obtenerDatosDesconocidos(respuesta);
-    Utilities.log("[resultados-autnum.component.ts] - parseGetBuscarAutumOk | respuesta: " + JSON.stringify(respuesta));
+    Utilities.log("[resultados-entity.component.ts] - parseGetBuscarEntityOk | respuesta: " + JSON.stringify(respuesta));
 
   }
 
@@ -131,32 +134,52 @@ export class ResultadosAutnumComponent implements OnInit {
 
   }
 
-  parseGetBuscarAutnumError(error: any) {
-    Utilities.log("[resultados-autnum.component.ts] - parseGetBuscarAutnumError| error: " + JSON.stringify(error));
+  parseGetBuscarEntityError(error: any) {
+    Utilities.log("[resultados-entity.component.ts] - parseGetBuscarEntityError | error: " + JSON.stringify(error));
     //if (error.json().errorCode == 429) {
     if (error.errorCode == 429) {
       this.traducirError("GENERAL.Errores.ArrayLimit");
     } else {
-      this.traducirError("RESULTADOSAUTNUM.Errores.sinResultados");
-      this.traducirError("RESULTADOSAUTNUM.Errores.verifiqueYReintente");
+      this.traducirError("RESULTADOSENTITY.Errores.sinResultados");
+      this.traducirError("RESULTADOSENTITY.Errores.verifiqueYReintente");
     }
+
     this.loading = false;
   }
 
-  obtenerDatosAutnum(respuesta: ResponseAutnum) {
-    //Datos de la tabla AUTNUM
-    this.datosAutnum.push(respuesta.handle);
-    // this.datosAutnum.push(respuesta.name);
+  parseServerUrlOK(response: any) {
+    Utilities.log("[resultados-entity.component.ts] - parseServerUrlOK | response: " + JSON.stringify(response));
+    this.serverURL = response.serverUrl;
 
-    var type: string = "No data";
-    // this.datosAutnum.push("No data");
-    // this.datosAutnum.push(respuesta.startAddress + " - " + respuesta.endAddress);
-    // this.datosAutnum.push(respuesta.ipVersion);
-    // this.datosAutnum.push(respuesta.country);
+    Utilities.log("[resultados-entity.component.ts] - parseServerUrlOK | serverUrl: " + this.serverURL);
+  }
+
+  parseServerUrlError(error: any) {
+    Utilities.log("[resultados-entity.component.ts] - parseServerUrlError | error: " + JSON.stringify(error));
+    this.traducirError("RESULTADOSENTITY.Errores.sinResultados");
+    this.traducirError("RESULTADOSENTITY.Errores.verifiqueYReintente");
+
+  }
+
+  obtenerDatosEntity(respuesta: ResponseEntity) {
+    var handle: string = "No data";
+    var name: string = "No data";
+    var country: string = "No data";
+    var roles: string = "No data";
+    var address: string = "No data";
+    var city: string = "No data";
+    var postalCode: string = "No data";
+    var email: string = "No data";
+    var telephone: string = "No data";
+    var operator: string = "No data";
+    var networks: any[] = [];
+    var autnums: any[] = [];
     var lastChangedDate: string = "No data";
     var registrationDate: string = "No data";
-    
-    var legalRep: string = "No data";
+
+    var telType: string = "";
+    var version: string = "No data";
+    var legalRep: string = "No data";  
     var noticeTitle : string = "No data";
     var noticeDesc : string = "No data"; 
     var noticeLink : string = "";
@@ -165,7 +188,7 @@ export class ResultadosAutnumComponent implements OnInit {
     var remarkTitle : String = "Description";
     var remarkDesc : String = "No data";
 
-    if (typeof respuesta.events != "undefined") {
+    if (typeof respuesta.events != "undefined" && respuesta.events != null) {
       if (respuesta.events.length > 0) {
         for (let i: number = 0; i < respuesta.events.length; i++) {
           if (respuesta.events[i].eventAction.includes("registration")) {
@@ -178,17 +201,22 @@ export class ResultadosAutnumComponent implements OnInit {
       }
     }
 
-    if (typeof respuesta.type != "undefined" && respuesta.type != "") {
-      type = respuesta.type;
-    }
-    this.datosAutnum.push(type);
-    this.datosAutnum.push(registrationDate, lastChangedDate);
 
-    //AAE Obtengo el lacnic_legalRepresnetative
-    if (typeof respuesta.lacnic_legalRepresentative != "undefined" && respuesta.lacnic_legalRepresentative != ""){
+    handle = respuesta.handle;
+    if (respuesta.roles.length > 0) {
+      roles = "[";
+      for (let i: number = 0; i < respuesta.roles.length; i++) {
+        roles += respuesta.roles[i].toUpperCase();
+        if (i < respuesta.roles.length - 1) {
+          roles += ", ";
+        }
+      }
+      roles += "]";
+    }
+
+    if (typeof respuesta.lacnic_legalRepresentative != "undefined" && respuesta.lacnic_legalRepresentative != "") {
       legalRep = respuesta.lacnic_legalRepresentative;
     }
-    this.datosAutnum.push(legalRep);
 
     //AAE Obetngo notices
     if (typeof respuesta.notices != "undefined" && respuesta.notices.length > 0) {
@@ -198,7 +226,7 @@ export class ResultadosAutnumComponent implements OnInit {
         noticeTitle = "No Data";
         noticeDesc = "No Data";
         noticeLink = "#";
-        //if (respuesta.notices[nbri].title == "Terms and Conditions") {
+        //if ((respuesta.notices[nbri].title == "Terms and Conditions") || (respuesta.notices[nbri].title == "Terms of Service")) {
         noticeTitle = respuesta.notices[nbri].title;
         if (respuesta.notices[nbri].description.length > 0 && respuesta.notices[nbri].description[0] != "") {
           noticeDesc = respuesta.notices[nbri].description[0];
@@ -208,18 +236,15 @@ export class ResultadosAutnumComponent implements OnInit {
             noticeLink = respuesta.notices[nbri].links[0].href;
           }
         }
-        //blnTermine = true;          
+          //blnTermine = true;          
         //}
         this.datosNotices.push({
           "Title": noticeTitle,
           "Desc": noticeDesc,
           "Link": noticeLink
-        });
+        })
         nbri++;
-      }
-      //this.datosAutnum.push(noticeTitle);
-      //this.datosAutnum.push(noticeDesc);
-      //this.datosAutnum.push(noticeLink);
+      }      
     }
 
     //AAE Obetngo remarks
@@ -244,111 +269,162 @@ export class ResultadosAutnumComponent implements OnInit {
         nbri++;
       }      
     }
+
+    if (typeof respuesta.autnums !== "undefined" && respuesta.autnums.length > 0) {
+      this.existenAutnums = true;
+      for (let autnum of respuesta.autnums) {
+        if (!Utilities.equals(autnum, {})) {
+          var link: string = "No data";
+          link = autnum.links[0].href;
+          autnums.push(link);
+        }
+      }
+    }
+
+    if (typeof respuesta.networks !== "undefined" && respuesta.networks.length > 0) {
+      this.existenNetworks = true;
+      for (let network of respuesta.networks) {
+        if (!Utilities.equals(network, {})) {
+          var link: string = "No data";
+          link = network.links[0].href;
+          networks.push(link);
+        }
+      }
+    }
+
+    for (let v of respuesta.vcardArray[1]) {
+      if (v[0] == "fn") {
+        name = v[3];
+      }
+      if (v[0] == "adr") {
+        address = v[3][2] + " " + v[3][1];
+        city = v[3][3];
+        country = v[3][6];
+        postalCode = v[3][5];
+      }
+      if (v[0] == "email") {
+        email = v[3];
+      }
+      if (v[0] == "tel") {
+        telephone = v[3];
+        telType = v[1].type;
+      }
+      if (v[0] == "version") {
+        version = v[3];
+      }
+    }
+    this.datosEntity.push({
+      "Handle": handle,
+      "Name": name,
+      "Country": country,
+      "Roles": roles,
+      "Address": address,
+      "City": city,
+      "PostalCode": postalCode,
+      "Email": email,
+      "Telephone": telephone,
+      "Registration": registrationDate,
+      "LastChanged": lastChangedDate,
+      "TelType": telType,
+      "Version": version,
+      "LegalRep": legalRep,
+      "NoticeTitle": noticeTitle,
+      "NoticeDesc": noticeDesc,
+      "NoticeLink": noticeLink,
+      "Autnums": autnums,
+      "Networks": networks
+    });
+    this.loading = false;
   }
 
-  obtenerEntities(respuesta: ResponseAutnum) {
+  obtenerEntities(respuesta: ResponseEntity) {
     //Datos de las tablas CONTACTS
-    if (respuesta.entities.length > 0) {
-      for (let e of respuesta.entities) {
-        var roles: string = "No data";
-        var name: string = "No data";
-        var link: string = "No data"
-        var email: string = "No data";
-        var telephone: string = "No data";
+    if (typeof respuesta.entities == "undefined") {
 
-        var telType: string = "";
-        var version: string = "No data";
-        var lastChangedDate: string = "No data";
-        var registrationDate: string = "No data";
-        var muestroAddress: string = "0";
-        var country: string = "No data";
-        var city: string = "No data";
-        var address: string = "No data";
-        var postalCode: string = "No data";
+    } else {
+      if (respuesta.entities.length > 0) {
+        for (let e of respuesta.entities) {
+          var roles: string = "No data";
+          var name: string = "No data";
+          // var address : string = "No data";
+          // var city : string = "No data";
+          // var country : string = "No data";
+          // var postalCode : string = "No data";
+          // var email : string = "No data";
+          // var telephone : string = "No data";
+          var registration : string = "No data";
+          var lastChanged : string = "No data";
+          var telType: string = "";
+          var version: string = "No data";
+          var link: string = "No data";
 
-
-        if (e.roles.length > 0) {
-          roles = "[";
-          for (let i: number = 0; i < e.roles.length; i++) {
-            roles += e.roles[i].toUpperCase();
-            if (i < e.roles.length - 1) {
-              roles += ", ";
-            }
-            if ((e.roles[i].toUpperCase() == "ADMINISTRATIVE") || (e.roles[i].toUpperCase() == "TECHNICAL" )||( e.roles[i].toUpperCase() == "ABUSE" ) ) {
-              muestroAddress = "1";
-            }
-          }
-          roles += "]";
-          
-        }
-        if (typeof e.vcardArray != "undefined") {
-          for (let v of e.vcardArray[1]) {
-            if (v[0] == "fn") {
-              name = v[3];
-            }
-
-            
-            if (v[0] == "adr") {
-                address = v[3][2] + " " + v[3][1];
-                city = v[3][3];
-                country = v[3][6];
-                postalCode = v[3][5];
-            }
-            //AAE Obtengo versión
-            if (v[0] == "version") {
-              version = v[3];
-            }
-            if (v[0] == "email") {
-              email = v[3];
-            }
-            if (v[0] == "tel") {
-              telephone = v[3];
-              telType = v[1].type;
-
-            }
-          }
-        }
-        if (e.links!=null && e.links.length > 0) {
-          link = e.links[0].href;
-        }	
-        else if(respuesta.links!= null) {
-          link = respuesta.links[0].href;
-        }
-        //Obtengo fechas 
-        if (typeof e.events != "undefined") {
-          if (e.events.length > 0) {
-            for (let i: number = 0; i < e.events.length; i++) {
-              if (e.events[i].eventAction.includes("registration")) {
-                registrationDate = e.events[i].eventDate;
+          if (e.roles.length > 0) {
+            roles = "[";
+            for (let i: number = 0; i < e.roles.length; i++) {
+              roles += e.roles[i].toUpperCase();
+              if (i < e.roles.length - 1) {
+                roles += ", ";
               }
-              if (e.events[i].eventAction.includes("last changed")) {
-                lastChangedDate = e.events[i].eventDate;
+            }
+            roles += "]";
+          }
+          if (e.links!=null && e.links.length > 0) {
+            link = e.links[0].href;
+          }	else if(respuesta.links!= null) {
+            link = respuesta.links[0].href;
+          }
+          if (typeof e.vcardArray != "undefined") {
+            for (let v of e.vcardArray[1]) {
+              if (v[0] == "fn") {
+                name = v[3];
               }
             }
           }
-        }
 
-        this.datosEntities.push({
+          this.datosEntities.push({
             "Roles": roles,
             "Handle": e.handle,
             "Name": name,
             "Link": link,
-            "Email": email,
-            "Telephone": telephone,
-            "Version" : version,
-            "TelType" : telType,
-            "RegistrationDate" : registrationDate,
-            "LastChangedDate" : lastChangedDate,
-            "MuestroAddress" : muestroAddress,
-            "Country": country,
-            "City": city,
-            "Address": address,
-            "PostalCode": postalCode
-
-        });
+            "RegistrationDate": registration,
+            "LastChangedDate": lastChanged,
+            "TelType": telType,
+            "Version": version
+          });
+        }
+        Utilities.log(JSON.stringify(this.datosEntities[0]));
+        this.completarDatosEntities(this.datosEntities);
       }
-      this.completarDatosEntities(this.datosEntities);
     }
+  }
+
+  private completarDatosEntities(datos: any) {
+    for (let i: number = 0; i < datos.length; i++) {
+      let handle = datos[i].Handle;
+      this.dataService.getBuscarEntity(handle)
+        .subscribe(
+          res => {
+            var result: any[] = this.parseGetBuscarEntitiesOk(res);
+            var e: any[] = this.datosEntities[i];
+            //e["Address"]= result[0].Address;
+            e["Name"] = result[0].Name;
+            e["Telephone"] = result[0].Telephone;
+            e["Email"] = result[0].Email;
+            e["Info"] = this.rederictUrl + "entity/" + handle;
+            e["RegistrationDate"] = result[0].Registration;
+            e["LastChangedDate"] = result[0].LastChanged;
+            e["Version"] = result[0].Version;
+            e["TelType"] = result[0].TelType;
+            this.datosEntities[i] = e;
+          },
+          error => {
+            //this.parseGetBuscarEntityError(error)
+            this.mostarDatosExta = false;
+          },
+          () => Utilities.log("[resultados-autnum.component.ts] - getBuscarIP: Completed")
+        );
+    }
+    this.loading = false;
   }
 
   sanitize(url: string) {
@@ -367,6 +443,12 @@ export class ResultadosAutnumComponent implements OnInit {
     var telephone: string = "No data";
     var lastChangedDate: string = "No data";
     var registrationDate: string = "No data";
+
+    var version: string = "No data";
+    var telType: string = "";
+
+      
+
     if (typeof respuesta.events != "undefined") {
       if (respuesta.events.length > 0) {
         for (let i: number = 0; i < respuesta.events.length; i++) {
@@ -380,6 +462,8 @@ export class ResultadosAutnumComponent implements OnInit {
       }
     }
 
+    
+
     handle = respuesta.handle;
     if (respuesta.roles.length > 0) {
       roles = "[";
@@ -391,6 +475,7 @@ export class ResultadosAutnumComponent implements OnInit {
       }
       roles += "]";
     }
+
 
     for (let v of respuesta.vcardArray[1]) {
       if (v[0] == "fn") {
@@ -407,7 +492,12 @@ export class ResultadosAutnumComponent implements OnInit {
       }
       if (v[0] == "tel") {
         telephone = v[3];
+        telType = v[1].type;        
       }
+      if (v[0] == "version") {
+        version = v[3];
+      }
+      
     }
 
     var result: any[] = [];
@@ -423,43 +513,15 @@ export class ResultadosAutnumComponent implements OnInit {
       "Telephone": telephone,
       "Registration": registrationDate,
       "LastChanged": lastChangedDate,
+      "Version": version,
+      "TelType": telType
     });
 
     return result;
+
   }
 
-  private completarDatosEntities(datos: any) {
-    for (let i: number = 0; i < datos.length; i++) {
-      let handle = datos[i].Handle;
-      this.dataService.getBuscarEntity(handle)
-        .subscribe(
-          res => {
-            var result: any[] = this.parseGetBuscarEntitiesOk(res);
-            var e: any[] = this.datosEntities[i];
-            //e["Address"]= result[0].Address;
-            if (e["Name"] == "No data") {
-              e["Name"] = result[0].Name;
-            }
-            if (e["Telephone"] == "No data") {
-              e["Telephone"] = result[0].Telephone;
-            }
-            if (e["Email"] == "No data") {
-              e["Email"] = result[0].Email;
-            }
-            e["Info"] = this.rederictUrl + "entity/" + handle;
-            this.datosEntities[i] = e;
-          },
-          error => {
-            //this.parseGetBuscarEntityError(error)
-            this.mostarDatosExta = false;
-          },
-          () => Utilities.log("[resultados-autnum.component.ts] - getBuscarIP: Completed")
-        );
-      }
-    this.loading = false;
-  }
-
-  obtenerDatosExtra(respuesta: ResponseAutnum) {
+  obtenerDatosExtra(respuesta: ResponseEntity) {
     var extraTitle: string = "No data";
     var extraDesc: string = "No data";
     var eventTitle: string = "No data";
@@ -467,26 +529,9 @@ export class ResultadosAutnumComponent implements OnInit {
     var linkTitle: string  = "No data";
     var linkDesc: string = "No data";
     var linkLink: string = "#";
-  
-    extraTitle = this.translate.instant("RESULTADOSIP.TablaExtra.Filas.Name.Titulo");
-    if (typeof respuesta.name != "undefined" && respuesta.name != ""){
-      extraDesc = respuesta.name;      
-    }
-    this.datosExtra.push({
-      "Title": extraTitle,
-      "Desc": extraDesc
-    });
-
-    extraTitle = this.translate.instant("RESULTADOSIP.TablaExtra.Filas.Country.Titulo");
-    extraDesc = "No data";
-    if (typeof respuesta.country != "undefined" && respuesta.country != ""){
-      extraDesc = respuesta.country;     
-    }
-    this.datosExtra.push({
-      "Title": extraTitle,
-      "Desc": extraDesc
-    });
-
+    var vCardTitle: string = "No data";
+    var vCardDesc: string = "No data";
+     
     extraTitle = this.translate.instant("RESULTADOSIP.TablaExtra.Filas.Port43.Titulo");
     extraDesc = "No data";
     if (typeof respuesta.port43 != "undefined" && respuesta.port43 != ""){
@@ -523,20 +568,26 @@ export class ResultadosAutnumComponent implements OnInit {
       "Desc": extraDesc
     });
 
-    extraTitle = this.translate.instant("RESULTADOSIP.TablaExtra.Filas.StartAutnum.Titulo");
+    extraTitle = this.translate.instant("RESULTADOSIP.TablaExtra.Filas.Lang.Titulo");
     extraDesc = "No data";
-    if (typeof respuesta.startAutnum != "undefined" && respuesta.startAutnum != null){
-      extraDesc = respuesta.startAutnum.toString();     
+    if (typeof respuesta.lang != "undefined" && respuesta.lang != "") {
+      extraDesc = respuesta.lang;     
     }
     this.datosExtra.push({
       "Title": extraTitle,
       "Desc": extraDesc
     });
 
-    extraTitle = this.translate.instant("RESULTADOSIP.TablaExtra.Filas.EndAutnum.Titulo");
+    extraTitle = this.translate.instant("RESULTADOSIP.TablaExtra.Filas.Roles.Titulo");
     extraDesc = "No data";
-    if (typeof respuesta.endAutnum != "undefined" && respuesta.endAutnum != null){
-      extraDesc = respuesta.endAutnum.toString();     
+    if (typeof respuesta.roles != "undefined" && respuesta.roles.length > 0){
+      for (let i: number = 0; i < respuesta.roles.length; i++) {
+        if (i == 0) {
+          extraDesc = respuesta.roles[i];
+        } else {
+          extraDesc = extraDesc + ', ' + respuesta.roles[i];
+        }
+      }
     }
     this.datosExtra.push({
       "Title": extraTitle,
@@ -554,7 +605,7 @@ export class ResultadosAutnumComponent implements OnInit {
         if (typeof respuesta.events[i].eventDate != "undefined" && respuesta.events[i].eventDate != ""){
           eventDesc = respuesta.events[i].eventDate;
         }         
-        this.datosEventos.push({
+        this.datosEvents.push({
           "Title": eventTitle,
           "Desc": eventDesc
         });       
@@ -580,14 +631,31 @@ export class ResultadosAutnumComponent implements OnInit {
           "Link": linkLink
         });       
       }      
-    }    
+    } 
+    
+    //AAE Obetngo Vcard
+    if (typeof respuesta.vcardArray != "undefined" && respuesta.vcardArray.length > 0) {
+      for (let v of respuesta.vcardArray[1]) {
+        if (v[0] != "fn" && v[0] != "adr" && v[0]!= "tel" && v[0]  != "version") {
+          vCardTitle = v[0];
+          vCardDesc = v[3];
+          this.datosVCard.push({
+            "Title": vCardTitle,
+            "Desc": vCardDesc           
+          });
+        }
+      }
+    }
+
+  
   }
 
   obtenerDatosDesconocidos(respuesta: Object) {
     var extraTitle: string = "No data";
     var extraDesc: string = "No data";
-    var columns : string[] = ["handle","name","type","country", "entities","links","events","rdapConformance",
-    "notices","port43","objectClassName","lacnic_legalRepresentative", "remarks","startAutnum","endAutnum"];
+    var columns : string[] = ["handle","entities","links","events","rdapConformance","notices","port43",
+    "objectClassName","lacnic_legalRepresentative", "remarks", "networks", "autnums", "lang", 
+    "vcardArray", "roles"];
     var type : string;
     var keys: string[] = Object.keys(respuesta);
     var values: string[] = Object.values(respuesta);
@@ -626,6 +694,8 @@ export class ResultadosAutnumComponent implements OnInit {
         });
       } 
     }
+
+
   }
 
 

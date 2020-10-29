@@ -1,15 +1,15 @@
 <div class="row">
   <div class="col-md-12">
-      <p class="titulo text-center">IP: {{IP}}/{{MASK}}</p>
+      <p class="titulo text-center">IP: {{IP}}</p>
   </div>
   <div class="col-md-6 offset-md-3" *ngIf="loading">
-      <img class="imgLoading" src="assets/img/loading.gif" alt="loading..." >
+      <img class="imgLoading" src="assets/img/loading.gif" alt="loading...">
   </div>
 
   <div class="col-md-6" *ngIf="!loading && datosIP.length > 0">
       <p class="tituloTabla">{{ "RESULTADOSIP.TablaIP.Titulo" | translate }}</p>
       <table class="table">
-        <tbody>
+          <tbody>
           <tr>
               <td class="celdaTitulo">{{ "RESULTADOSIP.TablaIP.Filas.Handle.Titulo" | translate }}</td>
               <td class="celdaTexto">{{ datosIP[0] }}</td>
@@ -46,7 +46,7 @@
             <td class="celdaTitulo">{{ "RESULTADOSIP.TablaIP.Filas.Estado.Titulo" | translate }}</td>
             <td class="celdaTexto">{{ datosIP[8] }}</td>
           </tr>
-        </tbody>
+          </tbody>
       </table>
       <p class="tituloTabla" *ngIf="!loading && datosNotices.length > 0">{{ "RESULTADOSAUTNUM.TablaNotices.Titulo" | translate }}</p>
       <table class="table"  *ngIf="!loading && datosNotices.length > 0">
@@ -119,6 +119,10 @@
               <td class="celdaTitulo">{{ "RESULTADOSIP.TablaContacts.Filas.Name.Titulo" | translate }}</td>
               <td class="celdaTexto">{{ entity.Name }}</td>
           </tr>
+          <!--<tr>-->
+              <!--<td class="celdaTitulo">{{ "RESULTADOSIP.TablaContacts.Filas.Address.Titulo" | translate }}</td>-->
+              <!--<td class="celdaTexto">{{ entity.Address }}</td>-->
+          <!--</tr>-->
           <tr *ngIf="!loading && entity.MuestroAddress == '1'">
             <td class="celdaTitulo">{{ "RESULTADOSIP.TablaContacts.Filas.Country.Titulo" | translate }}</td>
             <td class="celdaTexto">{{ entity.Country }}</td>
@@ -138,7 +142,7 @@
           <tr>
               <td class="celdaTitulo">{{ "RESULTADOSIP.TablaContacts.Filas.Telephone.Titulo" | translate }}</td>
               <td class="celdaTexto">{{ entity.TelType }} {{ entity.Telephone }}</td>
-          </tr>          
+          </tr>
           <tr>
               <td class="celdaTitulo">{{ "RESULTADOSIP.TablaContacts.Filas.Email.Titulo" | translate }}</td>
               <td class="celdaTexto">{{ entity.Email }}</td>

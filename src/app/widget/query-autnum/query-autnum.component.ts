@@ -4,21 +4,18 @@ import {DataService} from '../../shared/services/data.service';
 import { TranslateService } from '@ngx-translate/core';
 import {Utilities} from "../../shared/utilities";
 import {Mensaje} from "../../shared/mensaje";
-import {Exito} from "../../shared/exito";
 import {Error} from "../../shared/error";
 import {ResponseAutnum} from '../../shared/responseAutnum';
-import {Event} from '../../shared/event';
 import {ResponseEntity} from '../../shared/responseEntity';
 import {Constantes} from '../../shared/constantes';
 import {DomSanitizer} from '@angular/platform-browser';
 
-
 @Component({
-  selector: 'resultados-autnum',
-  templateUrl: './resultados-autnum.component.html',
-  styleUrls: ['./resultados-autnum.component.css']
+  selector: 'app-query-autnum',
+  templateUrl: './query-autnum.component.html',
+  styleUrls: ['./query-autnum.component.css']
 })
-export class ResultadosAutnumComponent implements OnInit {
+export class QueryAutnumComponent implements OnInit {
 
   mensajes: Mensaje = new Mensaje();
   loading: boolean = true;
@@ -34,13 +31,28 @@ export class ResultadosAutnumComponent implements OnInit {
   rederictUrl: string = Constantes.rederictUrl;
   private mostarDatosExta: boolean = true;
 
+  lang : string = "es";
+
   constructor(private dataService: DataService, private route: ActivatedRoute, private translate: TranslateService, private sanitizer: DomSanitizer) {
-    this.cargarLenguaje();
+    
   }
 
   ngOnInit(): void {
     Utilities.log("[resultados-autnum.component.ts] - ngOnInit: Start");
     
+    var langParam = this.route.snapshot.queryParamMap.get("lang"); 
+    
+    if (langParam != undefined && langParam != null) {
+      if (langParam == 'es' || langParam == 'pt' || langParam == 'en') {
+        this.lang = langParam;
+      } else {
+        this.lang = 'es';
+      }
+    } else {
+      this.lang = 'es';
+    }   
+    this.cargarLenguaje();
+
     this.AUTNUM = this.route.snapshot.params['autnum'];
     if (this.AUTNUM != undefined && this.AUTNUM != null && this.AUTNUM != "") {
 
@@ -59,14 +71,8 @@ export class ResultadosAutnumComponent implements OnInit {
     Utilities.log("[resultados-autnum.component.ts] - cargarLenguaje: Start");
 
     this.translate.addLangs(['es', 'en', 'pt']);
-    this.translate.setDefaultLang('es');
-    this.translate.use('es');
-    if (localStorage.getItem('lenguaje') != null) {
-        this.translate.use(localStorage.getItem('lenguaje'));
-    }
-    else {
-        this.translate.use(this.translate.getDefaultLang());
-    }
+    this.translate.setDefaultLang(this.lang);
+    this.translate.use(this.lang);
 
     Utilities.log("[resultados-autnum.component.ts] - cargarLenguaje: Finish");
   }
@@ -294,7 +300,7 @@ export class ResultadosAutnumComponent implements OnInit {
                 country = v[3][6];
                 postalCode = v[3][5];
             }
-            //AAE Obtengo versión
+            //AAE Obtengo versiÃ³n
             if (v[0] == "version") {
               version = v[3];
             }
@@ -630,3 +636,4 @@ export class ResultadosAutnumComponent implements OnInit {
 
 
 }
+

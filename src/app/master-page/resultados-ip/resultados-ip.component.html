@@ -38,6 +38,14 @@
             <td class="celdaTitulo">{{ "RESULTADOSIP.TablaIP.Filas.LegalRepresentative.Titulo" | translate }}</td>
             <td class="celdaTexto">{{ datosIP[6] }}</td>
           </tr>
+          <tr>
+            <td class="celdaTitulo">{{ "RESULTADOSIP.TablaIP.Filas.ParentHandle.Titulo" | translate }}</td>
+            <td class="celdaTexto">{{ datosIP[7] }}</td>
+          </tr>
+          <tr>
+            <td class="celdaTitulo">{{ "RESULTADOSIP.TablaIP.Filas.Estado.Titulo" | translate }}</td>
+            <td class="celdaTexto">{{ datosIP[8] }}</td>
+          </tr>
           </tbody>
       </table>
       <p class="tituloTabla" *ngIf="!loading && datosNotices.length > 0">{{ "RESULTADOSAUTNUM.TablaNotices.Titulo" | translate }}</p>
@@ -52,6 +60,48 @@
         </tr>
         </tbody>
       </table>
+      <p class="tituloTabla" *ngIf="!loading && datosRemarks.length > 0">{{ "RESULTADOSAUTNUM.TablaRemarks.Titulo" | translate }}</p>
+      <table class="table"  *ngIf="!loading && datosRemarks.length > 0">
+        <tbody>
+        <tr *ngFor="let remark of datosRemarks">
+            <td class="celdaTitulo">{{ remark.Title }}</td>            
+            <td class="celdaTexto">{{ remark.Desc }}</td>
+        </tr>
+        </tbody>
+      </table>
+      <!-- Datos extra -->
+      <span class="tituloTabla mr-lg-2">{{ "RESULTADOSIP.TablaExtra.Titulo" | translate }}</span>
+      <a data-toggle="collapse" href="#collapseExtras" aria-expanded="false" aria-controls="collapseExtras">
+          <span class="fa fa-plus"></span>
+      </a>
+      <div class="collapse" id="collapseExtras">
+        <table class="table">
+            <tbody>
+                <tr *ngFor="let extra of datosExtra">
+                    <td class="celdaTitulo">{{ extra.Title }}</td>            
+                    <td class="celdaTexto">{{ extra.Desc }}</td>
+                </tr>               
+                <tr>
+                    <td colspan="2" class="subtituloTabla">{{ "RESULTADOSIP.TablaExtra.SubTituloEventos" | translate }}</td>
+                </tr>
+                <tr *ngFor="let event of datosEvents">
+                    <td class="celdaTitulo">{{ event.Title }}</td>            
+                    <td class="celdaTexto">{{ event.Desc }}</td>
+                </tr> 
+                <tr>
+                    <td colspan="2" class="subtituloTabla">{{ "RESULTADOSIP.TablaExtra.SubTituloLinks" | translate }}</td>
+                </tr>
+                <tr *ngFor="let link of datosLinks">
+                    <td class="celdaTitulo">{{ link.Title }}</td>
+                    <td class="celdaTexto" *ngIf="link.Link != '#'">
+                        <a class="link" target="_blank" href="{{link.Link}}">{{ link.Desc }}</a>
+                    </td>
+                    <td class="celdaTexto" *ngIf="link.Link == '#'">{{ link.Desc }}</td>
+                </tr> 
+            </tbody>
+        </table>
+
+      </div>
   </div>
 
   <div class="col-md-6" *ngIf="!loading && datosEntities.length > 0">

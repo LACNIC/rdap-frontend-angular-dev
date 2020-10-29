@@ -23,6 +23,11 @@ export class ResultadosIPMaskComponent implements OnInit {
   datosIP: string[] = [];
   datosEntities: any[] = [];
   datosNotices: any[] = [];
+  datosRemarks: any[] = [];
+  datosExtra: any[] = [];
+  datosLinks: any[] = [];
+  datosEvents: any[] = [];
+
   private mostarDatosExta: boolean = true;
   
   constructor(private dataService: DataService, private route: ActivatedRoute, private translate: TranslateService, private sanitizer: DomSanitizer) {
@@ -117,6 +122,8 @@ export class ResultadosIPMaskComponent implements OnInit {
     var respuesta: ResponseIP = response;
     this.obtenerDatosIP(respuesta);
     this.obtenerEntities(respuesta);
+    this.obtenerDatosExtra(respuesta);
+    this.obtenerDatosDesconocidos(respuesta);
     Utilities.log("[resultados-ip-mask.component.ts] - parseGetBuscarAutumOk | respuesta: " + JSON.stringify(respuesta));
 
   }
@@ -151,6 +158,10 @@ export class ResultadosIPMaskComponent implements OnInit {
     var noticeLink : string = "";
     var nbri : number = 0;
     var blnTermine : boolean = false;
+    var parentHandle : string = "No data";
+    var status : string = "No data";
+    var remarkTitle : String = "Description";
+    var remarkDesc : String = "No data";
 
     if ((typeof respuesta.events != "undefined") && (respuesta.events != null)) {   
       if (respuesta.events.length > 0) {
@@ -171,6 +182,18 @@ export class ResultadosIPMaskComponent implements OnInit {
       legalRep = respuesta.lacnic_legalRepresentative;
     }
     this.datosIP.push(legalRep);
+
+    //AAE Obtengo el parentHnadle
+    if (typeof respuesta.parentHandle != "undefined" && respuesta.parentHandle != ""){
+      parentHandle = respuesta.parentHandle;
+    }
+    this.datosIP.push(parentHandle);
+
+    //AAE Obtengo el status
+    if (typeof respuesta.status != "undefined" && respuesta.status != ""){
+      status = respuesta.status;
+    }
+    this.datosIP.push(status);
 
     //AAE Obetngo notices
     if (typeof respuesta.notices != "undefined" && respuesta.notices.length > 0) {
@@ -196,6 +219,29 @@ export class ResultadosIPMaskComponent implements OnInit {
           "Title": noticeTitle,
           "Desc": noticeDesc,
           "Link": noticeLink
+        });
+        nbri++;
+      }      
+    }
+
+    //AAE Obetngo remarks
+    if (typeof respuesta.remarks != "undefined" && respuesta.remarks.length > 0) {
+      nbri = 0;
+      blnTermine = false;
+      while (nbri < respuesta.remarks.length && !blnTermine) {
+        remarkTitle = "Description";
+        remarkDesc = "No Data";
+        
+        if (typeof respuesta.remarks[nbri].title != "undefined" && respuesta.remarks[nbri].title != ""){
+          remarkTitle = respuesta.remarks[nbri].title;
+        }
+        if (respuesta.remarks[nbri].description.length > 0 && respuesta.remarks[nbri].description[0] != "") {
+          remarkDesc = respuesta.remarks[nbri].description[0];
+        }
+         
+        this.datosRemarks.push({
+          "Title": remarkTitle,
+          "Desc": remarkDesc
         });
         nbri++;
       }      
@@ -433,6 +479,211 @@ export class ResultadosIPMaskComponent implements OnInit {
         );
     }
     this.loading = false;
+  }
+
+  obtenerDatosExtra(respuesta: ResponseIP) {
+    var extraTitle: string = "No data";
+    var extraDesc: string = "No data";
+    var eventTitle: string = "No data";
+    var eventDesc: string = "No data";
+    var linkTitle: string  = "No data";
+    var linkDesc: string = "No data";
+    var linkLink: string = "#";
+
+    extraTitle = this.translate.instant("RESULTADOSIP.TablaExtra.Filas.Name.Titulo");
+    if (typeof respuesta.name != "undefined" && respuesta.name != ""){
+      extraDesc = respuesta.name;      
+    }
+    this.datosExtra.push({
+      "Title": extraTitle,
+      "Desc": extraDesc
+    });
+
+    extraTitle = this.translate.instant("RESULTADOSIP.TablaExtra.Filas.Country.Titulo");
+    extraDesc = "No data";
+    if (typeof respuesta.country != "undefined" && respuesta.country != ""){
+      extraDesc = respuesta.country;     
+    }
+    this.datosExtra.push({
+      "Title": extraTitle,
+      "Desc": extraDesc
+    });
+
+    extraTitle = this.translate.instant("RESULTADOSIP.TablaExtra.Filas.Port43.Titulo");
+    extraDesc = "No data";
+    if (typeof respuesta.port43 != "undefined" && respuesta.port43 != ""){
+      extraDesc = respuesta.port43;     
+    }
+    this.datosExtra.push({
+      "Title": extraTitle,
+      "Desc": extraDesc
+    });
+
+    extraTitle = this.translate.instant("RESULTADOSIP.TablaExtra.Filas.ObjectClassName.Titulo");
+    extraDesc = "No data";
+    if (typeof respuesta.objectClassName != "undefined" && respuesta.objectClassName != ""){
+      extraDesc = respuesta.objectClassName;     
+    }
+    this.datosExtra.push({
+      "Title": extraTitle,
+      "Desc": extraDesc
+    });
+
+    extraTitle = this.translate.instant("RESULTADOSIP.TablaExtra.Filas.RdapConformance.Titulo");
+    extraDesc = "No data";
+    if (typeof respuesta.rdapConformance != "undefined" && respuesta.rdapConformance.length > 0){
+      for (let i: number = 0; i < respuesta.rdapConformance.length; i++) {
+        if (i == 0) {
+          extraDesc = respuesta.rdapConformance[i];
+        } else {
+          extraDesc = extraDesc + ', ' + respuesta.rdapConformance[i];
+        }
+      }
+    }
+    this.datosExtra.push({
+      "Title": extraTitle,
+      "Desc": extraDesc
+    });
+
+    extraTitle = this.translate.instant("RESULTADOSIP.TablaExtra.Filas.Lang.Titulo");
+    extraDesc = "No data";
+    if (typeof respuesta.lang != "undefined" && respuesta.lang != "") {
+      extraDesc = respuesta.lang;     
+    }
+    this.datosExtra.push({
+      "Title": extraTitle,
+      "Desc": extraDesc
+    });
+
+    extraTitle = this.translate.instant("RESULTADOSIP.TablaExtra.Filas.Cidr0_cidrs.Titulo");
+    extraDesc = "No data";
+    if (typeof respuesta.cidr0_cidrs != "undefined" && respuesta.cidr0_cidrs.length > 0){
+      for (let i: number = 0; i < respuesta.cidr0_cidrs.length; i++) {
+        if (i == 0) {
+          extraDesc = respuesta.cidr0_cidrs[i].v4prefix + " lenght: " + respuesta.cidr0_cidrs[i].length.toString();
+        } else {
+          extraDesc = extraDesc + ', ' + respuesta.cidr0_cidrs[i].v4prefix + " lenght: " + respuesta.cidr0_cidrs[i].length;
+        }
+      }
+    }
+    this.datosExtra.push({
+      "Title": extraTitle,
+      "Desc": extraDesc
+    });
+
+    extraTitle = this.translate.instant("RESULTADOSIP.TablaExtra.Filas.Originautnums.Titulo");
+    extraDesc = "No data";
+    if (typeof respuesta.arin_originas0_originautnums != "undefined" && respuesta.arin_originas0_originautnums.length > 0){
+      for (let i: number = 0; i < respuesta.arin_originas0_originautnums.length; i++) {
+        if (i == 0) {
+          extraDesc = respuesta.arin_originas0_originautnums[i].toString();
+        } else {
+          extraDesc = extraDesc + ', ' + respuesta.arin_originas0_originautnums[i].toString();
+        }
+      }
+    }
+    this.datosExtra.push({
+      "Title": extraTitle,
+      "Desc": extraDesc
+    });
+
+    extraTitle = this.translate.instant("RESULTADOSIP.TablaExtra.Filas.Nicbr_autnum.Titulo");
+    extraDesc = "No data";
+    if (typeof respuesta.nicbr_autnum != "undefined" && respuesta.nicbr_autnum != null) {
+      extraDesc = respuesta.nicbr_autnum.toString();     
+    }
+    this.datosExtra.push({
+      "Title": extraTitle,
+      "Desc": extraDesc
+    });
+
+    //AAE Obetngo events
+    if (typeof respuesta.events != "undefined" && respuesta.events.length > 0) {
+      for (let i: number = 0; i < respuesta.events.length; i++) {
+        eventTitle = "Description";
+        eventDesc = "No Data";        
+        if (typeof respuesta.events[i].eventAction != "undefined" && respuesta.events[i].eventAction != ""){
+          eventTitle = respuesta.events[i].eventAction;
+        }
+        if (typeof respuesta.events[i].eventDate != "undefined" && respuesta.events[i].eventDate != ""){
+          eventDesc = respuesta.events[i].eventDate;
+        }         
+        this.datosEvents.push({
+          "Title": eventTitle,
+          "Desc": eventDesc
+        });       
+      }      
+    }
+
+    //AAE Obetngo links
+    if (typeof respuesta.links != "undefined" && respuesta.links.length > 0) {
+      for (let i: number = 0; i < respuesta.links.length; i++) {
+        linkTitle = "Rel";
+        linkDesc = "No Data";        
+        linkLink = "#"
+        if (typeof respuesta.links[i].rel != "undefined" && respuesta.links[i].rel != ""){
+          linkTitle = respuesta.links[i].rel;
+        }
+        if (typeof respuesta.links[i].href != "undefined" && respuesta.links[i].href != ""){
+          linkDesc = respuesta.links[i].href;
+          linkLink = respuesta.links[i].href;
+        }         
+        this.datosLinks.push({
+          "Title": linkTitle,
+          "Desc": linkDesc,
+          "Link": linkLink
+        });       
+      }      
+    }    
+
+  }
+
+  obtenerDatosDesconocidos(respuesta: Object) {
+    var extraTitle: string = "No data";
+    var extraDesc: string = "No data";
+    var columns : string[] = ["handle","startAddress", "endAddress","ipVersion","name","type","country",
+    "entities","links","events","rdapConformance","notices","port43","objectClassName","lacnic_legalRepresentative",
+    "remarks", "parentHandle", "status", "lang", "cidr0_cidrs", "arin_originas0_originautnums", "nicbr_autnum"];
+    var type : string;
+    var keys: string[] = Object.keys(respuesta);
+    var values: string[] = Object.values(respuesta);
+    for (let i = 0; i < keys.length; i++) { 
+      if (!(columns.includes(keys[i])) ) {
+        extraTitle = keys[i];
+        extraDesc = "No data";      
+        type = typeof values[i];
+        
+        if (type == "string" && values[i] != "") {
+          extraDesc = values[i];
+        }
+        if (type == "number") {
+          extraDesc = values[i].toString();
+        }
+        if (type == "object") {         
+          if (Array.isArray(values[i])) {
+            
+            if (values[i].length > 0) {
+              for  (let j = 0; j < values[i].length; j++) {
+                if (j ==0 ){
+                  extraDesc = JSON.stringify(values[i][j])//values[i][j].toString();
+                } else {
+                  extraDesc = extraDesc + ', ' + JSON.stringify(values[i][j])
+                }   
+              } 
+            }
+          } else {            
+            extraDesc = JSON.stringify(values[i]);
+          }
+        }
+        
+        this.datosExtra.push({
+          "Title": extraTitle,
+          "Desc": extraDesc
+        });
+      } 
+    }
+
+
   }
 
   sanitize(url: string) {

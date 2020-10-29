@@ -5,6 +5,7 @@ import { Entity }   from './entity';
 import { Link }     from './link';
 import { Event }    from './event';
 import { Notice }   from './notice';
+import { Remark }   from './remark';
     
 export class ResponseAutnum {
     handle : string;
@@ -18,5 +19,9 @@ export class ResponseAutnum {
     port43 : string;
     objectClassName : string;
     lacnic_legalRepresentative : string;
+    remarks : Remark[];
+    name : string;
+    startAutnum : number;
+    endAutnum : number;   
     
 }

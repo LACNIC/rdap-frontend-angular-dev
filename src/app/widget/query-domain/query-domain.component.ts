@@ -4,60 +4,71 @@ import {DataService} from '../../shared/services/data.service';
 import { TranslateService } from '@ngx-translate/core';
 import {Utilities} from "../../shared/utilities";
 import {Mensaje} from "../../shared/mensaje";
-import {ResponseNameserver} from "../../shared/responseNameserver";
 import {Error} from "../../shared/error";
+import {ResponseDomain} from '../../shared/responseDomain';
 import {Constantes} from '../../shared/constantes';
 import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-resultados-nameserver',
-  templateUrl: './resultados-nameserver.component.html',
-  styleUrls: ['./resultados-nameserver.component.css']
+  selector: 'app-query-domain',
+  templateUrl: './query-domain.component.html',
+  styleUrls: ['./query-domain.component.css']
 })
-export class ResultadosNameserverComponent implements OnInit {
+export class QueryDomainComponent implements OnInit {
 
   mensajes: Mensaje = new Mensaje();
   loading: boolean = true;
-  nameserver: string;
-  datosNameserver: string[] = [];
+  domain: string;
+  datosDomain: string[] = [];
+  datosNameservers: any[] = [];
   datosNotices: any[] = [];
   datosRemarks: any[] = [];
   datosExtra: any[] = [];
-  datosLinks: any[] = [];  
-
+  datosLinks: any[] = [];
   rederictUrl: string = Constantes.rederictUrl;
+  
+  lang : string = "es";
 
   constructor(private dataService: DataService, private route: ActivatedRoute, private translate: TranslateService, private sanitizer: DomSanitizer) {
-    this.cargarLenguaje();
+    
   }
 
   ngOnInit(): void {
-    Utilities.log("[resultados-nameserver.component.ts] - ngOnInit: Start");
+  
+    Utilities.log("[resultados-domain.component.ts] - ngOnInit: Start");
 
-    this.nameserver = this.route.snapshot.params['nameserver'];
-    if (this.nameserver != undefined && this.nameserver != null && this.nameserver != "") {
-
-      
-      this.buscarDatosNameserver();
+    var langParam = this.route.snapshot.queryParamMap.get("lang"); 
+    
+    if (langParam != undefined && langParam != null) {
+      if (langParam == 'es' || langParam == 'pt' || langParam == 'en') {
+        this.lang = langParam;
+      } else {
+        this.lang = 'es';
+      }
+    } else {
+      this.lang = 'es';
     }
 
-    Utilities.log("[resultados-nameserver.component.ts] - ngOnInit: Finish");
+    this.cargarLenguaje();
+
+    this.domain = this.route.snapshot.params['domain'];
+    if (this.domain != undefined && this.domain != null && this.domain != "") {
+
+      
+      this.buscarDatosDomain();
+    }
+
+    Utilities.log("[resultados-domain.component.ts] - ngOnInit: Finish");
   }
 
   cargarLenguaje() {
-    Utilities.log("[resultados-nameserver.component.ts] - cargarLenguaje: Start");
+    Utilities.log("[resultados-domain.component.ts] - cargarLenguaje: Start");
 
     this.translate.addLangs(['es', 'en', 'pt']);
-    this.translate.setDefaultLang('es');
-    this.translate.use('es');
-    if (localStorage.getItem('lenguaje') != null) {
-        this.translate.use(localStorage.getItem('lenguaje'));
-    }
-    else {
-        this.translate.use(this.translate.getDefaultLang());
-    }
+    this.translate.setDefaultLang(this.lang);
+    this.translate.use(this.lang);
 
-    Utilities.log("[resultados-nameserver.component.ts] - cargarLenguaje: Finish");
+    Utilities.log("[resultados-domain.component.ts] - cargarLenguaje: Finish");
   }
 
   limpiarMensajes() {
@@ -70,7 +81,7 @@ export class ResultadosNameserverComponent implements OnInit {
       .subscribe(
         value => this.mostrarError(value),
         error => this.translateError(error),
-        () => Utilities.log("[resultados-nameserver.component.ts] - translate.get: Completed")
+        () => Utilities.log("[resultados-domain.component.ts] - translate.get: Completed")
       );
   }
 
@@ -81,60 +92,62 @@ export class ResultadosNameserverComponent implements OnInit {
   }
 
   translateError(error: any) {
-    Utilities.log("[resultados-nameserver.component.ts] - translateError | error: " + JSON.stringify(error));
+    Utilities.log("[resultados-domain.component.ts] - translateError | error: " + JSON.stringify(error));
   }
 
-  buscarDatosNameserver() {
-    Utilities.log("[resultados-nameserver.component.ts] - buscarDatosNameserver: Start");
-    Utilities.log("[resultados-nameserver.component.ts] - buscarDatosNameserver | this.nameserver: " + this.nameserver);
+  buscarDatosDomain() {
+    Utilities.log("[resultados-domain.component.ts] - buscarDatosDomain: Start");
+    Utilities.log("[resultados-domain.component.ts] - buscarDatosDomain | this.domain: " + this.domain);
 
-    this.dataService.getBuscarNameserver(this.nameserver)
+    this.dataService.getBuscarDomain(this.domain)
       .subscribe(
-        res => this.parseGetBuscarNameserverOk(res),
-        error => this.parseGetBuscarNameserverError(error),
-        () => Utilities.log("[resultados-nameserver.component.ts] - getBuscarNameserver: Completed")
+        res => this.parseGetBuscarDomainOk(res),
+        error => this.parseGetBuscarDomainError(error),
+        () => Utilities.log("[resultados-domain.component.ts] - getBuscarDomain: Completed")
       );
 
-    Utilities.log("[resultados-nameserver.component.ts] - buscarDatosNameserver: Finish");
+    Utilities.log("[resultados-domain.component.ts] - buscarDatosDomain: Finish");
   }
 
-  parseGetBuscarNameserverError(error: any) {
-    Utilities.log("[resultados-nameserver.component.ts] - parseGetBuscarNameserverError| error: " + JSON.stringify(error));
+  parseGetBuscarDomainError(error: any) {
+    Utilities.log("[resultados-domain.component.ts] - parseGetBuscarDomainError| error: " + JSON.stringify(error));
     //if (error.json().errorCode == 429) {
     if (error.errorCode == 429) {
       this.traducirError("GENERAL.Errores.ArrayLimit");
     } else {
-      this.traducirError("RESULTADOSNAMESERVER.Errores.sinResultados");
-      this.traducirError("RESULTADOSNAMESERVER.Errores.verifiqueYReintente");
+      this.traducirError("RESULTADOSDOMAIN.Errores.sinResultados");
+      this.traducirError("RESULTADOSDOMAIN.Errores.verifiqueYReintente");
     }
     this.loading = false;
   }
 
-  parseGetBuscarNameserverOk(response: any) {
-    Utilities.log("[resultados-nameserver.component.ts] - parseGetBuscarNameserverOk | response: " + JSON.stringify(response));
+  parseGetBuscarDomainOk(response: any) {
+    Utilities.log("[resultados-domain.component.ts] - parseGetBuscarDomainOk | response: " + JSON.stringify(response));
 
-    var respuesta: ResponseNameserver = response;
-    this.obtenerDatosNameserver(respuesta);
+    var respuesta: ResponseDomain = response;
+    this.obtenerDatosDomain(respuesta);
     this.obtenerDatosExtra(respuesta);
     this.obtenerDatosDesconocidos(respuesta);
+
     this.loading = false;
-    Utilities.log("[resultados-nameserver.component.ts] - parseGetBuscarNameserverOk | respuesta: " + JSON.stringify(respuesta));
+    Utilities.log("[resultados-domain.component.ts] - parseGetBuscarDomainOk | respuesta: " + JSON.stringify(respuesta));
 
   }
 
-  obtenerDatosNameserver(respuesta: ResponseNameserver) {
+  obtenerDatosDomain(respuesta: ResponseDomain) {
     
     //Inicializo variables
     var ldhName: string = "No data";
-    var ipV4: string = "No data";
-    var ipV6: string = "No data";
+    var handle: string = "No data";    
     var linkSource: string = "";
+
     var noticeTitle : string = "No data";
     var noticeDesc : string = "No data"; 
     var noticeLink : string = "";
 
     var nbri : number = 0;
     var blnTermine : boolean = false;
+
     var remarkTitle : String = "Description";
     var remarkDesc : String = "No data";
 
@@ -142,29 +155,10 @@ export class ResultadosNameserverComponent implements OnInit {
     if (typeof respuesta.ldhName != "undefined" && respuesta.ldhName != "") {
       ldhName = respuesta.ldhName;
     }
-
-    //ipv4
-    if (respuesta.ipAddresses.v4.length > 0) {
-      for (let i: number = 0; i < respuesta.ipAddresses.v4.length; i++) {
-        if (ipV4 == 'No data') {
-          ipV4 = respuesta.ipAddresses.v4[i];
-        } else {
-          ipV4 += ', ' + respuesta.ipAddresses.v4[i];
-        }        
-      }
+    //handle
+    if (typeof respuesta.handle != "undefined" && respuesta.handle != "") {
+      handle = respuesta.handle;
     }
-
-    //ipV6
-    if (respuesta.ipAddresses.v6.length > 0) {
-      for (let i: number = 0; i < respuesta.ipAddresses.v6.length; i++) {
-        if (ipV6 == 'No data') {
-          ipV6 = respuesta.ipAddresses.v6[i];
-        } else {
-          ipV6 += ', ' + respuesta.ipAddresses.v6[i];
-        }        
-      }
-    }
-
     //link
     if (respuesta.links!= null && respuesta.links.length > 0 ) {
       linkSource = respuesta.links[0].href;
@@ -177,7 +171,7 @@ export class ResultadosNameserverComponent implements OnInit {
         noticeTitle = "No Data";
         noticeDesc = "No Data";
         noticeLink = "#";
-        //if (respuesta.notices[nbri].title = "Terms and Conditions") {
+        //if (respuesta.notices[nbri].title == "Terms and Conditions") {
         noticeTitle = respuesta.notices[nbri].title;
         if (respuesta.notices[nbri].description.length > 0 && respuesta.notices[nbri].description[0] != "") {
           noticeDesc = respuesta.notices[nbri].description[0];
@@ -196,7 +190,6 @@ export class ResultadosNameserverComponent implements OnInit {
         });
         nbri++;
       }
-
     }
 
     //AAE Obetngo remarks
@@ -219,24 +212,34 @@ export class ResultadosNameserverComponent implements OnInit {
           "Desc": remarkDesc
         });
         nbri++;
-      }  
+      }      
     }
-    //Inserto en datos:
-    this.datosNameserver.push(ldhName);
-    this.datosNameserver.push(ipV4);
-    this.datosNameserver.push(ipV6);
-    this.datosNameserver.push(linkSource);
-    //this.datosNameserver.push(noticeTitle);
-    //this.datosNameserver.push(noticeDesc);
-    //this.datosNameserver.push(noticeLink);    
 
+    //Obtengo nameservers
+    if (respuesta.nameServers.length > 0) {
+      for (let i: number = 0; i < respuesta.nameServers.length; i++) {
+        var link : string = this.rederictUrl + "nameserver/" +  respuesta.nameServers[i];
+        this.datosNameservers.push({
+          "Name" : respuesta.nameServers[i],
+          "Info" : link
+        });
+
+      }        
+    }
+
+    //Inserto en datos
+    this.datosDomain.push(handle);
+    this.datosDomain.push(ldhName);    
+    this.datosDomain.push(linkSource);
+    //this.datosDomain.push(noticeTitle);
+    //this.datosDomain.push(noticeDesc);
+    //this.datosDomain.push(noticeLink); 
   }
 
-  obtenerDatosExtra(respuesta: ResponseNameserver) {
+  obtenerDatosExtra(respuesta: ResponseDomain) {
     var extraTitle: string = "No data";
     var extraDesc: string = "No data";
-    var eventTitle: string = "No data";
-    var eventDesc: string = "No data";
+    
     var linkTitle: string  = "No data";
     var linkDesc: string = "No data";
     var linkLink: string = "#";
@@ -277,8 +280,6 @@ export class ResultadosNameserverComponent implements OnInit {
       "Desc": extraDesc
     });
 
-    
-
     //AAE Obetngo links
     if (typeof respuesta.links != "undefined" && respuesta.links.length > 0) {
       for (let i: number = 0; i < respuesta.links.length; i++) {
@@ -298,16 +299,15 @@ export class ResultadosNameserverComponent implements OnInit {
           "Link": linkLink
         });       
       }      
-    }  
-
-
+    }
+    
   }
 
   obtenerDatosDesconocidos(respuesta: Object) {
     var extraTitle: string = "No data";
     var extraDesc: string = "No data";
-    var columns : string[] = ["ldhName","links","rdapConformance","notices","port43","objectClassName",
-    "ipAddresses", "remarks"];
+    var columns : string[] = ["handle","links","ldhName","rdapConformance","notices","port43",
+    "objectClassName","nameServers","remarks"];
     var type : string;
     var keys: string[] = Object.keys(respuesta);
     var values: string[] = Object.values(respuesta);
@@ -350,6 +350,9 @@ export class ResultadosNameserverComponent implements OnInit {
 
   }
 
-  
+  sanitize(url: string) {
+    return this.sanitizer.bypassSecurityTrustUrl(url);
+  }
 
 }
+

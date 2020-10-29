@@ -10,11 +10,11 @@ import {Constantes} from '../../shared/constantes';
 import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-resultados-nameserver',
-  templateUrl: './resultados-nameserver.component.html',
-  styleUrls: ['./resultados-nameserver.component.css']
+  selector: 'app-query-nameserver',
+  templateUrl: './query-nameserver.component.html',
+  styleUrls: ['./query-nameserver.component.css']
 })
-export class ResultadosNameserverComponent implements OnInit {
+export class QueryNameserverComponent implements OnInit {
 
   mensajes: Mensaje = new Mensaje();
   loading: boolean = true;
@@ -26,13 +26,29 @@ export class ResultadosNameserverComponent implements OnInit {
   datosLinks: any[] = [];  
 
   rederictUrl: string = Constantes.rederictUrl;
+  
+  lang : string = "es";
 
   constructor(private dataService: DataService, private route: ActivatedRoute, private translate: TranslateService, private sanitizer: DomSanitizer) {
-    this.cargarLenguaje();
+    
   }
 
   ngOnInit(): void {
     Utilities.log("[resultados-nameserver.component.ts] - ngOnInit: Start");
+
+    var langParam = this.route.snapshot.queryParamMap.get("lang"); 
+    
+    if (langParam != undefined && langParam != null) {
+      if (langParam == 'es' || langParam == 'pt' || langParam == 'en') {
+        this.lang = langParam;
+      } else {
+        this.lang = 'es';
+      }
+    } else {
+      this.lang = 'es';
+    }
+
+    this.cargarLenguaje();
 
     this.nameserver = this.route.snapshot.params['nameserver'];
     if (this.nameserver != undefined && this.nameserver != null && this.nameserver != "") {
@@ -48,14 +64,8 @@ export class ResultadosNameserverComponent implements OnInit {
     Utilities.log("[resultados-nameserver.component.ts] - cargarLenguaje: Start");
 
     this.translate.addLangs(['es', 'en', 'pt']);
-    this.translate.setDefaultLang('es');
-    this.translate.use('es');
-    if (localStorage.getItem('lenguaje') != null) {
-        this.translate.use(localStorage.getItem('lenguaje'));
-    }
-    else {
-        this.translate.use(this.translate.getDefaultLang());
-    }
+    this.translate.setDefaultLang(this.lang);
+    this.translate.use(this.lang);
 
     Utilities.log("[resultados-nameserver.component.ts] - cargarLenguaje: Finish");
   }
@@ -353,3 +363,4 @@ export class ResultadosNameserverComponent implements OnInit {
   
 
 }
+

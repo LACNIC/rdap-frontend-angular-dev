@@ -4,6 +4,7 @@
 
 import { Link }     from './link';
 import { Notice }   from './notice';
+import { Remark }   from './remark';
 
 export class ResponseDomain {
     handle : string;
@@ -14,5 +15,6 @@ export class ResponseDomain {
     notices : Notice[];
     port43 : string;
     objectClassName : string;    
+    remarks : Remark[];
     
 }

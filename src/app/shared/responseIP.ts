@@ -5,6 +5,7 @@ import { Entity }   from './entity';
 import { Link }     from './link';
 import { Event }    from './event';
 import { Notice }   from './notice';
+import { Remark }   from './remark';
     
 export class ResponseIP {
     handle : string;
@@ -22,4 +23,12 @@ export class ResponseIP {
     port43 : string;
     objectClassName : string;
     lacnic_legalRepresentative : string;
+    remarks : Remark[];
+    parentHandle : string;
+    status: string;
+    lang: string;
+    cidr0_cidrs: any[];
+    arin_originas0_originautnums: number[];
+    nicbr_autnum: number;
+
 }

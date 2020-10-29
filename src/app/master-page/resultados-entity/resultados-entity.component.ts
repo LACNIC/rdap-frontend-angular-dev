@@ -27,6 +27,11 @@ export class ResultadosEntityComponent implements OnInit {
   //private datosEntities: any[] = [];
   datosEntities: any[] = [];
   datosNotices: any[] = [];
+  datosRemarks: any[] = [];
+  datosExtra: any[] = [];
+  datosLinks: any[] = [];
+  datosEvents: any[] = [];
+  datosVCard: any[] = [];
   private mostarDatosExta: boolean = true;
   rederictUrl: string = Constantes.rederictUrl;
   existenNetworks: boolean = false;
@@ -106,6 +111,8 @@ export class ResultadosEntityComponent implements OnInit {
     var respuesta: ResponseEntity = response;
     this.obtenerDatosEntity(respuesta);
     this.obtenerEntities(respuesta);
+    this.obtenerDatosExtra(respuesta);
+    this.obtenerDatosDesconocidos(respuesta);
     Utilities.log("[resultados-entity.component.ts] - parseGetBuscarEntityOk | respuesta: " + JSON.stringify(respuesta));
 
   }
@@ -170,6 +177,8 @@ export class ResultadosEntityComponent implements OnInit {
     var noticeLink : string = "";
     var nbri : number = 0;
     var blnTermine : boolean = false;
+    var remarkTitle : String = "Description";
+    var remarkDesc : String = "No data";
 
     if (typeof respuesta.events != "undefined" && respuesta.events != null) {
       if (respuesta.events.length > 0) {
@@ -226,6 +235,29 @@ export class ResultadosEntityComponent implements OnInit {
           "Desc": noticeDesc,
           "Link": noticeLink
         })
+        nbri++;
+      }      
+    }
+
+    //AAE Obetngo remarks
+    if (typeof respuesta.remarks != "undefined" && respuesta.remarks.length > 0) {
+      nbri = 0;
+      blnTermine = false;
+      while (nbri < respuesta.remarks.length && !blnTermine) {
+        remarkTitle = "Description";
+        remarkDesc = "No Data";
+        
+        if (typeof respuesta.remarks[nbri].title != "undefined" && respuesta.remarks[nbri].title != ""){
+          remarkTitle = respuesta.remarks[nbri].title;
+        }
+        if (respuesta.remarks[nbri].description.length > 0 && respuesta.remarks[nbri].description[0] != "") {
+          remarkDesc = respuesta.remarks[nbri].description[0];
+        }
+         
+        this.datosRemarks.push({
+          "Title": remarkTitle,
+          "Desc": remarkDesc
+        });
         nbri++;
       }      
     }
@@ -478,6 +510,183 @@ export class ResultadosEntityComponent implements OnInit {
     });
 
     return result;
+
+  }
+
+  obtenerDatosExtra(respuesta: ResponseEntity) {
+    var extraTitle: string = "No data";
+    var extraDesc: string = "No data";
+    var eventTitle: string = "No data";
+    var eventDesc: string = "No data";
+    var linkTitle: string  = "No data";
+    var linkDesc: string = "No data";
+    var linkLink: string = "#";
+    var vCardTitle: string = "No data";
+    var vCardDesc: string = "No data";
+     
+    extraTitle = this.translate.instant("RESULTADOSIP.TablaExtra.Filas.Port43.Titulo");
+    extraDesc = "No data";
+    if (typeof respuesta.port43 != "undefined" && respuesta.port43 != ""){
+      extraDesc = respuesta.port43;     
+    }
+    this.datosExtra.push({
+      "Title": extraTitle,
+      "Desc": extraDesc
+    });
+
+    extraTitle = this.translate.instant("RESULTADOSIP.TablaExtra.Filas.ObjectClassName.Titulo");
+    extraDesc = "No data";
+    if (typeof respuesta.objectClassName != "undefined" && respuesta.objectClassName != ""){
+      extraDesc = respuesta.objectClassName;     
+    }
+    this.datosExtra.push({
+      "Title": extraTitle,
+      "Desc": extraDesc
+    });
+
+    extraTitle = this.translate.instant("RESULTADOSIP.TablaExtra.Filas.RdapConformance.Titulo");
+    extraDesc = "No data";
+    if (typeof respuesta.rdapConformance != "undefined" && respuesta.rdapConformance.length > 0){
+      for (let i: number = 0; i < respuesta.rdapConformance.length; i++) {
+        if (i == 0) {
+          extraDesc = respuesta.rdapConformance[i];
+        } else {
+          extraDesc = extraDesc + ', ' + respuesta.rdapConformance[i];
+        }
+      }
+    }
+    this.datosExtra.push({
+      "Title": extraTitle,
+      "Desc": extraDesc
+    });
+
+    extraTitle = this.translate.instant("RESULTADOSIP.TablaExtra.Filas.Lang.Titulo");
+    extraDesc = "No data";
+    if (typeof respuesta.lang != "undefined" && respuesta.lang != "") {
+      extraDesc = respuesta.lang;     
+    }
+    this.datosExtra.push({
+      "Title": extraTitle,
+      "Desc": extraDesc
+    });
+
+    extraTitle = this.translate.instant("RESULTADOSIP.TablaExtra.Filas.Roles.Titulo");
+    extraDesc = "No data";
+    if (typeof respuesta.roles != "undefined" && respuesta.roles.length > 0){
+      for (let i: number = 0; i < respuesta.roles.length; i++) {
+        if (i == 0) {
+          extraDesc = respuesta.roles[i];
+        } else {
+          extraDesc = extraDesc + ', ' + respuesta.roles[i];
+        }
+      }
+    }
+    this.datosExtra.push({
+      "Title": extraTitle,
+      "Desc": extraDesc
+    });
+
+    //AAE Obetngo events
+    if (typeof respuesta.events != "undefined" && respuesta.events.length > 0) {
+      for (let i: number = 0; i < respuesta.events.length; i++) {
+        eventTitle = "Description";
+        eventDesc = "No Data";        
+        if (typeof respuesta.events[i].eventAction != "undefined" && respuesta.events[i].eventAction != ""){
+          eventTitle = respuesta.events[i].eventAction;
+        }
+        if (typeof respuesta.events[i].eventDate != "undefined" && respuesta.events[i].eventDate != ""){
+          eventDesc = respuesta.events[i].eventDate;
+        }         
+        this.datosEvents.push({
+          "Title": eventTitle,
+          "Desc": eventDesc
+        });       
+      }      
+    }
+
+    //AAE Obetngo links
+    if (typeof respuesta.links != "undefined" && respuesta.links.length > 0) {
+      for (let i: number = 0; i < respuesta.links.length; i++) {
+        linkTitle = "Rel";
+        linkDesc = "No Data";        
+        linkLink = "#"
+        if (typeof respuesta.links[i].rel != "undefined" && respuesta.links[i].rel != ""){
+          linkTitle = respuesta.links[i].rel;
+        }
+        if (typeof respuesta.links[i].href != "undefined" && respuesta.links[i].href != ""){
+          linkDesc = respuesta.links[i].href;
+          linkLink = respuesta.links[i].href;
+        }         
+        this.datosLinks.push({
+          "Title": linkTitle,
+          "Desc": linkDesc,
+          "Link": linkLink
+        });       
+      }      
+    } 
+    
+    //AAE Obetngo Vcard
+    if (typeof respuesta.vcardArray != "undefined" && respuesta.vcardArray.length > 0) {
+      for (let v of respuesta.vcardArray[1]) {
+        if (v[0] != "fn" && v[0] != "adr" && v[0]!= "tel" && v[0]  != "version") {
+          vCardTitle = v[0];
+          vCardDesc = v[3];
+          this.datosVCard.push({
+            "Title": vCardTitle,
+            "Desc": vCardDesc           
+          });
+        }
+      }
+    }
+
+  
+  }
+
+  obtenerDatosDesconocidos(respuesta: Object) {
+    var extraTitle: string = "No data";
+    var extraDesc: string = "No data";
+    var columns : string[] = ["handle","entities","links","events","rdapConformance","notices","port43",
+    "objectClassName","lacnic_legalRepresentative", "remarks", "networks", "autnums", "lang", 
+    "vcardArray", "roles"];
+    var type : string;
+    var keys: string[] = Object.keys(respuesta);
+    var values: string[] = Object.values(respuesta);
+    for (let i = 0; i < keys.length; i++) { 
+      if (!(columns.includes(keys[i])) ) {
+        extraTitle = keys[i];
+        extraDesc = "No data";      
+        type = typeof values[i];
+        
+        if (type == "string" && values[i] != "") {
+          extraDesc = values[i];
+        }
+        if (type == "number") {
+          extraDesc = values[i].toString();
+        }
+        if (type == "object") {         
+          if (Array.isArray(values[i])) {
+            
+            if (values[i].length > 0) {
+              for  (let j = 0; j < values[i].length; j++) {
+                if (j ==0 ){
+                  extraDesc = JSON.stringify(values[i][j])//values[i][j].toString();
+                } else {
+                  extraDesc = extraDesc + ', ' + JSON.stringify(values[i][j])
+                }   
+              } 
+            }
+          } else {            
+            extraDesc = JSON.stringify(values[i]);
+          }
+        }
+        
+        this.datosExtra.push({
+          "Title": extraTitle,
+          "Desc": extraDesc
+        });
+      } 
+    }
+
 
   }
 
