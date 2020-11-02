@@ -16,20 +16,31 @@ export class HomeComponent implements OnInit {
 
   mensajes: Mensaje = new Mensaje();
 
-  loading: boolean = false;
+  loading: boolean = true;
   tipoBuscado: number;
   valorBuscado: string;
+  strMyIp: string;
 
   blnShowDropEntities: boolean = false;
   blnShowDropDomain: boolean = false;
   paramEntities: number;
   paramDomain: number;
+  tipoBusquedaEnt : number;
+  tipoBusquedaDom : number;
 
   constructor(private dataService: DataService, private router: Router, private translate: TranslateService) {
     this.cargarLenguaje();
+    //this.loading = true;
+    this.cargarIpActual();
+
     this.tipoBuscado = 2;
     this.paramEntities = 1;
     this.paramDomain = 1;
+    this.tipoBusquedaEnt = 1;
+    this.tipoBusquedaDom = 1;
+    //his.valorBuscado = this.strMyIp;
+    
+    
   }
 
   ngOnInit(): void {
@@ -56,11 +67,22 @@ export class HomeComponent implements OnInit {
     this.mensajes.Exitos = [];
   }
 
+  cargarIpActual() {
+    this.dataService.getBuscarMiIP()
+      .subscribe(
+        res => this.parseGetBuscarMiIPOk(res),
+        error => this.parseGetBuscarMiIPError(error),
+        () => Utilities.log("[home.component.ts] - getBuscarMiIP: Completed")
+      );
+  }
+
   parseGetBuscarMiIPOk(response: any) {
     Utilities.log("[home.component.ts] - parseGetBuscarMiIPOk | response: " + JSON.stringify(response));
 
-    this.valorBuscado = response.clientIP;
-    Utilities.log("[home.component.ts] - parseGetBuscarMiIPOk | this.valorBuscado: " + this.valorBuscado);
+    //this.valorBuscado = response.clientIP;
+    this.strMyIp = response.ip;
+    this.valorBuscado = response.ip;
+    Utilities.log("[home.component.ts] - parseGetBuscarMiIPOk | this.valorBuscado: " + this.strMyIp);
     this.loading = false;
   }
 
@@ -168,7 +190,7 @@ export class HomeComponent implements OnInit {
 
   buscarDomains() {
     var valorBusqueda: string = "";
-    if (this.paramDomain == 1) {
+    if (this.tipoBusquedaDom == 1) {
       valorBusqueda =  "name=" + this.valorBuscado.trim();
     } else {
       valorBusqueda = "nsLdhName=" + this.valorBuscado.trim();
@@ -179,7 +201,7 @@ export class HomeComponent implements OnInit {
 
   buscarEntities() {
     var valorBusqueda: string = "";
-    if (this.paramEntities == 1) {
+    if (this.tipoBusquedaEnt == 1) {
       valorBusqueda =  "fn=" + this.valorBuscado.trim();
     } else {
       valorBusqueda = "handle=" + this.valorBuscado.trim();
@@ -207,7 +229,20 @@ export class HomeComponent implements OnInit {
       this.blnShowDropDomain = true;
     }
 
+    //IP
+    if (this.tipoBuscado != 2) {
+      this.valorBuscado = "";
+    } else {
+      this.valorBuscado = this.strMyIp;
+    }
+
   }
+
+  
+  
+  
+
+
 
 
 }

@@ -58,3 +58,10 @@
   color: #009DCA;
   text-decoration: none;
 }
+
+.search-radio-button {
+  color: #7F7F7F;
+  font-family: FoundryMonoline-Light;
+  margin-left: 20px;
+  margin-right: 5px;
+}

@@ -14,11 +14,11 @@
       "LinkEntity" : "Query by Entity",
       "LinkEntitiesByName" : "Query by Name",
       "LinkNameserver": "Query by Nameserver",
-      "LinkDomain": "Query by Domain",  
-      "LinkBusquedaEntities" : "Search by Entities",
+      "LinkDomain": "Query by Domain",
+      "LinkBusquedaEntities" : "Search by Entities",      
       "LinkBusquedaDomains" : "Search by Domains", 
       "LinkBusquedaNameservers" : "Search by Nameservers", 
-      "LinkAbout" : "About RDAP"
+      "LinkAbout": "About RDAP"
     }
   },
   "HOME" : {
@@ -45,29 +45,29 @@
       "Asn": {
         "Titulo" : "ASN",
         "Texto" : "Type the Autonomous System number."},
-      "IP":
-      { "Titulo" : "IP or CIDR block",
+      "IP":  {
+        "Titulo" : "IP or CIDR block",
         "Texto" : "Type an IP number (200.7.84.0) or a CIDR block (200.7.84.0/23)."
       },
-      "Nameservers":
-      { "Titulo" : "Nameservers",
-        "Texto" : "Type a nameserver value to query"
+      "Nameservers": { 
+        "Titulo" : "Nameservers",
+        "Texto" : "Enter a value to query a nameserver"
       },
-      "Domains":
-      { "Titulo" : "Domains",
-        "Texto" : "Type a domain."
+      "Domains": { 
+        "Titulo" : "Domains",
+        "Texto" : "Enter a domain."
       },
-      "EntitiesSearch":
-      { "Titulo" : "Entity Search",
-        "Texto" : "Select if you wish to search by fn or handle, then type the search value including wildcards."
+      "EntitiesSearch": { 
+        "Titulo" : "Search Entities",
+        "Texto" : "Select whether you wish to search by fn or handle and enter the value to search for including wildcards."
       },
-      "NameserverSearch":
-      { "Titulo" : "Nameserver Search",
-        "Texto" : "Type the nameserver search value including wildcards."
+      "NameserverSearch": { 
+        "Titulo" : "Search Nameservers",
+        "Texto" : "Enter the value to search for including wildcards."
       },
-      "DomainSearch":
-      { "Titulo" : "Domain Search",
-        "Texto" : "Select if you wish to search by nsLdhName or by name, then type the search value including wildcards."
+      "DomainSearch": { 
+        "Titulo" : "Search Domains",
+        "Texto" : "Select whether you wish to search by nsLdhName or name and enter the value to search for including wildcards."
       }
     },
     "Copyright":"The data below is provided for information purposes and to assist persons in obtaining information about or related to AS and IP numbers registrations. By submitting a query, you agree to use this data only for lawful purposes.",
@@ -78,9 +78,9 @@
         "3" : "Entity",
         "4" : "Nameserver",
         "5" : "Domain",
-        "6" : "Entities Search",
-        "7" : "Nameservers Search",
-        "8" : "Domains Search"
+        "6" : "Search Entities",
+        "7" : "Search Nameservers",
+        "8" : "Search Domains"
 
       }
     },
@@ -126,7 +126,7 @@
   },
   "CONSULTAPORNAMESERVER": {
     "Errores": {
-      "valorBuscadoVacio": "You must specify the value to be searched for."
+      "valorBuscadoVacio": "Please specify the value you wish to search for."
     },
     "Titulo": "Query by Nameserver",
     "InformacionAdicional": {
@@ -150,7 +150,7 @@
   },
   "CONSULTAPORDOMAIN": {
     "Errores": {
-      "valorBuscadoVacio": "You must specify the value to be searched for."
+      "valorBuscadoVacio": "Please specify the value you wish to search for."
     },
     "Titulo": "Query by Domain",
     "InformacionAdicional": {
@@ -162,7 +162,7 @@
   },  
   "BUSQUEDAPORENTITIES": {
     "Errores": {
-      "valorBuscadoVacio": "You must specify the value to be searched for."
+      "valorBuscadoVacio": "Please specify the value you wish to search for."
     },
     "Titulo": "Search by Entities",
     "InformacionAdicional": {
@@ -179,7 +179,7 @@
   },
   "BUSQUEDAPORNAMESERVERS": {
     "Errores": {
-      "valorBuscadoVacio": "You must specify the value to be searched for."
+      "valorBuscadoVacio": "Please specify the value you wish to search for."
     },
     "Titulo": "Search by Namerservers",
     "InformacionAdicional": {
@@ -191,7 +191,7 @@
   },
   "BUSQUEDAPORDOMAINS": {
     "Errores": {
-      "valorBuscadoVacio": "You must specify the value to be searched for."
+      "valorBuscadoVacio": "Please specify the value you wish to search for."
     },
     "Titulo": "Search by Domains",
     "InformacionAdicional": {
@@ -226,9 +226,9 @@
     "Parrafo4" : "RDAP has major advantages over the traditional WHOIS: it provides a standard, unified response; it's easier to use and integrate with other systems; and it allows performing queries in languages other than English."
   },
   "RESULTADOSIP" : {
-    "Errores" : {
-      "sinResultados" : "No results found.",
-      "verifiqueYReintente" : "Please check and try again."
+    "Errores": {
+      "sinResultados": "No results found.",
+      "verifiqueYReintente": "Please verify and try again."
     },
     "TablaIP" : {
       "Titulo" : "IP",
@@ -261,7 +261,7 @@
           "Titulo" : "Last Changed"
         },
         "LegalRepresentative": {
-          "Titulo": "Representante Legal"
+          "Titulo": "Legal Representative"
         },
         "ParentHandle": {
           "Titulo": "Parent Handle"
@@ -361,9 +361,9 @@
     }
   },
   "RESULTADOSAUTNUM" : {
-    "Errores" : {
-      "sinResultados" : "No se han encontrado resultados.",
-      "verifiqueYReintente" : "Por favor, verifique e intente nuevamente."
+    "Errores": {
+      "sinResultados": "No results found.",
+      "verifiqueYReintente": "Please verify and try again."
     },
     "TablaAutnum" : {
       "Titulo": "AS",
@@ -381,7 +381,7 @@
           "Titulo": "Last Changed"
         },
         "LegalRepresentative": {
-          "Titulo": "Representante Legal"
+          "Titulo": "Legal Representative"
         }
       }
     },
@@ -471,21 +471,21 @@
         "Telephone" : {
           "Titulo" : "Telephone"
         },
-        "Registration" : {
-          "Titulo" : "Registration"
+        "Registration": {
+          "Titulo": "Registration"
         },
-        "LastChanged" : {
-          "Titulo" : "Last Changed"
-        },
+        "LastChanged": {
+          "Titulo": "Last Changed"
+        },  
         "Operator" : {
           "Titulo" : "Operator"
         },
         "Version": {
-          "Titulo": "Versión"
+          "Titulo": "Version"
         },
         "LegalRepresentative": {
-          "Titulo": "Representante Legal"
-        },
+          "Titulo": "Legal Representative"
+        }, 
         "Inetnums" : {
           "Titulo" : "Inetnums",
           "Kind" : {
@@ -509,8 +509,8 @@
   },
   "RESULTADOSNAMESERVER": {
     "Errores": {
-      "sinResultados" : "No results found.",
-      "verifiqueYReintente" : "Please check and try again."
+      "sinResultados": "No results found.",
+      "verifiqueYReintente": "Please verify and try again."
     },
     "TablaNamerserver": {
       "Titulo": "Nameserver",
@@ -535,8 +535,8 @@
   },
   "RESULTADOSDOMAIN": {
     "Errores": {
-      "sinResultados" : "No results found.",
-      "verifiqueYReintente" : "Please check and try again."
+      "sinResultados": "No results found.",
+      "verifiqueYReintente": "Please verify and try again."
     },
     "TablaDomain": {
       "Titulo": "Domain",
@@ -569,12 +569,12 @@
   },
   "RESULTSRCHDOMAIN": {
     "Errores": {
-      "sinResultados" : "No results found.",
-      "verifiqueYReintente" : "Please check and try again."
+      "sinResultados": "No results found.",
+      "verifiqueYReintente": "Please verify and try again."
     },
-    "Titulo" : "Search results",
+    "Titulo" : "Results for search by",
     "TablaDomain": {
-      "Titulo": "Domains",
+      "Titulo": "Domain",
       "Filas": {
         "Name": {
           "Titulo": "LdhName"
@@ -596,10 +596,10 @@
   },
   "RESULTSRCHNAMESERVER": {
     "Errores": {
-      "sinResultados" : "No results found.",
-      "verifiqueYReintente" : "Please check and try again."
+      "sinResultados": "No results found.",
+      "verifiqueYReintente": "Please verify and try again."
     },
-    "Titulo" : "Search results",
+    "Titulo" : "Results for search by",
     "TablaNameserver": {
       "Titulo": "Nameservers",
       "Filas": {
@@ -620,10 +620,10 @@
   },
   "RESULTSRCHENTITY": {
     "Errores": {
-      "sinResultados" : "No results found.",
-      "verifiqueYReintente" : "Please check and try again."
+      "sinResultados": "No results found.",
+      "verifiqueYReintente": "Please verify and try again."
     },
-    "Titulo" : "Search results",
+    "Titulo" : "Results for search by",
     "TablaEntity": {
       "Titulo": "Entities",
       "Filas": {
@@ -640,7 +640,7 @@
           "Titulo" : "Source"
         },
         "Detalles" : {
-          "Titulo" : "Detalles"
+          "Titulo" : "Details"
         },
         "MoreInfo" : {
           "Titulo" : "More Info"

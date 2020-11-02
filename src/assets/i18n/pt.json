@@ -9,16 +9,16 @@
   "MASTERPAGE" : {
     "MENU" : {
       "LinkHome" : "Inicio",
-      "LinkAutnum" : "Pesquisar por Autnum",
-      "LinkIp" : "Pesquisar por IP",
-      "LinkEntity" : "Pesquisar por Entity",
+      "LinkAutnum" : "Consulta por Autnum",
+      "LinkIp" : "Consulta por IP",
+      "LinkEntity" : "Consulta por entidades",
       "LinkEntitiesByName" : "Pesquisar por Nome",
-      "LinkNameserver": "Pesquisar por Nameserver",
-      "LinkDomain": "Pesquisar por Domain", 
-      "LinkBusquedaEntities" : "Procura por Entities", 
-      "LinkBusquedaDomains" : "Procura por Domínios", 
-      "LinkBusquedaNameservers" : "Procura por Nameservers",    
-      "LinkAbout" : "Sobre RDAP"
+      "LinkNameserver": "Consulta por servidor de nomes",
+      "LinkDomain": "Consulta por domínio",
+      "LinkBusquedaEntities" : "Pesquisa por entidades",      
+      "LinkBusquedaDomains" : "Pesquisa por domínios", 
+      "LinkBusquedaNameservers" : "Pesquisa por servidores de nomes", 
+      "LinkAbout": "Acerca do RDAP"
     }
   },
   "HOME" : {
@@ -50,24 +50,24 @@
         "Texto" : "Digite um número IP (200.7.84.0) ou um bloco CIDR (200.7.84.0/23)."
       },
       "Nameservers":
-      { "Titulo" : "Nameservers",
-        "Texto" : "Digite um valor do nameserver para consultar"
+      { "Titulo" : "Servidores de nomes",
+        "Texto" : "Insira um valor para consultar um servidor de nomes"
       },
       "Domains":
-      { "Titulo" : "Domains",
-        "Texto" : "Digite um domínio."
+      { "Titulo" : "Domínios",
+        "Texto" : "Insira um domínio."
       },
       "EntitiesSearch":
-      { "Titulo" : "Pesquisa Entities",
-        "Texto" : "Selecione se deseja pesquisar por fn ou handle e digite o valor da pesquisa incluindo wildcards."
+      { "Titulo" : "Pesquisa Entidades",
+        "Texto" : "Selecione se quiser pesquisar por fn ou handle e insira o valor a pesquisar incluindo curingas."
       },
       "NameserverSearch":
-      { "Titulo" : "Pesquisa Nameserver",
-        "Texto" : "Digite o valor de pesquisa do Nameserver incluindo wildcards."
+      { "Titulo" : "Pesquisa Servidores de nomes",
+        "Texto" : "Insira o valor a pesquisar incluindo curingas."
       },
       "DomainSearch":
-      { "Titulo" : "Pesquisa Domain",
-        "Texto" : "Selecione se deseja pesquisar por nsLdhName ou name e digite o valor da pesquisa incluindo wildcards."
+      { "Titulo" : "Pesquisa Domínios",
+        "Texto" : "Selecione se quiser pesquisar por nsLdhName ou por nome e insira o valor a pesquisar incluindo curingas."
       }
     },
     "Copyright":"Os dados abaixo são fornecidos para fins informativos e para ajudar as pessoas a obter informações sobre ou relacionadas aos registros de números de AS e IP. Ao enviar uma consulta, você concorda em usar esses dados apenas para fins legais.",
@@ -76,23 +76,23 @@
         "1" : "Autnum",
         "2" : "IP",
         "3" : "Entidade",
-        "4" : "Nameserver",
-        "5" : "Domain",
-        "6" : "Pesquisa Entities",
-        "7" : "Pesquisa Nameservers",
-        "8" : "Pesquisa Domains"
+        "4" : "Servidor de nomes",
+        "5" : "Domínio",
+        "6" : "Pesquisa Entidades",
+        "7" : "Pesquisa Servidores de nomes",
+        "8" : "Pesquisa Domínios"
       }
     },
     "SelectParamEntities": {
       "Opciones": {
-        "1": "Procura por fn",
-        "2": "Procura por handle"        
+        "1": "Pesquisar por fn",
+        "2": "Pesquisar por handle"        
       }
     },
     "SelectParamDomain": {
       "Opciones": {
-        "1": "Procura por nsLdhName",
-        "2": "Procura por name"        
+        "1": "Pesquisar por nsLdhName",
+        "2": "Pesquisar por nome"        
       }
     },
     "BotonBuscar" : "PROCURAR",
@@ -125,15 +125,15 @@
   },
   "CONSULTAPORNAMESERVER": {
     "Errores": {
-      "valorBuscadoVacio": "Você deve especificar o valor a ser procurado."
+      "valorBuscadoVacio": "Deve indicar o valor a pesquisar."
     },
-    "Titulo": "Pesquisa por Nameserver",
+    "Titulo": "Consulta por Servidor de nome",
     "InformacionAdicional": {
       "Titulo": "INFORMAÇÃO ADICIONAL",
       "Parrafo1": "Parágrafo 1.",
       "Parrafo2": "Parágrafo 2."
     },
-    "BotonBuscar": "PROCURAR"
+    "BotonBuscar": "PESQUISAR"
   },
   "CONSULTAPORENTITY" : {
     "Errores" : {
@@ -149,59 +149,59 @@
   },
   "CONSULTAPORDOMAIN": {
     "Errores": {
-      "valorBuscadoVacio": "Você deve especificar o valor a ser procurado."
+      "valorBuscadoVacio": "Deve indicar o valor a pesquisar."
     },
-    "Titulo": "Pesquisa por Domínio",
+    "Titulo": "Consulta por Domínio",
     "InformacionAdicional": {
       "Titulo": "INFORMAÇÃO ADICIONAL",
       "Parrafo1": "Parágrafo 1.",
       "Parrafo2": "Parágrafo 2."
     },
-    "BotonBuscar": "PROCURAR"
+    "BotonBuscar": "PESQUISAR"
   },
   "BUSQUEDAPORENTITIES": {
     "Errores": {
-      "valorBuscadoVacio": "Você deve especificar o valor a ser procurado."
+      "valorBuscadoVacio": "Deve indicar o valor a pesquisar."
     },
-    "Titulo": "Procurar por Entities",
-    "InformacionAdicional" : {
-      "Titulo" : "INFORMAÇÃO ADICIONAL",
-      "Parrafo1" : "Parágrafo 1.",
-      "Parrafo2" : "Parágrafo 2."
+    "Titulo": "Pesquisa por Entidades",
+    "InformacionAdicional": {
+      "Titulo": "INFORMAÇÃO ADICIONAL",
+      "Parrafo1": "Parágrafo 1.",
+      "Parrafo2": "Parágrafo 2."
     },
-    "BotonBuscar" : "PROCURAR",
+    "BotonBuscar": "PESQUISAR",
     "RadioButton" : {
-      "Titulo": "Procurar por:",
+      "Titulo": "Pesquisar por:",
       "Opcion1": "fn",
       "Opcion2": "handle" 
     }
   },
   "BUSQUEDAPORNAMESERVERS": {
     "Errores": {
-      "valorBuscadoVacio": "Você deve especificar o valor a ser procurado."
+      "valorBuscadoVacio": "Deve indicar o valor a pesquisar."
     },
-    "Titulo": "Procurar por Nameservers",
-    "InformacionAdicional" : {
-      "Titulo" : "INFORMAÇÃO ADICIONAL",
-      "Parrafo1" : "Parágrafo 1.",
-      "Parrafo2" : "Parágrafo 2."
+    "Titulo": "Pesquisa por Servidores de nomes",
+    "InformacionAdicional": {
+      "Titulo": "INFORMAÇÃO ADICIONAL",
+      "Parrafo1": "Parágrafo 1.",
+      "Parrafo2": "Parágrafo 2."
     },
-    "BotonBuscar" : "PROCURAR"    
+    "BotonBuscar": "PESQUISAR"    
   },
   "BUSQUEDAPORDOMAINS": {
     "Errores": {
-      "valorBuscadoVacio": "Você deve especificar o valor a ser procurado."
+      "valorBuscadoVacio": "Deve indicar o valor a pesquisar."
     },
-    "Titulo": "Procurar por Domínios",
-    "InformacionAdicional" : {
-      "Titulo" : "INFORMAÇÃO ADICIONAL",
-      "Parrafo1" : "Parágrafo 1.",
-      "Parrafo2" : "Parágrafo 2."
+    "Titulo": "Pesquisa por Domínios",
+    "InformacionAdicional": {
+      "Titulo": "INFORMAÇÃO ADICIONAL",
+      "Parrafo1": "Parágrafo 1.",
+      "Parrafo2": "Parágrafo 2."
     },
-    "BotonBuscar" : "PROCURAR",
+    "BotonBuscar": "PESQUISAR",
     "RadioButton" : {
-      "Titulo": "Procurar por:",
-      "Opcion1": "name",
+      "Titulo": "Pesquisar por:",
+      "Opcion1": "nome",
       "Opcion2": "nsLdhName" 
     }
   },
@@ -225,9 +225,9 @@
     "Parrafo4" : "O RDAP tem grandes vantagens sobre o WHOIS tradicional: apresenta uma resposta padronizada e unificada, é mais fácil de usar ou integrar com outros sistemas e permite utilizar na busca outros idiomas além do inglês."
     },
   "RESULTADOSIP" : {
-    "Errores" : {
-      "sinResultados" : "Nenhum resultado encontrado.",
-      "verifiqueYReintente" : "Por favor verifique e tente novamente."
+    "Errores": {
+      "sinResultados": "Não foram encontrados resultados.",
+      "verifiqueYReintente": "Por favor, verifique e tente novamente."
     },
     "TablaIP" : {
       "Titulo" : "IP",
@@ -235,32 +235,32 @@
         "Handle" : {
           "Titulo" : "Handle"
         },
-        "Name" : {
-          "Titulo" : "Name"
+        "Name": {
+          "Titulo": "Nome"
         },
-        "Status" : {
-          "Titulo" : "Status"
+        "Status": {
+          "Titulo": "Estado"
         },
-        "Parent" : {
-          "Titulo" : "Parent"
+        "Parent": {
+          "Titulo": "Pai"
         },
-        "NetRange" : {
-          "Titulo" : "Net Range"
+        "NetRange": {
+          "Titulo": "Alcance rede"
         },
-        "NetVersion" : {
-          "Titulo" : "Net Version"
+        "NetVersion": {
+          "Titulo": "Versão rede"
         },
-        "Country" : {
-          "Titulo" : "Country"
+        "Country": {
+          "Titulo": "País"
         },
-        "Registration" : {
-          "Titulo" : "Registration"
+        "Registration": {
+          "Titulo": "Registro"
         },
-        "LastChanged" : {
-          "Titulo" : "Last Changed"
+        "LastChanged": {
+          "Titulo": "Última mudança"
         },
         "LegalRepresentative": {
-          "Titulo": "Representante Legal"
+          "Titulo": "Representante legal"
         },
         "ParentHandle": {
           "Titulo": "Parent Handle"
@@ -271,46 +271,46 @@
       }
     },
     "TablaContacts" : {
-      "Titulo" : "CONTACTS",
+      "Titulo" : "CONTATOS",
       "Filas" : {
         "Handle" : {
           "Titulo" : "Handle"
         },
         "Name" : {
-          "Titulo" : "Name"
+          "Titulo" : "Nome"
         },
         "Address" : {
-          "Titulo" : "Address"
+          "Titulo" : "Endereço "
         },
         "City" : {
-          "Titulo" : "City"
+          "Titulo" : "Cidade"
         },
         "Country" : {
-          "Titulo" : "Country"
+          "Titulo" : "País"
         },
         "PostalCode" : {
-          "Titulo" : "Postal Code"
+          "Titulo" : "CPF"
         },
         "Email" : {
           "Titulo" : "E-mail"
         },
         "Telephone" : {
-          "Titulo" : "Telephone"
+          "Titulo" : "Telefone"
         },
         "MoreInfo" : {
-          "Titulo" : "More Info"
+          "Titulo" : "Mais informações"
         },
         "Source" : {
-          "Titulo" : "Source"
+          "Titulo" : "Fonte"
         },
         "Version": {
-          "Titulo": "Versión"
+          "Titulo": "Versão"
         },
         "Registration": {
-          "Titulo": "Registration Date"
+          "Titulo": "Data de registro"
         },
         "LastChanged": {
-          "Titulo": "Last Changed"
+          "Titulo": "Última mudança"
         }
       }
     },
@@ -321,10 +321,10 @@
       "SubTituloVCard" : "VCard",
       "Filas" : {
         "Name" : {
-          "Titulo" :  "Name"
+          "Titulo" :  "Nome"
         },
         "Country" : {
-          "Titulo" :  "Country"
+          "Titulo" :  "País"
         },
         "Port43" : {
           "Titulo" :  "Port43"
@@ -360,76 +360,76 @@
     }
   },
   "RESULTADOSAUTNUM" : {
-    "Errores" : {
-      "sinResultados" : "No se han encontrado resultados.",
-      "verifiqueYReintente" : "Por favor, verifique e intente nuevamente."
+    "Errores": {
+      "sinResultados": "Não foram encontrados resultados.",
+      "verifiqueYReintente": "Por favor, verifique e tente novamente."
     },
     "TablaAutnum" : {
       "Titulo": "AS",
       "Filas": {
         "Handle": {
-          "Titulo": "Number"
+          "Titulo": "Número"
         },
         "Type": {
-          "Titulo": "Type"
+          "Titulo": "Tipo"
         },
         "Registration": {
-          "Titulo": "Registration Date"
+          "Titulo": "Data de registro"
         },
         "LastChanged": {
-          "Titulo": "Last Changed"
+          "Titulo": "Última mudança"
         },
         "LegalRepresentative": {
-          "Titulo": "Representante Legal"
+          "Titulo": "Representante legal"
         }
       }
     },
     "TablaContacts" : {
-      "Titulo" : "CONTACTS",
+      "Titulo" : "CONTATOS",
       "Filas" : {
         "Handle" : {
           "Titulo" : "Handle"
         },
         "Name" : {
-          "Titulo" : "Name"
+          "Titulo" : "Nome"
         },
         "Address" : {
-          "Titulo" : "Address"
+          "Titulo" : "Endereço "
         },
         "City" : {
-          "Titulo" : "City"
+          "Titulo" : "Cidade"
         },
         "Country" : {
-          "Titulo" : "Country"
+          "Titulo" : "País"
         },
         "PostalCode" : {
-          "Titulo" : "Postal Code"
+          "Titulo" : "CPF"
         },
         "Email" : {
           "Titulo" : "E-mail"
         },
         "Telephone" : {
-          "Titulo" : "Telephone"
+          "Titulo" : "Telefone"
         },
         "MoreInfo" : {
-          "Titulo" : "More Info"
+          "Titulo" : "Mais informações"
         },
         "Source" : {
-          "Titulo" : "Source"
+          "Titulo" : "Fonte"
         },
         "Version" : {
-          "Titulo" : "Version"
+          "Titulo" : "Versão"
         },
         "Registration": {
-          "Titulo": "Registration Date"
+          "Titulo": "Data de registro"
         },
         "LastChanged": {
-          "Titulo": "Last Changed"
+          "Titulo": "Última mudança"
         }
       }
     },
     "TablaNotices": {
-      "Titulo": "Notices"      
+      "Titulo": "Avisos"      
     },
     "TablaRemarks": {
       "Titulo": "Remarks"      
@@ -470,21 +470,21 @@
         "Telephone" : {
           "Titulo" : "Telephone"
         },
-        "Registration" : {
-          "Titulo" : "Registration"
+        "Registration": {
+          "Titulo": "Registro"
         },
-        "LastChanged" : {
-          "Titulo" : "Last Changed"
-        },
+        "LastChanged": {
+          "Titulo": "Última mudança"
+        }, 
         "Operator" : {
           "Titulo" : "Operator"
         },
         "Version": {
-          "Titulo": "Versión"
+          "Titulo": "Versão"
         },
         "LegalRepresentative": {
-          "Titulo": "Representante Legal"
-        },
+          "Titulo": "Representante legal"
+        },  
         "Inetnums" : {
           "Titulo" : "Inetnums",
           "Kind" : {
@@ -508,11 +508,11 @@
   },
   "RESULTADOSNAMESERVER": {
     "Errores": {
-      "sinResultados" : "Nenhum resultado encontrado.",
-      "verifiqueYReintente" : "Por favor verifique e tente novamente."
+      "sinResultados": "Não foram encontrados resultados.",
+      "verifiqueYReintente": "Por favor, verifique e tente novamente."
     },
     "TablaNamerserver": {
-      "Titulo": "Nameserver",
+      "Titulo": "Servidor de nomes",
       "Filas": {
         "Name": {
           "Titulo": "LdhName"
@@ -524,18 +524,18 @@
           "Titulo": "IP v6"
         },
         "Source" : {
-          "Titulo" : "Source"
+          "Titulo" : "Fonte"
         }
       }
     },    
     "TablaNotices": {
-      "Titulo": "Notices"      
+      "Titulo": "Avisos"      
     }
   },
   "RESULTADOSDOMAIN": {
     "Errores": {
-      "sinResultados" : "Nenhum resultado encontrado.",
-      "verifiqueYReintente" : "Por favor verifique e tente novamente."
+      "sinResultados": "Não foram encontrados resultados.",
+      "verifiqueYReintente": "Por favor, verifique e tente novamente."
     },
     "TablaDomain": {
       "Titulo": "Domínio",
@@ -547,31 +547,31 @@
           "Titulo": "Handle"
         },        
         "Source" : {
-          "Titulo" : "Source"
+          "Titulo" : "Fonte"
         }
       }
     },    
     "TablaNotices": {
-      "Titulo": "Notices"      
+      "Titulo": "Avisos"      
     },
     "TablaNameservers": {
-      "Titulo": "Namerservers",
+      "Titulo": "Servidores de nomes",
       "Filas": {
         "Nameserver" : {
-          "Titulo" : "Nameserver"
+          "Titulo" : "Servidor de nomes"
         },
         "MoreInfo" : {
-          "Titulo" : "More Info"
+          "Titulo" : "Mais informações"
         }
       }    
     }
   },
   "RESULTSRCHDOMAIN": {
     "Errores": {
-      "sinResultados" : "Nenhum resultado encontrado.",
-      "verifiqueYReintente" : "Por favor verifique e tente novamente."
+      "sinResultados": "Não foram encontrados resultados.",
+      "verifiqueYReintente": "Por favor, verifique e tente novamente."
     },
-    "Titulo" : "Resultados da pesquisa por ",
+    "Titulo" : "Resultados pesquisa por",
     "TablaDomain": {
       "Titulo": "Domínios",
       "Filas": {
@@ -582,49 +582,49 @@
           "Titulo": "Handle"
         },        
         "Source" : {
-          "Titulo" : "Source"
+          "Titulo" : "Fonte"
         },
         "Detalles" : {
           "Titulo" : "Detalhes"
         },
         "MoreInfo" : {
-          "Titulo" : "More Info"
+          "Titulo" : "Mais informações"
         }
       }
     }
   },
   "RESULTSRCHNAMESERVER": {
     "Errores": {
-      "sinResultados" : "Nenhum resultado encontrado.",
-      "verifiqueYReintente" : "Por favor verifique e tente novamente."
+      "sinResultados": "Não foram encontrados resultados.",
+      "verifiqueYReintente": "Por favor, verifique e tente novamente."
     },
-    "Titulo" : "Resultados da pesquisa por ",
+    "Titulo" : "Resultados pesquisa por",
     "TablaNameserver": {
-      "Titulo": "Nameservers",
+      "Titulo": "Servidores de nomes",
       "Filas": {
         "Name": {
           "Titulo": "LdhName"
         },                
         "Source" : {
-          "Titulo" : "Source"
+          "Titulo" : "Fonte"
         },
         "Detalles" : {
           "Titulo" : "Detalhes"
         },
         "MoreInfo" : {
-          "Titulo" : "More Info"
+          "Titulo" : "Mais informações"
         }
       }
     }
   },
   "RESULTSRCHENTITY": {
     "Errores": {
-      "sinResultados" : "Nenhum resultado encontrado.",
-      "verifiqueYReintente" : "Por favor verifique e tente novamente."
+      "sinResultados": "Não foram encontrados resultados.",
+      "verifiqueYReintente": "Por favor, verifique e tente novamente."
     },
-    "Titulo" : "Resultados da pesquisa por ",
+    "Titulo" : "Resultados pesquisa por",
     "TablaEntity": {
-      "Titulo": "Entities",
+      "Titulo": "Entidades",
       "Filas": {
         "Handle": {
           "Titulo": "Handle"
@@ -633,16 +633,16 @@
           "Titulo": "Fn"
         },         
         "Version": {
-          "Titulo": "Versión"
+          "Titulo": "Versão"
         },                   
         "Source" : {
-          "Titulo" : "Source"
+          "Titulo" : "Fonte"
         },
         "Detalles" : {
           "Titulo" : "Detalhes"
         },
         "MoreInfo" : {
-          "Titulo" : "More Info"
+          "Titulo" : "Mais informações"
         }
       }
     }

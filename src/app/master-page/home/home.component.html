@@ -19,15 +19,28 @@
                       <option value="8">{{ "HOME.Select.Opciones.8" | translate }}</option>
                   </select>
                   
+                  <p *ngIf="blnShowDropDomain">                    
+                    <span class="infoAdicionalParrafo">{{ 'BUSQUEDAPORDOMAINS.RadioButton.Titulo' | translate }}</span>                 
+                    <input type="radio" class="search-radio-button" [value]="1" name="tipoBusquedaDom" [(ngModel)]="tipoBusquedaDom"> <span class="infoAdicionalParrafo">{{ 'BUSQUEDAPORDOMAINS.RadioButton.Opcion1' | translate }}</span>
+                    <input type="radio" class="search-radio-button" [value]="2" name="tipoBusquedaDom" [(ngModel)]="tipoBusquedaDom"> <span class="infoAdicionalParrafo">{{ 'BUSQUEDAPORDOMAINS.RadioButton.Opcion2' | translate }}</span>
+                  </p>
+                  <p *ngIf="blnShowDropEntities">                    
+                    <span class="infoAdicionalParrafo">{{ 'BUSQUEDAPORENTITIES.RadioButton.Titulo' | translate }}</span>                 
+                    <input type="radio" class="search-radio-button" [value]="1" name="tipoBusquedaEnt" [(ngModel)]="tipoBusquedaEnt"> <span class="infoAdicionalParrafo">{{ 'BUSQUEDAPORENTITIES.RadioButton.Opcion1' | translate }}</span>
+                    <input type="radio" class="search-radio-button" [value]="2" name="tipoBusquedaEnt" [(ngModel)]="tipoBusquedaEnt"> <span class="infoAdicionalParrafo">{{ 'BUSQUEDAPORENTITIES.RadioButton.Opcion2' | translate }}</span>
+                  </p> 
+
+                  <!--
                   <select id="selectParamEntities" class="form-control select" [(ngModel)]="paramEntities" name="paramEntities" *ngIf="blnShowDropEntities" >
                     <option value="1">{{ "HOME.SelectParamEntities.Opciones.1" | translate }}</option>
                     <option value="2">{{ "HOME.SelectParamEntities.Opciones.2" | translate }}</option>                   
                   </select>
-
+                  
                   <select id="selectParamDomain" class="form-control select" [(ngModel)]="paramDomain" name="paramDomain" *ngIf="blnShowDropDomain" >
                     <option value="1">{{ "HOME.SelectParamDomain.Opciones.1" | translate }}</option>
                     <option value="2">{{ "HOME.SelectParamDomain.Opciones.2" | translate }}</option>                   
                   </select>
+                  -->
 
                   <input type="text" id="inputBuscado" class="form-control inputBuscado" [(ngModel)]="valorBuscado"
                          name="valorBuscado">
