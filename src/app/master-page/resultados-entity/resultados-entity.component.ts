@@ -36,6 +36,7 @@ export class ResultadosEntityComponent implements OnInit {
   rederictUrl: string = Constantes.rederictUrl;
   existenNetworks: boolean = false;
   existenAutnums: boolean = false;
+  existenExtras: boolean = false;
   
   constructor(private dataService: DataService, private route: ActivatedRoute, private translate: TranslateService, private sanitizer: DomSanitizer) {
     this.cargarLenguaje();
@@ -524,6 +525,8 @@ export class ResultadosEntityComponent implements OnInit {
     var vCardTitle: string = "No data";
     var vCardDesc: string = "No data";
      
+    this.existenExtras = true;
+
     extraTitle = this.translate.instant("RESULTADOSIP.TablaExtra.Filas.Port43.Titulo");
     extraDesc = "No data";
     if (typeof respuesta.port43 != "undefined" && respuesta.port43 != ""){

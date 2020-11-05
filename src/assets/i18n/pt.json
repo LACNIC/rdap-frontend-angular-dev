@@ -357,6 +357,28 @@
           "Titulo" :  "Roles"
         }
       }
+    },
+    "TablaReverseDelegations" : {
+      "Titulo" : "Reverse Delegations",
+      "SubtituloNameSever" : "Nameservers",
+      "SubTituloSecDns" : "Secure DNS",
+      "Filas" : {
+        "StartAddress" : {
+          "Titulo" : "Start Address"
+        },
+        "EndAddress" : {
+          "Titulo" : "End Address"
+        },
+        "LdhName" : {
+          "Titulo" : "LdhName"
+        },
+        "DelegationSigned" : {
+          "Titulo" : "Delegation Signed"
+        },
+        "DsData" : {
+          "Titulo" : "Data"
+        }
+      }
     }
   },
   "RESULTADOSAUTNUM" : {

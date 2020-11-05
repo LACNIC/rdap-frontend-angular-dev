@@ -27,6 +27,7 @@ export class ResultadosIPMaskComponent implements OnInit {
   datosExtra: any[] = [];
   datosLinks: any[] = [];
   datosEvents: any[] = [];
+  datosReverse: any[] = [];
 
   private mostarDatosExta: boolean = true;
   
@@ -163,6 +164,12 @@ export class ResultadosIPMaskComponent implements OnInit {
     var remarkTitle : String = "Description";
     var remarkDesc : String = "No data";
 
+    var revDelStartAd : string = "No data";
+    var revDelEndAd : string = "No data";
+    var revDelNameServ : any[];
+    var revDelSecDNSDelSig: string;
+    var revDelSecDNSDelData: string;
+
     if ((typeof respuesta.events != "undefined") && (respuesta.events != null)) {   
       if (respuesta.events.length > 0) {
         for (let i: number = 0; i < respuesta.events.length; i++) {
@@ -245,6 +252,56 @@ export class ResultadosIPMaskComponent implements OnInit {
         });
         nbri++;
       }      
+    }
+
+    //AAE Obetngo reversedelegations
+    if (typeof respuesta.lacnic_reverseDelegations != "undefined" && respuesta.lacnic_reverseDelegations.length > 0) {
+      nbri = 0;
+      while  (nbri < respuesta.lacnic_reverseDelegations.length) {
+        revDelStartAd = "No data";
+        revDelEndAd = "No data";
+        revDelSecDNSDelSig = "No data";
+        revDelSecDNSDelData = "";
+        if (typeof respuesta.lacnic_reverseDelegations[nbri].startAddress != "undefined" && respuesta.lacnic_reverseDelegations[nbri].startAddress != ""){
+          revDelStartAd = respuesta.lacnic_reverseDelegations[nbri].startAddress;
+        };
+        if (typeof respuesta.lacnic_reverseDelegations[nbri].endAddress != "undefined" && respuesta.lacnic_reverseDelegations[nbri].endAddress != ""){
+          revDelEndAd = respuesta.lacnic_reverseDelegations[nbri].endAddress;
+        };
+        if (typeof respuesta.lacnic_reverseDelegations[nbri].secureDNS != "undefined" && respuesta.lacnic_reverseDelegations[nbri].secureDNS != null){
+          if (typeof respuesta.lacnic_reverseDelegations[nbri].secureDNS.delegationSigned != "undefined" && respuesta.lacnic_reverseDelegations[nbri].secureDNS.delegationSigned != "") {
+            revDelSecDNSDelSig = respuesta.lacnic_reverseDelegations[nbri].secureDNS.delegationSigned;
+          };
+          if (typeof respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData != "undefined" && respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData.length > 0) {
+            for (let i: number = 0; i < respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData.length; i++) {
+              if (revDelSecDNSDelData == "") {
+                revDelSecDNSDelData = respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData[i];
+              } else {
+                revDelSecDNSDelData = revDelSecDNSDelData + ", "+ respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData[i];
+              }
+            }
+          };
+        };
+        revDelNameServ = [];
+        if (typeof respuesta.lacnic_reverseDelegations[nbri].nameservers != "undefined" && respuesta.lacnic_reverseDelegations[nbri].nameservers.length > 0){
+          for (let i: number = 0; i < respuesta.lacnic_reverseDelegations[nbri].nameservers.length; i++) {
+            if (typeof respuesta.lacnic_reverseDelegations[nbri].nameservers[i].ldhName != "undefined" &&  respuesta.lacnic_reverseDelegations[nbri].nameservers[i].ldhName != "") {
+              revDelNameServ.push({
+                "LdhName" : respuesta.lacnic_reverseDelegations[nbri].nameservers[i].ldhName
+              });  
+            }
+          } 
+        } 
+
+        this.datosReverse.push({
+          "StartAddress" : revDelStartAd,
+          "EndAddress" : revDelEndAd,
+          "Nameservers": revDelNameServ,
+          "SecureDNSDelSig" : revDelSecDNSDelSig,
+          "SecureDNSData" : revDelSecDNSDelData 
+        });
+        nbri++;
+      }
     }
   }
 
@@ -643,7 +700,8 @@ export class ResultadosIPMaskComponent implements OnInit {
     var extraDesc: string = "No data";
     var columns : string[] = ["handle","startAddress", "endAddress","ipVersion","name","type","country",
     "entities","links","events","rdapConformance","notices","port43","objectClassName","lacnic_legalRepresentative",
-    "remarks", "parentHandle", "status", "lang", "cidr0_cidrs", "arin_originas0_originautnums", "nicbr_autnum"];
+    "remarks", "parentHandle", "status", "lang", "cidr0_cidrs", "arin_originas0_originautnums", "nicbr_autnum",
+    "lacnic_reverseDelegations"];
     var type : string;
     var keys: string[] = Object.keys(respuesta);
     var values: string[] = Object.values(respuesta);

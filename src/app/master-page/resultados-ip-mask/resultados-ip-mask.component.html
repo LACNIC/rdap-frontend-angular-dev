@@ -47,19 +47,7 @@
             <td class="celdaTexto">{{ datosIP[8] }}</td>
           </tr>
         </tbody>
-      </table>
-      <p class="tituloTabla" *ngIf="!loading && datosNotices.length > 0">{{ "RESULTADOSAUTNUM.TablaNotices.Titulo" | translate }}</p>
-      <table class="table"  *ngIf="!loading && datosNotices.length > 0">
-        <tbody>
-        <tr *ngFor="let notice of datosNotices">
-            <td class="celdaTitulo">{{ notice.Title }}</td>
-            <td class="celdaTexto" *ngIf="notice.Link != '#'">
-                <a class="link" target="_blank" href="{{notice.Link}}">{{ notice.Desc }}</a>
-            </td>
-            <td class="celdaTexto" *ngIf="notice.Link == '#'">{{ notice.Desc }}</td>
-        </tr>
-        </tbody>
-      </table>
+      </table>      
       <p class="tituloTabla" *ngIf="!loading && datosRemarks.length > 0">{{ "RESULTADOSAUTNUM.TablaRemarks.Titulo" | translate }}</p>
       <table class="table"  *ngIf="!loading && datosRemarks.length > 0">
         <tbody>
@@ -67,6 +55,37 @@
             <td class="celdaTitulo">{{ remark.Title }}</td>            
             <td class="celdaTexto">{{ remark.Desc }}</td>
         </tr>
+        </tbody>
+      </table>
+      <p class="tituloTabla" *ngIf="!loading && datosReverse.length > 0">{{ "RESULTADOSIP.TablaReverseDelegations.Titulo" | translate }}</p>
+      <table class="table"  *ngFor="let reverse of datosReverse">
+        <tbody>
+          <tr>
+            <td class="celdaTitulo">{{ "RESULTADOSIP.TablaReverseDelegations.Filas.StartAddress.Titulo" | translate }}</td>
+            <td class="celdaTexto">{{ reverse.StartAddress }}</td> 
+          </tr>
+          <tr>
+            <td class="celdaTitulo">{{ "RESULTADOSIP.TablaReverseDelegations.Filas.EndAddress.Titulo" | translate }}</td>
+            <td class="celdaTexto">{{ reverse.EndAddress }}</td> 
+          </tr>
+          <tr>
+            <td colspan="2" class="subtituloTabla">{{ "RESULTADOSIP.TablaReverseDelegations.SubtituloNameSever" | translate }}</td>            
+          </tr>
+          <tr *ngFor="let nameserver of reverse.Nameservers">
+            <td class="celdaTitulo">{{ "RESULTADOSIP.TablaReverseDelegations.Filas.LdhName.Titulo" | translate }}</td>
+            <td class="celdaTexto">{{ nameserver.LdhName }}</td> 
+          </tr>
+          <tr>
+            <td colspan="2" class="subtituloTabla">{{ "RESULTADOSIP.TablaReverseDelegations.SubTituloSecDns" | translate }}</td>            
+          </tr>
+          <tr>
+            <td class="celdaTitulo">{{ "RESULTADOSIP.TablaReverseDelegations.Filas.DelegationSigned.Titulo" | translate  }}</td>
+            <td class="celdaTexto">{{ reverse.SecureDNSDelSig }}</td> 
+          </tr>
+          <tr>
+            <td class="celdaTitulo">{{ "RESULTADOSIP.TablaReverseDelegations.Filas.DsData.Titulo" | translate  }}</td>
+            <td class="celdaTexto">{{ reverse.SecureDNSData }}</td> 
+          </tr>
         </tbody>
       </table>
       <!-- Datos extra -->
@@ -102,6 +121,18 @@
         </table>
 
       </div>
+      <p class="tituloTabla" *ngIf="!loading && datosNotices.length > 0">{{ "RESULTADOSAUTNUM.TablaNotices.Titulo" | translate }}</p>
+      <table class="table"  *ngIf="!loading && datosNotices.length > 0">
+        <tbody>
+        <tr *ngFor="let notice of datosNotices">
+            <td class="celdaTitulo">{{ notice.Title }}</td>
+            <td class="celdaTexto" *ngIf="notice.Link != '#'">
+                <a class="link" target="_blank" href="{{notice.Link}}">{{ notice.Desc }}</a>
+            </td>
+            <td class="celdaTexto" *ngIf="notice.Link == '#'">{{ notice.Desc }}</td>
+        </tr>
+        </tbody>
+      </table>
   </div>
 
   <div class="col-md-6" *ngIf="!loading && datosEntities.length > 0">
