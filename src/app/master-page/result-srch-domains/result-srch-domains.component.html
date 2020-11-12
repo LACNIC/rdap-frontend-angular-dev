@@ -6,7 +6,7 @@
       <img class="imgLoading" src="assets/img/loading.gif" alt="loading...">
   </div>
 
-  <div class="col-md-12" *ngIf="!loading">
+  <div class="col-md-8" *ngIf="!loading">
     <p class="tituloTabla">{{ "RESULTSRCHDOMAIN.TablaDomain.Titulo" | translate }}</p>
     <table class="table">
       <tbody>
@@ -25,6 +25,30 @@
           <td class="celdaTexto">
             <a class="link" target="_blank" [href]="sanitize(domain.Info)">{{ "RESULTSRCHDOMAIN.TablaDomain.Filas.MoreInfo.Titulo" | translate }}</a>
           </td>          
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-md-4" *ngIf="!loading">
+    <p class="tituloTabla" *ngIf="!loading && datosNotices.length > 0">{{ "RESULTADOSDOMAIN.TablaNotices.Titulo" | translate }}</p>
+    <table class="table" *ngIf="!loading && datosNotices.length > 0">
+      <tbody>
+        <tr *ngFor="let notice of datosNotices">
+          <td class="celdaTitulo">{{ notice.Title }}</td>
+          <td class="celdaTexto" *ngIf="notice.Link != '#'">
+              <a class="link" target="_blank" href="{{notice.Link}}">{{ notice.Desc }}</a>
+          </td>
+          <td class="celdaTexto" *ngIf="notice.Link == '#'">{{ notice.Desc }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="tituloTabla" *ngIf="!loading && datosBusqueda.length > 0">{{  "RESULTADOSIP.TablaExtra.Titulo" | translate }}</p>
+    <table class="table" *ngIf="!loading && datosBusqueda.length > 0">
+      <tbody>
+        <tr *ngFor="let busqueda of datosBusqueda">
+          <td class="celdaTitulo">{{ busqueda.Title }}</td>          
+          <td class="celdaTexto" >{{ busqueda.Desc }}</td>
         </tr>
       </tbody>
     </table>

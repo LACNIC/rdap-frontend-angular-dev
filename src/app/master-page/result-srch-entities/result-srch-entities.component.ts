@@ -20,6 +20,9 @@ export class ResultSrchEntitiesComponent implements OnInit {
   loading: boolean = true;
   entity: string;
   datosEntity: any[] = [];
+
+  datosNotices: any[] = [];
+  datosBusqueda: any[] = [];
   
   rederictUrl: string = Constantes.rederictUrl;
 
@@ -118,6 +121,14 @@ export class ResultSrchEntitiesComponent implements OnInit {
 
   obtenerDatosEntities(respuesta: RespEntitySearch) {
     
+    var noticeTitle : string = "No data";
+    var noticeDesc : string = "No data"; 
+    var noticeLink : string = "";
+
+    var nbri : number = 0;
+
+    var busquedaTitle : string = "No data";
+    var busquedaDesc : string = "No data";
 
     if (respuesta.entities.length > 0) {
       for (let d of respuesta.entities) {
@@ -160,6 +171,63 @@ export class ResultSrchEntitiesComponent implements OnInit {
         });
       }
     }
+
+    //notices
+    if (typeof respuesta.notices != "undefined" && respuesta.notices.length > 0) {
+      nbri = 0;
+      
+      while (nbri < respuesta.notices.length) {
+        noticeTitle = "No Data";
+        noticeDesc = "No Data";
+        noticeLink = "#";
+        //if (respuesta.notices[nbri].title == "Terms and Conditions") {
+        noticeTitle = respuesta.notices[nbri].title;
+        if (respuesta.notices[nbri].description.length > 0 && respuesta.notices[nbri].description[0] != "") {
+          noticeDesc = respuesta.notices[nbri].description[0];
+        }
+        if ((typeof respuesta.notices[nbri].links != "undefined") && respuesta.notices[nbri].links.length > 0) {
+          if (respuesta.notices[nbri].links[0].href != "") {
+            noticeLink = respuesta.notices[nbri].links[0].href;
+          }
+        }
+        //blnTermine = true;          
+        //}
+        this.datosNotices.push({
+          "Title": noticeTitle,
+          "Desc": noticeDesc,
+          "Link": noticeLink
+        });
+        nbri++;
+      }
+    }
+
+    //datos extras
+    busquedaTitle = this.translate.instant("RESULTADOSIP.TablaExtra.Filas.Port43.Titulo");
+    busquedaDesc = "No data";
+    if (typeof respuesta.port43 != "undefined" && respuesta.port43 != ""){
+      busquedaDesc = respuesta.port43;     
+    }
+    this.datosBusqueda.push({
+      "Title": busquedaTitle,
+      "Desc": busquedaDesc
+    });
+
+    busquedaTitle = this.translate.instant("RESULTADOSIP.TablaExtra.Filas.RdapConformance.Titulo");
+    busquedaDesc = "No data";
+    if (typeof respuesta.rdapConformance != "undefined" && respuesta.rdapConformance.length > 0){
+      for (let i: number = 0; i < respuesta.rdapConformance.length; i++) {
+        if (i == 0) {
+          busquedaDesc = respuesta.rdapConformance[i];
+        } else {
+          busquedaDesc = busquedaDesc + ', ' + respuesta.rdapConformance[i];
+        }
+      }
+    }
+    this.datosBusqueda.push({
+      "Title": busquedaTitle,
+      "Desc": busquedaDesc
+    });
+    
   }
 
   sanitize(url: string) {
