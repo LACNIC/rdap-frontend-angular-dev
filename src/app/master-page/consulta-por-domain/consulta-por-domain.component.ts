@@ -90,7 +90,7 @@ export class ConsultaPorDomainComponent implements OnInit {
   }
 
   buscarDomain(){
-    this.router.navigate(['/domain',this.valorBuscado]);
+    this.router.navigate(['/rdap/domain',this.valorBuscado]);
   }
 
 }

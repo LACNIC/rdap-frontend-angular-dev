@@ -88,7 +88,7 @@ export class ConsultaPorEntityComponent implements OnInit {
   }
 
   buscarEntities(){
-    this.router.navigate(['/entity',this.valorBuscado]);
+    this.router.navigate(['/rdap/entity',this.valorBuscado]);
   }
 
 }

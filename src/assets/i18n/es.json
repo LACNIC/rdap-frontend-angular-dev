@@ -355,6 +355,9 @@
         },
         "Roles" : {
           "Titulo" :  "Roles"
+        },
+        "Lacnic_originAutnum" : {
+          "Titulo" : "Lacnic Origin autnums"
         }
       }
     },
@@ -362,6 +365,7 @@
       "Titulo" : "Reverse Delegations",
       "SubtituloNameSever" : "Nameservers",
       "SubTituloSecDns" : "Secure DNS",
+      "SubTituloDsData" : "Data Ds",
       "Filas" : {
         "StartAddress" : {
           "Titulo" : "Start Address"
@@ -377,6 +381,21 @@
         },
         "DsData" : {
           "Titulo" : "Data"
+        },
+        "Zone" : {
+          "Titulo" : "Zone"
+        },
+        "KeyTag" : {
+          "Titulo" : "KeyTag"
+        },
+        "Algorithm" : {
+          "Titulo" : "Algorithm"
+        },
+        "Digest" : {
+          "Titulo" : "Digest"
+        },
+        "DigestType" : {
+          "Titulo" : "DigestType"
         }
       }
     }

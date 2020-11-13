@@ -93,7 +93,7 @@ export class ConsultaPorAutnumComponent implements OnInit {
   }
 
   buscarAutnum(){
-    this.router.navigate(['/autnum',this.valorBuscado]);
+    this.router.navigate(['/rdap/autnum',this.valorBuscado]);
   }
 
 }

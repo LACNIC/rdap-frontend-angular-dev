@@ -161,11 +161,11 @@ export class HomeComponent implements OnInit {
   }
 
   buscarIP() {
-    this.router.navigate(['/ip', this.valorBuscado]);
+    this.router.navigate(['/rdap/ip', this.valorBuscado]);
   }
 
   buscarEntity() {
-    this.router.navigate(['/entity', this.valorBuscado]);
+    this.router.navigate(['/rdap/entity', this.valorBuscado]);
   }
 
   buscarAutnum() {
@@ -173,19 +173,19 @@ export class HomeComponent implements OnInit {
       this.valorBuscado = this.valorBuscado.substring(2);
     }
 
-    this.router.navigate(['/autnum', this.valorBuscado]);
+    this.router.navigate(['/rdap/autnum', this.valorBuscado]);
   }
 
   buscarEntitiesByName() {
-    this.router.navigate(['/entities', this.valorBuscado]);
+    this.router.navigate(['/rdap/entities', this.valorBuscado]);
   }
 
   buscarNameserver() {
-    this.router.navigate(['/nameserver', this.valorBuscado]);
+    this.router.navigate(['/rdap/nameserver', this.valorBuscado]);
   }
 
   buscarDomain() {
-    this.router.navigate(['/domain', this.valorBuscado]);
+    this.router.navigate(['/rdap/domain', this.valorBuscado]);
   }
 
   buscarDomains() {
@@ -196,7 +196,7 @@ export class HomeComponent implements OnInit {
       valorBusqueda = "nsLdhName=" + this.valorBuscado.trim();
     }
 
-    this.router.navigate(['/domains',valorBusqueda]);
+    this.router.navigate(['/rdap/domains',valorBusqueda]);
   }
 
   buscarEntities() {
@@ -207,14 +207,14 @@ export class HomeComponent implements OnInit {
       valorBusqueda = "handle=" + this.valorBuscado.trim();
     }
 
-    this.router.navigate(['/entities',valorBusqueda]);
+    this.router.navigate(['/rdap/entities',valorBusqueda]);
   }
 
   buscarNameservers() {
     var valorBusqueda: string = "";    
     valorBusqueda = "name=" + this.valorBuscado.trim();    
 
-    this.router.navigate(['/nameservers',valorBusqueda]);
+    this.router.navigate(['/rdap/nameservers',valorBusqueda]);
   }
 
   onChange() {

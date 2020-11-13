@@ -114,7 +114,7 @@ export class ConsultaPorIPComponent implements OnInit {
   }
 
   buscarIP(){
-    this.router.navigate(['/ip',this.valorBuscado]);
+    this.router.navigate(['/rdap/ip',this.valorBuscado]);
   }
 
 }

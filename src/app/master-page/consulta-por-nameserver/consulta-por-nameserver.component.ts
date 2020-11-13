@@ -90,7 +90,7 @@ export class ConsultaPorNameserverComponent implements OnInit {
   }
 
   buscarNameserver(){
-    this.router.navigate(['/nameserver',this.valorBuscado]);
+    this.router.navigate(['/rdap/nameserver',this.valorBuscado]);
   }
 
 }

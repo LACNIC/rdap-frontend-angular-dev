@@ -99,7 +99,7 @@ export class BusquedaPorDomainsComponent implements OnInit {
       valorBusqueda = "nsLdhName=" + this.valorBuscado.trim();
     }
 
-    this.router.navigate(['/domains',valorBusqueda]);
+    this.router.navigate(['/rdap/domains',valorBusqueda]);
     
   }
 

@@ -100,7 +100,7 @@ export class BusquedaPorEntitiesComponent implements OnInit {
       valorBusqueda = "handle=" + this.valorBuscado.trim();
     }
 
-    this.router.navigate(['/entities',valorBusqueda]);
+    this.router.navigate(['/rdap/entities',valorBusqueda]);
   }
 
 

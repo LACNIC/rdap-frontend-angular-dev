@@ -94,7 +94,7 @@ export class BusquedaPorNameserversComponent implements OnInit {
     var valorBusqueda : string = "";    
     valorBusqueda = "name=" + this.valorBuscado.trim();  
 
-    this.router.navigate(['/nameservers',valorBusqueda]);
+    this.router.navigate(['/rdap/nameservers',valorBusqueda]);
   }
 
 }

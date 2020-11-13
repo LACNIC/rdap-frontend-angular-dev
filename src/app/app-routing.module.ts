@@ -34,35 +34,73 @@ const routes: Routes = [
     path: '', component: MasterPageComponent,
     children: [
         {path: '', component: HomeComponent},
-        {path: 'home', component: HomeComponent},
-        {path: 'consulta-por-ip', component: ConsultaPorIPComponent},
-        {path: 'consulta-por-entity', component: ConsultaPorEntityComponent},
+        {path: 'home', redirectTo: 'rdap/home', pathMatch: 'full'},
+        {path: 'rdap/home', component: HomeComponent},
+
+        {path: 'consulta-por-ip', redirectTo: 'rdap/consulta-por-ip', pathMatch: 'full'},
+        {path: 'rdap/consulta-por-ip', component: ConsultaPorIPComponent},
+
+        {path: 'consulta-por-entity', redirectTo: 'rdap/consulta-por-entity', pathMatch: 'full'},
+        {path: 'rdap/consulta-por-entity', component: ConsultaPorEntityComponent},
+
         //{ path: 'consulta-entities-por-nombre', component: ConsultaEntitiesPorNombreComponent },
-        {path: 'about', component: AboutComponent},
-        {path: 'ip/:ip', component: ResultadosIPComponent},
-        {path: 'ip/:ip/:mask', component: ResultadosIPMaskComponent},
-        {path: 'entity/:entity', component: ResultadosEntityComponent},
-        {path: 'consulta-por-autnum', component: ConsultaPorAutnumComponent},
+        {path: 'about', redirectTo: 'rdap/about', pathMatch: 'full'},
+        {path: 'rdap/about', component: AboutComponent},
+
+        {path: 'ip/:ip', redirectTo: 'rdap/ip/:ip', pathMatch: 'full'},
+        {path: 'rdap/ip/:ip', component: ResultadosIPComponent},
+
+        {path: 'ip/:ip/:mask', redirectTo: 'rdap/ip/:ip/:mask', pathMatch: 'full'},
+        {path: 'rdap/ip/:ip/:mask', component: ResultadosIPMaskComponent},
+
+        {path: 'entity/:entity', redirectTo: 'rdap/entity/:entity', pathMatch: 'full'},
+        {path: 'rdap/entity/:entity', component: ResultadosEntityComponent},
+
+        {path: 'consulta-por-autnum', redirectTo: 'rdap/consulta-por-autnum', pathMatch: 'full'},
+        {path: 'rdap/consulta-por-autnum', component: ConsultaPorAutnumComponent},
+
         //{ path: 'reporte-asn/:country', component: ReporteASNComponent },
-        {path: 'autnum/:autnum', component: ResultadosAutnumComponent},
-        {path: 'consulta-por-nameserver', component: ConsultaPorNameserverComponent},
-        {path: 'consulta-por-domain', component: ConsultaPorDomainComponent},
-        {path: 'nameserver/:nameserver', component: ResultadosNameserverComponent},
-        {path: 'domain/:domain', component: ResultadosDomainComponent},
-        {path: 'busqueda-por-entities', component: BusquedaPorEntitiesComponent},
-        {path: 'busqueda-por-domains', component: BusquedaPorDomainsComponent},
-        {path: 'busqueda-por-nameservers', component: BusquedaPorNameserversComponent},
-        {path: 'domains/:domain', component: ResultSrchDomainsComponent},
-        {path: 'nameservers/:nameserver', component: ResultSrchNameserversComponent},
-        {path: 'entities/:entity', component: ResultSrchEntitiesComponent}
+        {path: 'autnum/:autnum', redirectTo: 'rdap/autnum/:autnum', pathMatch: 'full'},
+        {path: 'rdap/autnum/:autnum', component: ResultadosAutnumComponent},
+
+        {path: 'consulta-por-nameserver', redirectTo: 'rdap/consulta-por-nameserver', pathMatch: 'full'},
+        {path: 'rdap/consulta-por-nameserver', component: ConsultaPorNameserverComponent},
+
+        {path: 'consulta-por-domain', redirectTo: 'rdap/consulta-por-domain', pathMatch: 'full'},
+        {path: 'rdap/consulta-por-domain', component: ConsultaPorDomainComponent},
+
+        {path: 'nameserver/:nameserver',redirectTo: 'rdap/nameserver/:nameserver', pathMatch: 'full'},
+        {path: 'rdap/nameserver/:nameserver', component: ResultadosNameserverComponent},
+
+        {path: 'domain/:domain', redirectTo: 'rdap/domain/:domain', pathMatch: 'full'},
+        {path: 'rdap/domain/:domain', component: ResultadosDomainComponent},
+
+        {path: 'busqueda-por-entities',redirectTo: 'rdap/busqueda-por-entities', pathMatch: 'full'},
+        {path: 'rdap/busqueda-por-entities', component: BusquedaPorEntitiesComponent},
+
+        {path: 'busqueda-por-domains', redirectTo: 'rdap/busqueda-por-domains', pathMatch: 'full'},
+        {path: 'rdap/busqueda-por-domains', component: BusquedaPorDomainsComponent},
+
+        {path: 'busqueda-por-nameservers', redirectTo: 'rdap/busqueda-por-nameservers', pathMatch: 'full'},
+        {path: 'rdap/busqueda-por-nameservers', component: BusquedaPorNameserversComponent},
+
+        {path: 'domains/:domain', redirectTo: 'rdap/domains/:domain', pathMatch: 'full'},
+        {path: 'rdap/domains/:domain', component: ResultSrchDomainsComponent},
+
+        {path: 'nameservers/:nameserver', redirectTo: 'rdap/nameservers/:nameserver', pathMatch: 'full'},
+        {path: 'rdap/nameservers/:nameserver', component: ResultSrchNameserversComponent},
+
+        {path: 'entities/:entity', redirectTo: 'rdap/entities/:entity', pathMatch: 'full'},
+        {path: 'rdap/entities/:entity', component: ResultSrchEntitiesComponent},       
+
     ]
 
   },
-  {path: 'query-ip/:ip', component: QueryIpComponent},
-  {path: 'query-entity/:entity', component: QueryEntityComponent},
-  {path: 'query-autnum/:autnum', component: QueryAutnumComponent},
-  {path: 'query-domain/:domain', component: QueryDomainComponent},
-  {path: 'query-nameserver/:nameserver', component: QueryNameserverComponent},
+  {path: 'rdap/query-ip/:ip', component: QueryIpComponent},
+  {path: 'rdap/query-entity/:entity', component: QueryEntityComponent},
+  {path: 'rdap/query-autnum/:autnum', component: QueryAutnumComponent},
+  {path: 'rdap/query-domain/:domain', component: QueryDomainComponent},
+  {path: 'rdap/query-nameserver/:nameserver', component: QueryNameserverComponent},
   {path: '**', component: NotFoundComponent},
   
 ];
