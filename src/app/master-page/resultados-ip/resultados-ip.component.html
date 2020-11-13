@@ -83,17 +83,42 @@
             <td class="celdaTexto">{{ reverse.SecureDNSDelSig }}</td> 
           </tr>
           <tr>
-            <td class="celdaTitulo">{{ "RESULTADOSIP.TablaReverseDelegations.Filas.DsData.Titulo" | translate  }}</td>
-            <td class="celdaTexto">{{ reverse.SecureDNSData }}</td> 
+            <td colspan="2" class="subtituloTabla" *ngIf="reverse.SecureDNSData.length > 0">{{ "RESULTADOSIP.TablaReverseDelegations.SubTituloDsData" | translate }}</td>            
+          </tr>
+          <tr *ngFor="let dsData of reverse.SecureDNSData">
+            <td colspan="2" class= "tdSinBorder">
+            <table>
+              <tr>
+                <td class="celdaTitulo" style="width: 45%">{{ "RESULTADOSIP.TablaReverseDelegations.Filas.Zone.Titulo" | translate }}</td>
+                <td class="celdaTexto">{{ dsData.zone }}</td> 
+              </tr>              
+              <tr>
+                <td class="celdaTitulo" style="width: 45%">{{ "RESULTADOSIP.TablaReverseDelegations.Filas.KeyTag.Titulo" | translate }}</td>
+                <td class="celdaTexto">{{ dsData.keyTag }}</td> 
+              </tr>
+              <tr>
+                <td class="celdaTitulo" style="width: 45%">{{ "RESULTADOSIP.TablaReverseDelegations.Filas.Algorithm.Titulo" | translate }}</td>
+                <td class="celdaTexto">{{ dsData.algorithm }}</td> 
+              </tr>
+              <tr>
+                <td class="celdaTitulo" style="width: 45%">{{ "RESULTADOSIP.TablaReverseDelegations.Filas.Digest.Titulo" | translate }}</td>
+                <td class="celdaTexto">{{ dsData.digest }}</td> 
+              </tr>
+              <tr>
+                <td class="celdaTitulo" style="width: 45%">{{ "RESULTADOSIP.TablaReverseDelegations.Filas.DigestType.Titulo" | translate }}</td>
+                <td class="celdaTexto">{{ dsData.digestType }}</td> 
+              </tr>
+            </table>  
+            </td>          
           </tr>
         </tbody>
       </table>
       <!-- Datos extra -->
       <span class="tituloTabla mr-lg-2">{{ "RESULTADOSIP.TablaExtra.Titulo" | translate }}</span>
-      <a data-toggle="collapse" href="#collapseExtras" aria-expanded="false" aria-controls="collapseExtras">
-          <span class="fa fa-plus"></span>
+      <a data-toggle="collapse" href="#collapseExtras" aria-expanded="true" aria-controls="collapseExtras">
+          <span class="fa fa-minus"></span>
       </a>
-      <div class="collapse" id="collapseExtras">
+      <div class="collapse" id="collapseExtras" aria-expanded="true">
         <table class="table">
             <tbody>
                 <tr *ngFor="let extra of datosExtra">
@@ -132,6 +157,18 @@
         </tr>
         </tbody>
       </table>
+      <!--<span class="subtituloTabla mr-lg-2">Embeb</span>
+      <a data-toggle="collapse" href="#collapseEmbeb" aria-expanded="false" aria-controls="collapseEmbeb">
+          <span class="fa fa-plus"></span>
+      </a>
+      <div class="collapse" id="collapseEmbeb">        
+        <pre>
+          <code class="html">
+            &lt;iframe width=&quot;560&quot; height=&quot;560&quot; src=&quot;http://rdap-web/query-ip/190.238.69.59&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+          </code>
+        </pre>        
+      </div>-->
+
   </div>
 
   <div class="col-md-6" *ngIf="!loading && datosEntities.length > 0">

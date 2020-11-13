@@ -272,15 +272,15 @@ export class ResultadosIPMaskComponent implements OnInit {
           if (typeof respuesta.lacnic_reverseDelegations[nbri].secureDNS.delegationSigned != "undefined" && respuesta.lacnic_reverseDelegations[nbri].secureDNS.delegationSigned != "") {
             revDelSecDNSDelSig = respuesta.lacnic_reverseDelegations[nbri].secureDNS.delegationSigned;
           };
-          if (typeof respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData != "undefined" && respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData.length > 0) {
-            for (let i: number = 0; i < respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData.length; i++) {
-              if (revDelSecDNSDelData == "") {
-                revDelSecDNSDelData = respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData[i];
-              } else {
-                revDelSecDNSDelData = revDelSecDNSDelData + ", "+ respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData[i];
-              }
-            }
-          };
+          // if (typeof respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData != "undefined" && respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData.length > 0) {
+          //   for (let i: number = 0; i < respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData.length; i++) {
+          //     if (revDelSecDNSDelData == "") {
+          //       revDelSecDNSDelData = respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData[i];
+          //     } else {
+          //       revDelSecDNSDelData = revDelSecDNSDelData + ", "+ respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData[i];
+          //     }
+          //   }
+          // };
         };
         revDelNameServ = [];
         if (typeof respuesta.lacnic_reverseDelegations[nbri].nameservers != "undefined" && respuesta.lacnic_reverseDelegations[nbri].nameservers.length > 0){
