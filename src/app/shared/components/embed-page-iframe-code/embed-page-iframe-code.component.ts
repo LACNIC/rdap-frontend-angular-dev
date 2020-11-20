@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { EmbedPageIframeCodeService } from '../../services/embed-page-iframe-code.service';
-import * as $ from 'jQuery';
+
 
 @Component({
   selector: 'app-embed-page-iframe-code-component',
