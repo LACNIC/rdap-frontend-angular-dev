@@ -9,6 +9,7 @@ import {Error} from "../../shared/error";
 import {ResponseIP} from "../../shared/responseIP";
 import {ResponseEntity} from '../../shared/responseEntity';
 import {DomSanitizer} from '@angular/platform-browser';
+import {AppSettings} from '../../app.settings';
 
 @Component({
   selector: 'app-query-ip',
@@ -19,6 +20,7 @@ export class QueryIpComponent implements OnInit {
 
   mensajes: Mensaje = new Mensaje();
   loading: boolean = true;
+  widgetSectionHasRoundedBorder = AppSettings.widgetSectionHasRoundedBorder;
   IP: string;
   datosIP: string[] = [];
   datosEntities: any[] = [];
@@ -28,6 +30,7 @@ export class QueryIpComponent implements OnInit {
   datosExtra: any[] = [];
   datosLinks: any[] = [];
   datosEvents: any[] = [];
+  datosReverse: any[] = [];
   
   lang : string = "es";
 
@@ -163,6 +166,13 @@ export class QueryIpComponent implements OnInit {
     var remarkTitle : String = "Description";
     var remarkDesc : String = "No data";
 
+    var revDelStartAd : string = "No data";
+    var revDelEndAd : string = "No data";
+    var revDelNameServ : any[];
+    var revDelDsData : any[];
+    var revDelSecDNSDelSig: string;
+    var revDelSecDNSDelData: string;
+
     if (typeof respuesta.events != "undefined" && respuesta.events != null) {    
       for (let i: number = 0; i < respuesta.events.length; i++) {
         if (respuesta.events[i].eventAction.includes("registration")) {
@@ -244,10 +254,64 @@ export class QueryIpComponent implements OnInit {
         nbri++;
       }      
     }
-    //console.log(this.datosNotices);
-    //this.datosIP.push(noticeTitle);
-    //this.datosIP.push(noticeDesc);
-    //this.datosIP.push(noticeLink);
+    
+    //AAE Obetngo reversedelegations
+    if (typeof respuesta.lacnic_reverseDelegations != "undefined" && respuesta.lacnic_reverseDelegations.length > 0) {
+      nbri = 0;
+      while  (nbri < respuesta.lacnic_reverseDelegations.length) {
+        revDelStartAd = "No data";
+        revDelEndAd = "No data";
+        revDelSecDNSDelSig = "No data";
+        revDelSecDNSDelData = "";
+        
+        if (typeof respuesta.lacnic_reverseDelegations[nbri].startAddress != "undefined" && respuesta.lacnic_reverseDelegations[nbri].startAddress != ""){
+          revDelStartAd = respuesta.lacnic_reverseDelegations[nbri].startAddress;
+        };
+        if (typeof respuesta.lacnic_reverseDelegations[nbri].endAddress != "undefined" && respuesta.lacnic_reverseDelegations[nbri].endAddress != ""){
+          revDelEndAd = respuesta.lacnic_reverseDelegations[nbri].endAddress;
+        };
+        if (typeof respuesta.lacnic_reverseDelegations[nbri].secureDNS != "undefined" && respuesta.lacnic_reverseDelegations[nbri].secureDNS != null){
+          if (typeof respuesta.lacnic_reverseDelegations[nbri].secureDNS.delegationSigned != "undefined" && respuesta.lacnic_reverseDelegations[nbri].secureDNS.delegationSigned != "") {
+            revDelSecDNSDelSig = respuesta.lacnic_reverseDelegations[nbri].secureDNS.delegationSigned;
+          };          
+        };
+        revDelNameServ = [];
+        if (typeof respuesta.lacnic_reverseDelegations[nbri].nameservers != "undefined" && respuesta.lacnic_reverseDelegations[nbri].nameservers.length > 0){
+          for (let i: number = 0; i < respuesta.lacnic_reverseDelegations[nbri].nameservers.length; i++) {
+            if (typeof respuesta.lacnic_reverseDelegations[nbri].nameservers[i].ldhName != "undefined" &&  respuesta.lacnic_reverseDelegations[nbri].nameservers[i].ldhName != "") {
+              revDelNameServ.push({
+                "LdhName" : respuesta.lacnic_reverseDelegations[nbri].nameservers[i].ldhName
+              });  
+            }
+          } 
+        }
+        
+        revDelDsData = [];
+        if (typeof respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData != "undefined" && respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData.length > 0){
+          for (let i: number = 0; i < respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData.length; i++) {
+            if (typeof respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData[i].zone != "undefined" &&  respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData[i].zone != "") {
+              revDelDsData.push({
+                "zone" : respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData[i].zone,
+                "keyTag" : respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData[i].keyTag,
+                "algorithm" : respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData[i].algorithm,
+                "digest" : respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData[i].digest,
+                "digestType" : respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData[i].digestType
+              });  
+            }
+          } 
+        }
+
+        this.datosReverse.push({
+          "StartAddress" : revDelStartAd,
+          "EndAddress" : revDelEndAd,
+          "Nameservers": revDelNameServ,
+          "SecureDNSDelSig" : revDelSecDNSDelSig,
+          "SecureDNSData" : revDelDsData 
+        });
+        nbri++;
+      }
+    }
+
   }
 
   obtenerEntities(respuesta: ResponseIP) {
@@ -609,6 +673,16 @@ export class QueryIpComponent implements OnInit {
       "Desc": extraDesc
     });
 
+    extraTitle = this.translate.instant("RESULTADOSIP.TablaExtra.Filas.Lacnic_originAutnum.Titulo");
+    extraDesc = "No data";
+    if (typeof respuesta.lacnic_originAutnum != "undefined" && respuesta.lacnic_originAutnum != ""){
+      extraDesc = respuesta.lacnic_originAutnum;     
+    }
+    this.datosExtra.push({
+      "Title": extraTitle,
+      "Desc": extraDesc
+    });
+
     //AAE Obetngo events
     if (typeof respuesta.events != "undefined" && respuesta.events.length > 0) {
       for (let i: number = 0; i < respuesta.events.length; i++) {
@@ -655,7 +729,8 @@ export class QueryIpComponent implements OnInit {
     var extraDesc: string = "No data";
     var columns : string[] = ["handle","startAddress", "endAddress","ipVersion","name","type","country",
     "entities","links","events","rdapConformance","notices","port43","objectClassName","lacnic_legalRepresentative",
-    "remarks", "parentHandle", "status", "lang", "cidr0_cidrs", "arin_originas0_originautnums", "nicbr_autnum"];
+    "remarks", "parentHandle", "status", "lang", "cidr0_cidrs", "arin_originas0_originautnums", "nicbr_autnum", 
+    "lacnic_reverseDelegations", "lacnic_originAutnum"];
     var type : string;
     var keys: string[] = Object.keys(respuesta);
     var values: string[] = Object.values(respuesta);

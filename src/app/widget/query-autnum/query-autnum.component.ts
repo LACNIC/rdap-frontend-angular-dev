@@ -9,6 +9,7 @@ import {ResponseAutnum} from '../../shared/responseAutnum';
 import {ResponseEntity} from '../../shared/responseEntity';
 import {Constantes} from '../../shared/constantes';
 import {DomSanitizer} from '@angular/platform-browser';
+import {AppSettings} from '../../app.settings';
 
 @Component({
   selector: 'app-query-autnum',
@@ -19,6 +20,7 @@ export class QueryAutnumComponent implements OnInit {
 
   mensajes: Mensaje = new Mensaje();
   loading: boolean = true;
+  widgetSectionHasRoundedBorder = AppSettings.widgetSectionHasRoundedBorder;
   AUTNUM: string;
   datosEvents: string[] = [];
   datosEntities: any[] = [];

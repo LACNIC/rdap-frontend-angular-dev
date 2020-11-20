@@ -1,84 +1,94 @@
 <div class="row">
   <div class="col-md-12">
-      <p class="titulo text-center">NAMESERVER: {{nameserver}}</p>
+      <p class="widget-title text-center">NAMESERVER: {{nameserver}}</p>
   </div>
   <div class="col-md-6 offset-md-3" *ngIf="loading">
       <img class="imgLoading" src="assets/img/loading.gif" alt="loading...">
   </div>
 
   <div class="col-md-6" *ngIf="!loading && datosNameserver.length > 0">
-    <p class="tituloTabla">{{ "RESULTADOSNAMESERVER.TablaNamerserver.Titulo" | translate }}</p>
-    <table class="table">
-      <tbody>
+
+    <div [ngClass]="{'widget-section-container': this.widgetSectionHasRoundedBorder}">
+      <p class="widget-table-title">{{ "RESULTADOSNAMESERVER.TablaNamerserver.Titulo" | translate }}</p>
+      <table class="table table-xs">
+        <tbody>
         <tr>
-            <td class="celdaTitulo">{{ "RESULTADOSNAMESERVER.TablaNamerserver.Filas.Name.Titulo" | translate }}</td>
-            <td class="celdaTexto">{{ datosNameserver[0]}}</td>
+          <td class="widget-table-title-cell">{{ "RESULTADOSNAMESERVER.TablaNamerserver.Filas.Name.Titulo" | translate }}</td>
+          <td class="widget-table-text-cell">{{ datosNameserver[0]}}</td>
         </tr>
         <tr>
-          <td class="celdaTitulo">{{ "RESULTADOSNAMESERVER.TablaNamerserver.Filas.IPv4.Titulo" | translate }}</td>
-          <td class="celdaTexto">{{ datosNameserver[1]}}</td>
+          <td class="widget-table-title-cell">{{ "RESULTADOSNAMESERVER.TablaNamerserver.Filas.IPv4.Titulo" | translate }}</td>
+          <td class="widget-table-text-cell">{{ datosNameserver[1]}}</td>
         </tr>
         <tr>
-          <td class="celdaTitulo">{{ "RESULTADOSNAMESERVER.TablaNamerserver.Filas.IPv6.Titulo" | translate }}</td>
-          <td class="celdaTexto">{{ datosNameserver[2]}}</td>
+          <td class="widget-table-title-cell">{{ "RESULTADOSNAMESERVER.TablaNamerserver.Filas.IPv6.Titulo" | translate }}</td>
+          <td class="widget-table-text-cell">{{ datosNameserver[2]}}</td>
         </tr>
         <tr>
-          <td class="celdaTitulo">Source</td>
-          <td class="celdaTexto">
-              <a class="link" target="_blank" href="{{datosNameserver[3]}}">Click here..</a>
+          <td class="widget-table-title-cell">Source</td>
+          <td class="widget-table-text-cell">
+            <a class="link" target="_blank" href="{{datosNameserver[3]}}">Click here..</a>
           </td>
         </tr>
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </div>
   </div>
 
-  <div class="col-md-6" *ngIf="!loading && datosNotices.length > 0">
-    <p class="tituloTabla">{{ "RESULTADOSNAMESERVER.TablaNotices.Titulo" | translate }}</p>
-    <table class="table" >
-      <tbody>
-        <tr *ngFor="let notice of datosNotices">
-          <td class="celdaTitulo">{{ notice.Title }}</td>
-          <td class="celdaTexto" *ngIf="notice.Link != '#'">
-              <a class="link" target="_blank" href="{{notice.Link}}">{{ notice.Desc }}</a>
-          </td>
-          <td class="celdaTexto" *ngIf="notice.Link == '#'">{{ notice.Desc }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <p class="tituloTabla" *ngIf="!loading && datosRemarks.length > 0">{{ "RESULTADOSAUTNUM.TablaRemarks.Titulo" | translate }}</p>
-    <table class="table"  *ngIf="!loading && datosRemarks.length > 0">
-      <tbody>
-      <tr *ngFor="let remark of datosRemarks">
-          <td class="celdaTitulo">{{ remark.Title }}</td>            
-          <td class="celdaTexto">{{ remark.Desc }}</td>
-      </tr>
-      </tbody>
-    </table>
+  <div class="col-md-6">
     <!-- Datos extra -->
-    <span class="tituloTabla mr-lg-2">{{ "RESULTADOSIP.TablaExtra.Titulo" | translate }}</span>
-    <a data-toggle="collapse" href="#collapseExtras" aria-expanded="false" aria-controls="collapseExtras">
+    <div [ngClass]="{'widget-section-container': this.widgetSectionHasRoundedBorder}">
+      <span class="widget-table-title mr-lg-2">{{ "RESULTADOSIP.TablaExtra.Titulo" | translate }}</span>
+      <a data-toggle="collapse" href="#collapseExtras" aria-expanded="false" aria-controls="collapseExtras">
         <span class="fa fa-plus"></span>
-    </a>
-    <div class="collapse" id="collapseExtras">
-      <table class="table">
+      </a>
+      <div class="collapse" id="collapseExtras">
+        <table class="table table-xs">
           <tbody>
-              <tr *ngFor="let extra of datosExtra">
-                  <td class="celdaTitulo">{{ extra.Title }}</td>            
-                  <td class="celdaTexto">{{ extra.Desc }}</td>
-              </tr>
-              <tr>
-                  <td colspan="2" class="subtituloTabla">{{ "RESULTADOSIP.TablaExtra.SubTituloLinks" | translate }}</td>
-              </tr>
-              <tr *ngFor="let link of datosLinks">
-                  <td class="celdaTitulo">{{ link.Title }}</td>
-                  <td class="celdaTexto" *ngIf="link.Link != '#'">
-                      <a class="link" target="_blank" href="{{link.Link}}">{{ link.Desc }}</a>
-                  </td>
-                  <td class="celdaTexto" *ngIf="link.Link == '#'">{{ link.Desc }}</td>
-              </tr> 
+          <tr *ngFor="let extra of datosExtra">
+            <td class="widget-table-title-cell">{{ extra.Title }}</td>
+            <td class="widget-table-text-cell">{{ extra.Desc }}</td>
+          </tr>
+          <tr>
+            <td colspan="2" class="widget-table-subtitle">{{ "RESULTADOSIP.TablaExtra.SubTituloLinks" | translate }}</td>
+          </tr>
+          <tr *ngFor="let link of datosLinks">
+            <td class="widget-table-title-cell">{{ link.Title }}</td>
+            <td class="widget-table-text-cell" *ngIf="link.Link != '#'">
+              <a class="link" target="_blank" href="{{link.Link}}">{{ link.Desc }}</a>
+            </td>
+            <td class="widget-table-text-cell" *ngIf="link.Link == '#'">{{ link.Desc }}</td>
+          </tr>
           </tbody>
-      </table>
+        </table>
+      </div>
+    </div>
 
+    <div [ngClass]="{'widget-section-container': this.widgetSectionHasRoundedBorder}" *ngIf="!loading && datosRemarks.length > 0">
+      <p class="widget-table-title" *ngIf="!loading && datosRemarks.length > 0">{{ "RESULTADOSAUTNUM.TablaRemarks.Titulo" | translate }}</p>
+      <table class="table table-xs"  *ngIf="!loading && datosRemarks.length > 0">
+        <tbody>
+        <tr *ngFor="let remark of datosRemarks">
+          <td class="widget-table-title-cell">{{ remark.Title }}</td>
+          <td class="widget-table-text-cell">{{ remark.Desc }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div [ngClass]="{'widget-section-container': this.widgetSectionHasRoundedBorder}" *ngIf="!loading && datosNotices.length > 0">
+      <p class="widget-table-title">{{ "RESULTADOSNAMESERVER.TablaNotices.Titulo" | translate }}</p>
+      <table class="table table-xs" >
+        <tbody>
+        <tr *ngFor="let notice of datosNotices">
+          <td class="widget-table-title-cell">{{ notice.Title }}</td>
+          <td class="widget-table-text-cell" *ngIf="notice.Link != '#'">
+            <a class="link" target="_blank" href="{{notice.Link}}">{{ notice.Desc }}</a>
+          </td>
+          <td class="widget-table-text-cell" *ngIf="notice.Link == '#'">{{ notice.Desc }}</td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 

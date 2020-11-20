@@ -10,6 +10,7 @@ import {ResponseEntity} from "../../shared/responseEntity";
 import {ResponseIP} from "../../shared/responseIP";
 import {DomSanitizer} from '@angular/platform-browser';
 import {Constantes} from '../../shared/constantes';
+import {AppSettings} from '../../app.settings';
 
 @Component({
   selector: 'app-query-entity',
@@ -20,6 +21,7 @@ export class QueryEntityComponent implements OnInit {
 
   mensajes: Mensaje = new Mensaje();
   loading: boolean = true;
+  widgetSectionHasRoundedBorder = AppSettings.widgetSectionHasRoundedBorder;
   entity: string;
   datosEntity: any[] = [];
   serverURL: any;

@@ -4,9 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ClipboardModule } from 'ngx-clipboard';
+import { EmbedPageIframeCodeComponent } from './shared/components/embed-page-iframe-code/embed-page-iframe-code.component';
+
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
+import { appRoutingProviders, AppRoutingModule } from './app-routing.module';
 import { NotFoundComponent } from './not-found.component';
 import { MasterPageComponent } from './master-page/master-page.component';
 import { HomeComponent } from './master-page/home/home.component';
@@ -40,6 +43,7 @@ import { QueryNameserverComponent } from './widget/query-nameserver/query-namese
     NotFoundComponent,
     MasterPageComponent,
     HomeComponent,
+    EmbedPageIframeCodeComponent,
     AboutComponent,
     ConsultaPorAutnumComponent,
     ConsultaPorEntityComponent,
@@ -75,9 +79,10 @@ import { QueryNameserverComponent } from './widget/query-nameserver/query-namese
         useFactory: httpTranslateLoader,
         deps: [HttpClient]
       }
-    })
+    }),
+    ClipboardModule
   ],
-  providers: [],
+  providers: [appRoutingProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

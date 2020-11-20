@@ -6,6 +6,15 @@
       "ArrayLimit":"You've exceeded the max. request limit"
     }
   },
+  "COMPONENTS": {
+    "EMBED" : {
+      "TextoBotonFlotante" : "Embed",
+      "ModalTitulo" : "Code to embed the widget",
+      "ModalBotonCopiarTexto" : "Copy to clipboard",
+      "ModalBotonCerrarTexto" : "Close",
+      "ModalAvisoTextoCopiado": "The text has been copied to the clipboard."
+    }
+  },
   "MASTERPAGE" : {
     "MENU" : {
       "LinkHome" : "Home",

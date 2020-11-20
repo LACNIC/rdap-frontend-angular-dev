@@ -167,6 +167,7 @@ export class ResultadosIPMaskComponent implements OnInit {
     var revDelStartAd : string = "No data";
     var revDelEndAd : string = "No data";
     var revDelNameServ : any[];
+    var revDelDsData : any[];
     var revDelSecDNSDelSig: string;
     var revDelSecDNSDelData: string;
 
@@ -291,21 +292,35 @@ export class ResultadosIPMaskComponent implements OnInit {
               });  
             }
           } 
-        } 
+        }
+        
+        revDelDsData = [];
+        if (typeof respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData != "undefined" && respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData.length > 0){
+          for (let i: number = 0; i < respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData.length; i++) {
+            if (typeof respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData[i].zone != "undefined" &&  respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData[i].zone != "") {
+              revDelDsData.push({
+                "zone" : respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData[i].zone,
+                "keyTag" : respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData[i].keyTag,
+                "algorithm" : respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData[i].algorithm,
+                "digest" : respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData[i].digest,
+                "digestType" : respuesta.lacnic_reverseDelegations[nbri].secureDNS.dsData[i].digestType
+              });  
+            }
+          } 
+        }
 
         this.datosReverse.push({
           "StartAddress" : revDelStartAd,
           "EndAddress" : revDelEndAd,
           "Nameservers": revDelNameServ,
           "SecureDNSDelSig" : revDelSecDNSDelSig,
-          "SecureDNSData" : revDelSecDNSDelData 
+          "SecureDNSData" : revDelDsData 
         });
         nbri++;
       }
     }
-  }
 
-  
+  }
 
   obtenerEntities(respuesta: ResponseIP) {
     //Datos de las tablas CONTACTS
@@ -654,6 +669,16 @@ export class ResultadosIPMaskComponent implements OnInit {
       "Desc": extraDesc
     });
 
+    extraTitle = this.translate.instant("RESULTADOSIP.TablaExtra.Filas.Lacnic_originAutnum.Titulo");
+    extraDesc = "No data";
+    if (typeof respuesta.lacnic_originAutnum != "undefined" && respuesta.lacnic_originAutnum != ""){
+      extraDesc = respuesta.lacnic_originAutnum;     
+    }
+    this.datosExtra.push({
+      "Title": extraTitle,
+      "Desc": extraDesc
+    });
+
     //AAE Obetngo events
     if (typeof respuesta.events != "undefined" && respuesta.events.length > 0) {
       for (let i: number = 0; i < respuesta.events.length; i++) {
@@ -700,8 +725,8 @@ export class ResultadosIPMaskComponent implements OnInit {
     var extraDesc: string = "No data";
     var columns : string[] = ["handle","startAddress", "endAddress","ipVersion","name","type","country",
     "entities","links","events","rdapConformance","notices","port43","objectClassName","lacnic_legalRepresentative",
-    "remarks", "parentHandle", "status", "lang", "cidr0_cidrs", "arin_originas0_originautnums", "nicbr_autnum",
-    "lacnic_reverseDelegations"];
+    "remarks", "parentHandle", "status", "lang", "cidr0_cidrs", "arin_originas0_originautnums", "nicbr_autnum", 
+    "lacnic_reverseDelegations", "lacnic_originAutnum"];
     var type : string;
     var keys: string[] = Object.keys(respuesta);
     var values: string[] = Object.values(respuesta);

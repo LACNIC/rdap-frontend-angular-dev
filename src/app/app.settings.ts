@@ -2,6 +2,7 @@ export class AppSettings {
 
 
     public static debug: boolean = true;
+    public static widgetSectionHasRoundedBorder = true;
     
     public static SERVICE_IP_API_URL: string = "https://rdap.lacnic.net/rdap/info/myip";
     public static SERVICE_AUTNUM_API_URL: string = "https://rdap.lacnic.net/rdap/autnum/";

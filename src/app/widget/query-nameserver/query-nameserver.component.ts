@@ -8,6 +8,7 @@ import {ResponseNameserver} from "../../shared/responseNameserver";
 import {Error} from "../../shared/error";
 import {Constantes} from '../../shared/constantes';
 import {DomSanitizer} from '@angular/platform-browser';
+import {AppSettings} from '../../app.settings';
 
 @Component({
   selector: 'app-query-nameserver',
@@ -18,6 +19,7 @@ export class QueryNameserverComponent implements OnInit {
 
   mensajes: Mensaje = new Mensaje();
   loading: boolean = true;
+  widgetSectionHasRoundedBorder = AppSettings.widgetSectionHasRoundedBorder;
   nameserver: string;
   datosNameserver: string[] = [];
   datosNotices: any[] = [];

@@ -6,6 +6,15 @@
       "ArrayLimit":"Você excedeu o limite máximo de consultas"
     }
   },
+  "COMPONENTS" : {
+    "EMBED" : {
+      "TextoBotonFlotante" : "Embeber",
+      "ModalTitulo" : "Código para embeber el widget",
+      "ModalBotonCopiarTexto" : "Copiar al portapapeles",
+      "ModalBotonCerrarTexto" : "Cerrar",
+      "ModalAvisoTextoCopiado": "El texto se ha copiado al portapapeles."
+    }
+  },
   "MASTERPAGE" : {
     "MENU" : {
       "LinkHome" : "Inicio",

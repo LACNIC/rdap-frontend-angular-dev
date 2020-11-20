@@ -23,8 +23,5 @@
 .celdaTexto{
   font-family: FoundryMonoline-Light;
   color: #7F7F7F;
-}
-
-.imgLoading {
-  width: 100%;
+  word-break: break-all;
 }

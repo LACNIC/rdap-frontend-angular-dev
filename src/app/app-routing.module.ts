@@ -114,3 +114,10 @@ const routes: Routes = [
 })
 
 export class AppRoutingModule { }
+
+import { EmbedPageIframeCodeService } from './shared/services/embed-page-iframe-code.service';
+
+// Exporto routing providers
+export const appRoutingProviders: any[] = [
+  EmbedPageIframeCodeService
+];

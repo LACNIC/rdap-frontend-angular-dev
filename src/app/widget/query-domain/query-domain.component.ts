@@ -8,6 +8,7 @@ import {Error} from "../../shared/error";
 import {ResponseDomain} from '../../shared/responseDomain';
 import {Constantes} from '../../shared/constantes';
 import {DomSanitizer} from '@angular/platform-browser';
+import {AppSettings} from '../../app.settings';
 
 @Component({
   selector: 'app-query-domain',
@@ -18,6 +19,7 @@ export class QueryDomainComponent implements OnInit {
 
   mensajes: Mensaje = new Mensaje();
   loading: boolean = true;
+  widgetSectionHasRoundedBorder = AppSettings.widgetSectionHasRoundedBorder;
   domain: string;
   datosDomain: string[] = [];
   datosNameservers: any[] = [];

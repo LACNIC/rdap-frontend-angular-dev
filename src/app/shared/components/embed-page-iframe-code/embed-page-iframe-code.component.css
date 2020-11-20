@@ -1,0 +1,24 @@
+.floatingButton {
+  padding: 5px;
+  background-color: #FAA519;
+  color: black;
+  border-radius: 10px;
+  width: 65px;
+  height: 50px;
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  cursor: pointer;
+}
+
+.floatingButton p {
+  font-weight: bold;
+  font-size: small;
+  margin: 0;
+  text-align: center;
+}
+
+.floatingButton p i {
+  font-weight: bold;
+  font-size: small;
+}

@@ -83,8 +83,33 @@
             <td class="celdaTexto">{{ reverse.SecureDNSDelSig }}</td> 
           </tr>
           <tr>
-            <td class="celdaTitulo">{{ "RESULTADOSIP.TablaReverseDelegations.Filas.DsData.Titulo" | translate  }}</td>
-            <td class="celdaTexto">{{ reverse.SecureDNSData }}</td> 
+            <td colspan="2" class="subtituloTabla" *ngIf="reverse.SecureDNSData.length > 0">{{ "RESULTADOSIP.TablaReverseDelegations.SubTituloDsData" | translate }}</td>            
+          </tr>
+          <tr *ngFor="let dsData of reverse.SecureDNSData">
+            <td colspan="2" class= "tdSinBorder">
+            <table>
+              <tr>
+                <td class="celdaTitulo" style="width: 45%">{{ "RESULTADOSIP.TablaReverseDelegations.Filas.Zone.Titulo" | translate }}</td>
+                <td class="celdaTexto">{{ dsData.zone }}</td> 
+              </tr>              
+              <tr>
+                <td class="celdaTitulo" style="width: 45%">{{ "RESULTADOSIP.TablaReverseDelegations.Filas.KeyTag.Titulo" | translate }}</td>
+                <td class="celdaTexto">{{ dsData.keyTag }}</td> 
+              </tr>
+              <tr>
+                <td class="celdaTitulo" style="width: 45%">{{ "RESULTADOSIP.TablaReverseDelegations.Filas.Algorithm.Titulo" | translate }}</td>
+                <td class="celdaTexto">{{ dsData.algorithm }}</td> 
+              </tr>
+              <tr>
+                <td class="celdaTitulo" style="width: 45%">{{ "RESULTADOSIP.TablaReverseDelegations.Filas.Digest.Titulo" | translate }}</td>
+                <td class="celdaTexto">{{ dsData.digest }}</td> 
+              </tr>
+              <tr>
+                <td class="celdaTitulo" style="width: 45%">{{ "RESULTADOSIP.TablaReverseDelegations.Filas.DigestType.Titulo" | translate }}</td>
+                <td class="celdaTexto">{{ dsData.digestType }}</td> 
+              </tr>
+            </table>  
+            </td>          
           </tr>
         </tbody>
       </table>

@@ -86,7 +86,7 @@
             <td colspan="2" class="subtituloTabla" *ngIf="reverse.SecureDNSData.length > 0">{{ "RESULTADOSIP.TablaReverseDelegations.SubTituloDsData" | translate }}</td>            
           </tr>
           <tr *ngFor="let dsData of reverse.SecureDNSData">
-            <td colspan="2" class= "tdSinBorder">
+            <td colspan="2" style="border-top: 0px; padding: 0px;">
             <table>
               <tr>
                 <td class="celdaTitulo" style="width: 45%">{{ "RESULTADOSIP.TablaReverseDelegations.Filas.Zone.Titulo" | translate }}</td>
@@ -157,18 +157,6 @@
         </tr>
         </tbody>
       </table>
-      <!--<span class="subtituloTabla mr-lg-2">Embeb</span>
-      <a data-toggle="collapse" href="#collapseEmbeb" aria-expanded="false" aria-controls="collapseEmbeb">
-          <span class="fa fa-plus"></span>
-      </a>
-      <div class="collapse" id="collapseEmbeb">        
-        <pre>
-          <code class="html">
-            &lt;iframe width=&quot;560&quot; height=&quot;560&quot; src=&quot;http://rdap-web/query-ip/190.238.69.59&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
-          </code>
-        </pre>        
-      </div>-->
-
   </div>
 
   <div class="col-md-6" *ngIf="!loading && datosEntities.length > 0">
@@ -253,3 +241,5 @@
       </div>
   </div>
 </div>
+
+<app-embed-page-iframe-code-component [iframeSRC]="'https://rdap-web.lacnic.net/rdap/query-ip/' + this.IP"></app-embed-page-iframe-code-component>
