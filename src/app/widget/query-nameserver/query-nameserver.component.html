@@ -1,48 +1,52 @@
 <div class="row">
   <div class="col-md-12">
-      <p class="widget-title text-center">NAMESERVER: {{nameserver}}</p>
+    <p class="widget-title text-center">NAMESERVER: {{nameserver}}</p>
   </div>
   <div class="col-md-6 offset-md-3" *ngIf="loading">
-      <img class="imgLoading" src="assets/img/loading.gif" alt="loading...">
+    <img class="imgLoading" src="assets/img/loading.gif" alt="loading...">
   </div>
 
-  <div class="col-md-6" *ngIf="!loading && datosNameserver.length > 0">
-
-    <div [ngClass]="{'widget-section-container': this.widgetSectionHasRoundedBorder}">
-      <p class="widget-table-title">{{ "RESULTADOSNAMESERVER.TablaNamerserver.Titulo" | translate }}</p>
-      <table class="table table-xs">
-        <tbody>
-        <tr>
-          <td class="widget-table-title-cell">{{ "RESULTADOSNAMESERVER.TablaNamerserver.Filas.Name.Titulo" | translate }}</td>
-          <td class="widget-table-text-cell">{{ datosNameserver[0]}}</td>
-        </tr>
-        <tr>
-          <td class="widget-table-title-cell">{{ "RESULTADOSNAMESERVER.TablaNamerserver.Filas.IPv4.Titulo" | translate }}</td>
-          <td class="widget-table-text-cell">{{ datosNameserver[1]}}</td>
-        </tr>
-        <tr>
-          <td class="widget-table-title-cell">{{ "RESULTADOSNAMESERVER.TablaNamerserver.Filas.IPv6.Titulo" | translate }}</td>
-          <td class="widget-table-text-cell">{{ datosNameserver[2]}}</td>
-        </tr>
-        <tr>
-          <td class="widget-table-title-cell">Source</td>
-          <td class="widget-table-text-cell">
-            <a class="link" target="_blank" href="{{datosNameserver[3]}}">Click here..</a>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+  <div class="col-md-6">
+    <div [ngClass]="{'widget-section-container': this.widgetSectionHasRoundedBorder}" *ngIf="!loading && datosNameserver.length > 0">
+      <app-collapsible-container-component
+        collapseName="Nameserver"
+        [isWidget]="true"
+        titleText='{{ "RESULTADOSNAMESERVER.TablaNamerserver.Titulo" | translate }}'
+      >
+        <table class="table table-xs">
+          <tbody>
+          <tr>
+            <td class="widget-table-title-cell">{{ "RESULTADOSNAMESERVER.TablaNamerserver.Filas.Name.Titulo" | translate }}</td>
+            <td class="widget-table-text-cell">{{ datosNameserver[0]}}</td>
+          </tr>
+          <tr>
+            <td class="widget-table-title-cell">{{ "RESULTADOSNAMESERVER.TablaNamerserver.Filas.IPv4.Titulo" | translate }}</td>
+            <td class="widget-table-text-cell">{{ datosNameserver[1]}}</td>
+          </tr>
+          <tr>
+            <td class="widget-table-title-cell">{{ "RESULTADOSNAMESERVER.TablaNamerserver.Filas.IPv6.Titulo" | translate }}</td>
+            <td class="widget-table-text-cell">{{ datosNameserver[2]}}</td>
+          </tr>
+          <tr>
+            <td class="widget-table-title-cell">Source</td>
+            <td class="widget-table-text-cell">
+              <a class="link" target="_blank" href="{{datosNameserver[3]}}">Click here..</a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </app-collapsible-container-component>
     </div>
   </div>
 
   <div class="col-md-6">
     <!-- Datos extra -->
     <div [ngClass]="{'widget-section-container': this.widgetSectionHasRoundedBorder}">
-      <span class="widget-table-title mr-lg-2">{{ "RESULTADOSIP.TablaExtra.Titulo" | translate }}</span>
-      <a data-toggle="collapse" href="#collapseExtras" aria-expanded="false" aria-controls="collapseExtras">
-        <span class="fa fa-plus"></span>
-      </a>
-      <div class="collapse" id="collapseExtras">
+      <app-collapsible-container-component
+        collapseName="Extra"
+        [isWidget]="true"
+        titleText='{{ "RESULTADOSIP.TablaExtra.Titulo" | translate }}'
+      >
         <table class="table table-xs">
           <tbody>
           <tr *ngFor="let extra of datosExtra">
@@ -61,46 +65,56 @@
           </tr>
           </tbody>
         </table>
-      </div>
+      </app-collapsible-container-component>
     </div>
 
     <div [ngClass]="{'widget-section-container': this.widgetSectionHasRoundedBorder}" *ngIf="!loading && datosRemarks.length > 0">
-      <p class="widget-table-title" *ngIf="!loading && datosRemarks.length > 0">{{ "RESULTADOSAUTNUM.TablaRemarks.Titulo" | translate }}</p>
-      <table class="table table-xs"  *ngIf="!loading && datosRemarks.length > 0">
-        <tbody>
-        <tr *ngFor="let remark of datosRemarks">
-          <td class="widget-table-title-cell">{{ remark.Title }}</td>
-          <td class="widget-table-text-cell">{{ remark.Desc }}</td>
-        </tr>
-        </tbody>
-      </table>
+      <app-collapsible-container-component
+        collapseName="Remarks"
+        [isWidget]="true"
+        titleText='{{ "RESULTADOSAUTNUM.TablaRemarks.Titulo" | translate }}'
+      >
+        <table class="table table-xs">
+          <tbody>
+          <tr *ngFor="let remark of datosRemarks">
+            <td class="widget-table-title-cell">{{ remark.Title }}</td>
+            <td class="widget-table-text-cell">{{ remark.Desc }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </app-collapsible-container-component>
     </div>
 
     <div [ngClass]="{'widget-section-container': this.widgetSectionHasRoundedBorder}" *ngIf="!loading && datosNotices.length > 0">
-      <p class="widget-table-title">{{ "RESULTADOSNAMESERVER.TablaNotices.Titulo" | translate }}</p>
-      <table class="table table-xs" >
-        <tbody>
-        <tr *ngFor="let notice of datosNotices">
-          <td class="widget-table-title-cell">{{ notice.Title }}</td>
-          <td class="widget-table-text-cell" *ngIf="notice.Link != '#'">
-            <a class="link" target="_blank" href="{{notice.Link}}">{{ notice.Desc }}</a>
-          </td>
-          <td class="widget-table-text-cell" *ngIf="notice.Link == '#'">{{ notice.Desc }}</td>
-        </tr>
-        </tbody>
-      </table>
+      <app-collapsible-container-component
+        collapseName="Notices"
+        [isWidget]="true"
+        titleText='{{ "RESULTADOSNAMESERVER.TablaNotices.Titulo" | translate }}'
+      >
+        <table class="table table-xs">
+          <tbody>
+          <tr *ngFor="let notice of datosNotices">
+            <td class="widget-table-title-cell">{{ notice.Title }}</td>
+            <td class="widget-table-text-cell" *ngIf="notice.Link != '#'">
+              <a class="link" target="_blank" href="{{notice.Link}}">{{ notice.Desc }}</a>
+            </td>
+            <td class="widget-table-text-cell" *ngIf="notice.Link == '#'">{{ notice.Desc }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </app-collapsible-container-component>
     </div>
   </div>
 
   <div *ngIf="mensajes.Errores.length > 0" class="alert alert-danger col-md-8 offset-md-2 errores">
     <div *ngFor="let error of mensajes.Errores;">
-        {{error.Description}}
+      {{error.Description}}
     </div>
   </div>
   <div *ngIf="mensajes.Exitos.length > 0" class="alert alert-success  col-md-8 offset-md-2 exitos">
-      <div *ngFor="let exito of mensajes.Exitos;">
-          {{exito.Description}}
-      </div>
+    <div *ngFor="let exito of mensajes.Exitos;">
+      {{exito.Description}}
+    </div>
   </div>
 </div>
 

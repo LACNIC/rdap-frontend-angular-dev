@@ -116,8 +116,10 @@ const routes: Routes = [
 export class AppRoutingModule { }
 
 import { EmbedPageIframeCodeService } from './shared/services/embed-page-iframe-code.service';
+import { CollapsibleContainerService } from './shared/services/collapsible-container.service';
 
 // Exporto routing providers
 export const appRoutingProviders: any[] = [
-  EmbedPageIframeCodeService
+  EmbedPageIframeCodeService,
+  CollapsibleContainerService
 ];

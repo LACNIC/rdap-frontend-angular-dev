@@ -1,0 +1,28 @@
+.collapseTitle{
+  font-family: FoundryMonoline-Blod;
+  font-size: 24px;
+}
+
+.collapseTitle > a {
+  display: block;
+  color: #FAA519;
+  text-decoration: none;
+}
+
+.collapseTitle > a > i {
+  color: #009DCA;
+  font-size: medium;
+}
+
+.widget.collapseTitle {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.widget.collapseTitle > a{
+  color: #696969;
+}
+
+.widget.collapseTitle > a > i {
+  color: #696969;
+}

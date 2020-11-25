@@ -6,6 +6,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ClipboardModule } from 'ngx-clipboard';
 import { EmbedPageIframeCodeComponent } from './shared/components/embed-page-iframe-code/embed-page-iframe-code.component';
+import { CollapsibleContainerComponent } from './shared/components/collapsible-container/collapsible-container.component';
 
 
 import { AppComponent } from './app.component';
@@ -44,6 +45,7 @@ import { QueryNameserverComponent } from './widget/query-nameserver/query-namese
     MasterPageComponent,
     HomeComponent,
     EmbedPageIframeCodeComponent,
+    CollapsibleContainerComponent,
     AboutComponent,
     ConsultaPorAutnumComponent,
     ConsultaPorEntityComponent,
