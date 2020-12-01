@@ -90,7 +90,6 @@
         "6" : "Search Entities",
         "7" : "Search Nameservers",
         "8" : "Search Domains"
-
       }
     },
     "SelectParamEntities": {
@@ -408,6 +407,9 @@
           "Titulo" : "DigestType"
         }
       }
+    },
+    "Widget" : {
+      "Info" : "Información obtenida por "
     }
   },
   "RESULTADOSAUTNUM" : {

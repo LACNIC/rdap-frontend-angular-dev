@@ -38,6 +38,8 @@ export class QueryEntityComponent implements OnInit {
   existenAutnums: boolean = false;
   lang : string = "es";
 
+  linkRdap : string = AppSettings.RDAP_WEB;
+
   constructor(private dataService: DataService, private route: ActivatedRoute, private translate: TranslateService, private sanitizer: DomSanitizer) {
     
   }
@@ -61,6 +63,7 @@ export class QueryEntityComponent implements OnInit {
 
     this.entity = this.route.snapshot.params['entity'].toUpperCase();
     if (this.entity != undefined && this.entity != null && this.entity != "") {
+      this.linkRdap = this.linkRdap + "entity/" + this.entity;
       this.buscarDatosEntity();
     }
 

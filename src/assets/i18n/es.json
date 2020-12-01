@@ -54,28 +54,28 @@
       "Asn": {
         "Titulo" : "ASN",
         "Texto" : "Ingrese el número del sistema autónomo. "},
-      "IP":
-      { "Titulo" : "IP o bloque CIDR",
+      "IP": { 
+        "Titulo" : "IP o bloque CIDR",
         "Texto" : "Ingrese una dirección IP (200.7.84.0) o uno bloque CIDR (200.7.84.0/23)."
       },
-      "Nameservers":
-      { "Titulo" : "Servidores de nombres",
+      "Nameservers": { 
+        "Titulo" : "Servidores de nombres",
         "Texto" : "Ingrese un valor para consultar un servidor de nombres."
       },
       "Domains":
       { "Titulo" : "Dominios",
         "Texto" : "Ingrese un dominio."
       },
-      "EntitiesSearch":
-      { "Titulo" : "Búsqueda Entidades",
+      "EntitiesSearch": { 
+        "Titulo" : "Búsqueda Entidades",
         "Texto" : "Seleccione si desea buscar por fn o handle e ingrese el valor a buscar incluyendo comodines."
       },
-      "NameserverSearch":
-      { "Titulo" : "Búsqueda Servidores de nombres",
+      "NameserverSearch": { 
+        "Titulo" : "Búsqueda Servidores de nombres",
         "Texto" : "Ingrese el valor a buscar incluyendo comodines."
       },
-      "DomainSearch":
-      { "Titulo" : "Búsqueda Dominios",
+      "DomainSearch": { 
+        "Titulo" : "Búsqueda Dominios",
         "Texto" : "Seleccione si desea buscar por nsLdhName o por nombre e ingrese el valor a buscar incluyendo comodines."
       }
     },
@@ -407,6 +407,9 @@
           "Titulo" : "DigestType"
         }
       }
+    },
+    "Widget" : {
+      "Info" : "Información obtenida por "
     }
   },
   "RESULTADOSAUTNUM": {

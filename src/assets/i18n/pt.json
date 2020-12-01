@@ -39,7 +39,8 @@
       "Titulo" : "INFORMAÇÃO ADICIONAL",
       "Parrafo1" : "O \"Registration Data Access Protocol\" (RDAP) foi projetado para superar as deficiências existentes no WHOIS tradicional, problemas com a internacionalização, padronização das respostas, inclusão de caracteres especiais, difícil processamento automático, inclusão de novos tipos de consultas poderão ser resolvidos com o desenvolvimento deste padrão.",
       "Parrafo2" : "Os documentos de WEIRDS nos quais foi baseado o RDAP implementado pela LACNIC bem como infomação adicional sobre o sistema."
-    },"ComoConsultar": {
+    },
+    "ComoConsultar": {
       "Titulo":"Como consultar",
       "IDs": {
         "Titulo" : "IDs",
@@ -54,28 +55,28 @@
         "Titulo" : "ASN",
         "Texto" : "Digite o número do Sistema Autônomo."
       },
-      "IP":
-      { "Titulo" : "IP ou bloco CIDR",
+      "IP": { 
+        "Titulo" : "IP ou bloco CIDR",
         "Texto" : "Digite um número IP (200.7.84.0) ou um bloco CIDR (200.7.84.0/23)."
       },
-      "Nameservers":
-      { "Titulo" : "Servidores de nomes",
+      "Nameservers": { 
+        "Titulo" : "Servidores de nomes",
         "Texto" : "Insira um valor para consultar um servidor de nomes"
       },
-      "Domains":
-      { "Titulo" : "Domínios",
+      "Domains": { 
+        "Titulo" : "Domínios",
         "Texto" : "Insira um domínio."
       },
-      "EntitiesSearch":
-      { "Titulo" : "Pesquisa Entidades",
+      "EntitiesSearch": { 
+        "Titulo" : "Pesquisa Entidades",
         "Texto" : "Selecione se quiser pesquisar por fn ou handle e insira o valor a pesquisar incluindo curingas."
       },
-      "NameserverSearch":
-      { "Titulo" : "Pesquisa Servidores de nomes",
+      "NameserverSearch": { 
+        "Titulo" : "Pesquisa Servidores de nomes",
         "Texto" : "Insira o valor a pesquisar incluindo curingas."
       },
-      "DomainSearch":
-      { "Titulo" : "Pesquisa Domínios",
+      "DomainSearch": { 
+        "Titulo" : "Pesquisa Domínios",
         "Texto" : "Selecione se quiser pesquisar por nsLdhName ou por nome e insira o valor a pesquisar incluindo curingas."
       }
     },
@@ -407,6 +408,9 @@
           "Titulo" : "DigestType"
         }
       }
+    },
+    "Widget" : {
+      "Info" : "Información obtenida por "
     }
   },
   "RESULTADOSAUTNUM" : {

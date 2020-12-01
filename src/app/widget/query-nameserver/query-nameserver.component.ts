@@ -28,6 +28,8 @@ export class QueryNameserverComponent implements OnInit {
   datosLinks: any[] = [];  
 
   rederictUrl: string = Constantes.rederictUrl;
+
+  linkRdap : string = AppSettings.RDAP_WEB;
   
   lang : string = "es";
 
@@ -55,7 +57,7 @@ export class QueryNameserverComponent implements OnInit {
     this.nameserver = this.route.snapshot.params['nameserver'];
     if (this.nameserver != undefined && this.nameserver != null && this.nameserver != "") {
 
-      
+      this.linkRdap = this.linkRdap + "nameserver/" + this.nameserver;
       this.buscarDatosNameserver();
     }
 

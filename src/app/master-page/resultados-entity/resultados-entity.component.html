@@ -6,7 +6,9 @@
       <img class="imgLoading" src="assets/img/loading.gif" alt="loading...">
   </div>
 
-  <div class="col-md-6">
+  <div 
+    [ngClass]="{'col-md-6' : true, 'div-center': (!existenNetworks && !existenAutnums) }"
+  >
     <app-collapsible-container-component
       *ngIf="!loading && datosEntity.length > 0"
       collapseName="Entity"
@@ -208,7 +210,7 @@
     </app-collapsible-container-component>
   </div>
 
-  <div class="col-md-6">
+  <div class="col-md-6" *ngIf="!loading && (existenNetworks || existenAutnums)">
     <app-collapsible-container-component
       *ngIf="!loading && existenNetworks"
       collapseName="Inetnums"

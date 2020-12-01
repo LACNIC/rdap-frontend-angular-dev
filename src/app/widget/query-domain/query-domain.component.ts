@@ -29,6 +29,8 @@ export class QueryDomainComponent implements OnInit {
   datosLinks: any[] = [];
   rederictUrl: string = Constantes.rederictUrl;
   
+  linkRdap : string = AppSettings.RDAP_WEB;
+
   lang : string = "es";
 
   constructor(private dataService: DataService, private route: ActivatedRoute, private translate: TranslateService, private sanitizer: DomSanitizer) {
@@ -56,7 +58,7 @@ export class QueryDomainComponent implements OnInit {
     this.domain = this.route.snapshot.params['domain'];
     if (this.domain != undefined && this.domain != null && this.domain != "") {
 
-      
+      this.linkRdap = this.linkRdap + "domain/" + this.domain;
       this.buscarDatosDomain();
     }
 

@@ -13,4 +13,6 @@ export class AppSettings {
     public static SERVICE_DOMAIN_API_URL: string = "https://rdap.lacnic.net/rdap/domain/";
 
     public static SERVICE_SEARCH_API_URL: string = "https://rdap.lacnic.net/rdap/";
+
+    public static RDAP_WEB: string = "https://rdap-web.lacnic.net/rdap/";
 }

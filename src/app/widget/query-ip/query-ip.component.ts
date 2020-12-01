@@ -32,6 +32,8 @@ export class QueryIpComponent implements OnInit {
   datosEvents: any[] = [];
   datosReverse: any[] = [];
   
+  linkRdap : string = AppSettings.RDAP_WEB;
+
   lang : string = "es";
 
   private mostarDatosExta: boolean = true;
@@ -62,6 +64,7 @@ export class QueryIpComponent implements OnInit {
 
     this.IP = this.route.snapshot.params['ip'];
     if (this.IP != undefined && this.IP != null && this.IP != "") {
+      this.linkRdap = this.linkRdap + "ip/" + this.IP;
       this.buscarDatosIP();
     }
 

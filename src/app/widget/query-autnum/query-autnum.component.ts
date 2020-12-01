@@ -33,6 +33,8 @@ export class QueryAutnumComponent implements OnInit {
   rederictUrl: string = Constantes.rederictUrl;
   private mostarDatosExta: boolean = true;
 
+  linkRdap : string = AppSettings.RDAP_WEB;
+
   lang : string = "es";
 
   constructor(private dataService: DataService, private route: ActivatedRoute, private translate: TranslateService, private sanitizer: DomSanitizer) {
@@ -63,6 +65,7 @@ export class QueryAutnumComponent implements OnInit {
         this.AUTNUM = this.AUTNUM.substring(2);
 
       }
+      this.linkRdap = this.linkRdap + "autnum/" + this.AUTNUM;
       this.buscarDatosAutnum();
     }
 

@@ -7,7 +7,9 @@
       <img class="imgLoading" src="assets/img/loading.gif" alt="loading...">
   </div>
 
-  <div class="col-md-6">
+  <div 
+    [ngClass]="{'col-md-6' : true, 'div-center': (datosEntities.length == 0 && !existenNetworks && !existenAutnums) }"
+  >
     <div [ngClass]="{'widget-section-container': this.widgetSectionHasRoundedBorder}" *ngIf="!loading && datosEntity.length > 0">
       <app-collapsible-container-component
         collapseName="Entity"
@@ -75,7 +77,7 @@
     </div>
 
     <!-- Datos extra -->
-    <div [ngClass]="{'widget-section-container': this.widgetSectionHasRoundedBorder}">
+    <div [ngClass]="{'widget-section-container': this.widgetSectionHasRoundedBorder}" *ngIf="!loading" >
       <app-collapsible-container-component
         collapseName="Extra"
         [isWidget]="true"
@@ -155,7 +157,10 @@
     </div>
   </div>
 
-  <div class="col-md-6" >
+  <div 
+    class="col-md-6"  
+    *ngIf="!loading && (datosEntities.length > 0 || existenNetworks || existenAutnums)"
+  >
     <div [ngClass]="{'widget-section-container': this.widgetSectionHasRoundedBorder}" *ngIf="!loading && datosEntities.length > 0">
       <app-collapsible-container-component
         collapseName="Contacts"
@@ -270,6 +275,10 @@
         </table>
       </app-collapsible-container-component>
     </div>
+  </div>
+
+  <div class="col-md-12 text-center">
+    <span class='widget-table-text-cell'>{{ "RESULTADOSIP.Widget.Info" | translate }}<a target="_blank" href="{{linkRdap}}">RDAP-WEB</a></span>
   </div>
 
   <div *ngIf="mensajes.Errores.length > 0" class="alert alert-danger col-md-8 offset-md-2 errores">
