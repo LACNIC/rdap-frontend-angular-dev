@@ -10,6 +10,7 @@ import {ResponseIP} from "../../shared/responseIP";
 import {ResponseEntity} from '../../shared/responseEntity';
 //import { equals } from '@ngx-translate/core/lib/util';
 import {DomSanitizer} from '@angular/platform-browser';
+import {Info} from "../../shared/info";
 
 @Component({
   selector: 'resultados-ip',
@@ -125,7 +126,7 @@ export class ResultadosIPComponent implements OnInit {
       this.traducirError("RESULTADOSIP.Errores.sinResultados");
       this.traducirError("RESULTADOSIP.Errores.verifiqueYReintente");
     }
-
+    this.mensajes.Informaciones.push(new Info(error, true));
     this.loading = false;
   }
 

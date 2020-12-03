@@ -11,6 +11,7 @@ import {Event} from '../../shared/event';
 import {ResponseEntity} from '../../shared/responseEntity';
 import {Constantes} from '../../shared/constantes';
 import {DomSanitizer} from '@angular/platform-browser';
+import {Info} from "../../shared/info";
 
 
 @Component({
@@ -140,6 +141,7 @@ export class ResultadosAutnumComponent implements OnInit {
       this.traducirError("RESULTADOSAUTNUM.Errores.sinResultados");
       this.traducirError("RESULTADOSAUTNUM.Errores.verifiqueYReintente");
     }
+    this.mensajes.Informaciones.push(new Info(error, true));
     this.loading = false;
   }
 

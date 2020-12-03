@@ -8,6 +8,7 @@ import {ResponseNameserver} from "../../shared/responseNameserver";
 import {Error} from "../../shared/error";
 import {Constantes} from '../../shared/constantes';
 import {DomSanitizer} from '@angular/platform-browser';
+import {Info} from "../../shared/info";
 
 @Component({
   selector: 'app-resultados-nameserver',
@@ -107,6 +108,7 @@ export class ResultadosNameserverComponent implements OnInit {
       this.traducirError("RESULTADOSNAMESERVER.Errores.sinResultados");
       this.traducirError("RESULTADOSNAMESERVER.Errores.verifiqueYReintente");
     }
+    this.mensajes.Informaciones.push(new Info(error, true));
     this.loading = false;
   }
 

@@ -8,6 +8,7 @@ import { Error } from "../../shared/error";
 import { ResponseIP } from "../../shared/responseIP";
 import { ResponseEntity } from '../../shared/responseEntity';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Info } from "../../shared/info";
 
 @Component({
   selector: 'resultados-ip-mask',
@@ -138,6 +139,7 @@ export class ResultadosIPMaskComponent implements OnInit {
       this.traducirError("RESULTADOSIP.Errores.sinResultados");
       this.traducirError("RESULTADOSIP.Errores.verifiqueYReintente");
     }
+    this.mensajes.Informaciones.push(new Info(error, true));
     this.loading = false;
   }
 

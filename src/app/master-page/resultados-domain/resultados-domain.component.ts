@@ -8,6 +8,7 @@ import {Error} from "../../shared/error";
 import {ResponseDomain} from '../../shared/responseDomain';
 import {Constantes} from '../../shared/constantes';
 import {DomSanitizer} from '@angular/platform-browser';
+import {Info} from "../../shared/info";
 
 @Component({
   selector: 'app-resultados-domain',
@@ -107,6 +108,7 @@ export class ResultadosDomainComponent implements OnInit {
       this.traducirError("RESULTADOSDOMAIN.Errores.sinResultados");
       this.traducirError("RESULTADOSDOMAIN.Errores.verifiqueYReintente");
     }
+    this.mensajes.Informaciones.push(new Info(error, true));
     this.loading = false;
   }
 

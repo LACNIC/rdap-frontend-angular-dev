@@ -11,6 +11,7 @@ import {ResponseEntity} from "../../shared/responseEntity";
 import {ResponseIP} from "../../shared/responseIP";
 import {DomSanitizer} from '@angular/platform-browser';
 import {Constantes} from '../../shared/constantes';
+import {Info} from "../../shared/info";
 
 @Component({
   selector: 'resultados-entity',
@@ -136,7 +137,7 @@ export class ResultadosEntityComponent implements OnInit {
       this.traducirError("RESULTADOSENTITY.Errores.sinResultados");
       this.traducirError("RESULTADOSENTITY.Errores.verifiqueYReintente");
     }
-
+    this.mensajes.Informaciones.push(new Info(error, true));
     this.loading = false;
   }
 

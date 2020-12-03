@@ -41,11 +41,9 @@ body {
     src: url(../fonts/georgia/georgiaz.ttf);
 }
 
-.errores {
+.errores,
+.exitos,
+.informaciones {
     margin-top: 20px;
     font-family: FoundryMonoline-Medium;
-}
-.exitos {
-    margin-top: 20px;
-    font-family: FoundryMonoline-Medium;
-}
+}ss

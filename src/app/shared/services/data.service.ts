@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpRequest, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 
 import {AppSettings} from "../../app.settings";
 import {Utilities} from '../utilities';
@@ -60,7 +60,7 @@ export class DataService {
     var url: string = AppSettings.SERVICE_ENTITY_API_URL + entityBuscada;
     Utilities.log("[data.service.ts] - getBuscarEntity | url: " + url);
 
-    return this.http.get(url).pipe(      
+    return this.http.get(url).pipe(
       catchError(this.handleError)
     );
   }
@@ -133,8 +133,9 @@ export class DataService {
 
 
   private handleError(error: any) {
-    Utilities.log("[data.service.ts] - handleErrror: "+ error);
-    return Observable.throw(error || "Server Error");
+    Utilities.log("[data.service.ts] - handleErrror:");
+    Utilities.log(error);
+    return throwError(error || "Server Error");
   }
 
 

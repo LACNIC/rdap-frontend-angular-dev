@@ -37,6 +37,7 @@ import { QueryEntityComponent } from './widget/query-entity/query-entity.compone
 import { QueryAutnumComponent } from './widget/query-autnum/query-autnum.component';
 import { QueryDomainComponent } from './widget/query-domain/query-domain.component';
 import { QueryNameserverComponent } from './widget/query-nameserver/query-nameserver.component';
+import { PrettyjsonPipe } from './shared/pipes/prettyjson.pipe';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { QueryNameserverComponent } from './widget/query-nameserver/query-namese
     QueryEntityComponent,
     QueryAutnumComponent,
     QueryDomainComponent,
-    QueryNameserverComponent
+    QueryNameserverComponent,
+    PrettyjsonPipe
   ],
   imports: [
     BrowserModule,

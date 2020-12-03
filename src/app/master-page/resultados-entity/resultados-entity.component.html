@@ -268,12 +268,18 @@
     </app-collapsible-container-component>
   </div>
 
-  <div *ngIf="mensajes.Errores.length > 0" class="alert alert-danger col-md-8 offset-md-2 errores">
+  <div *ngIf="mensajes.Errores.length > 0" class="alert alert-danger col-md-10 offset-md-1 errores">
       <div *ngFor="let error of mensajes.Errores;">
           {{error.Description}}
       </div>
   </div>
-  <div *ngIf="mensajes.Exitos.length > 0" class="alert alert-success  col-md-8 offset-md-2 exitos">
+  <div *ngIf="mensajes.Informaciones.length > 0" class="alert alert-info col-md-10 offset-md-1 informaciones">
+    <div *ngFor="let info of mensajes.Informaciones;">
+      <div *ngIf="info.isJSON" [innerHTML]="info.Description | prettyjson"></div>
+      <span *ngIf="!info.isJSON">{{info.Description}}</span>
+    </div>
+  </div>
+  <div *ngIf="mensajes.Exitos.length > 0" class="alert alert-success  col-md-10 offset-md-1 exitos">
       <div *ngFor="let exito of mensajes.Exitos;">
           {{exito.Description}}
       </div>
