@@ -53,7 +53,7 @@
           <tr *ngFor="let link of datosLinks">
             <td class="widget-table-title-cell">{{ link.Title }}</td>
             <td class="widget-table-text-cell" *ngIf="link.Link != '#'">
-              <a class="link" target="_blank" href="{{link.Link}}">{{ link.Desc }}</a>
+              <a class="link break-all" target="_blank" href="{{link.Link}}">{{ link.Desc }}</a>
             </td>
             <td class="widget-table-text-cell" *ngIf="link.Link == '#'">{{ link.Desc }}</td>
           </tr>
