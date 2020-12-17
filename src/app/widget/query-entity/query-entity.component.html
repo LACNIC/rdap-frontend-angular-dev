@@ -77,7 +77,7 @@
     </div>
 
     <!-- Datos extra -->
-    <div [ngClass]="{'widget-section-container': this.widgetSectionHasRoundedBorder}" *ngIf="!loading" >
+    <div [ngClass]="{'widget-section-container': this.widgetSectionHasRoundedBorder}" *ngIf="!loading && datosExtra.length > 0" >
       <app-collapsible-container-component
         collapseName="Extra"
         [isWidget]="true"
