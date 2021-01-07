@@ -1,0 +1,294 @@
+<div class="row">
+  <div class="col-md-12">
+      <p class="widget-title text-center">ENTITY: {{ entity }}</p>
+  </div>
+
+  <div class="col-md-6 offset-md-3" *ngIf="loading">
+      <img class="imgLoading" src="assets/img/loading.gif" alt="loading...">
+  </div>
+
+  <div 
+    [ngClass]="{'col-md-6' : true, 'div-center': (datosEntities.length == 0 && !existenNetworks && !existenAutnums) }"
+  >
+    <div [ngClass]="{'widget-section-container': this.widgetSectionHasRoundedBorder}" *ngIf="!loading && datosEntity.length > 0">
+      <app-collapsible-container-component
+        collapseName="Entity"
+        [isWidget]="true"
+        titleText='{{ "RESULTADOSENTITY.TablaEntity.Titulo" | translate }}'
+      >
+        <table class="table table-xs">
+          <tbody>
+          <tr>
+            <td class="widget-table-title-cell">{{ "RESULTADOSENTITY.TablaEntity.Filas.Handle.Titulo" | translate }}</td>
+            <td class="widget-table-text-cell">{{ datosEntity[0].Handle }}</td>
+          </tr>
+
+          <tr>
+            <td class="widget-table-title-cell">{{ "RESULTADOSENTITY.TablaEntity.Filas.Name.Titulo" | translate }}</td>
+            <td class="widget-table-text-cell">{{ datosEntity[0].Name }}</td>
+          </tr>
+          <tr>
+            <td class="widget-table-title-cell">{{ "RESULTADOSENTITY.TablaEntity.Filas.Country.Titulo" | translate }}</td>
+            <td class="widget-table-text-cell">{{ datosEntity[0].Country }}</td>
+          </tr>
+          <tr>
+            <td class="widget-table-title-cell">{{ "RESULTADOSENTITY.TablaEntity.Filas.City.Titulo" | translate }}</td>
+            <td class="widget-table-text-cell">{{ datosEntity[0].City }}</td>
+          </tr>
+          <tr>
+            <td class="widget-table-title-cell">{{ "RESULTADOSENTITY.TablaEntity.Filas.Address.Titulo" | translate }}</td>
+            <td class="widget-table-text-cell">{{ datosEntity[0].Address }}</td>
+          </tr>
+          <tr>
+            <td class="widget-table-title-cell">{{ "RESULTADOSENTITY.TablaEntity.Filas.PostalCode.Titulo" | translate }}</td>
+            <td class="widget-table-text-cell">{{ datosEntity[0].PostalCode }}</td>
+          </tr>
+          <!--<tr>-->
+          <!--<td class="widget-table-title-cell">{{ "RESULTADOSENTITY.TablaEntity.Filas.Roles.Titulo" | translate }}</td>-->
+          <!--<td class="widget-table-text-cell">{{ datosEntity[0].Roles }}</td>-->
+          <!--</tr>-->
+          <tr>
+            <td class="widget-table-title-cell">{{ "RESULTADOSENTITY.TablaEntity.Filas.Email.Titulo" | translate }}</td>
+            <td class="widget-table-text-cell">{{ datosEntity[0].Email }}</td>
+          </tr>
+          <tr>
+            <td class="widget-table-title-cell">{{ "RESULTADOSENTITY.TablaEntity.Filas.Telephone.Titulo" | translate }}</td>
+            <td class="widget-table-text-cell">{{ datosEntity[0].TelType }} {{ datosEntity[0].Telephone }}</td>
+          </tr>
+          <tr>
+            <td class="widget-table-title-cell">{{ "RESULTADOSENTITY.TablaEntity.Filas.Registration.Titulo" | translate }}</td>
+            <td class="widget-table-text-cell">{{ datosEntity[0].Registration }}</td>
+          </tr>
+          <tr>
+            <td class="widget-table-title-cell">{{ "RESULTADOSENTITY.TablaEntity.Filas.LastChanged.Titulo" | translate }}</td>
+            <td class="widget-table-text-cell">{{ datosEntity[0].LastChanged }}</td>
+          </tr>
+          <tr>
+            <td class="widget-table-title-cell">{{ "RESULTADOSENTITY.TablaEntity.Filas.Version.Titulo" | translate }}</td>
+            <td class="widget-table-text-cell">{{ datosEntity[0].Version }}</td>
+          </tr>
+          <tr>
+            <td class="widget-table-title-cell">{{ "RESULTADOSENTITY.TablaEntity.Filas.LegalRepresentative.Titulo" | translate }}</td>
+            <td class="widget-table-text-cell">{{ datosEntity[0].LegalRep }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </app-collapsible-container-component>
+    </div>
+
+    <!-- Datos extra -->
+    <div [ngClass]="{'widget-section-container': this.widgetSectionHasRoundedBorder}" *ngIf="!loading && datosExtra.length > 0" >
+      <app-collapsible-container-component
+        collapseName="Extra"
+        [isWidget]="true"
+        titleText='{{ "RESULTADOSIP.TablaExtra.Titulo" | translate }}'
+      >
+        <table class="table table-xs">
+          <tbody>
+          <tr *ngFor="let extra of datosExtra">
+            <td class="widget-table-title-cell">{{ extra.Title }}</td>
+            <td class="widget-table-text-cell">{{ extra.Desc }}</td>
+          </tr>
+          <tr>
+            <td colspan="2" class="widget-table-subtitle" *ngIf="datosVCard.length > 0">{{ "RESULTADOSIP.TablaExtra.SubTituloVCard" | translate }}</td>
+          </tr>
+          <tr *ngFor="let vcard of datosVCard">
+            <td class="widget-table-title-cell">{{ vcard.Title }}</td>
+            <td class="widget-table-text-cell">{{ vcard.Desc }}</td>
+          </tr>
+          <tr>
+            <td colspan="2" class="widget-table-subtitle">{{ "RESULTADOSIP.TablaExtra.SubTituloEventos" | translate }}</td>
+          </tr>
+
+          <tr *ngFor="let event of datosEvents">
+            <td class="widget-table-title-cell">{{ event.Title }}</td>
+            <td class="widget-table-text-cell">{{ event.Desc }}</td>
+          </tr>
+          <tr>
+            <td colspan="2" class="widget-table-subtitle">{{ "RESULTADOSIP.TablaExtra.SubTituloLinks" | translate }}</td>
+          </tr>
+          <tr *ngFor="let link of datosLinks">
+            <td class="widget-table-title-cell">{{ link.Title }}</td>
+            <td class="widget-table-text-cell" *ngIf="link.Link != '#'">
+              <a class="link break-all" target="_blank" href="{{link.Link}}">{{ link.Desc }}</a>
+            </td>
+            <td class="widget-table-text-cell" *ngIf="link.Link == '#'">{{ link.Desc }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </app-collapsible-container-component>
+    </div>
+
+    <div [ngClass]="{'widget-section-container': this.widgetSectionHasRoundedBorder}" *ngIf="!loading && datosRemarks.length > 0">
+      <app-collapsible-container-component
+        collapseName="Remarks"
+        [isWidget]="true"
+        titleText='{{ "RESULTADOSAUTNUM.TablaRemarks.Titulo" | translate }}'
+      >
+        <table class="table table-xs">
+          <tbody>
+          <tr *ngFor="let remark of datosRemarks">
+            <td class="widget-table-title-cell">{{ remark.Title }}</td>
+            <td class="widget-table-text-cell">{{ remark.Desc }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </app-collapsible-container-component>
+    </div>
+
+    <div [ngClass]="{'widget-section-container': this.widgetSectionHasRoundedBorder}" *ngIf="!loading && datosNotices.length > 0">
+      <app-collapsible-container-component
+        collapseName="Notices"
+        [isWidget]="true"
+        titleText='{{ "RESULTADOSAUTNUM.TablaNotices.Titulo" | translate }}'
+      >
+        <table class="table table-xs">
+          <tbody>
+          <tr *ngFor="let notice of datosNotices">
+            <td class="widget-table-title-cell">{{ notice.Title }}</td>
+            <td class="widget-table-text-cell" *ngIf="notice.Link != '#'">
+              <a class="link" target="_blank" href="{{notice.Link}}">{{ notice.Desc }}</a>
+            </td>
+            <td class="widget-table-text-cell" *ngIf="notice.Link == '#'">{{ notice.Desc }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </app-collapsible-container-component>
+    </div>
+  </div>
+
+  <div 
+    class="col-md-6"  
+    *ngIf="!loading && (datosEntities.length > 0 || existenNetworks || existenAutnums)"
+  >
+    <div [ngClass]="{'widget-section-container': this.widgetSectionHasRoundedBorder}" *ngIf="!loading && datosEntities.length > 0">
+      <app-collapsible-container-component
+        collapseName="Contacts"
+        [isWidget]="true"
+        titleText='{{ "RESULTADOSIP.TablaContacts.Titulo" | translate }}'
+      >
+        <table class="table table-xs" *ngFor="let entity of datosEntities">
+          <tbody>
+          <tr>
+            <td colspan="2" class="widget-table-subtitle">{{ entity.Roles }}</td>
+          </tr>
+          <tr>
+            <td class="widget-table-title-cell">{{ "RESULTADOSIP.TablaContacts.Filas.Handle.Titulo" | translate }}</td>
+            <td class="widget-table-text-cell">{{ entity.Handle }}</td>
+          </tr>
+          <tr>
+            <td class="widget-table-title-cell">{{ "RESULTADOSIP.TablaContacts.Filas.Name.Titulo" | translate }}</td>
+            <td class="widget-table-text-cell">{{ entity.Name }}</td>
+          </tr>
+          <!--<tr>-->
+          <!--<td class="widget-table-title-cell">{{ "RESULTADOSIP.TablaContacts.Filas.Address.Titulo" | translate }}</td>-->
+          <!--<td class="widget-table-text-cell">{{ entity.Address }}</td>-->
+          <!--</tr>-->
+          <tr *ngIf="mostarDatosExta">
+            <td class="widget-table-title-cell">{{ "RESULTADOSIP.TablaContacts.Filas.Telephone.Titulo" | translate }}</td>
+            <td class="widget-table-text-cell">{{ entity.TelType }} {{ entity.Telephone }}</td>
+          </tr>
+          <tr *ngIf="mostarDatosExta">
+            <td class="widget-table-title-cell">{{ "RESULTADOSIP.TablaContacts.Filas.Email.Titulo" | translate }}</td>
+            <td class="widget-table-text-cell">{{ entity.Email }}</td>
+          </tr>
+          <tr *ngIf="mostarDatosExta">
+            <td class="widget-table-title-cell">{{ "RESULTADOSIP.TablaContacts.Filas.Version.Titulo" | translate }}</td>
+            <td class="widget-table-text-cell">{{ entity.Version }}</td>
+          </tr>
+          <tr *ngIf="mostarDatosExta">
+            <td class="widget-table-title-cell">{{ "RESULTADOSIP.TablaContacts.Filas.Registration.Titulo" | translate }}</td>
+            <td class="widget-table-text-cell">{{ entity.RegistrationDate }}</td>
+          </tr>
+          <tr *ngIf="mostarDatosExta">
+            <td class="widget-table-title-cell">{{ "RESULTADOSIP.TablaContacts.Filas.LastChanged.Titulo" | translate }}</td>
+            <td class="widget-table-text-cell">{{ entity.LastChangedDate }}</td>
+          </tr>
+          <tr *ngIf="mostarDatosExta">
+            <td class="widget-table-title-cell">{{ "RESULTADOSIP.TablaContacts.Filas.MoreInfo.Titulo" | translate }}</td>
+            <td class="widget-table-text-cell">
+              <a class="link" target="_blank" [href]="sanitize(entity.Info)">Click here..</a>
+            </td>
+          </tr>
+          <tr>
+            <td class="widget-table-title-cell">Source</td>
+            <td class="widget-table-text-cell">
+              <a class="link" target="_blank" href="{{entity.Link}}">Click here..</a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </app-collapsible-container-component>
+    </div>
+
+    <div [ngClass]="{'widget-section-container': this.widgetSectionHasRoundedBorder}" *ngIf="!loading && existenNetworks">
+      <app-collapsible-container-component
+        collapseName="inetnums"
+        [isWidget]="true"
+        titleText='{{ "RESULTADOSENTITY.TablaEntity.Filas.Inetnums.Titulo" | translate }}'
+      >
+        <table class="table table-xs">
+          <tbody>
+          <tr *ngFor="let net of datosEntity[0].Networks">
+            <td class="widget-table-title-cell">
+              <span>IP network</span>
+            </td>
+            <td class="widget-table-text-cell">
+              <span> {{net.substring(32,net.length)}}</span>
+            </td>
+            <td class="widget-table-text-cell">
+              <a target="_blank" href="{{rederictUrl + 'ip/'+ net.substring(32,net.length) }}">
+                <small>More info</small>
+              </a><br>
+              <a target="_blank" href="{{net}}">
+                <small>Source</small>
+              </a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </app-collapsible-container-component>
+    </div>
+
+    <div [ngClass]="{'widget-section-container': this.widgetSectionHasRoundedBorder}" *ngIf="!loading && existenAutnums">
+      <app-collapsible-container-component
+        collapseName="Autnums"
+        [isWidget]="true"
+        titleText='{{ "RESULTADOSENTITY.TablaEntity.Filas.Autnums.Titulo" | translate }}'
+      >
+        <table class="table table-xs">
+          <tbody>
+          <tr *ngFor="let autnum of datosEntity[0].Autnums">
+            <td class="widget-table-title-cell">
+              <span>Autnum</span>
+            <td class="widget-table-text-cell">
+              <span>{{autnum.substring(36,autnum.length)}}</span></td>
+            <td class="widget-table-text-cell">
+              <a target="_blank" href="{{rederictUrl + 'autnum/'+ autnum.substring(36,autnum.length) }}">
+                <small>More info</small>
+              </a><br>
+              <a target="_blank" href="{{autnum}}">
+                <small>Source</small>
+              </a></td>
+          </tr>
+          </tbody>
+        </table>
+      </app-collapsible-container-component>
+    </div>
+  </div>
+
+  <div class="col-md-12 text-center">
+    <span class='widget-table-text-cell'>{{ "RESULTADOSIP.Widget.Info" | translate }}<a target="_blank" href="{{linkRdap}}">RDAP-WEB</a></span>
+  </div>
+
+  <div *ngIf="mensajes.Errores.length > 0" class="alert alert-danger col-md-8 offset-md-2 errores">
+      <div *ngFor="let error of mensajes.Errores;">
+          {{error.Description}}
+      </div>
+  </div>
+  <div *ngIf="mensajes.Exitos.length > 0" class="alert alert-success  col-md-8 offset-md-2 exitos">
+      <div *ngFor="let exito of mensajes.Exitos;">
+          {{exito.Description}}
+      </div>
+  </div>
+</div>

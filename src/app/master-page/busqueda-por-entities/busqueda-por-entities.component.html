@@ -1,0 +1,61 @@
+<div class="row">
+  <!--<div class="col-md-6 offset-md-3" *ngIf="loading">-->
+  <!--<img class="imgLoading" src="../../../img/loading.gif" alt="loading..." >-->
+  <!--</div>-->
+
+  <div class="col-md-6 offset-md-3">
+      <div class="row">
+          <div class="col-lg-12 content-box-centered">
+              <p class="titulo">{{ 'BUSQUEDAPORENTITIES.Titulo' | translate }}</p>
+              <form> 
+                  
+                  <p>                    
+                    <span class="infoAdicionalParrafo">{{ 'BUSQUEDAPORENTITIES.RadioButton.Titulo' | translate }}</span>                 
+                    <input type="radio" class="search-radio-button" [value]="1" name="tipoBusqueda" [(ngModel)]="tipoBusqueda"> <span class="infoAdicionalParrafo">{{ 'BUSQUEDAPORENTITIES.RadioButton.Opcion1' | translate }}</span>
+                    <input type="radio" class="search-radio-button" [value]="2" name="tipoBusqueda" [(ngModel)]="tipoBusqueda"> <span class="infoAdicionalParrafo">{{ 'BUSQUEDAPORENTITIES.RadioButton.Opcion2' | translate }}</span>
+                  </p>                  
+
+                  <input type="text" id="inputBuscado" class="form-control inputBuscado" [(ngModel)]="valorBuscado" name="valorBuscado">
+
+                  <button class="btn btn-primary btn-block" (click)="buscar()">{{ "BUSQUEDAPORENTITIES.BotonBuscar" | translate }} <span class="fa fa-arrow-circle-right" aria-hidden="true"></span>
+                  </button>
+
+                  <div *ngIf="mensajes.Errores.length > 0" class="alert alert-danger errores">
+                      <div *ngFor="let error of mensajes.Errores;">
+                          {{error.Description}}
+                      </div>
+                  </div>
+                  <div *ngIf="mensajes.Exitos.length > 0" class="alert alert-success exitos">
+                      <div *ngFor="let exito of mensajes.Exitos;">
+                          {{exito.Description}}
+                      </div>
+                  </div>
+              </form>
+          </div>
+
+      </div>
+  </div>
+  <div class="col-md-12 mt-lg-5 " *ngIf="!loading">
+      <div class="row">
+          <div class="col-lg-12 infoAdicional content-box-centered">
+              <p class="infoAdicionalTitulo">{{ 'HOME.ComoConsultar.Titulo' | translate }}</p>
+
+              <ul>
+                  <p class="infoAdicionalParrafo">- <u>{{ 'HOME.ComoConsultar.EntitiesSearch.Titulo' | translate }}:</u><span> {{ 'HOME.ComoConsultar.EntitiesSearch.Texto' | translate }}</span>
+
+                  </p>
+              </ul>
+
+
+          </div>
+      </div>
+  </div>
+</div>
+<div class="row align-items-end mt-lg-5 infoAdicional">
+  <div>
+      <hr>
+      <p class="infoAdicionalParrafo">© LACNIC - {{ 'HOME.Copyright' | translate }}</p>
+      <a  target="_blank" href="{{'HOME.LinkPoliticaPrivacidad' | translate}}">{{ 'HOME.TextoPoliticaPrivacidad' | translate }} </a>
+  </div>
+</div>
+

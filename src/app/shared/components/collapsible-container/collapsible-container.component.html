@@ -1,0 +1,12 @@
+<div *ngIf="this.titleText && this.collapseName">
+  <p [ngClass]="{'widget': this.isWidget == true}" class="collapseTitle">
+    <a data-toggle="collapse" role="button" aria-expanded="true" href="#collapse{{this.collapseName}}" aria-controls="collapse{{this.collapseName}}" (click)="this.expanded = !this.expanded">
+      {{ this.titleText }}
+      <i class="fa" [ngClass]="{'fa-minus': this.expanded, 'fa-plus': !this.expanded}"></i>
+    </a>
+  </p>
+  <div class="collapse show" id="collapse{{this.collapseName}}">
+    <ng-content></ng-content>
+  </div>
+</div>
+

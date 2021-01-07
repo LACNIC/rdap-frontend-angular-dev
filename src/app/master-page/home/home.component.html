@@ -1,75 +1,117 @@
 <div class="row">
-    <div class="col-md-6 offset-md-3" *ngIf="loading">
-        <img class="imgLoading" src="../../../img/loading.gif" alt="loading...">
-    </div>
+  <div class="col-md-6 offset-md-3" *ngIf="loading">
+      <img class="imgLoading" src="assets/img/loading.gif" alt="loading...">
+  </div>
 
-    <div class="col-md-6 offset-md-3" *ngIf="!loading">
-        <div class="row">
-            <div class="col-lg-12 content-box-centered">
-                <form>
-                    <p class="parrafoBuscarPor">{{ 'HOME.QueryBy' | translate }}</p>
-                    <select id="selectTipo" class="form-control select" [(ngModel)]="tipoBuscado" name="tipoBuscado">
-                        <option value="1">{{ "HOME.Select.Opciones.1" | translate }}</option>
-                        <option value="2">{{ "HOME.Select.Opciones.2" | translate }}</option>
-                        <option value="3">{{ "HOME.Select.Opciones.3" | translate }}</option>
-                        <!--<option value="4">{{ "HOME.Select.Opciones.4" | translate }}</option>
-                        <option value="5">{{ "HOME.Select.Opciones.5" | translate }}</option>
-                        <option value="5">{{ "HOME.Select.Opciones.6" | translate }}</option>!-->
-                    </select>
+  <div class="col-md-6 offset-md-3" *ngIf="!loading">
+      <div class="row">
+          <div class="col-lg-12 content-box-centered">
+              <form>
+                  <p class="parrafoBuscarPor">{{ 'HOME.QueryBy' | translate }}</p>
+                  <select id="selectTipo" class="form-control select" [(ngModel)]="tipoBuscado" name="tipoBuscado" (change)="onChange()">
+                      <option value="1">{{ "HOME.Select.Opciones.1" | translate }}</option>
+                      <option value="2">{{ "HOME.Select.Opciones.2" | translate }}</option>
+                      <option value="3">{{ "HOME.Select.Opciones.3" | translate }}</option>
+                      <option value="4">{{ "HOME.Select.Opciones.4" | translate }}</option>
+                      <option value="5">{{ "HOME.Select.Opciones.5" | translate }}</option>
+                      <option value="6">{{ "HOME.Select.Opciones.6" | translate }}</option>
+                      <option value="7">{{ "HOME.Select.Opciones.7" | translate }}</option>
+                      <option value="8">{{ "HOME.Select.Opciones.8" | translate }}</option>
+                  </select>
+                  
+                  <p *ngIf="blnShowDropDomain">                    
+                    <span class="infoAdicionalParrafo">{{ 'BUSQUEDAPORDOMAINS.RadioButton.Titulo' | translate }}</span>                 
+                    <input type="radio" class="search-radio-button" [value]="1" name="tipoBusquedaDom" [(ngModel)]="tipoBusquedaDom"> <span class="infoAdicionalParrafo">{{ 'BUSQUEDAPORDOMAINS.RadioButton.Opcion1' | translate }}</span>
+                    <input type="radio" class="search-radio-button" [value]="2" name="tipoBusquedaDom" [(ngModel)]="tipoBusquedaDom"> <span class="infoAdicionalParrafo">{{ 'BUSQUEDAPORDOMAINS.RadioButton.Opcion2' | translate }}</span>
+                  </p>
+                  <p *ngIf="blnShowDropEntities">                    
+                    <span class="infoAdicionalParrafo">{{ 'BUSQUEDAPORENTITIES.RadioButton.Titulo' | translate }}</span>                 
+                    <input type="radio" class="search-radio-button" [value]="1" name="tipoBusquedaEnt" [(ngModel)]="tipoBusquedaEnt"> <span class="infoAdicionalParrafo">{{ 'BUSQUEDAPORENTITIES.RadioButton.Opcion1' | translate }}</span>
+                    <input type="radio" class="search-radio-button" [value]="2" name="tipoBusquedaEnt" [(ngModel)]="tipoBusquedaEnt"> <span class="infoAdicionalParrafo">{{ 'BUSQUEDAPORENTITIES.RadioButton.Opcion2' | translate }}</span>
+                  </p> 
 
-                    <input type="text" id="inputBuscado" class="form-control inputBuscado" [(ngModel)]="valorBuscado"
-                           name="valorBuscado">
+                  <!--
+                  <select id="selectParamEntities" class="form-control select" [(ngModel)]="paramEntities" name="paramEntities" *ngIf="blnShowDropEntities" >
+                    <option value="1">{{ "HOME.SelectParamEntities.Opciones.1" | translate }}</option>
+                    <option value="2">{{ "HOME.SelectParamEntities.Opciones.2" | translate }}</option>                   
+                  </select>
+                  
+                  <select id="selectParamDomain" class="form-control select" [(ngModel)]="paramDomain" name="paramDomain" *ngIf="blnShowDropDomain" >
+                    <option value="1">{{ "HOME.SelectParamDomain.Opciones.1" | translate }}</option>
+                    <option value="2">{{ "HOME.SelectParamDomain.Opciones.2" | translate }}</option>                   
+                  </select>
+                  -->
 
-                    <button type="button" class="btn btn-primary btn-block" (click)="buscar()">{{ "HOME.BotonBuscar" | translate }}
-                        <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></button>
+                  <input type="text" id="inputBuscado" class="form-control inputBuscado" [(ngModel)]="valorBuscado"
+                         name="valorBuscado">
 
-                    <div *ngIf="mensajes.Errores.length > 0" class="alert alert-danger errores">
-                        <div *ngFor="let error of mensajes.Errores;">
-                            {{error.Description}}
-                        </div>
-                    </div>
-                    <div *ngIf="mensajes.Exitos.length > 0" class="alert alert-success exitos">
-                        <div *ngFor="let exito of mensajes.Exitos;">
-                            {{exito.Description}}
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+                  <button type="button" class="btn btn-primary btn-block" (click)="buscar()">{{ "HOME.BotonBuscar" | translate }}
+                      <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></button>
 
-    <div class="col-md-12 mt-lg-5 " *ngIf="!loading">
-        <div class="row">
-            <div class="col-lg-12 infoAdicional content-box-centered">
-                <p class="infoAdicionalTitulo">{{ 'HOME.ComoConsultar.Titulo' | translate }}</p>
+                  <div *ngIf="mensajes.Errores.length > 0" class="alert alert-danger errores">
+                      <div *ngFor="let error of mensajes.Errores;">
+                          {{error.Description}}
+                      </div>
+                  </div>
+                  <div *ngIf="mensajes.Exitos.length > 0" class="alert alert-success exitos">
+                      <div *ngFor="let exito of mensajes.Exitos;">
+                          {{exito.Description}}
+                      </div>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
 
-                <ul>
+  <div class="col-md-12 mt-lg-5 " *ngIf="!loading">
+      <div class="row">
+          <div class="col-lg-12 infoAdicional content-box-centered">
+              <p class="infoAdicionalTitulo">{{ 'HOME.ComoConsultar.Titulo' | translate }}</p>
 
-                    <p class="infoAdicionalParrafo">- <u>{{ 'HOME.ComoConsultar.Orgs.Titulo' | translate }}:</u><span> {{ 'HOME.ComoConsultar.Orgs.Texto' | translate }}</span><i> {{
-                        'HOME.ComoConsultar.Orgs.Ejemplo' | translate }}</i>
-                    </p>
-                    <p class="infoAdicionalParrafo">-
-                        <u>{{ 'HOME.ComoConsultar.IDs.Titulo' | translate }}:</u><span> {{ 'HOME.ComoConsultar.IDs.Texto' | translate }}</span>
-                    </p>
+              <ul>
 
-                    <p class="infoAdicionalParrafo">- <u>{{ 'HOME.ComoConsultar.Asn.Titulo' | translate }}:</u><span> {{ 'HOME.ComoConsultar.Asn.Texto' | translate }}</span>
+                  <p class="infoAdicionalParrafo">- <u>{{ 'HOME.ComoConsultar.Orgs.Titulo' | translate }}:</u><span> {{ 'HOME.ComoConsultar.Orgs.Texto' | translate }}</span><i> {{
+                      'HOME.ComoConsultar.Orgs.Ejemplo' | translate }}</i>
+                  </p>
+                  <p class="infoAdicionalParrafo">-
+                      <u>{{ 'HOME.ComoConsultar.IDs.Titulo' | translate }}:</u><span> {{ 'HOME.ComoConsultar.IDs.Texto' | translate }}</span>
+                  </p>
 
-                    </p>
-                    <p class="infoAdicionalParrafo">- <u>{{ 'HOME.ComoConsultar.IP.Titulo' | translate }}:</u><span> {{ 'HOME.ComoConsultar.IP.Texto' | translate }}</span>
+                  <p class="infoAdicionalParrafo">- <u>{{ 'HOME.ComoConsultar.Asn.Titulo' | translate }}:</u><span> {{ 'HOME.ComoConsultar.Asn.Texto' | translate }}</span>
 
-                    </p>
-                </ul>
+                  </p>
+                  <p class="infoAdicionalParrafo">- <u>{{ 'HOME.ComoConsultar.IP.Titulo' | translate }}:</u><span> {{ 'HOME.ComoConsultar.IP.Texto' | translate }}</span>
+
+                  </p>
+                  <p class="infoAdicionalParrafo">- <u>{{ 'HOME.ComoConsultar.Nameservers.Titulo' | translate }}:</u><span> {{ 'HOME.ComoConsultar.Nameservers.Texto' | translate }}</span>
+
+                  </p>
+                  <p class="infoAdicionalParrafo">- <u>{{ 'HOME.ComoConsultar.Domains.Titulo' | translate }}:</u><span> {{ 'HOME.ComoConsultar.Domains.Texto' | translate }}</span>
+
+                  </p>
+                  <p class="infoAdicionalParrafo">- <u>{{ 'HOME.ComoConsultar.EntitiesSearch.Titulo' | translate }}:</u><span> {{ 'HOME.ComoConsultar.EntitiesSearch.Texto' | translate }}</span>
+
+                  </p>
+                  <p class="infoAdicionalParrafo">- <u>{{ 'HOME.ComoConsultar.NameserverSearch.Titulo' | translate }}:</u><span> {{ 'HOME.ComoConsultar.NameserverSearch.Texto' | translate }}</span>
+
+                  </p>
+                  <p class="infoAdicionalParrafo">- <u>{{ 'HOME.ComoConsultar.DomainSearch.Titulo' | translate }}:</u><span> {{ 'HOME.ComoConsultar.DomainSearch.Texto' | translate }}</span>
+
+                  </p>
+
+              </ul>
 
 
-            </div>
-        </div>
-    </div>
+          </div>
+      </div>
+  </div>
 </div>
-<div class="row align-items-end mt-lg-5">
-    <div>
-        <hr>
-        <p class="infoAdicionalParrafo">© LACNIC - {{ 'HOME.Copyright' | translate }}</p>
-        <a  target="_blank" href="{{'HOME.LinkPoliticaPrivacidad' | translate}}">{{ 'HOME.TextoPoliticaPrivacidad' | translate }} </a>
-    </div>
+<div class="row align-items-end mt-lg-5 infoAdicional">
+  <div>
+      <hr>
+      <p class="infoAdicionalParrafo">© LACNIC - {{ 'HOME.Copyright' | translate }}</p>
+      <a  target="_blank" href="{{'HOME.LinkPoliticaPrivacidad' | translate}}">{{ 'HOME.TextoPoliticaPrivacidad' | translate }} </a>
+  </div>
 </div>
+
 

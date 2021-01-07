@@ -1,0 +1,765 @@
+{
+  "GENERAL": {
+    "Errores": {
+      "Generico": "Ha ocurrido un error.",
+      "ContacteAdministrador": "Contacte al administrador.",
+      "ArrayLimit":"Ha excedido el límite máximo de consultas"
+    }
+  },
+  "COMPONENTS" : {
+    "EMBED" : {
+      "TextoBotonFlotante" : "Embeber",
+      "ModalTitulo" : "Código para embeber el widget",
+      "ModalBotonCopiarTexto" : "Copiar al portapapeles",
+      "ModalBotonCerrarTexto" : "Cerrar",
+      "ModalAvisoTextoCopiado": "El texto se ha copiado al portapapeles."
+    }
+  },
+  "MASTERPAGE": {
+    "MENU": {
+      "LinkHome": "Inicio",
+      "LinkAutnum": "Consulta por Autnum",
+      "LinkIp": "Consulta por IP",
+      "LinkEntity": "Consulta por Entity",
+      "LinkEntitiesByName": "Consulta por Nombre",
+      "LinkNameserver": "Consulta por servidor de nombres",
+      "LinkDomain": "Consulta por dominio",
+      "LinkBusquedaEntities" : "Búsqueda por entidades",      
+      "LinkBusquedaDomains" : "Búsqueda por dominios", 
+      "LinkBusquedaNameservers" : "Búsqueda por servidores de nombres", 
+      "LinkAbout": "Acerca de RDAP"
+    }
+  },
+  "HOME": {
+    "Errores": {
+      "valorBuscadoVacio": "Debe indicar el valor a buscar."
+    },
+    "QueryBy": "Consultar por:",
+    "InformacionAdicional": {
+      "Titulo": "INFORMACIÓN ADICIONAL",
+      "Parrafo1": "El \"Registration Data Access Protocol\" (RDAP) ha sido pensado para solventar las deficiencias existentes en el WHOIS tradicional, problemas como la internacionalización, estandarización de las respuestas, inclusión de caracteres especiales, difícil procesamiento automático, inclusión nuevos tipos de consultas podrán ser resueltos con el desarrollo de este estándar.",
+      "Parrafo2": "Los documentos de WEIRDS en los cuales se basa el RDAP implementado por LACNIC así como información adicional acerca del sistema."
+    },
+    "ComoConsultar": {
+      "Titulo":"Como consultar",
+      "IDs": {
+        "Titulo" : "IDs",
+        "Texto" : "Ingrese el ID del usuario. Los IDs están conformados por 3 letras seguidas o no de algunos números."
+      },
+      "Orgs": {
+        "Titulo" : "Entidades",
+        "Texto" : "Ingrese el OrgID de la organización. Los OrgID tienen el siguiente formato:",
+        "Ejemplo":"código País-ID organización-LACNIC."
+      },
+      "Asn": {
+        "Titulo" : "ASN",
+        "Texto" : "Ingrese el número del sistema autónomo. "},
+      "IP": { 
+        "Titulo" : "IP o bloque CIDR",
+        "Texto" : "Ingrese una dirección IP (200.7.84.0) o uno bloque CIDR (200.7.84.0/23)."
+      },
+      "Nameservers": { 
+        "Titulo" : "Servidores de nombres",
+        "Texto" : "Ingrese un valor para consultar un servidor de nombres."
+      },
+      "Domains":
+      { "Titulo" : "Dominios",
+        "Texto" : "Ingrese un dominio."
+      },
+      "EntitiesSearch": { 
+        "Titulo" : "Búsqueda Entidades",
+        "Texto" : "Seleccione si desea buscar por fn o handle e ingrese el valor a buscar incluyendo comodines."
+      },
+      "NameserverSearch": { 
+        "Titulo" : "Búsqueda Servidores de nombres",
+        "Texto" : "Ingrese el valor a buscar incluyendo comodines."
+      },
+      "DomainSearch": { 
+        "Titulo" : "Búsqueda Dominios",
+        "Texto" : "Seleccione si desea buscar por nsLdhName o por nombre e ingrese el valor a buscar incluyendo comodines."
+      }
+    },
+    "Copyright":"Los datos a continuación se brindan con fines informativos y para ayudar a las personas a obtener información relacionada con el registro de números de AS y de IP. Al enviar una consulta, acepta utilizar esta información solo para fines legales.",
+    "Select": {
+      "Opciones": {
+        "1": "Autnum",
+        "2": "IP",
+        "3": "Entidad",
+        "4": "Servidor de nombres",
+        "5": "Dominio",
+        "6": "Búsqueda Entidades",
+        "7": "Búsqueda Servidores de nombres",
+        "8": "Búsqueda Dominios"
+      }
+    },
+    "SelectParamEntities": {
+      "Opciones": {
+        "1": "Buscar por fn",
+        "2": "Buscar por handle"        
+      }
+    },
+    "SelectParamDomain": {
+      "Opciones": {
+        "1": "Buscar por nsLdhName",
+        "2": "Buscar por nombre"        
+      }
+    },
+    "BotonBuscar": "BUSCAR",
+    "LinkPoliticaPrivacidad":"https://www.lacnic.net/politica-privacidad",
+    "TextoPoliticaPrivacidad": "Política de privacidad"
+  },
+  "CONSULTAPORIP": {
+    "Errores": {
+      "valorBuscadoVacio": "Debe indicar el valor a buscar."
+    },
+    "Titulo": "Consulta por IP",
+    "InformacionAdicional": {
+      "Titulo": "INFORMACIÓN ADICIONAL",
+      "Parrafo1": "Párrafo 1.",
+      "Parrafo2": "Párrafo 2."
+    },
+    "BotonBuscar": "BUSCAR"
+  },
+  "CONSULTAPORAUTNUM": {
+    "Errores": {
+      "valorBuscadoVacio": "Debe indicar el valor a buscar."
+    },
+    "Titulo": "Consulta por Autnum",
+    "InformacionAdicional": {
+      "Titulo": "INFORMACIÓN ADICIONAL",
+      "Parrafo1": "Párrafo 1.",
+      "Parrafo2": "Párrafo 2."
+    },
+    "BotonBuscar": "BUSCAR"
+  },
+  "CONSULTAPORNAMESERVER": {
+    "Errores": {
+      "valorBuscadoVacio": "Debe indicar el valor a buscar."
+    },
+    "Titulo": "Consulta por Servidor de nombre",
+    "InformacionAdicional": {
+      "Titulo": "INFORMACIÓN ADICIONAL",
+      "Parrafo1": "Párrafo 1.",
+      "Parrafo2": "Párrafo 2."
+    },
+    "BotonBuscar": "BUSCAR"
+  }, 
+  "CONSULTAPORENTITY": {
+    "Errores": {
+      "valorBuscadoVacio": "Debe indicar el valor a buscar."
+    },
+    "Titulo": "Consulta por Entity",
+    "InformacionAdicional": {
+      "Titulo": "INFORMACIÓN ADICIONAL",
+      "Parrafo1": "Párrafo 1.",
+      "Parrafo2": "Párrafo 2."
+    },
+    "BotonBuscar": "BUSCAR"
+  },
+  "CONSULTAPORDOMAIN": {
+    "Errores": {
+      "valorBuscadoVacio": "Debe indicar el valor a buscar."
+    },
+    "Titulo": "Consulta por Dominio",
+    "InformacionAdicional": {
+      "Titulo": "INFORMACIÓN ADICIONAL",
+      "Parrafo1": "Párrafo 1.",
+      "Parrafo2": "Párrafo 2."
+    },
+    "BotonBuscar": "BUSCAR"
+  },
+  "BUSQUEDAPORENTITIES": {
+    "Errores": {
+      "valorBuscadoVacio": "Debe indicar el valor a buscar."
+    },
+    "Titulo": "Búsqueda por Entidades",
+    "InformacionAdicional": {
+      "Titulo": "INFORMACIÓN ADICIONAL",
+      "Parrafo1": "Párrafo 1.",
+      "Parrafo2": "Párrafo 2."
+    },
+    "BotonBuscar": "BUSCAR",
+    "RadioButton" : {
+      "Titulo": "Buscar por:",
+      "Opcion1": "fn",
+      "Opcion2": "handle" 
+    }
+  },
+  "BUSQUEDAPORNAMESERVERS": {
+    "Errores": {
+      "valorBuscadoVacio": "Debe indicar el valor a buscar."
+    },
+    "Titulo": "Búsqueda por Servidores de nombres",
+    "InformacionAdicional": {
+      "Titulo": "INFORMACIÓN ADICIONAL",
+      "Parrafo1": "Párrafo 1.",
+      "Parrafo2": "Párrafo 2."
+    },
+    "BotonBuscar": "BUSCAR"
+  },
+  "BUSQUEDAPORDOMAINS": {
+    "Errores": {
+      "valorBuscadoVacio": "Debe indicar el valor a buscar."
+    },
+    "Titulo": "Búsqueda por Dominios",
+    "InformacionAdicional": {
+      "Titulo": "INFORMACIÓN ADICIONAL",
+      "Parrafo1": "Párrafo 1.",
+      "Parrafo2": "Párrafo 2."
+    },
+    "BotonBuscar": "BUSCAR",
+    "RadioButton" : {
+      "Titulo": "Buscar por:",
+      "Opcion1": "nombre",
+      "Opcion2": "nsLdhName" 
+    }
+  },
+  "CONSULTAENTITIESBYNAME": {
+    "Errores": {
+      "valorBuscadoVacio": "Debe indicar el valor a buscar."
+    },
+    "Titulo": "Consulta por Nombre",
+    "InformacionAdicional": {
+      "Titulo": "INFORMACIÓN ADICIONAL",
+      "Parrafo1": "Párrafo 1.",
+      "Parrafo2": "Párrafo 2."
+    },
+    "BotonBuscar": "BUSCAR"
+  },
+  "ABOUT": {
+    "Titulo": "Acerca de RDAP",
+    "Parrafo1": "El \"Web Extensible Internet Registration Data Service Working Group\" (WEIRDS) es el grupo de trabajo dentro de la Internet Engineering Task Force (IETF) responsable de definir la nueva forma de consultar la base de datos de registros de internet y obtener así información de IPs, ASN, contactos y organizaciones.",
+    "Parrafo2": "El \"Registration Data Access Protocol\" (RDAP) ha sido pensado para solventar las deficiencias existentes en el WHOIS tradicional. Problemas como la internacionalización, estandarización de las respuestas, inclusión de caracteres especiales, difícil parsing, inclusión nuevos tipos de consultas podrán ser resueltos con el desarrollo de este estándar.",
+    "Parrafo3": "Este servicio ha sido desarrollado por técnicos de LACNIC para dar una respuesta unificada a la comunidad de la región cuando necesita buscar la información sobre los recursos numéricos (IPv4, IPv6 y ASNs ) asignados por LACNIC así como también de entidades miembros de LACNIC en nuestro WHOIS. En este desarrollo los ingenieros de LACNIC contaron con el apoyo del RIPE-NCC.",
+    "Parrafo4": "El RDAP tiene grandes ventajas respecto al WHOIS tradicional: presenta una respuesta estándar y unificada, es más fácil de utilizar o integrar con otros sistemas y permite utilizar en la búsqueda otros idiomas que no sean únicamente el inglés."
+  },
+  "RESULTADOSIP": {
+    "Errores": {
+      "sinResultados": "No se han encontrado resultados.",
+      "verifiqueYReintente": "Por favor, verifique e intente nuevamente."
+    },
+    "TablaIP": {
+      "Titulo": "IP",
+      "Filas": {
+        "Handle": {
+          "Titulo": "Handle"
+        },
+        "Name": {
+          "Titulo": "Nombre"
+        },
+        "Status": {
+          "Titulo": "Estado"
+        },
+        "Parent": {
+          "Titulo": "Padre"
+        },
+        "NetRange": {
+          "Titulo": "Rango red"
+        },
+        "NetVersion": {
+          "Titulo": "Versión red"
+        },
+        "Country": {
+          "Titulo": "País"
+        },
+        "Registration": {
+          "Titulo": "Registro"
+        },
+        "LastChanged": {
+          "Titulo": "Último cambio"
+        },
+        "LegalRepresentative": {
+          "Titulo": "Representante legal"
+        },
+        "ParentHandle": {
+          "Titulo": "Parent Handle"
+        },
+        "Estado": {
+          "Titulo": "Estado"
+        }
+      }
+    },
+    "TablaContacts" : {
+      "Titulo" : "CONTACTOS",
+      "Filas" : {
+        "Handle" : {
+          "Titulo" : "Handle"
+        },
+        "Name" : {
+          "Titulo" : "Nombre"
+        },
+        "Address" : {
+          "Titulo" : "Dirección"
+        },
+        "City" : {
+          "Titulo" : "Ciudad"
+        },
+        "Country" : {
+          "Titulo" : "País"
+        },
+        "PostalCode" : {
+          "Titulo" : "Código postal"
+        },
+        "Email" : {
+          "Titulo" : "Email"
+        },
+        "Telephone" : {
+          "Titulo" : "Teléfono"
+        },
+        "MoreInfo" : {
+          "Titulo" : "Más información"
+        },
+        "Source" : {
+          "Titulo" : "Fuente"
+        },
+        "Version": {
+          "Titulo": "Versión"
+        },
+        "Registration": {
+          "Titulo": "Fecha de registro"
+        },
+        "LastChanged": {
+          "Titulo": "Último cambio"
+        }
+      }
+    },
+    "TablaExtra" : {
+      "Titulo" : "Información Extra",
+      "SubTituloLinks" : "Links",
+      "SubTituloEventos" : "Eventos",
+      "SubTituloVCard" : "VCard",
+      "Filas" : {
+        "Name" : {
+          "Titulo" :  "Name"
+        },
+        "Country" : {
+          "Titulo" :  "Country"
+        },
+        "Port43" : {
+          "Titulo" :  "Port43"
+        },
+        "ObjectClassName" : {
+          "Titulo" :  "ObjectClassName"
+        },
+        "RdapConformance" : {
+          "Titulo" :  "rdapConformance"
+        },
+        "Lang" : {
+          "Titulo" :  "Lang"
+        },
+        "Cidr0_cidrs" : {
+          "Titulo" :  "Cidr0 cidrs"
+        },
+        "Originautnums" : {
+          "Titulo" :  "Arin originas0 originautnums"
+        },
+        "Nicbr_autnum" : {
+          "Titulo" :  "Nicbr_autnum"
+        },
+        "StartAutnum" : {
+          "Titulo" :  "Start Autnum"
+        },
+        "EndAutnum" : {
+          "Titulo" :  "End Autnum"
+        },
+        "Roles" : {
+          "Titulo" :  "Roles"
+        },
+        "Lacnic_originAutnum" : {
+          "Titulo" : "Lacnic Origin autnums"
+        }
+      }
+    },
+    "TablaReverseDelegations" : {
+      "Titulo" : "Reverse Delegations",
+      "SubtituloNameSever" : "Nameservers",
+      "SubTituloSecDns" : "Secure DNS",
+      "SubTituloDsData" : "Data Ds",
+      "Filas" : {
+        "StartAddress" : {
+          "Titulo" : "Start Address"
+        },
+        "EndAddress" : {
+          "Titulo" : "End Address"
+        },
+        "LdhName" : {
+          "Titulo" : "LdhName"
+        },
+        "DelegationSigned" : {
+          "Titulo" : "Delegation Signed"
+        },
+        "DsData" : {
+          "Titulo" : "Data"
+        },
+        "Zone" : {
+          "Titulo" : "Zone"
+        },
+        "KeyTag" : {
+          "Titulo" : "KeyTag"
+        },
+        "Algorithm" : {
+          "Titulo" : "Algorithm"
+        },
+        "Digest" : {
+          "Titulo" : "Digest"
+        },
+        "DigestType" : {
+          "Titulo" : "DigestType"
+        }
+      }
+    },
+    "Widget" : {
+      "Info" : "Información obtenida por "
+    }
+  },
+  "RESULTADOSAUTNUM": {
+    "Errores": {
+      "sinResultados": "No se han encontrado resultados.",
+      "verifiqueYReintente": "Por favor, verifique e intente nuevamente."
+    },
+    "TablaAutnum": {
+      "Titulo": "AS",
+      "Filas": {
+        "Handle": {
+          "Titulo": "Número"
+        },
+        "Type": {
+          "Titulo": "Tipo"
+        },
+        "Registration": {
+          "Titulo": "Fecha de registro"
+        },
+        "LastChanged": {
+          "Titulo": "Último cambio"
+        },
+        "LegalRepresentative": {
+          "Titulo": "Representante legal"
+        }
+      }
+    },
+    "TablaContacts" : {
+      "Titulo" : "CONTACTOS",
+      "Filas" : {
+        "Handle" : {
+          "Titulo" : "Handle"
+        },
+        "Name" : {
+          "Titulo" : "Nombre"
+        },
+        "Address" : {
+          "Titulo" : "Dirección"
+        },
+        "City" : {
+          "Titulo" : "Ciudad"
+        },
+        "Country" : {
+          "Titulo" : "País"
+        },
+        "PostalCode" : {
+          "Titulo" : "Código postal"
+        },
+        "Email" : {
+          "Titulo" : "Email"
+        },
+        "Telephone" : {
+          "Titulo" : "Teléfono"
+        },
+        "MoreInfo" : {
+          "Titulo" : "Más información"
+        },
+        "Source" : {
+          "Titulo" : "Fuente"
+        },
+        "Version" : {
+          "Titulo" : "Versión"
+        },
+        "Registration": {
+          "Titulo": "Fecha de registro"
+        },
+        "LastChanged": {
+          "Titulo": "Último cambio"
+        }
+      }
+    },
+    "TablaNotices": {
+      "Titulo": "Avisos"      
+    },
+    "TablaRemarks": {
+      "Titulo": "Remarks"      
+    }
+  },
+  "RESULTADOSENTITY": {
+    "Errores": {
+      "sinResultados": "No se han encontrado resultados.",
+      "verifiqueYReintente": "Por favor, verifique e intente nuevamente."
+    },
+    "TablaEntity": {
+      "Titulo": "ENTITY",
+      "Filas": {
+        "Handle": {
+          "Titulo": "Handle"
+        },
+        "Name": {
+          "Titulo": "Name"
+        },
+        "Address": {
+          "Titulo": "Address"
+        },
+        "City": {
+          "Titulo": "City"
+        },
+        "Country": {
+          "Titulo": "Country"
+        },
+        "Roles": {
+          "Titulo": "Roles"
+        },
+        "PostalCode": {
+          "Titulo": "Postal Code"
+        },
+        "Email": {
+          "Titulo": "E-mail"
+        },
+        "Telephone": {
+          "Titulo": "Telephone"
+        },
+        "Registration": {
+          "Titulo": "Registro"
+        },
+        "LastChanged": {
+          "Titulo": "Último cambio"
+        },  
+        "Operator": {
+          "Titulo": "Operator"
+        },
+        "Version": {
+          "Titulo": "Versión"
+        },
+        "LegalRepresentative": {
+          "Titulo": "Representante legal"
+        }, 
+        "Inetnums": {
+          "Titulo": "Inetnums",
+          "Kind": {
+            "Titulo": "Kind"
+          },
+          "Value": {
+            "Titulo": "Value"
+          }
+        },
+        "Autnums": {
+          "Titulo": "Autnums",
+          "Kind": {
+            "Titulo": "Kind"
+          },
+          "Value": {
+            "Titulo": "Value"
+          }
+        }
+      }
+    }
+  },
+  "RESULTADOSNAMESERVER": {
+    "Errores": {
+      "sinResultados": "No se han encontrado resultados.",
+      "verifiqueYReintente": "Por favor, verifique e intente nuevamente."
+    },
+    "TablaNamerserver": {
+      "Titulo": "Servidor de nombres",
+      "Filas": {
+        "Name": {
+          "Titulo": "LdhName"
+        },
+        "IPv4": {
+          "Titulo": "IP v4"
+        },
+        "IPv6": {
+          "Titulo": "IP v6"
+        },
+        "Source" : {
+          "Titulo" : "Fuente"
+        }
+      }
+    },    
+    "TablaNotices": {
+      "Titulo": "Avisos"      
+    }
+  },
+  "RESULTADOSDOMAIN": {
+    "Errores": {
+      "sinResultados": "No se han encontrado resultados.",
+      "verifiqueYReintente": "Por favor, verifique e intente nuevamente."
+    },
+    "TablaDomain": {
+      "Titulo": "Dominio",
+      "Filas": {
+        "Name": {
+          "Titulo": "LdhName"
+        },
+        "Handle": {
+          "Titulo": "Handle"
+        },        
+        "Source" : {
+          "Titulo" : "Fuente"
+        }
+      }
+    },    
+    "TablaNotices": {
+      "Titulo": "Avisos"      
+    },
+    "TablaNameservers": {
+      "Titulo": "Servidores de nombres",
+      "Filas": {
+        "Nameserver" : {
+          "Titulo" : "Servidor de nombres"
+        },
+        "MoreInfo" : {
+          "Titulo" : "Más información"
+        }
+      }    
+    }
+  },  
+  "RESULTSRCHDOMAIN": {
+    "Errores": {
+      "sinResultados": "No se han encontrado resultados.",
+      "verifiqueYReintente": "Por favor, verifique e intente nuevamente."
+    },
+    "Titulo" : "Resultados búsqueda por",
+    "TablaDomain": {
+      "Titulo": "Dominios",
+      "Filas": {
+        "Name": {
+          "Titulo": "LdhName"
+        },
+        "Handle": {
+          "Titulo": "Handle"
+        },        
+        "Source" : {
+          "Titulo" : "Fuente"
+        },
+        "Detalles" : {
+          "Titulo" : "Detalles"
+        },
+        "MoreInfo" : {
+          "Titulo" : "Más información"
+        }
+      }
+    }
+  },
+  "RESULTSRCHNAMESERVER": {
+    "Errores": {
+      "sinResultados": "No se han encontrado resultados.",
+      "verifiqueYReintente": "Por favor, verifique e intente nuevamente."
+    },
+    "Titulo" : "Resultados búsqueda por",
+    "TablaNameserver": {
+      "Titulo": "Servidores de nombres",
+      "Filas": {
+        "Name": {
+          "Titulo": "LdhName"
+        },                
+        "Source" : {
+          "Titulo" : "Fuente"
+        },
+        "Detalles" : {
+          "Titulo" : "Detalles"
+        },
+        "MoreInfo" : {
+          "Titulo" : "Más información"
+        }
+      }
+    }
+  },
+  "RESULTSRCHENTITY": {
+    "Errores": {
+      "sinResultados": "No se han encontrado resultados.",
+      "verifiqueYReintente": "Por favor, verifique e intente nuevamente."
+    },
+    "Titulo" : "Resultados búsqueda por",
+    "TablaEntity": {
+      "Titulo": "Entidades",
+      "Filas": {
+        "Handle": {
+          "Titulo": "Handle"
+        }, 
+        "Fn": {
+          "Titulo": "Fn"
+        },         
+        "Version": {
+          "Titulo": "Versión"
+        },                   
+        "Source" : {
+          "Titulo" : "Fuente"
+        },
+        "Detalles" : {
+          "Titulo" : "Detalles"
+        },
+        "MoreInfo" : {
+          "Titulo" : "Más información"
+        }
+      }
+    }
+  },
+  "RESULTADOSENTITIESBYNAME": {
+    "Errores": {
+      "sinResultados": "No se han encontrado resultados.",
+      "verifiqueYReintente": "Por favor, verifique e intente nuevamente."
+    },
+    "TablaEntities": {
+      "Titulo": "ENTITIES",
+      "Columnas": {
+        "Handle": {
+          "Titulo": "Handle"
+        },
+        "Name": {
+          "Titulo": "Name"
+        },
+        "Country": {
+          "Titulo": "Country"
+        }
+      }
+    }
+  },
+  "REPORTEASN": {
+    "Errores": {
+      "sinResultados": "No se han encontrado resultados.",
+      "verifiqueYReintente": "Por favor, verifique e intente nuevamente.",
+      "seleccionePais": "Por favor, seleccione un país."
+    },
+    "FormularioPaises": {
+      "Combo": {
+        "Label": "Country",
+        "Opciones": {
+          "Seleccionar": "Seleccione un país",
+          "Todos": "Todos"
+        }
+      },
+      "BotonBuscar": "Buscar"
+    },
+    "TablaASN": {
+      "Titulo": "Reporte ASN's",
+      "Columnas": {
+        "ASN": {
+          "Titulo": "ASN"
+        },
+        "Tipo": {
+          "Titulo": "Type"
+        },
+        "Visibilidad": {
+          "Titulo": "Visibility"
+        },
+        "Pais": {
+          "Titulo": "Country"
+        }
+      }
+    },
+    "Graficas": {
+      "RecuentoTipo": {
+        "Titulo": "Recuento por Tipo"
+      },
+      "RecuentoVisibilidad": {
+        "Titulo": "Recuento por Visibilidad"
+      }
+    }
+  }
+}

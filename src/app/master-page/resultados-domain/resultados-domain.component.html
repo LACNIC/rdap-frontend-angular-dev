@@ -1,0 +1,139 @@
+<div class="row">
+  <div class="col-md-12">
+      <p class="titulo text-center">DOMAIN: {{domain}}</p>
+  </div>
+  <div class="col-md-6 offset-md-3" *ngIf="loading">
+      <img class="imgLoading" src="assets/img/loading.gif" alt="loading...">
+  </div>
+
+  <div class="col-md-6">
+    <app-collapsible-container-component
+      *ngIf="!loading && datosDomain.length > 0"
+      collapseName="Domain"
+      [isWidget]="false"
+      titleText='{{ "RESULTADOSDOMAIN.TablaDomain.Titulo" | translate }}'
+    >
+      <table class="table">
+        <tbody>
+        <tr>
+          <td class="celdaTitulo">{{ "RESULTADOSDOMAIN.TablaDomain.Filas.Handle.Titulo" | translate }}</td>
+          <td class="celdaTexto">{{ datosDomain[0]}}</td>
+        </tr>
+        <tr>
+          <td class="celdaTitulo">{{ "RESULTADOSDOMAIN.TablaDomain.Filas.Name.Titulo" | translate }}</td>
+          <td class="celdaTexto">{{ datosDomain[1]}}</td>
+        </tr>
+        <tr>
+          <td class="celdaTitulo">{{ "RESULTADOSDOMAIN.TablaDomain.Filas.Source.Titulo" | translate }}</td>
+          <td class="celdaTexto">
+            <a class="link" target="_blank" href="{{datosDomain[2]}}">Click here..</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </app-collapsible-container-component>
+
+    <!-- Datos extra -->
+    <app-collapsible-container-component
+      *ngIf="!loading && datosExtra.length > 0"
+      collapseName="Extra"
+      [isWidget]="false"
+      titleText='{{ "RESULTADOSIP.TablaExtra.Titulo" | translate }}'
+    >
+      <table class="table">
+        <tbody>
+        <tr *ngFor="let extra of datosExtra">
+          <td class="celdaTitulo">{{ extra.Title }}</td>
+          <td class="celdaTexto">{{ extra.Desc }}</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="subtituloTabla">{{ "RESULTADOSIP.TablaExtra.SubTituloLinks" | translate }}</td>
+        </tr>
+        <tr *ngFor="let link of datosLinks">
+          <td class="celdaTitulo">{{ link.Title }}</td>
+          <td class="celdaTexto" *ngIf="link.Link != '#'">
+            <a class="link" target="_blank" href="{{link.Link}}">{{ link.Desc }}</a>
+          </td>
+          <td class="celdaTexto" *ngIf="link.Link == '#'">{{ link.Desc }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </app-collapsible-container-component>
+
+    <app-collapsible-container-component
+      *ngIf="!loading && datosRemarks.length > 0"
+      collapseName="Remarks"
+      [isWidget]="false"
+      titleText='{{ "RESULTADOSAUTNUM.TablaRemarks.Titulo" | translate }}'
+    >
+      <table class="table">
+        <tbody>
+        <tr *ngFor="let remark of datosRemarks">
+          <td class="celdaTitulo">{{ remark.Title }}</td>
+          <td class="celdaTexto">{{ remark.Desc }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </app-collapsible-container-component>
+
+    <app-collapsible-container-component
+      *ngIf="!loading && datosNotices.length > 0"
+      collapseName="Notices"
+      [isWidget]="false"
+      titleText='{{ "RESULTADOSDOMAIN.TablaNotices.Titulo" | translate }}'
+    >
+      <table class="table">
+        <tbody>
+        <tr *ngFor="let notice of datosNotices">
+          <td class="celdaTitulo">{{ notice.Title }}</td>
+          <td class="celdaTexto" *ngIf="notice.Link != '#'">
+            <a class="link" target="_blank" href="{{notice.Link}}">{{ notice.Desc }}</a>
+          </td>
+          <td class="celdaTexto" *ngIf="notice.Link == '#'">{{ notice.Desc }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </app-collapsible-container-component>
+  </div>
+
+  <div class="col-md-6" *ngIf="!loading && datosNameservers.length > 0">
+    <app-collapsible-container-component
+      collapseName="Nameservers"
+      [isWidget]="false"
+      titleText='{{ "RESULTADOSDOMAIN.TablaNameservers.Titulo" | translate }}'
+    >
+      <table class="table" *ngFor="let nameserver of datosNameservers">
+        <tbody>
+        <tr>
+          <td colspan="2" class="subtituloTabla">{{ nameserver.Name }}</td>
+        </tr>
+        <tr>
+          <td class="celdaTitulo">{{ "RESULTADOSDOMAIN.TablaNameservers.Filas.MoreInfo.Titulo" | translate }}</td>
+          <td class="celdaTexto">
+            <a class="link" target="_blank" [href]="sanitize(nameserver.Info)">Click here..</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </app-collapsible-container-component>
+  </div>
+
+  <div *ngIf="mensajes.Errores.length > 0" class="alert alert-danger col-md-10 offset-md-1 errores">
+    <div *ngFor="let error of mensajes.Errores;">
+      {{error.Description}}
+    </div>
+  </div>
+  <div *ngIf="mensajes.Informaciones.length > 0" class="alert alert-info col-md-10 offset-md-1 informaciones">
+    <div *ngFor="let info of mensajes.Informaciones;">
+      <div *ngIf="info.isJSON" [innerHTML]="info.Description | prettyjson"></div>
+      <span *ngIf="!info.isJSON">{{info.Description}}</span>
+    </div>
+  </div>
+  <div *ngIf="mensajes.Exitos.length > 0" class="alert alert-success  col-md-10 offset-md-1 exitos">
+    <div *ngFor="let exito of mensajes.Exitos;">
+      {{exito.Description}}
+    </div>
+  </div>
+</div>
+
+<app-embed-page-iframe-code-component [iframeSRC]="'https://rdap-web.lacnic.net/rdap/query-domain/' + this.domain"></app-embed-page-iframe-code-component>

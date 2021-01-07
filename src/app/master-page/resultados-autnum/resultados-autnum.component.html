@@ -1,82 +1,205 @@
 <div class="row">
-    <div class="col-md-12">
-        <p class="titulo text-center">AUTNUM: {{AUTNUM}}</p>
-    </div>
-    <div class="col-md-6 offset-md-3" *ngIf="loading">
-        <img class="imgLoading" src="../../../img/loading.gif" alt="loading...">
-    </div>
+  <div class="col-md-12">
+      <p class="titulo text-center">AUTNUM: {{AUTNUM}}</p>
+  </div>
+  <div class="col-md-6 offset-md-3" *ngIf="loading">
+      <img class="imgLoading" src="assets/img/loading.gif" alt="loading...">
+  </div>
 
-    <div class="col-md-6" *ngIf="!loading && datosAutnum.length > 0">
-        <p class="tituloTabla">{{ "RESULTADOSAUTNUM.TablaAutnum.Titulo" | translate }}</p>
-        <table class="table">
-            <tbody>
-            <tr>
-                <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaAutnum.Filas.Handle.Titulo" | translate }}</td>
-                <td class="celdaTexto">{{ datosAutnum[0]}}</td>
-            </tr>
-            <tr>
-                <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaAutnum.Filas.Type.Titulo" | translate }}</td>
-                <td class="celdaTexto">{{ datosAutnum[1] }}</td>
-            </tr>
-            <tr>
-                <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaAutnum.Filas.Registration.Titulo" | translate }}</td>
-                <td class="celdaTexto">{{ datosAutnum[2] }}</td>
-            </tr>
-            <tr>
-                <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaAutnum.Filas.LastChanged.Titulo" | translate }}</td>
-                <td class="celdaTexto">{{ datosAutnum[3] }}</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+  <div class="col-md-6" *ngIf="!loading && datosAutnum.length > 0">
+    <app-collapsible-container-component
+      collapseName="Autnum"
+      [isWidget]="false"
+      titleText='{{ "RESULTADOSAUTNUM.TablaAutnum.Titulo" | translate }}'
+    >
+      <table class="table">
+        <tbody>
+        <tr>
+          <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaAutnum.Filas.Handle.Titulo" | translate }}</td>
+          <td class="celdaTexto">{{ datosAutnum[0]}}</td>
+        </tr>
+        <tr>
+          <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaAutnum.Filas.Type.Titulo" | translate }}</td>
+          <td class="celdaTexto">{{ datosAutnum[1] }}</td>
+        </tr>
+        <tr>
+          <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaAutnum.Filas.Registration.Titulo" | translate }}</td>
+          <td class="celdaTexto">{{ datosAutnum[2] }}</td>
+        </tr>
+        <tr>
+          <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaAutnum.Filas.LastChanged.Titulo" | translate }}</td>
+          <td class="celdaTexto">{{ datosAutnum[3] }}</td>
+        </tr>
+        <tr>
+          <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaAutnum.Filas.LegalRepresentative.Titulo" | translate }}</td>
+          <td class="celdaTexto">{{ datosAutnum[4] }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </app-collapsible-container-component>
 
-    <div class="col-md-6" *ngIf="!loading && datosEntities.length > 0">
-        <p class="tituloTabla">{{ "RESULTADOSAUTNUM.TablaContacts.Titulo" | translate }}</p>
-        <table class="table" *ngFor="let entity of datosEntities">
-            <tbody>
-            <tr>
-                <td colspan="2" class="subtituloTabla">{{ entity.Roles }}</td>
-            </tr>
-            <tr>
-                <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaContacts.Filas.Handle.Titulo" | translate }}</td>
-                <td class="celdaTexto">{{ entity.Handle }}</td>
-            </tr>
-            <tr>
-                <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaContacts.Filas.Name.Titulo" | translate }}</td>
-                <td class="celdaTexto">{{ entity.Name }}</td>
-            </tr>
-            <tr >
-                <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaContacts.Filas.Telephone.Titulo" | translate }}</td>
-                <td class="celdaTexto">{{ entity.Telephone }}</td>
-            </tr>
-            <tr >
-                <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaContacts.Filas.Email.Titulo" | translate }}</td>
-                <td class="celdaTexto">{{ entity.Email }}</td>
-            </tr>
-            <tr *ngIf="mostarDatosExta">
-                <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaContacts.Filas.MoreInfo.Titulo" | translate }}</td>
-                <td class="celdaTexto">
-                    <a class="link" target="_blank" [href]="sanitize(entity.Info)">Click here..</a>
-                </td>
-            </tr>
-            <tr>
-                <td class="celdaTitulo">Source</td>
-                <td class="celdaTexto">
-                    <a class="link" target="_blank" href="{{entity.Link}}">Click here..</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
 
-    <div *ngIf="mensajes.Errores.length > 0" class="alert alert-danger col-md-8 offset-md-2 errores">
-        <div *ngFor="let error of mensajes.Errores;">
-            {{error.Description}}
-        </div>
+    <!-- Información Extra - Inicio -->
+    <app-collapsible-container-component
+      collapseName="Extra"
+      [isWidget]="false"
+      titleText='{{ "RESULTADOSIP.TablaExtra.Titulo" | translate }}'
+    >
+      <table class="table">
+        <tbody>
+        <tr *ngFor="let extra of datosExtra">
+          <td class="celdaTitulo">{{ extra.Title }}</td>
+          <td class="celdaTexto">{{ extra.Desc }}</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="subtituloTabla">{{ "RESULTADOSIP.TablaExtra.SubTituloEventos" | translate }}</td>
+        </tr>
+        <tr *ngFor="let evento of datosEventos">
+          <td class="celdaTitulo">{{ evento.Title }}</td>
+          <td class="celdaTexto">{{ evento.Desc }}</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="subtituloTabla">{{ "RESULTADOSIP.TablaExtra.SubTituloLinks" | translate }}</td>
+        </tr>
+        <tr *ngFor="let link of datosLinks">
+          <td class="celdaTitulo">{{ link.Title }}</td>
+          <td class="celdaTexto" *ngIf="link.Link != '#'">
+            <a class="link" target="_blank" href="{{link.Link}}">{{ link.Desc }}</a>
+          </td>
+          <td class="celdaTexto" *ngIf="link.Link == '#'">{{ link.Desc }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </app-collapsible-container-component>
+    <!-- Información Extra - Fin -->
+
+    <app-collapsible-container-component
+      *ngIf="!loading && datosRemarks.length > 0"
+      collapseName="Remarks"
+      [isWidget]="false"
+      titleText='{{ "RESULTADOSAUTNUM.TablaRemarks.Titulo" | translate }} remarks'
+    >
+      <table class="table"  *ngIf="!loading && datosRemarks.length > 0">
+        <tbody>
+        <tr *ngFor="let remark of datosRemarks">
+          <td class="celdaTitulo">{{ remark.Title }}</td>
+          <td class="celdaTexto">{{ remark.Desc }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </app-collapsible-container-component>
+
+    <!-- Avisos - Inicio -->
+    <app-collapsible-container-component
+      *ngIf="!loading && datosNotices.length > 0"
+      collapseName="Notices"
+      [isWidget]="false"
+      titleText='{{ "RESULTADOSAUTNUM.TablaNotices.Titulo" | translate }}'
+    >
+      <table class="table">
+        <tbody>
+        <tr *ngFor="let notice of datosNotices">
+          <td class="celdaTitulo">{{ notice.Title }}</td>
+          <td class="celdaTexto" *ngIf="notice.Link != '#'">
+            <a class="link" target="_blank" href="{{notice.Link}}">{{ notice.Desc }}</a>
+          </td>
+          <td class="celdaTexto" *ngIf="notice.Link == '#'">{{ notice.Desc }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </app-collapsible-container-component>
+    <!-- Avisos - Fin -->
+  </div>
+
+  <div class="col-md-6" *ngIf="!loading && datosEntities.length > 0">
+    <app-collapsible-container-component
+      collapseName="Contacts"
+      [isWidget]="false"
+      titleText='{{ "RESULTADOSAUTNUM.TablaContacts.Titulo" | translate }}'
+    >
+      <table class="table" *ngFor="let entity of datosEntities">
+        <tbody>
+        <tr>
+          <td colspan="2" class="subtituloTabla">{{ entity.Roles }}</td>
+        </tr>
+        <tr>
+          <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaContacts.Filas.Handle.Titulo" | translate }}</td>
+          <td class="celdaTexto">{{ entity.Handle }}</td>
+        </tr>
+        <tr>
+          <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaContacts.Filas.Name.Titulo" | translate }}</td>
+          <td class="celdaTexto">{{ entity.Name }}</td>
+        </tr>
+        <tr *ngIf="!loading && entity.MuestroAddress == '1'">
+          <td class="celdaTitulo">{{ "RESULTADOSENTITY.TablaEntity.Filas.Country.Titulo" | translate }}</td>
+          <td class="celdaTexto">{{ entity.Country }}</td>
+        </tr>
+        <tr *ngIf="!loading && entity.MuestroAddress == '1'">
+          <td class="celdaTitulo">{{ "RESULTADOSENTITY.TablaEntity.Filas.City.Titulo" | translate }}</td>
+          <td class="celdaTexto">{{ entity.City }}</td>
+        </tr>
+        <tr *ngIf="!loading && entity.MuestroAddress == '1'">
+          <td class="celdaTitulo">{{ "RESULTADOSENTITY.TablaEntity.Filas.Address.Titulo" | translate }}</td>
+          <td class="celdaTexto">{{ entity.Address }}</td>
+        </tr>
+        <tr *ngIf="!loading && entity.MuestroAddress == '1'">
+          <td class="celdaTitulo">{{ "RESULTADOSENTITY.TablaEntity.Filas.PostalCode.Titulo" | translate }}</td>
+          <td class="celdaTexto">{{ entity.PostalCode }}</td>
+        </tr>
+        <tr >
+          <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaContacts.Filas.Telephone.Titulo" | translate }}</td>
+          <td class="celdaTexto">{{ entity.TelType }} {{ entity.Telephone }}</td>
+        </tr>
+        <tr >
+          <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaContacts.Filas.Email.Titulo" | translate }}</td>
+          <td class="celdaTexto">{{ entity.Email }}</td>
+        </tr>
+        <tr >
+          <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaContacts.Filas.Version.Titulo" | translate }}</td>
+          <td class="celdaTexto">{{ entity.Version }}</td>
+        </tr>
+        <tr >
+          <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaContacts.Filas.Registration.Titulo" | translate }}</td>
+          <td class="celdaTexto">{{ entity.RegistrationDate }}</td>
+        </tr>
+        <tr >
+          <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaContacts.Filas.LastChanged.Titulo" | translate }}</td>
+          <td class="celdaTexto">{{ entity.LastChangedDate }}</td>
+        </tr>
+
+        <tr *ngIf="mostarDatosExta">
+          <td class="celdaTitulo">{{ "RESULTADOSAUTNUM.TablaContacts.Filas.MoreInfo.Titulo" | translate }}</td>
+          <td class="celdaTexto">
+            <a class="link" target="_blank" [href]="sanitize(entity.Info)">Click here..</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="celdaTitulo">Source</td>
+          <td class="celdaTexto">
+            <a class="link" target="_blank" href="{{entity.Link}}">Click here..</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </app-collapsible-container-component>
+  </div>
+
+  <div *ngIf="mensajes.Errores.length > 0" class="alert alert-danger col-md-10 offset-md-1 errores">
+    <div *ngFor="let error of mensajes.Errores;">
+      {{error.Description}}
     </div>
-    <div *ngIf="mensajes.Exitos.length > 0" class="alert alert-success  col-md-8 offset-md-2 exitos">
-        <div *ngFor="let exito of mensajes.Exitos;">
-            {{exito.Description}}
-        </div>
+  </div>
+  <div *ngIf="mensajes.Informaciones.length > 0" class="alert alert-info col-md-10 offset-md-1 informaciones">
+    <div *ngFor="let info of mensajes.Informaciones;">
+      <div *ngIf="info.isJSON" [innerHTML]="info.Description | prettyjson"></div>
+      <span *ngIf="!info.isJSON">{{info.Description}}</span>
     </div>
+  </div>
+  <div *ngIf="mensajes.Exitos.length > 0" class="alert alert-success  col-md-10 offset-md-1 exitos">
+    <div *ngFor="let exito of mensajes.Exitos;">
+      {{exito.Description}}
+    </div>
+  </div>
 </div>
+
+<app-embed-page-iframe-code-component [iframeSRC]="'https://rdap-web.lacnic.net/rdap/query-autnum/' + this.AUTNUM"></app-embed-page-iframe-code-component>

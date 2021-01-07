@@ -1,4 +1,5 @@
 import { Link } from './link';
+import { Event }    from './event';
 
 export class Entity {
     objectClassName : string;
@@ -10,4 +11,5 @@ export class Entity {
     links : Link[];
     lang : string;
     entities : Entity[];
+    events : Event[];
 }

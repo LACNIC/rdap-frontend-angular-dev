@@ -1,0 +1,40 @@
+.titulo {
+  font-family: FoundryMonoline-Blod;
+  color: #7F7F7F;
+}
+
+#inputBuscado {
+  font-family: FoundryMonoline-Medium;
+  margin-bottom: 20px;
+  color: #7F7F7F;
+}
+
+.btn {
+  font-family: FoundryMonoline-Medium;
+  background-color: #009DCA;
+  border: none;
+  cursor: pointer;
+}
+
+.infoAdicional {
+  margin-top: 20px;
+  padding-left: 20px;
+}
+
+.infoAdicionalTitulo {
+  font-family: FoundryMonoline-Blod;
+  color: #7F7F7F;
+}
+
+.infoAdicionalParrafo {
+  color: #7F7F7F;
+  font-family: FoundryMonoline-Light;
+}
+
+
+.search-radio-button {
+  color: #7F7F7F;
+  font-family: FoundryMonoline-Light;
+  margin-left: 20px;
+  margin-right: 5px;
+}

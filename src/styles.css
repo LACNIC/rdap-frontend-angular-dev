@@ -1,0 +1,49 @@
+/* You can add global styles to this file, and also import other style files */
+
+pre {
+  margin: 0;
+}
+
+/* Loading spinner */
+.imgLoading {
+  width: 100%;
+}
+
+/* xs table */
+.table-xs td,
+.table-xs th {
+  padding: 0
+}
+
+/* Widgets */
+.widget-title {
+  font-family: FoundryMonoline-Blod;
+  color: #7F7F7F;
+  font-size: 30px;
+}
+
+.widget-section-container {
+  margin: 10px;
+  padding: 10px;
+  border: solid #dadada 1px;
+  border-radius: 10px;
+}
+
+.widget-table-subtitle {
+  font-family: FoundryMonoline-Blod;
+  color: #696969;
+}
+
+.widget-table-title-cell {
+  font-family: FoundryMonoline-Medium;
+  color: #7F7F7F;
+}
+
+.widget-table-text-cell {
+  font-family: FoundryMonoline-Light;
+  color: #7F7F7F;
+}
+
+.break-all {
+  word-break: break-all;
+}
