@@ -40,7 +40,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.DEPLOY_PERSONAL_TOKEN }}
-          external_repository: lacnic/milacnic-query-angular-prod
+          external_repository: lacnic/rdap-frontend-angular-prod
           publish_branch: master  # default: gh-pages
           publish_dir: ./rdap-web-ng10-build
           cname: rdap-web.lacnic.net
