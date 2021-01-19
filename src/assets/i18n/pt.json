@@ -1,27 +1,27 @@
 {
-  "GENERAL" : {
-    "Errores" : {
-      "Generico" : "Ocorreu um erro.",
-      "ContacteAdministrador" : "Entre em contato com o administrador.",
-      "ArrayLimit":"Você excedeu o limite máximo de consultas"
+  "GENERAL": {
+    "Errores": {
+      "Generico": "Ocorreu um erro.",
+      "ContacteAdministrador": "Entre em contato com o administrador.",
+      "ArrayLimit":"Você excedeu o limite máximo de consulta"
     }
   },
   "COMPONENTS" : {
     "EMBED" : {
-      "TextoBotonFlotante" : "Embeber",
-      "ModalTitulo" : "Código para embeber el widget",
-      "ModalBotonCopiarTexto" : "Copiar al portapapeles",
-      "ModalBotonCerrarTexto" : "Cerrar",
-      "ModalAvisoTextoCopiado": "El texto se ha copiado al portapapeles."
+      "TextoBotonFlotante" : "Colocar",
+      "ModalTitulo" : "Código para colocar o widget",
+      "ModalBotonCopiarTexto" : "Copiar para área de transferência",
+      "ModalBotonCerrarTexto" : "Fechar",
+      "ModalAvisoTextoCopiado": "O texto foi copiado na área de transferência."
     }
   },
-  "MASTERPAGE" : {
-    "MENU" : {
-      "LinkHome" : "Inicio",
-      "LinkAutnum" : "Consulta por Autnum",
-      "LinkIp" : "Consulta por IP",
-      "LinkEntity" : "Consulta por entidades",
-      "LinkEntitiesByName" : "Pesquisar por Nome",
+  "MASTERPAGE": {
+    "MENU": {
+      "LinkHome": "Início",
+      "LinkAutnum": "Consulta por Autnum",
+      "LinkIp": "Consulta por IP",
+      "LinkEntity": "Consulta por Entity",
+      "LinkEntitiesByName": "Consulta por Nome",
       "LinkNameserver": "Consulta por servidor de nomes",
       "LinkDomain": "Consulta por domínio",
       "LinkBusquedaEntities" : "Pesquisa por entidades",      
@@ -30,67 +30,66 @@
       "LinkAbout": "Acerca do RDAP"
     }
   },
-  "HOME" : {
-    "Errores" : {
-      "valorBuscadoVacio" : "Você deve especificar o valor a ser procurado."
+  "HOME": {
+    "Errores": {
+      "valorBuscadoVacio": "Deve indicar o valor a ser pesquisado."
     },
-    "QueryBy" : "Consultar por:",
-    "InformacionAdicional" : {
-      "Titulo" : "INFORMAÇÃO ADICIONAL",
-      "Parrafo1" : "O \"Registration Data Access Protocol\" (RDAP) foi projetado para superar as deficiências existentes no WHOIS tradicional, problemas com a internacionalização, padronização das respostas, inclusão de caracteres especiais, difícil processamento automático, inclusão de novos tipos de consultas poderão ser resolvidos com o desenvolvimento deste padrão.",
-      "Parrafo2" : "Os documentos de WEIRDS nos quais foi baseado o RDAP implementado pela LACNIC bem como infomação adicional sobre o sistema."
+    "QueryBy": "Consultar por:",
+    "InformacionAdicional": {
+      "Titulo": "INFORMAÇÃO ADICIONAL",
+      "Parrafo1": "O \"Registration Data Access Protocol\" (RDAP) foi projetado para solucionar as deficiências existentes no WHOIS tradicional; problemas como internacionalização, padronização de respostas, inclusão de caracteres especiais, difícil processamento automático, inclusão de novos tipos de consultas, podem ser resolvidos com o desenvolvimento desta norma.",
+      "Parrafo2": "Os documentos de WEIRDS nos quais se baseia o RDAP implementado pelo LACNIC, bem como INFORMAÇÃO ADICIONAL sobre o sistema."
     },
     "ComoConsultar": {
       "Titulo":"Como consultar",
       "IDs": {
-        "Titulo" : "IDs",
-        "Texto" : "Digite o ID do usuário. IDs são compostos por três letras, seguidas ou não de alguns números."
+        "Titulo" : "ID",
+        "Texto" : "Digite o ID do usuário. Os ID são compostos por 3 letras seguidas ou não de alguns números."
       },
       "Orgs": {
         "Titulo" : "Entidades",
-        "Texto" : "Digite o OrgID da entidade. Os OrgIDs possuem o formato:",
-        "Ejemplo":"código do país-ID da entidade-LACNIC."
+        "Texto" : "Digite o OrgID da organização. Os OrgID têm o seguinte formato:",
+        "Ejemplo":"código País-ID organização-LACNIC."
       },
       "Asn": {
         "Titulo" : "ASN",
-        "Texto" : "Digite o número do Sistema Autônomo."
-      },
+        "Texto" : "Digite o número do sistema autônomo. "},
       "IP": { 
         "Titulo" : "IP ou bloco CIDR",
-        "Texto" : "Digite um número IP (200.7.84.0) ou um bloco CIDR (200.7.84.0/23)."
+        "Texto" : "Insira um endereço IP (200.7.84.0) ou um bloco CIDR (200.7.84.0/23)."
       },
       "Nameservers": { 
         "Titulo" : "Servidores de nomes",
-        "Texto" : "Insira um valor para consultar um servidor de nomes"
+        "Texto" : "Digite um valor para consultar um servidor de nomes."
       },
-      "Domains": { 
-        "Titulo" : "Domínios",
-        "Texto" : "Insira um domínio."
+      "Domains":
+      { "Titulo" : "Domínios",
+        "Texto" : "Digite um domínio."
       },
       "EntitiesSearch": { 
         "Titulo" : "Pesquisa Entidades",
         "Texto" : "Selecione se quiser pesquisar por fn ou handle e insira o valor a pesquisar incluindo curingas."
       },
       "NameserverSearch": { 
-        "Titulo" : "Pesquisa Servidores de nomes",
+        "Titulo" : "Pesquisa servidores de nomes",
         "Texto" : "Insira o valor a pesquisar incluindo curingas."
       },
       "DomainSearch": { 
         "Titulo" : "Pesquisa Domínios",
-        "Texto" : "Selecione se quiser pesquisar por nsLdhName ou por nome e insira o valor a pesquisar incluindo curingas."
+        "Texto" : "Selecione se quiser pesquisar nsLdhName ou por nome e insira o valor a pesquisar incluindo curingas."
       }
     },
-    "Copyright":"Os dados abaixo são fornecidos para fins informativos e para ajudar as pessoas a obter informações sobre ou relacionadas aos registros de números de AS e IP. Ao enviar uma consulta, você concorda em usar esses dados apenas para fins legais.",
-    "Select" : {
-      "Opciones" : {
-        "1" : "Autnum",
-        "2" : "IP",
-        "3" : "Entidade",
-        "4" : "Servidor de nomes",
-        "5" : "Domínio",
-        "6" : "Pesquisa Entidades",
-        "7" : "Pesquisa Servidores de nomes",
-        "8" : "Pesquisa Domínios"
+    "Copyright":"Os dados a seguir são fornecidos para fins informativos e para ajudar às pessoas a obterem informações relacionadas ao registro de números de AS e de IP. Ao enviar uma consulta, você concorda em usar essas informações apenas para fins legais.",
+    "Select": {
+      "Opciones": {
+        "1": "Autnum",
+        "2": "IP",
+        "3": "Entidade",
+        "4": "Servidor de nomes",
+        "5": "Domínio",
+        "6": "Pesquisa entidades",
+        "7": "Pesquisa servidores de nomes",
+        "8": "Pesquisa domínios"
       }
     },
     "SelectParamEntities": {
@@ -105,33 +104,33 @@
         "2": "Pesquisar por nome"        
       }
     },
-    "BotonBuscar" : "PROCURAR",
-    "LinkPoliticaPrivacidad":"https://www.lacnic.net/politica-de-privacidade",
+    "BotonPESQUISAR": "PESQUISAR",
+    "LinkPoliticaPrivacidad":"https://www.lacnic.net/politica-privacidad",
     "TextoPoliticaPrivacidad": "Política de privacidade"
   },
-  "CONSULTAPORIP" : {
-    "Errores" : {
-      "valorBuscadoVacio" : "Você deve especificar o valor a ser procurado."
+  "CONSULTAPORIP": {
+    "Errores": {
+      "valorBuscadoVacio": "Deve indicar o valor a pesquisar."
     },
-    "Titulo" : "Consulta por IP",
-    "InformacionAdicional" : {
-      "Titulo" : "INFORMAÇÃO ADICIONAL",
-      "Parrafo1" : "Parágrafo 1.",
-      "Parrafo2" : "Parágrafo 2."
+    "Titulo": "Consulta por IP",
+    "InformacionAdicional": {
+      "Titulo": "INFORMAÇÃO ADICIONAL",
+      "Parrafo1": "Parágrafo 1.",
+      "Parrafo2": "Parágrafo 2."
     },
-    "BotonBuscar" : "PROCURAR"
+    "BotonPESQUISAR": "PESQUISAR"
   },
-  "CONSULTAPORAUTNUM" : {
-    "Errores" : {
-      "valorBuscadoVacio" : "Você deve especificar o valor a ser procurado."
+  "CONSULTAPORAUTNUM": {
+    "Errores": {
+      "valorBuscadoVacio": "Deve indicar o valor a pesquisar."
     },
-    "Titulo" : "Pesquisa por Autnum",
-    "InformacionAdicional" : {
-      "Titulo" : "INFORMAÇÃO ADICIONAL",
-      "Parrafo1" : "Parágrafo 1.",
-      "Parrafo2" : "Parágrafo 2."
+    "Titulo": "Consulta por Autnum",
+    "InformacionAdicional": {
+      "Titulo": "INFORMAÇÃO ADICIONAL",
+      "Parrafo1": "Parágrafo 1.",
+      "Parrafo2": "Parágrafo 2."
     },
-    "BotonBuscar" : "PROCURAR"
+    "BotonPESQUISAR": "PESQUISAR"
   },
   "CONSULTAPORNAMESERVER": {
     "Errores": {
@@ -143,19 +142,19 @@
       "Parrafo1": "Parágrafo 1.",
       "Parrafo2": "Parágrafo 2."
     },
-    "BotonBuscar": "PESQUISAR"
-  },
-  "CONSULTAPORENTITY" : {
-    "Errores" : {
-      "valorBuscadoVacio" : "Você deve especificar o valor a ser procurado."
+    "BotonPESQUISAR": "Pesquisar"
+  }, 
+  "CONSULTAPORENTITY": {
+    "Errores": {
+      "valorBuscadoVacio": "Deve indicar o valor a pesquisar."
     },
-    "Titulo" : "Pesquisa por Entity",
-    "InformacionAdicional" : {
-      "Titulo" : "INFORMAÇÃO ADICIONAL",
-      "Parrafo1" : "Parágrafo 1.",
-      "Parrafo2" : "Parágrafo 2."
+    "Titulo": "Consulta por Entidade",
+    "InformacionAdicional": {
+      "Titulo": "INFORMAÇÃO ADICIONAL",
+      "Parrafo1": "Parágrafo 1.",
+      "Parrafo2": "Parágrafo 2."
     },
-    "BotonBuscar" : "PROCURAR"
+    "BotonPESQUISAR": "PESQUISAR"
   },
   "CONSULTAPORDOMAIN": {
     "Errores": {
@@ -167,7 +166,7 @@
       "Parrafo1": "Parágrafo 1.",
       "Parrafo2": "Parágrafo 2."
     },
-    "BotonBuscar": "PESQUISAR"
+    "BotonPESQUISAR": "PESQUISAR"
   },
   "BUSQUEDAPORENTITIES": {
     "Errores": {
@@ -179,9 +178,9 @@
       "Parrafo1": "Parágrafo 1.",
       "Parrafo2": "Parágrafo 2."
     },
-    "BotonBuscar": "PESQUISAR",
+    "BotonPESQUISAR": "PESQUISAR",
     "RadioButton" : {
-      "Titulo": "Pesquisar por:",
+      "Titulo": "PESQUISAR por:",
       "Opcion1": "fn",
       "Opcion2": "handle" 
     }
@@ -196,7 +195,7 @@
       "Parrafo1": "Parágrafo 1.",
       "Parrafo2": "Parágrafo 2."
     },
-    "BotonBuscar": "PESQUISAR"    
+    "BotonPESQUISAR": "PESQUISAR"
   },
   "BUSQUEDAPORDOMAINS": {
     "Errores": {
@@ -208,45 +207,45 @@
       "Parrafo1": "Parágrafo 1.",
       "Parrafo2": "Parágrafo 2."
     },
-    "BotonBuscar": "PESQUISAR",
+    "BotonPESQUISAR": "PESQUISAR",
     "RadioButton" : {
-      "Titulo": "Pesquisar por:",
+      "Titulo": "PESQUISAR por:",
       "Opcion1": "nome",
       "Opcion2": "nsLdhName" 
     }
   },
-  "CONSULTAENTITIESBYNAME" : {
-    "Errores" : {
-      "valorBuscadoVacio" : "Você deve especificar o valor a ser procurado."
+  "CONSULTAENTITIESBYNAME": {
+    "Errores": {
+      "valorBuscadoVacio": "Deve indicar o valor a pesquisar."
     },
-    "Titulo" : "Consulta por Nome",
-    "InformacionAdicional" : {
-      "Titulo" : "INFORMAÇÃO ADICIONAL",
-      "Parrafo1" : "Parágrafo 1.",
-      "Parrafo2" : "Parágrafo 2."
+    "Titulo": "Consulta por nome",
+    "InformacionAdicional": {
+      "Titulo": "INFORMAÇÃO ADICIONAL",
+      "Parrafo1": "Parágrafo 1.",
+      "Parrafo2": "Parágrafo 2."
     },
-    "BotonBuscar" : "PROCURAR"
+    "BotonPESQUISAR": "PESQUISAR"
   },
-  "ABOUT" : {
-    "Titulo" : "Sobre RDAP",
-    "Parrafo1" : "O \"Web Extensible Internet Registration Data Service Working Group\" (WEIRDS) é o grupo de trabalho dentro da Internet Engineering Task Force (IEFT) responsável pela definição da nova forma de consultar o banco de dados de registros da Internet e obter assim informações de IP, ASN, contatos e organizações.",
-    "Parrafo2" : "O \"Registration Data Access Protocol\" (RDAP) tem sido criado para corrigir as deficiências existentes no WHOIS tradicional. Problemas como a internacionalização, padronização das respostas, inclusão de caracteres especiais, análise de erros, inclusão de novos tipos de consultas, poderão ser resolvidos com o desenvolvimento desse padrão.",
-    "Parrafo3" : "Este serviço tem sido desenvolvido por técnicos de LACNIC para dar uma resposta unificada à comunidade da região na hora de procurar informações sobre os recursos de numeração (IPv4, IPv6 e ASN) designados tanto pelo LACNIC quanto por organizações membros do LACNIC em nosso WHOIS. Para desenvolver o serviço, os engenheiros de LACNIC contaram com o apoio do RIPE-NCC.",
-    "Parrafo4" : "O RDAP tem grandes vantagens sobre o WHOIS tradicional: apresenta uma resposta padronizada e unificada, é mais fácil de usar ou integrar com outros sistemas e permite utilizar na busca outros idiomas além do inglês."
-    },
-  "RESULTADOSIP" : {
+  "ABOUT": {
+    "Titulo": "Acerca do RDAP",
+    "Parrafo1": "O \"Web Extensible Internet Registration Data Service Working Group\" (WEIRDS) é o grupo de trabalho da Internet Engineering Task Force (IETF) responsável por definir a nova forma de consultar o banco de dados dos registros da Internet e assim obter informações sobre IP, ASN, contatos e organizações.",
+    "Parrafo2": "O \"Registration Data Access Protocol\" (RDAP) foi pensado para resolver as deficiências existentes no WHOIS tradicional. Problemas como a internacionalização, padronização de respostas, inclusão de caracteres especiais, análise difícil, inclusão de novos tipos de consultas podem ser resolvidos com o desenvolvimento desta norma.",
+    "Parrafo3": "Este serviço foi desenvolvido por técnicos do LACNIC para dar uma resposta unificada à comunidade da região quando esta precisa buscar informações sobre os recursos de numeração (IPv4, IPv6 e ASN) designados pelo LACNIC assim como entidades associadas do LACNIC no nosso WHOIS . Neste desenvolvimento, os engenheiros do LACNIC contaram com o apoio do RIPE-NCC.",
+    "Parrafo4": "O RDAP tem grandes vantagens sobre o WHOIS tradicional: apresenta uma resposta padronizada e unificada, é mais fácil de usar ou integrar com outros sistemas e permite o uso de outros idiomas além do inglês na pesquisa."
+  },
+  "RESULTADOSIP": {
     "Errores": {
       "sinResultados": "Não foram encontrados resultados.",
       "verifiqueYReintente": "Por favor, verifique e tente novamente."
     },
-    "TablaIP" : {
-      "Titulo" : "IP",
-      "Filas" : {
-        "Handle" : {
-          "Titulo" : "Handle"
+    "TablaIP": {
+      "Titulo": "IP",
+      "Filas": {
+        "Handle": {
+          "Titulo": "Handle"
         },
         "Name": {
-          "Titulo": "Nome"
+          "Titulo": "nome"
         },
         "Status": {
           "Titulo": "Estado"
@@ -255,7 +254,7 @@
           "Titulo": "Pai"
         },
         "NetRange": {
-          "Titulo": "Alcance rede"
+          "Titulo": "Intervalo rede"
         },
         "NetVersion": {
           "Titulo": "Versão rede"
@@ -290,7 +289,7 @@
           "Titulo" : "Nome"
         },
         "Address" : {
-          "Titulo" : "Endereço "
+          "Titulo" : "Endereço"
         },
         "City" : {
           "Titulo" : "Cidade"
@@ -325,7 +324,7 @@
       }
     },
     "TablaExtra" : {
-      "Titulo" : "Informação Extra",
+      "Titulo" : "Informação extra",
       "SubTituloLinks" : "Links",
       "SubTituloEventos" : "Eventos",
       "SubTituloVCard" : "VCard",
@@ -364,7 +363,7 @@
           "Titulo" :  "End Autnum"
         },
         "Roles" : {
-          "Titulo" :  "Roles"
+          "Titulo" :  "Funções"
         },
         "Lacnic_originAutnum" : {
           "Titulo" : "Lacnic Origin autnums"
@@ -372,16 +371,16 @@
       }
     },
     "TablaReverseDelegations" : {
-      "Titulo" : "Reverse Delegations",
-      "SubtituloNameSever" : "Nameservers",
-      "SubTituloSecDns" : "Secure DNS",
+      "Titulo" : "Delegações inversas",
+      "SubtituloNameSever" : "Servidores de nome",
+      "SubTituloSecDns" : "DNS seguro",
       "SubTituloDsData" : "Data Ds",
       "Filas" : {
         "StartAddress" : {
-          "Titulo" : "Start Address"
+          "Titulo" : "Endereço inicial"
         },
         "EndAddress" : {
-          "Titulo" : "End Address"
+          "Titulo" : "Endereço final"
         },
         "LdhName" : {
           "Titulo" : "LdhName"
@@ -393,7 +392,7 @@
           "Titulo" : "Data"
         },
         "Zone" : {
-          "Titulo" : "Zone"
+          "Titulo" : "Área"
         },
         "KeyTag" : {
           "Titulo" : "KeyTag"
@@ -410,15 +409,15 @@
       }
     },
     "Widget" : {
-      "Info" : "Información obtenida por "
+      "Info" : "Informação obtida por "
     }
   },
-  "RESULTADOSAUTNUM" : {
+  "RESULTADOSAUTNUM": {
     "Errores": {
       "sinResultados": "Não foram encontrados resultados.",
       "verifiqueYReintente": "Por favor, verifique e tente novamente."
     },
-    "TablaAutnum" : {
+    "TablaAutnum": {
       "Titulo": "AS",
       "Filas": {
         "Handle": {
@@ -448,7 +447,7 @@
           "Titulo" : "Nome"
         },
         "Address" : {
-          "Titulo" : "Endereço "
+          "Titulo" : "Endereço"
         },
         "City" : {
           "Titulo" : "Cidade"
@@ -486,75 +485,75 @@
       "Titulo": "Avisos"      
     },
     "TablaRemarks": {
-      "Titulo": "Remarks"      
+      "Titulo": "Observações"      
     }
   },
-  "RESULTADOSENTITY" : {
-    "Errores" : {
-      "sinResultados" : "Nenhum resultado encontrado.",
-      "verifiqueYReintente" : "Por favor verifique e tente novamente."
+  "RESULTADOSENTITY": {
+    "Errores": {
+      "sinResultados": "Não foram encontrados resultados.",
+      "verifiqueYReintente": "Por favor, verifique e tente novamente."
     },
-    "TablaEntity" : {
-      "Titulo" : "ENTITY",
-      "Filas" : {
-        "Handle" : {
-          "Titulo" : "Handle"
+    "TablaEntity": {
+      "Titulo": "ENTIDADE",
+      "Filas": {
+        "Handle": {
+          "Titulo": "Handle"
         },
-        "Name" : {
-          "Titulo" : "Name"
+        "Name": {
+          "Titulo": "Nome"
         },
-        "Address" : {
-          "Titulo" : "Address"
+        "Address": {
+          "Titulo": "Endereço"
         },
-        "City" : {
-          "Titulo" : "City"
+        "City": {
+          "Titulo": "Cidade"
         },
-        "Country" : {
-          "Titulo" : "Country"
+        "Country": {
+          "Titulo": "País"
         },
-        "Roles" : {
-          "Titulo" : "Roles"
+        "Roles": {
+          "Titulo": "Funções"
         },
-        "PostalCode" : {
-          "Titulo" : "Postal Code"
+        "PostalCode": {
+          "Titulo": "CPF"
         },
-        "Email" : {
-          "Titulo" : "E-mail"
+        "Email": {
+          "Titulo": "E-mail"
         },
-        "Telephone" : {
-          "Titulo" : "Telephone"
+        "Telephone": {
+          "Titulo": "Telefone"
         },
         "Registration": {
           "Titulo": "Registro"
         },
         "LastChanged": {
           "Titulo": "Última mudança"
-        }, 
-        "Operator" : {
-          "Titulo" : "Operator"
+        },  
+        "Operator": {
+          "Titulo": "Operador"
         },
         "Version": {
           "Titulo": "Versão"
         },
         "LegalRepresentative": {
           "Titulo": "Representante legal"
-        },  
-        "Inetnums" : {
-          "Titulo" : "Inetnums",
-          "Kind" : {
-            "Titulo" : "Kind"
+        }, 
+        "Inetnums": {
+          "Titulo": "Inetnums",
+          "Kind": {
+            "Titulo": "Tipo"
           },
-          "Value" : {
-            "Titulo" : "Value"
+          "Value": {
+            "Titulo": "Valor"
           }
         },
-        "Autnums" : {
-          "Titulo" : "Autnums",
-          "Kind" : {
-            "Titulo" : "Kind"
+        "Autnums": {
+          "Titulo": "Autnums",
+          "Kind": {
+            "Titulo": "Tipo"
           },
-          "Value" : {
-            "Titulo" : "Value"
+          "Value": {
+            "Titulo": "Valor"
           }
         }
       }
@@ -572,10 +571,10 @@
           "Titulo": "LdhName"
         },
         "IPv4": {
-          "Titulo": "IP v4"
+          "Titulo": "IPv4"
         },
         "IPv6": {
-          "Titulo": "IP v6"
+          "Titulo": "IPv6"
         },
         "Source" : {
           "Titulo" : "Fonte"
@@ -619,7 +618,7 @@
         }
       }    
     }
-  },
+  },  
   "RESULTSRCHDOMAIN": {
     "Errores": {
       "sinResultados": "Não foram encontrados resultados.",
@@ -701,65 +700,65 @@
       }
     }
   },
-  "RESULTADOSENTITIESBYNAME" : {
-    "Errores" : {
-      "sinResultados" : "Nenhum resultado encontrado.",
-      "verifiqueYReintente" : "Por favor verifique e tente novamente."
+  "RESULTADOSENTITIESBYNAME": {
+    "Errores": {
+      "sinResultados": "Não foram encontrados resultados.",
+      "verifiqueYReintente": "Por favor, verifique e tente novamente."
     },
-    "TablaEntities" : {
-      "Titulo" : "ENTITIES",
-      "Columnas" : {
-        "Handle" : {
-          "Titulo" : "Handle"
+    "TablaEntities": {
+      "Titulo": "ENTIDADES",
+      "Columnas": {
+        "Handle": {
+          "Titulo": "Handle"
         },
-        "Name" : {
-          "Titulo" : "Name"
+        "Name": {
+          "Titulo": "Nome"
         },
-        "Country" : {
-          "Titulo" : "Country"
+        "Country": {
+          "Titulo": "País"
         }
       }
     }
   },
-  "REPORTEASN" : {
-    "Errores" : {
-      "sinResultados" : "Nenhum resultado encontrado.",
-      "verifiqueYReintente" : "Por favor verifique e tente novamente.",
-      "seleccionePais" : "Por favor, selecione um país."
+  "REPORTEASN": {
+    "Errores": {
+      "sinResultados": "Não foram encontrados resultados.",
+      "verifiqueYReintente": "Por favor, verifique e tente novamente.",
+      "seleccionePais": "Por favor, selecione um país."
     },
-    "FormularioPaises" : {
-      "Combo" : {
-        "Label" : "Country",
-        "Opciones" : {
-          "Seleccionar" : "Selecione um pais",
-          "Todos" : "Todos"
+    "FormularioPaises": {
+      "Combo": {
+        "Label": "País",
+        "Opciones": {
+          "Seleccionar": "Selecione um país",
+          "Todos": "Todos"
         }
       },
-      "BotonBuscar" : "Procurar"
+      "BotonPESQUISAR": "PESQUISAR"
     },
-    "TablaASN" : {
-      "Titulo" : "Relatório ASN's",
-      "Columnas" : {
-        "ASN" : {
-          "Titulo" : "ASN"
+    "TablaASN": {
+      "Titulo": "Relatório ASN",
+      "Columnas": {
+        "ASN": {
+          "Titulo": "ASN"
         },
-        "Tipo" : {
-          "Titulo" : "Type"
+        "Tipo": {
+          "Titulo": "Tipo"
         },
-        "Visibilidad" : {
-          "Titulo" : "Visibility"
+        "Visibilidad": {
+          "Titulo": "Visibilidade"
         },
-        "Pais" : {
-          "Titulo" : "Country"
+        "Pais": {
+          "Titulo": "País"
         }
       }
     },
-    "Graficas" : {
-      "RecuentoTipo" : {
-        "Titulo" : "Tipo Contagem"
+    "Graficas": {
+      "RecuentoTipo": {
+        "Titulo": "Contagem por Tipo"
       },
-      "RecuentoVisibilidad" : {
-        "Titulo" : "Visibilidade Contagem"
+      "RecuentoVisibilidad": {
+        "Titulo": "Contagem por Visibilidade"
       }
     }
   }
