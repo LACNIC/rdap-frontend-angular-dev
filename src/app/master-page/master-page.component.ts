@@ -26,8 +26,8 @@ export class MasterPageComponent implements OnInit {
     this.translate.addLangs(['es', 'en', 'pt']);
     this.translate.setDefaultLang('es');
     this.translate.use('es');
-
     this.idiomaActual = 'es';
+
     if(localStorage.getItem('lenguaje') != null) {
         var idioma : string = localStorage.getItem('lenguaje');
         this.translate.use(idioma);
